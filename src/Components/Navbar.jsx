@@ -139,15 +139,15 @@ const Navbar = () => {
       {/* Nav Overlay */}
       <nav
         ref={navRef}
-        className="fixed z-50 flex font-[poppins] flex-col justify-between w-full h-full px-10 uppercase bg-black text-white/80 py-28 gap-y-10"
+        className="fixed z-50 flex flex-col justify-between w-full h-full px-10 uppercase bg-black text-white/80 py-28 gap-y-10"
       >
         {/* Decorative Letters */}
-        <h1 className="absolute md:block hidden  text-white/50 top-[42vh] font-[poppins] right-[52vh] text-[30vh]">m</h1>
+        <h1 className="absolute md:block hidden  text-white/50 top-[42vh] font-[font2] right-[52vh] text-[30vh]">m</h1>
         <h1 className="absolute -bottom-[16vh] n md:block right-[19vh] md:top-[21vh] md:right-[20vh] font-[font2] text-[38vh] md:text-[50vh]">N</h1>
-        <h1 className="absolute md:top-[39vh] text-white/50  -bottom-[6vh] right-[19vw] md:right-[4vh] font-[font2] text-[17vh] md:text-[30vh]">R</h1>
+        <h1 className="absolute md:top-[39vh]  -bottom-[6vh] right-[19vw] md:right-[4vh] font-[font2] text-[17vh] md:text-[30vh]">R</h1>
 
         {/* Main Links */}
-        <div className="relative md:left-1/2 mt-15 md:mt-0 md:w-1/2 flex flex-col  text-5xl gap-y-2 md:text-6xl lg:text-[4vw] font-light">
+        <div className="relative md:left-1/2 mt-15 md:mt-0 md:w-1/2 flex flex-col font-[font1] text-5xl gap-y-2 md:text-6xl lg:text-[4vw] font-light">
           {["Home", "About Me", "Projects", "Contact", "Services"].map(
             (text, index) => (
               <div className="overflow-hidden" key={index}>
