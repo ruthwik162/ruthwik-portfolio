@@ -139,7 +139,7 @@ const Navbar = () => {
       {/* Nav Overlay */}
       <nav
         ref={navRef}
-        className="fixed z-50 flex flex-col justify-between w-full h-full px-10 uppercase bg-black text-white/80 py-28 gap-y-10"
+        className="fixed z-50 flex flex-col justify-around w-full h-full md:px-10 px-5  uppercase bg-black text-white/80  "
       >
         {/* Decorative Letters */}
         <h1 className="absolute md:block hidden  text-white/50 top-[42vh] font-[font2] right-[52vh] text-[30vh]">m</h1>
@@ -147,7 +147,7 @@ const Navbar = () => {
         <h1 className="absolute md:top-[39vh]  -bottom-[6vh] right-[19vw] md:right-[4vh] font-[font2] text-[17vh] md:text-[30vh]">R</h1>
 
         {/* Main Links */}
-        <div className="relative md:left-1/2 mt-15 md:mt-0 md:w-1/2 flex flex-col font-[font1] text-5xl gap-y-2 md:text-6xl lg:text-[4vw] font-light">
+        <div className="relative md:left-1/2 md:pt-0 pt-[8vh] md:mt-[2vh] md:w-1/2 flex  flex-col font-[font2] text-5xl gap-y-2 md:text-6xl lg:text-[4vw] font-light">
           {["Home", "About Me", "Projects", "Contact", "Services"].map(
             (text, index) => (
               <div className="overflow-hidden" key={index}>
@@ -165,7 +165,7 @@ const Navbar = () => {
         </div>
 
         {/* Contact + Social */}
-        <div className="flex items-center md:flex-row flex-col justify-between p-2">
+        <div className="flex items-center md:mt-0 md:flex-row flex-col pb-[10vh] md:pb-0 justify-between p-2">
           <div className="box bg-white md:block hidden w-80 h-50">
             <img
               className="h-full w-full object-cover object-center"
@@ -174,7 +174,7 @@ const Navbar = () => {
             />
           </div>
 
-          <div className="flex md:flex-row flex-col md:items-center md:mx-10 items-end justify-start md:justify-between gap-10">
+          <div className="flex md:flex-row flex-col md:items-center md:mx-10 items-end justify-start md:justify-between md:gap-10">
             <div className="relative flex flex-col font-light">
               {contact.map(({ detail, icon: Icon }, ind) => (
                 <div className="overflow-hidden" key={ind}>
@@ -182,7 +182,7 @@ const Navbar = () => {
                     ref={(el) => (contactRef.current[ind] = el)}
                     className="overflow-hidden flex gap-2 items-start justify-start"
                   >
-                    <h5 className="transition-all flex text-md duration-300 gap-3 hover:text-orange-500 text-white cursor-pointer">
+                    <h5 className="transition-all flex text-md duration-300 gap-1 hover:text-orange-500 text-white cursor-pointer">
                       <Icon className="text-xl" />:
                       <span className="lowercase font-[font2]">{detail}</span>
                     </h5>
@@ -191,16 +191,16 @@ const Navbar = () => {
               ))}
             </div>
 
-            <div className="relative flex flex-col font-light">
+            <div className="relative flex  flex-col font-light">
               {links.map(({ name, href, icon: Icon }, idx) => (
                 <div className="overflow-hidden" key={idx}>
                   <div
                     ref={(el) => (socailRef.current[idx] = el)}
-                    className="overflow-hidden flex flex-col"
+                    className="overflow-hidden items-start justify-start flex flex-col"
                   >
                     <a
                       href={href}
-                      className="transition-all lowercase font-[font2] flex gap-2 text-xl duration-300 hover:text-orange-500 text-white cursor-pointer"
+                      className="transition-all lowercase  font-[font2] flex gap-2 text-xl duration-300 hover:text-orange-500 text-white cursor-pointer"
                     >
                       <Icon className="text-2xl" /> {name}
                     </a>
