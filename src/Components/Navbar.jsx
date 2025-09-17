@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { contact, links } from "../assets/assets";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navRef = useRef(null);
@@ -16,6 +17,8 @@ const Navbar = () => {
   const openTl = useRef(null);
   const closeTl = useRef(null);
   const iconTl = useRef(null);
+
+  const navigate = useNavigate();
 
   useGSAP(() => {
     // Initial hidden state
@@ -143,8 +146,8 @@ const Navbar = () => {
       >
         {/* Decorative Letters */}
         <h1 className="absolute md:block hidden  text-white/50 top-[42vh] font-[font2] right-[52vh] text-[30vh]">m</h1>
-        <h1 className="absolute -bottom-[16vh] n md:block right-[19vh] md:top-[21vh] md:right-[20vh] font-[font2] text-[38vh] md:text-[50vh]">N</h1>
-        <h1 className="absolute md:top-[39vh]  -bottom-[6vh] right-[19vw] md:right-[4vh] font-[font2] text-[17vh] md:text-[30vh]">R</h1>
+        <h1 className="absolute -bottom-[16vh] md:leading-[42vw] n md:block right-[19vh] md:top-[21vh] md:right-[20vh] font-[font2] text-[38vh] md:text-[50vh]">N</h1>
+        <h1 className="absolute md:top-[42vh]  text-white/50 -bottom-[6vh] right-[19vw] md:right-[5vh] font-[font2] text-[17vh] md:text-[30vh]">R</h1>
 
         {/* Main Links */}
         <div className="relative md:left-1/2 md:pt-0 pt-[8vh] md:mt-[2vh] md:w-1/2 flex  flex-col font-[font2] text-5xl gap-y-2 md:text-6xl lg:text-[4vw] font-light">
@@ -155,13 +158,25 @@ const Navbar = () => {
                   ref={(el) => (linksRef.current[index] = el)}
                   className="overflow-hidden flex gap-10"
                 >
-                  <a className="transition-all duration-300 hover:text-white cursor-pointer">
+                  <h2 onClick={() => {
+                    navigate(
+                      text === "Home"
+                        ? "/"
+                        : `/${text.toLowerCase().replace(/\s+/g, "-")}`
+                    );
+                    setOpen(false);
+                    closeTl.current.play(0);
+                  }
+
+
+                  } className="transition-all duration-300 hover:text-white cursor-pointer">
                     {text}
-                  </a>
+                  </h2>
                 </div>
               </div>
             )
           )}
+          <hr className="md:hidden block" />
         </div>
 
         {/* Contact + Social */}
@@ -174,7 +189,7 @@ const Navbar = () => {
             />
           </div>
 
-          <div className="flex md:flex-row flex-col md:items-center md:mx-10 items-end justify-start md:justify-between md:gap-10">
+          <div className="flex md:flex-row flex-col md:items-center md:mx-10 items-end justify-start md:justify-between gap-10 md:gap-10">
             <div className="relative flex flex-col font-light">
               {contact.map(({ detail, icon: Icon }, ind) => (
                 <div className="overflow-hidden" key={ind}>
@@ -182,7 +197,7 @@ const Navbar = () => {
                     ref={(el) => (contactRef.current[ind] = el)}
                     className="overflow-hidden flex gap-2 items-start justify-start"
                   >
-                    <h5 className="transition-all flex text-md duration-300 gap-1 hover:text-orange-500 text-white cursor-pointer">
+                    <h5 className="transition-all flex text-sm md:text-md duration-300 gap-1 hover:text-orange-500 text-white cursor-pointer">
                       <Icon className="text-xl" />:
                       <span className="lowercase font-[font2]">{detail}</span>
                     </h5>
@@ -200,7 +215,7 @@ const Navbar = () => {
                   >
                     <a
                       href={href}
-                      className="transition-all lowercase  font-[font2] flex gap-2 text-xl duration-300 hover:text-orange-500 text-white cursor-pointer"
+                      className="transition-all   font-[font2] flex gap-1 text-sm md:text-md duration-300 hover:text-orange-500 text-white cursor-pointer"
                     >
                       <Icon className="text-2xl" /> {name}
                     </a>
@@ -215,9 +230,8 @@ const Navbar = () => {
       {/* Top Bar */}
       <div className="fixed z-50 md:mx-10 mx-3 flex items-center justify-between w-full">
         <div
-          className={`text-[10vh] font-[font2] ${
-            !open ? "text-black" : "text-white"
-          }`}
+          className={`text-[10vh] font-[font2] ${!open ? "text-black" : "text-white"
+            }`}
         >
           R
         </div>
@@ -242,7 +256,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      
+
     </>
   );
 };
