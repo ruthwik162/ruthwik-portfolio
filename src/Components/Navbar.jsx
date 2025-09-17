@@ -17,6 +17,8 @@ const Navbar = () => {
   const openTl = useRef(null);
   const closeTl = useRef(null);
   const iconTl = useRef(null);
+  const pillRef = useRef(null);
+  const iconRef = useRef(null);
 
   const navigate = useNavigate();
 
@@ -41,7 +43,7 @@ const Navbar = () => {
           opacity: 1,
           duration: 1,
           ease: "power3.out",
-          stagger: 0.1,   // 👈 links animate one after another
+          stagger: 0.1,
         },
         "-=0.5"
       )
@@ -52,7 +54,7 @@ const Navbar = () => {
           opacity: 1,
           duration: 0.8,
           ease: "power3.out",
-          stagger: 0.1,   // 👈 contact items stagger
+          stagger: 0.1,
         },
         "-=0.8"
       )
@@ -63,38 +65,38 @@ const Navbar = () => {
           opacity: 1,
           duration: 0.8,
           ease: "power3.out",
-          stagger: 0.1,   // 👈 social icons stagger
+          stagger: 0.1,
         },
         "-=0.8"
       );
 
-    // ✅ Close timeline with stagger
+    // ✅ Close timeline
     closeTl.current = gsap.timeline({ paused: true })
-      .to(
-        socailRef.current,
-        {
-          duration: 0.25,
-          ease: "power3.in",
-          stagger: 0.02,
-        }
-      )
+      .to(socailRef.current, {
+        opacity: 0,
+        duration: 0.25,
+        ease: "power3.in",
+        stagger: 0.02,
+      })
       .to(
         contactRef.current,
         {
+          opacity: 0,
           duration: 0.25,
           ease: "power3.in",
           stagger: 0.02,
         },
-        "-=0.4"
+        "-=0.3"
       )
       .to(
         linksRef.current,
         {
+          opacity: 0,
           duration: 0.25,
           ease: "power3.in",
           stagger: 0.02,
         },
-        "-=0.4"
+        "-=0.3"
       )
       .to(
         navRef.current,
@@ -106,12 +108,12 @@ const Navbar = () => {
         "-=0.2"
       );
 
-    // Icon animation
+    // ✅ Icon (hamburger → X)
     iconTl.current = gsap.timeline({ paused: true })
       .to(topline.current, {
         rotate: 45,
         y: 3.3,
-        duration: 0.5,
+        duration: 0.4,
         ease: "power3.inOut",
       })
       .to(
@@ -119,7 +121,7 @@ const Navbar = () => {
         {
           rotate: -45,
           y: -3.3,
-          duration: 0.5,
+          duration: 0.4,
           ease: "power3.inOut",
         },
         "<"
@@ -127,30 +129,59 @@ const Navbar = () => {
   }, []);
 
   const toggleMenu = () => {
+    // Bounce effect for black pill
+    gsap.fromTo(
+      pillRef.current,
+      { scale: 0.9 },
+      { scale: 1, duration: 0.8, ease: "bounce.out" }
+    );
+
     if (open) {
+      // closing
       closeTl.current.play(0);
       iconTl.current.reverse();
+
+      gsap.to(iconRef.current, {
+        scale: 1, // return to normal
+        duration: 0.3,
+        ease: "bounce.inOut"
+      });
     } else {
+      // opening
       openTl.current.play(0);
       iconTl.current.play();
+
+      gsap.fromTo(
+        iconRef.current,
+        { scale: 0.9 },
+        { scale: 1.2, duration: 0.2, ease: "bounce.inOut" }
+      );
     }
+
     setOpen(!open);
   };
+
 
   return (
     <>
       {/* Nav Overlay */}
       <nav
         ref={navRef}
-        className="fixed z-50 flex flex-col justify-around w-full h-full md:px-10 px-5  uppercase bg-black text-white/80  "
+        className="fixed z-50 flex flex-col justify-around w-full h-full md:px-10 px-5 uppercase bg-black text-white/80"
       >
         {/* Decorative Letters */}
-        <h1 className="absolute md:block hidden  text-white/50 top-[42vh] font-[font2] right-[52vh] text-[30vh]">m</h1>
-        <h1 className="absolute -bottom-[16vh] md:leading-[42vw] n md:block right-[19vh] md:top-[21vh] md:right-[20vh] font-[font2] text-[38vh] md:text-[50vh]">N</h1>
-        <h1 className="absolute md:top-[42vh]  text-white/50 -bottom-[6vh] right-[19vw] md:right-[5vh] font-[font2] text-[17vh] md:text-[30vh]">R</h1>
+        <h1 className="absolute md:block hidden text-white/50 top-[42vh] font-[font2] right-[52vh] text-[30vh]">
+          m
+        </h1>
+        <h1 className="absolute -bottom-[16vh] md:leading-[42vw] n md:block right-[19vh] md:top-[21vh] md:right-[20vh] font-[font2] text-[38vh] md:text-[50vh]">
+          N
+        </h1>
+        <h1 className="absolute md:top-[42vh] text-white/50 -bottom-[6vh] right-[19vw] md:right-[5vh] font-[font2] text-[17vh] md:text-[30vh]">
+          R
+        </h1>
 
         {/* Main Links */}
-        <div className="relative md:left-1/2 md:pt-0 pt-[15vh] md:mt-[2vh] md:w-1/2 flex  flex-col font-poppins font-poppins-200 text-4xl gap-y-2 md:text-6xl lg:text-[4vw] font-light">
+        <div className="relative md:left-1/2 md:pt-0 pt-[15vh] md:mt-[2vh] md:w-1/2 flex flex-col font-poppins text-4xl gap-y-2 md:text-6xl lg:text-[4vw] font-light">
           {["Home", "About Me", "Projects", "Contact", "Services"].map(
             (text, index) => (
               <div className="overflow-hidden" key={index}>
@@ -158,14 +189,20 @@ const Navbar = () => {
                   ref={(el) => (linksRef.current[index] = el)}
                   className="overflow-hidden flex gap-10"
                 >
-                  <h2 onClick={() => {
-                    navigate(text === "Home" ? "/" : `/${text.toLowerCase().replace(/\s+/g, "-")}`);
-                    setOpen(false);
-                    closeTl.current.play(0);
-                    scrollTo(0,0);
-                    iconTl.current.reverse();
-                  }}
-                    className="transition-all duration-300 hover:text-white cursor-pointer">
+                  <h2
+                    onClick={() => {
+                      navigate(
+                        text === "Home"
+                          ? "/"
+                          : `/${text.toLowerCase().replace(/\s+/g, "-")}`
+                      );
+                      setOpen(false);
+                      closeTl.current.play(0);
+                      scrollTo(0, 0);
+                      iconTl.current.reverse();
+                    }}
+                    className="transition-all duration-300 hover:text-white cursor-pointer"
+                  >
                     {text}
                   </h2>
                 </div>
@@ -202,7 +239,7 @@ const Navbar = () => {
               ))}
             </div>
 
-            <div className="relative flex  flex-col font-light">
+            <div className="relative flex flex-col font-light">
               {links.map(({ name, href, icon: Icon }, idx) => (
                 <div className="overflow-hidden" key={idx}>
                   <div
@@ -211,7 +248,7 @@ const Navbar = () => {
                   >
                     <a
                       href={href}
-                      className="transition-all   font-[font2] flex gap-1 text-sm md:text-md duration-300 hover:text-orange-500 text-white cursor-pointer"
+                      className="transition-all font-[font2] flex gap-1 text-sm md:text-md duration-300 hover:text-orange-500 text-white cursor-pointer"
                     >
                       <Icon className="text-2xl" /> {name}
                     </a>
@@ -225,28 +262,26 @@ const Navbar = () => {
 
       {/* Top Bar */}
       <div className="fixed z-50 md:mx-10 mx-3 flex items-center justify-between w-full">
-        <Link to="/"
-          className={`text-[10vh] font-[font2] ${!open ? "text-black" : "text-white"
-            }`}
-        >
-          R
-        </Link>
+        {/* Logo */}
+        <h1 className={`text-[10vh] font-[font2] ${!open ? "text-black" : "text-white"}`}>R</h1>
 
+        {/* Menu pill */}
         <div
+          ref={pillRef}
           onClick={toggleMenu}
-          className="fixed flex items-center justify-between p-1 cursor-pointer top-3 right-2 md:top-5 md:right-10 w-32 h-14 rounded-full bg-black/80"
-        >
-          <h1 className="text-white px-2 text-md font-bold uppercase">
-            {!open ? "Menu" : "Close"}
-          </h1>
-          <div className="flex flex-col items-center justify-center gap-1  bg-orange-300/90 scale-90 hover:scale-100  duration-300 transition-all rounded-full w-12 h-12 md:w-12 md:h-12 p-2">
-            <span ref={topline} className="h-[0.3vh] w-9 block origin-center rounded-full bg-black" ></span>
-            <span ref={bottomline} className="h-[0.3vh] w-9 block origin-center rounded-full bg-black"></span>
-          </div>
+          className={`menu-pill flex absolute top-[2vh] right-[3vh] md:top-[2.2vh] md:right-[8.8vh] items-center justify-between px-3 cursor-pointer h-14 rounded-full bg-black/80 transition-all duration-300 ${open ? "w-14" : "w-31"}`} >
+          <h1 className="text-white text-md font-bold uppercase"> {!open ? "Menu" : ""}  </h1>
+        </div>
+
+        {/* Orange icon */}
+        <div
+          ref={iconRef}
+          onClick={toggleMenu}
+          className="menu-icon flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.5vh] right-[3.6vh] md:top-[2.6vh] md:right-[9.2vh] bg-orange-300/90 transition-all duration-300 rounded-full w-12 h-12 md:w-12 md:h-12 p-2" >
+          <span ref={topline} className="h-[0.29vh] w-9 block origin-center rounded-full bg-black"  ></span>
+          <span ref={bottomline} className="h-[0.29vh] w-9 block origin-center rounded-full bg-black" ></span>
         </div>
       </div>
-
-
     </>
   );
 };

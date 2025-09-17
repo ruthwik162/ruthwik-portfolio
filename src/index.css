@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @import 'tailwindcss';
 
 /* Self-hosted Lausanne font */
@@ -45,6 +47,21 @@ body {
 .font-jetbrains {
   font-family: var(--font-jetbrains);
 }
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Weight utilities */
+.font-inter-100 { font-weight: 100; }
+.font-inter-200 { font-weight: 200; }
+.font-inter-300 { font-weight: 300; }
+.font-inter-400 { font-weight: 400; }
+.font-inter-500 { font-weight: 500; }
+.font-inter-600 { font-weight: 600; }
+.font-inter-700 { font-weight: 700; }
+.font-inter-800 { font-weight: 800; }
+.font-inter-900 { font-weight: 900; }
 
 
 

@@ -18,7 +18,7 @@ const Service = () => {
         gsap.utils.toArray(".text-main").forEach((title) => {
             gsap.fromTo(
                 title,
-                { y: 180, opacity: 0 },
+                { y: 180, opacity: 1 },
                 {
                     y: 0,
                     opacity: 1,
@@ -26,8 +26,26 @@ const Service = () => {
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: title,
-                        start: "top 60%",
-                        end: "top 20%",
+                        start: "top 43%",
+                        end: "top 30%",
+                        scrub: true,
+                    },
+                }
+            );
+        });
+        gsap.utils.toArray(".text-sec").forEach((title) => {
+            gsap.fromTo(
+                title,
+                { y: -180, opacity: 1 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 3,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: title,
+                        start: "top 20%",
+                        end: "top -10%",
                         scrub: true,
                     },
                 }
@@ -58,13 +76,13 @@ const Service = () => {
             ease: "power3.out",
             scrollTrigger: {
                 trigger: ".line2",
-                start: "top 75%",
-                end: "top 25%",
+                start: "top 70%",
+                end: "top 45%",
                 scrub: true,
             },
         });
 
-        gsap.set(".line3", { xPercent: -60, opacity: 0 });
+        gsap.set(".line3", { xPercent: -90, opacity: 1 });
         gsap.to(".line3", {
             xPercent: `${mobile ? -10 : -6}`,
             opacity: 1,
@@ -72,7 +90,7 @@ const Service = () => {
             ease: "power3.out",
             scrollTrigger: {
                 trigger: ".line1",
-                start: "top 50%",
+                start: "top 70%",
                 end: "top 12%",
                 scrub: true,
             },
@@ -83,29 +101,34 @@ const Service = () => {
         <div className="w-full h-full overflow-hidden">
             {/* Main Title */}
             <div className="text-center overflow-hidden">
-                <h1 className="md:text-[8vw] text-[10vw] text-main mt-[15vh] md:mt-[18vh] font-poppins font-poppins-200 uppercase text-black leading-[12vh]">
+                <h1 className="md:text-[8vw] text-[10vw] text-main mt-[15vh] md:mt-[18vh] font-poppins font-poppins-500 uppercase text-black leading-[12vh]">
                     Architecture
                 </h1>
             </div>
+            <div className="text-center overflow-hidden">
+                <p className="md:text-[2vw] text-[4vw] mt-[2vh] md:mt-[3vh] md:max-w-3xl z-50 text-sec text-start  ml-[2vh] md:ml-[10vh]  font-poppins font-poppins-200 uppercase text-black leading-[3vh]">
+                    A positive social experience where anyone is welcome  to make a resolution , and launch it into the future
+                </p>
+            </div>
 
             {/* Line 1 */}
-            <div className="line1 mt-[10vh] font-poppins-500 flex items-center gap-2 justify-center">
-                <p className="md:text-[6vw] font-poppins-500 uppercase text-[5vw] flex gap-2 items-center justify-center">Inspire <Lightbulb size={mobile ? 20 : 70}  /></p>
+            <div className="line1 mt-[5vh] font-poppins-400 flex items-center gap-2 justify-center">
+                <p className="md:text-[4vw]  uppercase text-[5vw] flex gap-2 items-center justify-center">Inspire <Lightbulb size={mobile ? 20 : 70} /></p>
                 <span className="bg-red-600 w-8 h-1 rounded-full md:w-10 md:h-2 z-10"></span>
-                <p className="md:text-[6vw] uppercase text-[5vw] flex gap-2 items-center justify-center">Impact <TrendingUp size={mobile ? 20 : 60} />  </p>
+                <p className="md:text-[4vw] uppercase text-[5vw] flex gap-2 items-center justify-center">Impact <TrendingUp size={mobile ? 20 : 60} />  </p>
             </div>
 
             {/* Line 2 */}
-            <div className="line2 mt-[5vh] md:mt-0 flex font-poppins-500 items-center gap-2 justify-center  ">
-                <p className="md:text-[6vw] font-poppins-500 uppercase text-[5vw] flex gap-1 items-center justify-center">Design <Palette size={mobile ? 20 : 60} /></p>
+            <div className="line2 mt-[5vh] md:mt-0 flex font-poppins-400 items-center gap-2 justify-center  ">
+                <p className="md:text-[4vw] uppercase text-[5vw] flex gap-1 items-center justify-center">Design <Palette size={mobile ? 20 : 60} /></p>
                 <span className="bg-red-600 w-8 h-1 rounded-full md:w-10 md:h-2 z-10"></span>
-                <p className="md:text-[6vw] uppercase text-[5vw] flex gap-2 items-center justify-center">Develop <Code  size={mobile ? 20 : 60} /></p>
+                <p className="md:text-[4vw] uppercase text-[5vw] flex gap-2 items-center justify-center">Develop <Code size={mobile ? 20 : 60} /></p>
             </div>
 
-            <div className="line3 mt-[5vh] md:mt-0 font-poppins-500 flex items-center gap-2 justify-center">
-                <p className="md:text-[6vw] uppercase text-[5vw] flex gap-2 items-center justify-center">Deliver <Package2 size={mobile ? 20 : 60} /></p>
+            <div className="line3 mt-[5vh] md:mt-0 font-poppins-400 flex items-center gap-2 justify-center">
+                <p className="md:text-[4vw] uppercase text-[5vw] flex gap-2 items-center justify-center">Deliver <Package2 size={mobile ? 20 : 60} /></p>
                 <span className="bg-red-600 w-8 h-1 rounded-full   md:w-10 md:h-2 z-10"></span>
-                <p className="md:text-[6vw] uppercase text-[5vw] flex gap-2 items-center justify-center">Success <CheckCircle2Icon size={mobile ? 20 : 60} /></p>
+                <p className="md:text-[4vw] uppercase text-[5vw] flex gap-2 items-center justify-center">Success <CheckCircle2Icon size={mobile ? 20 : 60} /></p>
             </div>
         </div>
     );

@@ -128,7 +128,7 @@ const Hero = () => {
         {/* Text content */}
         <div className="absolute top-1/3 md:left-10 w-1/2 flex flex-col items-start z-30">
           <div className="overflow-hidden">
-            <div className="textL text-[15vw] leading-[14vw] md:text-[10vw] uppercase font-bold text-cyan-700 md:leading-[9vw]">
+            <div className="textL text-[15vw] leading-[14vw] md:text-[10vw] uppercase font-poppins font-poppins-600  text-cyan-700 md:leading-[9vw]">
               Naga
             </div>
           </div>
@@ -139,7 +139,7 @@ const Hero = () => {
           </div>
           <div className="overflow-hidden flex items-center">
             <div className="flex">
-              <div className="textL text-[15vw] md:text-[7.6vw] uppercase font-bold text-cyan-700 leading-[15vw] md:leading-[7vw]">
+              <div className="textL text-[15vw] md:text-[7.6vw] uppercase font-bold text-[#555555] leading-[15vw] md:leading-[7vw]">
                 Merugu
               </div>
             </div>
