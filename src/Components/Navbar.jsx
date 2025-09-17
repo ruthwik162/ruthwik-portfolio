@@ -159,17 +159,12 @@ const Navbar = () => {
                   className="overflow-hidden flex gap-10"
                 >
                   <h2 onClick={() => {
-                    navigate(
-                      text === "Home"
-                        ? "/"
-                        : `/${text.toLowerCase().replace(/\s+/g, "-")}`
-                    );
+                    navigate(text === "Home" ? "/" : `/${text.toLowerCase().replace(/\s+/g, "-")}`);
                     setOpen(false);
                     closeTl.current.play(0);
-                  }
-
-
-                  } className="transition-all duration-300 hover:text-white cursor-pointer">
+                    iconTl.current.reverse();
+                  }}
+                    className="transition-all duration-300 hover:text-white cursor-pointer">
                     {text}
                   </h2>
                 </div>
@@ -229,29 +224,23 @@ const Navbar = () => {
 
       {/* Top Bar */}
       <div className="fixed z-50 md:mx-10 mx-3 flex items-center justify-between w-full">
-        <div
+        <Link to="/"
           className={`text-[10vh] font-[font2] ${!open ? "text-black" : "text-white"
             }`}
         >
           R
-        </div>
+        </Link>
 
         <div
           onClick={toggleMenu}
-          className="fixed flex items-center justify-center cursor-pointer top-3 right-2 md:top-5 md:right-10 w-32 h-16 rounded-full bg-black/80"
+          className="fixed flex items-center justify-between p-1 cursor-pointer top-3 right-2 md:top-5 md:right-10 w-32 h-14 rounded-full bg-black/80"
         >
           <h1 className="text-white px-2 text-md font-bold uppercase">
             {!open ? "Menu" : "Close"}
           </h1>
           <div className="flex flex-col items-center justify-center gap-1 bg-orange-300/90 scale-90 hover:scale-100 duration-300 transition-all rounded-full w-12 h-12 md:w-12 md:h-12 p-2">
-            <span
-              ref={topline}
-              className="h-[0.3vh] w-9 block origin-center rounded-full bg-black"
-            ></span>
-            <span
-              ref={bottomline}
-              className="h-[0.3vh] w-9 block origin-center rounded-full bg-black"
-            ></span>
+            <span ref={topline} className="h-[0.3vh] w-9 block origin-center rounded-full bg-black" ></span>
+            <span ref={bottomline} className="h-[0.3vh] w-9 block origin-center rounded-full bg-black"></span>
           </div>
         </div>
       </div>
