@@ -47,7 +47,7 @@ const Hero = () => {
     ScrollTrigger.create({
       trigger: modelDiv.current,
       start: "top top",
-      end: "bottom+=100% -80%",
+      end: `${mobile ? "bottom+=120% top" : "bottom+=180% top"}`,
       pin: true,
       pinSpacing: true,
       scrub: 1, // smooth animation
