@@ -3,12 +3,16 @@ import { useGLTF } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useMediaQuery } from "react-responsive";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Model({ containerRef, ...props }) {
   const { nodes, materials } = useGLTF("/model/ruthwik3d.glb");
   const modelRef = useRef();
+
+    const mobile = useMediaQuery({ maxWidth: 853 });
+  
 
   useGSAP(() => {
     // Initial animation
@@ -30,7 +34,7 @@ export function Model({ containerRef, ...props }) {
       ScrollTrigger.create({
         trigger: containerRef.current, // <-- attach to DOM element
         start: "top top",
-        end: "bottom+=120% top",
+        end: `${mobile? "bottom+=120% top": "bottom+=180% top"}`,
         onUpdate: (self) => {
           if (modelRef.current) {
             modelRef.current.rotation.y = self.progress * Math.PI * 4.2; 
