@@ -125,13 +125,13 @@ const Service = () => {
             </div>
 
             {/* Line 2 */}
-            <div className="line2 mt-[5vh] md:mt-0 flex font-poppins-400 items-center gap-2 justify-center  ">
+            <div className="line2 mt-[1vh] md:mt-0 flex font-poppins-400 items-center gap-2 justify-center  ">
                 <p className="md:text-[4vw] uppercase text-[5vw] flex gap-1 items-center justify-center">Design <Palette size={mobile ? 20 : 60} /></p>
                 <span className="bg-red-600 w-8 h-1 rounded-full md:w-10 md:h-2 z-10"></span>
                 <p className="md:text-[4vw] uppercase text-[5vw] flex gap-2 items-center justify-center">Develop <Code size={mobile ? 20 : 60} /></p>
             </div>
 
-            <div className="line3 mt-[5vh] md:mt-0 font-poppins-400 flex items-center gap-2 justify-center">
+            <div className="line3 mt-[1vh] md:mt-0 font-poppins-400 flex items-center gap-2 justify-center">
                 <p className="md:text-[4vw] uppercase text-[5vw] flex gap-2 items-center justify-center">Deliver <Package2 size={mobile ? 20 : 60} /></p>
                 <span className="bg-red-600 w-8 h-1 rounded-full   md:w-10 md:h-2 z-10"></span>
                 <p className="md:text-[4vw] uppercase text-[5vw] flex gap-2 items-center justify-center">Success <CheckCircle2Icon size={mobile ? 20 : 60} /></p>
