@@ -130,11 +130,6 @@ const Navbar = () => {
 
   const toggleMenu = () => {
     // Bounce effect for black pill
-    gsap.fromTo(
-      pillRef.current,
-      { scale: 0.9 },
-      { scale: 1, duration: 0.8, ease: "bounce.out" }
-    );
 
     if (open) {
       // closing
@@ -154,7 +149,7 @@ const Navbar = () => {
       gsap.fromTo(
         iconRef.current,
         { scale: 0.9 },
-        { scale: 1.2, duration: 0.2, ease: "bounce.inOut" }
+        { scale: 1.3, duration: 0.4, ease: "bounce.out" }
       );
     }
 
@@ -269,17 +264,17 @@ const Navbar = () => {
         <div
           ref={pillRef}
           onClick={toggleMenu}
-          className={`menu-pill flex absolute top-[2vh] right-[3vh] md:top-[2.2vh] md:right-[8.8vh] items-center justify-between px-3 cursor-pointer h-14 rounded-full bg-black/80 transition-all duration-300 ${open ? "w-14" : "w-31"}`} >
-          <h1 className="text-white text-md font-bold uppercase"> {!open ? "Menu" : ""}  </h1>
+          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[2.2vh] md:right-[8.8vh] items-center justify-between px-3 cursor-pointer h-14 rounded-full bg-black transition-all duration-900 ${open ? "w-14" : "w-31"}`} >
+          <h1 className="text-white text-sm font-bold transition-all  duration-700 uppercase"> Menu  </h1>
         </div>
 
         {/* Orange icon */}
         <div
           ref={iconRef}
           onClick={toggleMenu}
-          className="menu-icon flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.5vh] right-[3.6vh] md:top-[2.6vh] md:right-[9.2vh] bg-orange-300/90 transition-all duration-300 rounded-full w-12 h-12 md:w-12 md:h-12 p-2" >
-          <span ref={topline} className="h-[0.29vh] w-9 block origin-center rounded-full bg-black"  ></span>
-          <span ref={bottomline} className="h-[0.29vh] w-9 block origin-center rounded-full bg-black" ></span>
+          className="menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.5vh] right-[3.6vh] md:top-[2.6vh] md:right-[9.2vh] bg-orange-500 transition-all duration-500 rounded-full w-12 h-12 md:w-12 md:h-12 p-2" >
+          <span ref={topline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black"  ></span>
+          <span ref={bottomline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black" ></span>
         </div>
       </div>
     </>

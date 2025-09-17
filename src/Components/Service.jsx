@@ -1,20 +1,42 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import { CheckCircle2Icon, Code, Lightbulb, Package2, Palette, TrendingUp } from "lucide-react";
 import React from "react";
 import { AiOutlineAntDesign, AiOutlineDeliveredProcedure } from "react-icons/ai";
 import { FaCode, FaDiagramSuccessor } from "react-icons/fa6";
 import { useMediaQuery } from "react-responsive";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Service = () => {
 
     const mobile = useMediaQuery({ maxWidth: 853 });
 
     useGSAP(() => {
+
+        const split = new SplitText(".text-sec", { types: "lines, words" });
+
         // Title animation
+        
+        gsap.fromTo(
+            split.lines,
+            { y: 180, opacity: 1 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 2.5,
+                ease: "power3.out",
+                stagger:1.5,
+                scrollTrigger: {
+                    trigger: ".text-sec",
+                    start: "top 43%",
+                    end: "top 23%",
+                    scrub: true,
+                },
+            }
+        );
         gsap.utils.toArray(".text-main").forEach((title) => {
             gsap.fromTo(
                 title,
@@ -26,26 +48,8 @@ const Service = () => {
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: title,
-                        start: "top 43%",
+                        start: "top 63%",
                         end: "top 30%",
-                        scrub: true,
-                    },
-                }
-            );
-        });
-        gsap.utils.toArray(".text-sec").forEach((title) => {
-            gsap.fromTo(
-                title,
-                { y: -180, opacity: 1 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 3,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: title,
-                        start: "top 20%",
-                        end: "top -10%",
                         scrub: true,
                     },
                 }
@@ -106,13 +110,15 @@ const Service = () => {
                 </h1>
             </div>
             <div className="text-center overflow-hidden">
-                <p className="md:text-[2vw] text-[4vw] mt-[2vh] md:mt-[3vh] md:max-w-3xl z-50 text-sec text-start  ml-[2vh] md:ml-[10vh]  font-poppins font-poppins-200 uppercase text-black leading-[3vh]">
+                <h1 className="md:text-[2vw] text-[10vw] md:max-w-5xl md:ml-[5vh] text-sec mt-[15vh] md:mt-[1vh] font-poppins font-poppins-500 uppercase text-black leading-[4vh]">
                     A positive social experience where anyone is welcome  to make a resolution , and launch it into the future
-                </p>
+
+                </h1>
             </div>
 
+
             {/* Line 1 */}
-            <div className="line1 mt-[5vh] font-poppins-400 flex items-center gap-2 justify-center">
+            <div className="line1 mt-[16vh] font-poppins-400 flex items-center gap-2 justify-center">
                 <p className="md:text-[4vw]  uppercase text-[5vw] flex gap-2 items-center justify-center">Inspire <Lightbulb size={mobile ? 20 : 70} /></p>
                 <span className="bg-red-600 w-8 h-1 rounded-full md:w-10 md:h-2 z-10"></span>
                 <p className="md:text-[4vw] uppercase text-[5vw] flex gap-2 items-center justify-center">Impact <TrendingUp size={mobile ? 20 : 60} />  </p>
