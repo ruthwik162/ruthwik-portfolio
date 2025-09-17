@@ -102,7 +102,7 @@ const Service = () => {
     });
 
     return (
-        <div className="w-full h-full overflow-hidden">
+        <div className="w-full h-full z-0 overflow-hidden">
             {/* Main Title */}
             <div className="text-center overflow-hidden">
                 <h1 className="md:text-[8vw] text-[10vw] text-main mt-[20vh] md:mt-[18vh] font-poppins font-poppins-500 uppercase text-black leading-[12vh]">
