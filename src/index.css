@@ -25,6 +25,23 @@ body {
   font-family: var(--font-poppins);
 }
 
+/* Base font-family */
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Weight utilities */
+.font-poppins-100 { font-weight: 100; }
+.font-poppins-200 { font-weight: 200; }
+.font-poppins-300 { font-weight: 300; }
+.font-poppins-400 { font-weight: 400; }
+.font-poppins-500 { font-weight: 500; }
+.font-poppins-600 { font-weight: 600; }
+.font-poppins-700 { font-weight: 700; }
+.font-poppins-800 { font-weight: 800; }
+.font-poppins-900 { font-weight: 900; }
+
+
 .font-jetbrains {
   font-family: var(--font-jetbrains);
 }
@@ -62,7 +79,7 @@ body {
 * {
   scrollbar-width: thin;
   /* makes scrollbar thin */
-  scrollbar-color: #555 transparent;
+  scrollbar-color: #ffffff transparent;
   
 }
 

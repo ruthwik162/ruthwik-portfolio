@@ -6,17 +6,19 @@ import { Environment, Float, OrbitControls } from "@react-three/drei";
 import { Model } from "./Model";
 import { useMediaQuery } from "react-responsive";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Service from "./Service";
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
-// RotatingModel component
+// Rotating 3D Model component
 const RotatingModel = forwardRef((props, ref) => {
   const modelRef = useRef();
   React.useImperativeHandle(ref, () => modelRef.current);
-  // Continuous rotation after landing
+
+  // Continuous rotation
   useFrame(() => {
     if (modelRef.current) {
-      modelRef.current.rotation.y += 0.10;
+      modelRef.current.rotation.y += 0.1;
     }
   });
 
@@ -25,11 +27,8 @@ const RotatingModel = forwardRef((props, ref) => {
 
 const Hero = () => {
   const modelRef = useRef();
-
-  const model = useRef();
-
-
-  const mobile = useMediaQuery({ maxWidth: 853 })
+  const modelDiv = useRef();
+  const mobile = useMediaQuery({ maxWidth: 853 });
 
   useGSAP(() => {
     const tl = gsap.timeline();
@@ -42,58 +41,92 @@ const Hero = () => {
       ease: "power3.inOut",
     });
 
+    tl.to(modelDiv.current, {})
 
-
+    // Pin the model section
+    ScrollTrigger.create({
+      trigger: modelDiv.current,
+      start: "top top",
+      end: "bottom+=100% -80%",
+      pin: true,
+      pinSpacing: true,
+      scrub: 1, // smooth animation
+    });
   }, []);
 
   return (
-    <div>
-      <section className="w-full min-h-screen relative">
-        <figure ref={model} className="w-full model-wrapper absolute h-full -top-[10vh] md:top-0 overflow-hidden  md:left-1/4 ">
-          <Canvas shadows camera={{ position: [-3, -3, 10], fov: 35 }} className="absolute inset-0">
-            {/* General soft light */}
-            <ambientLight intensity={0.6} />
+    <div className="w-full overflow-x-hidden">
+      {/* Section 1: Hero with 3D model */}
+      <section className="w-full h-screen overflow-hidden relative">
+        <figure
+          ref={modelDiv}
+          className="w-full model-wrapper z-[10] relative h-full -top-[10vh] overflow-hidden md:left-1/4"
+        >
+          <div className="w-full h-full -right-[14vh] -top-20 md:right-0 absolute">
+            <Canvas
+              shadows
+              camera={{ position: [4, -5, 10], fov: 35 }}
+              className="absolute inset-0"
+            >
+              {/* Ambient light for soft overall illumination */}
+              <ambientLight intensity={0.4} color="#ffffff" />
 
-            {/* Directional light (sunlight-like) */}
-            <directionalLight
-              position={[5, -5, 5]}
-              intensity={2}
-              castShadow
-              shadow-mapSize-width={1024}
-              shadow-mapSize-height={1024}
-              shadow-camera-far={50}
-            />
+              {/* Key directional light (main light source) */}
+              <directionalLight
+                position={[10, 10, 10]}
+                intensity={3}
+                castShadow
+                shadow-mapSize-width={2048}
+                shadow-mapSize-height={2048}
+                shadow-camera-near={1}
+                shadow-camera-far={50}
+                shadow-camera-left={-10}
+                shadow-camera-right={10}
+                shadow-camera-top={10}
+                shadow-camera-bottom={-10}
+              />
 
-            {/* Point light for front illumination */}
-            <pointLight
-              position={[10, 5, 5]}
-              intensity={1.5}
-              color={"#ffffff"}
-              decay={2}
-              distance={20}
-            />
+              {/* Fill light to soften shadows */}
+              <directionalLight
+                position={[-5, 4, -4]}
+                intensity={0.8}
+                color="#a0c4ff"
+              />
 
-            {/* Optional spotlight for highlights */}
-            <spotLight
-              position={[-5, 5, 5]}
-              intensity={1.2}
-              angle={0.3}
-              penumbra={0.5}
-              castShadow
-            />
+              {/* Rim/back light to highlight edges */}
+              <spotLight
+                position={[0, 5, -10]}
+                intensity={0.8}
+                angle={0.3}
+                penumbra={0.5}
+                castShadow
+                color="#ffffff"
+              />
 
-            <Float speed={1.2}>
-              <RotatingModel ref={modelRef} position={[0, -0.5, 0]} scale={mobile ? 0.0070 : 0.01} />
-            </Float>
+              {/* Optional point lights for sparkle/highlights */}
+              <pointLight position={[5, 2, 5]} intensity={0.6} color="#ffd6a5" />
+              <pointLight position={[-5, -2, 5]} intensity={0.4} color="#ffadad" />
 
-            <OrbitControls enablePan={false} enableZoom={false} />
-            <Environment preset="studio" resolution={256} />
-          </Canvas>
+              {/* 3D Model */}
+              <Float speed={1} >
+                <Model
+                  containerRef={modelDiv}
+                  scale={mobile ? 0.007 : 0.01}
+                  position={[0, -0.5, 0]}
+                />
+              </Float>
 
+              {/* Optional environment */}
+              <OrbitControls enablePan={false} enableZoom={false} />
+              <Environment preset="studio" resolution={512} />
+
+            </Canvas>
+          </div>
         </figure>
 
+
         {/* Text content */}
-        <div className="absolute 50 w-1/2 top-1/3 flex flex-col items-start">
+        <div className="absolute top-1/3 md:left-10 w-1/2 flex flex-col items-start z-30">
           <div className="overflow-hidden">
             <div className="textL text-[15vw] leading-[14vw] md:text-[10vw] uppercase font-bold text-cyan-700 md:leading-[9vw]">
               Naga
@@ -104,19 +137,21 @@ const Hero = () => {
               Ruthwik
             </div>
           </div>
-          <div className="overflow-hidden flex items-center ">
-
+          <div className="overflow-hidden flex items-center">
             <div className="flex">
-              <div className="textL text-[15vw] m md:text-[7.6vw] uppercase font-bold text-cyan-700 leading-[15vw] md:leading-[7vw]">
+              <div className="textL text-[15vw] md:text-[7.6vw] uppercase font-bold text-cyan-700 leading-[15vw] md:leading-[7vw]">
                 Merugu
               </div>
             </div>
           </div>
         </div>
-      </section>
-      <section className="  page2">
-      </section>
-    </div> 
+      </section >
+
+      {/* Section 2: Regular content below the pinned 3D model */}
+      < section className="md:h-[106vh] min-h-screen   bg-white" >
+        <Service />
+      </section >
+    </div >
   );
 };
 

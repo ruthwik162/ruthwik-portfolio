@@ -2,29 +2,44 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export function Model(props) {
+gsap.registerPlugin(ScrollTrigger);
+
+export function Model({ containerRef, ...props }) {
   const { nodes, materials } = useGLTF("/model/ruthwik3d.glb");
-
-  const modelRef = useRef(null);
+  const modelRef = useRef();
 
   useGSAP(() => {
-    const tl = gsap.timeline();
-
-    tl.from(modelRef.current.position, {
+    // Initial animation
+    gsap.from(modelRef.current.position, {
       y: -5,
-      z:4,
-      duration: 5,
-      rotate: 180,
-      rotateY: 360,
+      z: 4,
+      duration: 2,
+      ease: "power3.out",
     });
-    tl.fromTo(
-      modelRef.current.rotation,
-      { y: 0 ,},
-      { y: Math.PI * 2, duration: 8, ease: "power3.out" },
-      "<"
-    );
-  })
+
+    gsap.from(modelRef.current.rotation, {
+      x: -Math.PI / 3 ,
+      duration: 5,
+      ease: "power3.out",
+    });
+
+    // Scroll-based rotation
+    if (containerRef.current) {
+      ScrollTrigger.create({
+        trigger: containerRef.current, // <-- attach to DOM element
+        start: "top top",
+        end: "bottom+=120% top",
+        onUpdate: (self) => {
+          if (modelRef.current) {
+            modelRef.current.rotation.y = self.progress * Math.PI * 4.2; 
+          }
+        },
+        scrub: 1,
+      });
+    }
+  }, [containerRef]);
 
   return (
     <group {...props} ref={modelRef} dispose={null}>

@@ -150,7 +150,7 @@ const Navbar = () => {
         <h1 className="absolute md:top-[42vh]  text-white/50 -bottom-[6vh] right-[19vw] md:right-[5vh] font-[font2] text-[17vh] md:text-[30vh]">R</h1>
 
         {/* Main Links */}
-        <div className="relative md:left-1/2 md:pt-0 pt-[15vh] md:mt-[2vh] md:w-1/2 flex  flex-col font-[font2] text-4xl gap-y-2 md:text-6xl lg:text-[4vw] font-light">
+        <div className="relative md:left-1/2 md:pt-0 pt-[15vh] md:mt-[2vh] md:w-1/2 flex  flex-col font-poppins font-poppins-200 text-4xl gap-y-2 md:text-6xl lg:text-[4vw] font-light">
           {["Home", "About Me", "Projects", "Contact", "Services"].map(
             (text, index) => (
               <div className="overflow-hidden" key={index}>
@@ -162,6 +162,7 @@ const Navbar = () => {
                     navigate(text === "Home" ? "/" : `/${text.toLowerCase().replace(/\s+/g, "-")}`);
                     setOpen(false);
                     closeTl.current.play(0);
+                    scrollTo(0,0);
                     iconTl.current.reverse();
                   }}
                     className="transition-all duration-300 hover:text-white cursor-pointer">
@@ -238,7 +239,7 @@ const Navbar = () => {
           <h1 className="text-white px-2 text-md font-bold uppercase">
             {!open ? "Menu" : "Close"}
           </h1>
-          <div className="flex flex-col items-center justify-center gap-1  bg-orange-300/90 scale-90 hover:scale-100 hover:rotate-180 duration-300 transition-all rounded-full w-12 h-12 md:w-12 md:h-12 p-2">
+          <div className="flex flex-col items-center justify-center gap-1  bg-orange-300/90 scale-90 hover:scale-100  duration-300 transition-all rounded-full w-12 h-12 md:w-12 md:h-12 p-2">
             <span ref={topline} className="h-[0.3vh] w-9 block origin-center rounded-full bg-black" ></span>
             <span ref={bottomline} className="h-[0.3vh] w-9 block origin-center rounded-full bg-black"></span>
           </div>

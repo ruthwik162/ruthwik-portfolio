@@ -5,6 +5,7 @@ import Navbar from "./Components/Navbar";
 import Hero from "./Components/Hero";
 import Lenis from "@studio-freight/lenis";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Projects from "./Projects";
 
 const App = () => {
   const cursorRef = useRef(null);
@@ -48,6 +49,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Hero />} />
+          <Route path="projects" element={<Projects/>}/>
           {/* add other routes */}
         </Routes>
       </BrowserRouter>
