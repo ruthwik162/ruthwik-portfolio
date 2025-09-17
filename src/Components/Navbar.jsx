@@ -272,7 +272,7 @@ const Navbar = () => {
         <div
           ref={iconRef}
           onClick={toggleMenu}
-          className="menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.5vh] right-[3.6vh] md:top-[2.6vh] md:right-[9.2vh] bg-orange-500 transition-all duration-500 rounded-full w-12 h-12 md:w-12 md:h-12 p-2" >
+          className="menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.5vh] right-[3.6vh] md:top-[2.6vh] md:right-[9.2vh] bg-orange-500 transition-all duration-500 rounded-full w-12 h-12 md:w-12 md:h-12 " >
           <span ref={topline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black"  ></span>
           <span ref={bottomline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black" ></span>
         </div>

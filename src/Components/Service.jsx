@@ -105,12 +105,12 @@ const Service = () => {
         <div className="w-full h-full overflow-hidden">
             {/* Main Title */}
             <div className="text-center overflow-hidden">
-                <h1 className="md:text-[8vw] text-[10vw] text-main mt-[15vh] md:mt-[18vh] font-poppins font-poppins-500 uppercase text-black leading-[12vh]">
+                <h1 className="md:text-[8vw] text-[10vw] text-main mt-[20vh] md:mt-[18vh] font-poppins font-poppins-500 uppercase text-black leading-[12vh]">
                     Architecture
                 </h1>
             </div>
             <div className="text-center overflow-hidden">
-                <h1 className="md:text-[2vw] text-[10vw] md:max-w-5xl md:ml-[5vh] text-sec mt-[15vh] md:mt-[1vh] font-poppins font-poppins-500 uppercase text-black leading-[4vh]">
+                <h1 className="md:text-[2vw] text-[3vw] md:max-w-5xl md:ml-[5vh] text-sec mt-[1vh] md:mt-[1vh] font-poppins font-poppins-500 uppercase text-black leading-[2vh] md:leading-[4vh]">
                     A positive social experience where anyone is welcome  to make a resolution , and launch it into the future
 
                 </h1>

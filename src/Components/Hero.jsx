@@ -148,7 +148,7 @@ const Hero = () => {
       </section >
 
       {/* Section 2: Regular content below the pinned 3D model */}
-      < section className="md:h-[106vh] min-h-screen   bg-white" >
+      < section className="md:h-[110vh]  h-[110vh]  bg-white" >
         <Service />
       </section >
     </div >
