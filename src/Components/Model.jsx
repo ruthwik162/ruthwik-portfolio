@@ -29,20 +29,6 @@ export function Model({ containerRef, ...props }) {
       ease: "power3.out",
     });
 
-    // Scroll-based rotation
-    if (containerRef.current) {
-      ScrollTrigger.create({
-        trigger: containerRef.current, // <-- attach to DOM element
-        start: "top top",
-        end: `${mobile? "bottom+=120% top": "bottom+=180% top"}`,
-        onUpdate: (self) => {
-          if (modelRef.current) {
-            modelRef.current.rotation.y = self.progress * Math.PI * 4.2; 
-          }
-        },
-        scrub: 1,
-      });
-    }
   }, [containerRef]);
 
   return (

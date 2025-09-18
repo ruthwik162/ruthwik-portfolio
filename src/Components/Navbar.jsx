@@ -28,6 +28,7 @@ const Navbar = () => {
     gsap.set(linksRef.current, { y: 100, opacity: 0 });
     gsap.set(contactRef.current, { y: -100, opacity: 0 });
     gsap.set(socailRef.current, { x: -100, opacity: 0 });
+    gsap.set(".line", { height: "0%" });
 
     // ✅ Open timeline with stagger
     openTl.current = gsap.timeline({ paused: true })
@@ -35,6 +36,11 @@ const Navbar = () => {
         yPercent: 0,
         duration: 0.9,
         ease: "power3.inOut",
+      })
+      .to(".line", {
+        height: "100%",
+        duration: 0.5,
+        ease: "power2.out"
       })
       .to(
         linksRef.current,
@@ -47,6 +53,7 @@ const Navbar = () => {
         },
         "-=0.5"
       )
+
       .to(
         contactRef.current,
         {
@@ -113,7 +120,7 @@ const Navbar = () => {
       .to(topline.current, {
         rotate: 45,
         y: 3.3,
-        duration: 0.4,
+        duration: 0.9,
         ease: "power3.inOut",
       })
       .to(
@@ -121,7 +128,7 @@ const Navbar = () => {
         {
           rotate: -45,
           y: -3.3,
-          duration: 0.4,
+          duration: 0.9,
           ease: "power3.inOut",
         },
         "<"
@@ -129,32 +136,29 @@ const Navbar = () => {
   }, []);
 
   const toggleMenu = () => {
-    // Bounce effect for black pill
-
     if (open) {
       // closing
       closeTl.current.play(0);
       iconTl.current.reverse();
 
-      gsap.to(iconRef.current, {
-        scale: 1, // return to normal
-        duration: 0.3,
-        ease: "bounce.inOut"
-      });
+
     } else {
       // opening
       openTl.current.play(0);
       iconTl.current.play();
+      gsap.from(".letter", {
+        opacity: 1,
+        y: 300,
+        duration: 1,
+        stagger: 0.2,
+        ease: "power2.out"
+      }).play();
 
-      gsap.fromTo(
-        iconRef.current,
-        { scale: 0.9 },
-        { scale: 1.3, duration: 0.4, ease: "bounce.out" }
-      );
     }
 
     setOpen(!open);
   };
+
 
 
   return (
@@ -162,62 +166,46 @@ const Navbar = () => {
       {/* Nav Overlay */}
       <nav
         ref={navRef}
-        className="fixed z-50 flex flex-col justify-around w-full h-full md:px-10 px-5 uppercase bg-black text-white/80"
+        className="fixed z-50 flex flex-col justify-around w-full h-full md:px-10 px-5  bg-black/90 backdrop-blur-2xl text-white/80"
       >
-        {/* Decorative Letters */}
-        <h1 className="absolute md:block hidden text-white/50 top-[42vh] font-[font2] right-[52vh] text-[30vh]">
-          m
-        </h1>
-        <h1 className="absolute -bottom-[16vh] md:leading-[42vw] n md:block right-[19vh] md:top-[21vh] md:right-[20vh] font-[font2] text-[38vh] md:text-[50vh]">
-          N
-        </h1>
-        <h1 className="absolute md:top-[42vh] text-white/50 -bottom-[6vh] right-[19vw] md:right-[5vh] font-[font2] text-[17vh] md:text-[30vh]">
-          R
-        </h1>
+        <h1 className="letter absolute md:block hidden md:-bottom-[10vh] text-white/50 -bottom-[6vh] right-[19vw] md:right-[53vh] font-[font2] text-[17vh] md:text-[30vh]">  M </h1>
+        <h1 className="letter absolute -bottom-[16vh] md:leading-[42vw] n md:block right-[19vh] md:-bottom-[21vh] md:right-[20vh] font-[font2] text-[38vh] md:text-[50vh]"> N</h1>
+        <h1 className="letter absolute md:-bottom-[10vh] text-white/50 -bottom-[6vh] right-[19vw] md:right-[5vh] font-[font2] text-[17vh] md:text-[30vh]">R</h1>
 
-        {/* Main Links */}
-        <div className="relative md:left-1/2 md:pt-0 pt-[15vh] md:mt-[2vh] md:w-1/2 flex flex-col font-poppins text-4xl gap-y-2 md:text-6xl lg:text-[4vw] font-light">
-          {["Home", "About Me", "Projects", "Contact", "Services"].map(
-            (text, index) => (
-              <div className="overflow-hidden" key={index}>
-                <div
-                  ref={(el) => (linksRef.current[index] = el)}
-                  className="overflow-hidden flex gap-10"
-                >
-                  <h2
-                    onClick={() => {
-                      navigate(
-                        text === "Home"
-                          ? "/"
-                          : `/${text.toLowerCase().replace(/\s+/g, "-")}`
-                      );
-                      setOpen(false);
-                      closeTl.current.play(0);
-                      scrollTo(0, 0);
-                      iconTl.current.reverse();
-                    }}
-                    className="transition-all duration-300 hover:text-white cursor-pointer"
+        <div className="flex flex-col md:ml-[50%] items-center justify-start md:-mt-[20vh] md:flex-row">
+          <div className="relative   -mt-[15vh] md:mt-0 md:pt-0  md:w-full flex flex-col font-poppins font-poppins-500 text-4xl gap-y-3 md:text-6xl lg:text-[3vw] ">
+            {["Home", "About Me", "Projects", "Contact", "Services"].map(
+              (text, index) => (
+                <div className="overflow-hidden" key={index}>
+                  <div
+                    ref={(el) => (linksRef.current[index] = el)}
+                    className="overflow-hidden flex gap-10"
                   >
-                    {text}
-                  </h2>
+                    <h2
+                      onClick={() => {
+                        navigate(
+                          text === "Home"
+                            ? "/"
+                            : `/${text.toLowerCase().replace(/\s+/g, "-")}`
+                        );
+                        setOpen(false);
+                        closeTl.current.play(0);
+                        scrollTo(0, 0);
+                        iconTl.current.reverse();
+                      }}
+                      className="transition-all duration-300 hover:text-white cursor-pointer"
+                    >
+                      {text}
+                    </h2>
+                  </div>
                 </div>
-              </div>
-            )
-          )}
-          <hr className="md:hidden block" />
-        </div>
-
-        {/* Contact + Social */}
-        <div className="flex items-center md:mt-0 md:flex-row flex-col pb-[10vh] md:pb-0 justify-between p-2">
-          <div className="box bg-white md:block hidden w-80 h-50">
-            <img
-              className="h-full w-full object-cover object-center"
-              src="https://images.unsplash.com/photo-1754634266990-f86e4ee91ea0?w=600&auto=format&fit=crop&q=60"
-              alt=""
-            />
+              )
+            )}
+            <hr className="md:hidden block " />
           </div>
+          <span className="bg-white w-0.5 h-full md:block hidden line "></span>
 
-          <div className="flex md:flex-row flex-col md:items-center md:mx-10 items-end justify-start md:justify-between gap-10 md:gap-10">
+          <div className="flex md:flex-row flex-col md:items-start md:mx-10 mt-[5vh] items-end justify-start md:justify-start md:gap-10">
             <div className="relative flex flex-col font-light">
               {contact.map(({ detail, icon: Icon }, ind) => (
                 <div className="overflow-hidden" key={ind}>
@@ -257,22 +245,19 @@ const Navbar = () => {
 
       {/* Top Bar */}
       <div className="fixed z-50 md:mx-10 mx-3 flex items-center justify-between w-full">
-        {/* Logo */}
-        <h1 className={`text-[10vh] font-[font2] ${!open ? "text-black" : "text-white"}`}>R</h1>
-
-        {/* Menu pill */}
+        <h1 className={`text-[10vh] transition-all duration-1000 font-[font2] ${!open ? "text-black" : "text-white"}`}>R</h1>
         <div
           ref={pillRef}
           onClick={toggleMenu}
-          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[2.2vh] md:right-[8.8vh] items-center justify-between px-3 cursor-pointer h-14 rounded-full bg-black transition-all duration-900 ${open ? "w-14" : "w-31"}`} >
+          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[2.2vh] md:right-[8.8vh] items-center justify-between px-2  cursor-pointer h-14 rounded-full bg-black transition-all duration-900 ${open ? "w-14" : "w-27"}`} >
           <h1 className="text-white text-sm font-bold transition-all  duration-700 uppercase"> Menu  </h1>
         </div>
 
         {/* Orange icon */}
         <div
           ref={iconRef}
-          onClick={toggleMenu}
-          className="menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.5vh] right-[3.6vh] md:top-[2.6vh] md:right-[9.2vh] bg-orange-500 transition-all duration-500 rounded-full w-12 h-12 md:w-12 md:h-12 " >
+          onClick={() => { toggleMenu() }}
+          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.5vh] right-[3.6vh] md:top-[2.6vh] md:right-[9.2vh] bg-orange-500 transition-all duration-700 rounded-full w-12 h-12 md:w-12 md:h-12 ${open ? "scale-120" : "scale-100"} `} >
           <span ref={topline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black"  ></span>
           <span ref={bottomline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black" ></span>
         </div>

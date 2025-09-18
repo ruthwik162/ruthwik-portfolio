@@ -6,6 +6,8 @@ import Hero from "./Components/Hero";
 import Lenis from "@studio-freight/lenis";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Projects from "./Projects";
+import Aboutme from "./Pages/Aboutme";
+import Home from "./Pages/Home";
 
 const App = () => {
   const cursorRef = useRef(null);
@@ -44,11 +46,13 @@ const App = () => {
 
   return (
     <div ref={mainRef} className="main relative bg-white w-full min-h-screen overflow-x-hidden">
+      
       <div ref={cursorRef} className="cursor hidden md:block fixed w-5 h-5 rounded-full z-[9999] bg-black pointer-events-none -top-2 -left-2" />
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Hero />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about-me" element={<Aboutme/>}/>
           <Route path="projects" element={<Projects/>}/>
           {/* add other routes */}
         </Routes>

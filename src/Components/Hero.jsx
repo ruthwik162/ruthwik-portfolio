@@ -60,8 +60,7 @@ const Hero = () => {
       <section className="w-full h-screen overflow-hidden relative">
         <figure
           ref={modelDiv}
-          className="w-full model-wrapper z-[10] relative h-full -top-[10vh] overflow-hidden md:left-1/4"
-        >
+          className="w-full model-wrapper z-[10] relative h-full -top-[10vh] overflow-hidden md:left-1/4" >
           <div className="w-full h-full -right-[14vh] -top-20 md:right-0 absolute">
             <Canvas
               shadows
@@ -123,34 +122,8 @@ const Hero = () => {
             </Canvas>
           </div>
         </figure>
-
-
-        {/* Text content */}
-        <div className="absolute top-1/3 md:left-10 w-1/2 flex flex-col items-start z-30">
-          <div className="overflow-hidden">
-            <div className="textL text-[15vw] leading-[14vw] md:text-[10vw] uppercase font-poppins font-poppins-600  text-cyan-700 md:leading-[9vw]">
-              Naga
-            </div>
-          </div>
-          <div className="overflow-hidden">
-            <div className="textL text-[20vw] md:text-[13vw] uppercase font-bold text-cyan-700 leading-[17vw] md:leading-[11vw]">
-              Ruthwik
-            </div>
-          </div>
-          <div className="overflow-hidden flex items-center">
-            <div className="flex">
-              <div className="textL text-[15vw] md:text-[7.6vw] uppercase font-bold text-[#555555] leading-[15vw] md:leading-[7vw]">
-                Merugu
-              </div>
-            </div>
-          </div>
-        </div>
       </section >
 
-      {/* Section 2: Regular content below the pinned 3D model */}
-      < section className="md:h-[110vh]  h-[110vh]  bg-white" >
-        <Service />
-      </section >
     </div >
   );
 };

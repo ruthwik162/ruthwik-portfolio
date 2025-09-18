@@ -118,14 +118,14 @@ body {
 
 
 .n {
-  color: transparent;                /* No fill by default */
-  -webkit-text-stroke: 1px white;    /* White outline */
+  color: transparent;                
+  -webkit-text-stroke: 1px white;    
   paint-order: stroke fill;
-  transition: color 0.3s ease;       /* Smooth hover effect */
+  transition: color 0.3s ease;       
 }
 
 .n:hover {
-  color: wheat;                      /* Fill color on hover */
+  color: wheat;                      
 }
 
 .m {
