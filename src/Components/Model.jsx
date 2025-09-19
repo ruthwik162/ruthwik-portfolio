@@ -1,18 +1,18 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { useGLTF } from "@react-three/drei";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useMediaQuery } from "react-responsive";
+import { useFrame } from "@react-three/fiber";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Model({ containerRef, ...props }) {
   const { nodes, materials } = useGLTF("/model/ruthwik3d.glb");
   const modelRef = useRef();
-
-    const mobile = useMediaQuery({ maxWidth: 853 });
-  
+  const target = useRef({ x: 0, y: 0 }); // cursor target
+  const mobile = useMediaQuery({ maxWidth: 853 });
 
   useGSAP(() => {
     // Initial animation
@@ -24,12 +24,36 @@ export function Model({ containerRef, ...props }) {
     });
 
     gsap.from(modelRef.current.rotation, {
-      x: -Math.PI / 3 ,
+      x: -Math.PI / 3,
       duration: 5,
       ease: "power3.out",
     });
-
   }, [containerRef]);
+
+  // Cursor tracking
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const x = (e.clientX / window.innerWidth) * 2 - 1; // -1 to 1
+      const y = -(e.clientY / window.innerHeight) * 2 + 1;
+      gsap.to(target.current, {
+        x,
+        y,
+        duration: 4,
+        ease: "power3.out",
+      });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  // Apply rotation on each frame
+  useFrame(() => {
+    if (modelRef.current) {
+      modelRef.current.rotation.y = target.current.x * 0.3; // horizontal
+      modelRef.current.rotation.x = target.current.y * 0.2; // vertical
+    }
+  });
 
   return (
     <group {...props} ref={modelRef} dispose={null}>

@@ -173,7 +173,7 @@ const Navbar = () => {
         <h1 className="letter absolute md:-bottom-[10vh] text-white/50 -bottom-[6vh] right-[19vw] md:right-[5vh] font-[font2] text-[17vh] md:text-[30vh]">R</h1>
 
         <div className="flex flex-col md:ml-[50%] items-center justify-start md:-mt-[20vh] md:flex-row">
-          <div className="relative   -mt-[15vh] md:mt-0 md:pt-0  md:w-full flex flex-col font-poppins font-poppins-500 text-4xl gap-y-3 md:text-6xl lg:text-[3vw] ">
+          <div className="relative -ml-[13vh] md:ml-0  -mt-[13vh] pt-2  md:mt-0 md:pt-0  md:w-full flex flex-col font-poppins font-poppins-400 text-4xl gap-y-3 md:text-6xl lg:text-[3vw] ">
             {["Home", "About Me", "Projects", "Contact", "Services"].map(
               (text, index) => (
                 <div className="overflow-hidden" key={index}>
@@ -245,19 +245,19 @@ const Navbar = () => {
 
       {/* Top Bar */}
       <div className="fixed z-50 md:mx-10 mx-3 flex items-center justify-between w-full">
-        <h1 className={`text-[10vh] transition-all duration-1000 font-[font2] ${!open ? "text-black" : "text-white"}`}>R</h1>
+        <Link to="/" className={`text-[7vh] transition-all duration-1000 font-[font2] ${!open ? "text-black" : "text-white"}`}>R</Link>
         <div
           ref={pillRef}
           onClick={toggleMenu}
-          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[2.2vh] md:right-[8.8vh] items-center justify-between px-2  cursor-pointer h-14 rounded-full bg-black transition-all duration-900 ${open ? "w-14" : "w-27"}`} >
-          <h1 className="text-white text-sm font-bold transition-all  duration-700 uppercase"> Menu  </h1>
+          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[2.15vh] md:right-[8.8vh] items-center justify-between px-2  cursor-pointer h-11 rounded-full bg-black transition-all duration-900 ${open ? "w-11" : "w-27"}`} >
+          <h1 className="text-white text-[1.5vh] font-bold transition-all -px-3 duration-700 uppercase"> Menu  </h1>
         </div>
 
         {/* Orange icon */}
         <div
           ref={iconRef}
           onClick={() => { toggleMenu() }}
-          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.5vh] right-[3.6vh] md:top-[2.6vh] md:right-[9.2vh] bg-orange-500 transition-all duration-700 rounded-full w-12 h-12 md:w-12 md:h-12 ${open ? "scale-120" : "scale-100"} `} >
+          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.3vh] right-[3.3vh] md:top-[2.4vh] md:right-[9.1vh] bg-orange-500 transition-all duration-700 rounded-full w-10 h-10 md:w-10 md:h-10 ${open ? "scale-120" : "scale-100"} `} >
           <span ref={topline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black"  ></span>
           <span ref={bottomline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black" ></span>
         </div>
