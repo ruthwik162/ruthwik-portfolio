@@ -103,9 +103,9 @@ body {
 
 /* Custom text selection color */
 ::selection {
-  background: #D3FD50;
+  background: #000000;
   /* highlight background */
-  color: #000;
+  color: #ffffff;
   /* selected text color */
 }
 

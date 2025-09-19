@@ -1,11 +1,28 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Hero from '../Components/Hero'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 
 const Home = () => {
 
+    const containRef = useRef(null);
+
     useGSAP(() => {
+
+        gsap.set(containRef.current, { scale:0.9 });
+
+        gsap.to(containRef.current, {
+            scale:1,
+            duration:3,
+            ease: "power3.out",
+            scrollTrigger: {
+                trigger: containRef.current,
+                start: "top 80%",
+                end: "top 0%",
+                scrub: true,
+            },
+        });
+
         gsap.utils.toArray(".num1").forEach((num) => {
             gsap.fromTo(
                 num,
@@ -36,7 +53,7 @@ const Home = () => {
                     scrollTrigger: {
                         trigger: num,
                         start: "top 43%",
-                        end: "top 35%",
+                        end: "top 37%",
                         scrub: true,
                     },
                 }
@@ -49,8 +66,8 @@ const Home = () => {
             <section className='w-full '>
                 <Hero />
             </section>
-            <section className="w-full h-screen page3">
-                <div className=" overflow-hidden flex  ">
+            <section className="w-full h-screen px-2 page3">
+                <div ref={containRef} className=" overflow-hidden flex w-full h-full text-white mt-[10vh] rounded-t-3xl bg-black">
                     <div className="overflow-hidden mt-[15vh] ">
                         <div className="md:ml-[5vh]  ml-[3vh]  font-poppins-400 text-[5vh] text-center md:text-[4vw]">
                             <h1 className="num1  md:leading-[3.2vw]  tracking-tighter ">.03</h1>

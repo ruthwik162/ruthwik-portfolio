@@ -249,7 +249,7 @@ const Navbar = () => {
         <div
           ref={pillRef}
           onClick={toggleMenu}
-          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[2.15vh] md:right-[8.8vh] items-center justify-between px-2  cursor-pointer h-11 rounded-full bg-black transition-all duration-900 ${open ? "w-11" : "w-27"}`} >
+          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[1.9vh] md:right-[8.7vh] items-center justify-between px-2  cursor-pointer h-10 rounded-full bg-black transition-all duration-900 ${open ? "w-11" : "w-22"}`} >
           <h1 className="text-white text-[1.5vh] font-bold transition-all -px-3 duration-700 uppercase"> Menu  </h1>
         </div>
 
@@ -257,7 +257,7 @@ const Navbar = () => {
         <div
           ref={iconRef}
           onClick={() => { toggleMenu() }}
-          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.3vh] right-[3.3vh] md:top-[2.4vh] md:right-[9.1vh] bg-orange-500 transition-all duration-700 rounded-full w-10 h-10 md:w-10 md:h-10 ${open ? "scale-120" : "scale-100"} `} >
+          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.3vh] right-[3.3vh] md:top-[2.4vh] md:right-[9vh] bg-orange-500 transition-all duration-700 rounded-full w-8 h-8 md:w-8 md:h-8 ${open ? "scale-120" : "scale-100"} `} >
           <span ref={topline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black"  ></span>
           <span ref={bottomline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black" ></span>
         </div>

@@ -14,6 +14,7 @@ import { useFrame } from "@react-three/fiber";
 import { useEffect } from "react";
 import { MouseIcon } from "lucide-react";
 import Architecture from "../Components/Architecture";
+import Buttons from "./Buttons";
 
 
 
@@ -249,10 +250,12 @@ const Home = () => {
                 </section >
             </div>
 
-            <section className="w-full h-screen z-50">
+
+
+            <section className="w-full h-screen  z-50">
                 <div className="md:ml-[4.5vh] w-1/2 flex flex-col items-start ">
-                    <div className="mt-[25vh] overflow-hidden">
-                        <div className="textL text-[15vw] leading-[14vw] md:text-[10vw] uppercase font-poppins font-poppins-400  text-black md:leading-[9vw]">
+                    <div className="mt-[25vh]  overflow-hidden">
+                        <div className="textL text-[15vw]   leading-[14vw] md:text-[10vw] uppercase font-poppins font-poppins-400  text-black md:leading-[9vw]">
                             Naga
                         </div>
                     </div>
@@ -281,6 +284,9 @@ const Home = () => {
                             <p className="text2 font-[font2]">Based in Hyderabad, India</p>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <Buttons />
                 </div>
 
                 <div className="bottom mt-[13vh]">

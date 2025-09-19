@@ -31,7 +31,7 @@ const services = [
   },
   {
     title: "Backend Power",
-    desc: "Robust server architecture with Node.js, Python, and cloud infrastructure.",
+    desc: "Robust server architecture with Node.js, Java & Spring Boot.",
     icon: <Server className="service-icon w-5 h-5 md:w-7 md:h-7" />,
   },
   {
@@ -79,7 +79,7 @@ const Architecture = () => {
     gsap.from(".textSS", {
       y: 100,
       duration: 1,
-      rotate: 10,
+      rotate: -7,
       ease: "power3.out",
       stagger: 0.2,
       scrollTrigger: {
@@ -94,7 +94,7 @@ const Architecture = () => {
       duration: 1,
       rotate: 7,
       ease: "power3.out",
-      stagger: 0.2,
+      stagger: 0.1,
       scrollTrigger: {
         trigger: ".textSS",
         start: mobile ? "top 50%" : "top 60%",
@@ -272,7 +272,7 @@ const Architecture = () => {
               key={i}
               className="relative overflow-hidden border-b border-gray-200 cursor-pointer"
             >
-              <div className="relative flex items-start justify-start md:justify-start md:gap-[20vh] px-2 z-10">
+              <div className="relative flex items-start justify-start md:justify-end md:gap-[20vh] px-2 z-10">
                 <span className="role-text textSS flex items-center gap-3 justify-center text-[5vw] md:text-[1.7vw] text-black">
                   {role.desc}
                 </span>
@@ -282,10 +282,10 @@ const Architecture = () => {
         </div>
       </div>
       {/* ✅ Plans */}
-      <div className="w-full font-[font2] space-y-4">
+      <div className="w-full font-[font2] ">
         <div ref={bottomRef} className="overflow-hidden  cursor-pointer w-full md:w-[20%]" >
           <div ref={arrow3Ref} className="flex items-center">
-            <h2 className="text-[9vw] md:text-[3vw] flex items-center px-9 md:px-5 md:mt-0 mt-[2vh] gap-2 font-[font2]">
+            <h2 className="text-[9vw] md:text-[3vw] flex items-center px-7 md:px-5 md:mt-0 mt-[2vh] gap-2 font-[font2]">
               <FaArrowRight /> [ Service ]
             </h2>
           </div>
@@ -293,11 +293,11 @@ const Architecture = () => {
         {services.map((s, i) => (
           <div
             key={i}
-            className="relative overflow-hidden border-b  border-gray-200"
+            className="relative max-w-7xl overflow-hidden border-b  border-gray-200"
           >
-            <div className="relative textSSS flex flex-col md:flex-row  items-start md:items-center gap-1 md:gap-6 px-4  md:py-1 z-10">
-              <span className="role-text textSSS flex items-center gap-3 text-[5vw] md:text-[1.3vw] text-black">
-                {s.icon} {s.title} <span className="bg-red-400 md:block hidden w-3 h-0.5"></span><span className="md:block hidden">{s.desc}</span>
+            <div className="relative textSSS flex flex-col md:flex-row  items-start md:items-center gap-1    z-10">
+              <span className="role-text textSSS flex items-center gap-3 text-[5vw] md:text-[1.7vw] text-black">
+                {s.icon} {s.title} <span className="bg-red-700 md:block rounded-full hidden w-6 h-2"></span><span className="md:block hidden">{s.desc}</span>
               </span>
 
             </div>
