@@ -71,7 +71,7 @@ const Architecture = () => {
       stagger: 0.2,
       scrollTrigger: {
         trigger: ".textS",
-        start: mobile ? "top 50%" : "top 40%",
+        start: mobile ? "top 60%" : "top 40%",
         end: mobile ? "top 20%" : "top 5%",
         scrub: true,
       }
@@ -297,7 +297,7 @@ const Architecture = () => {
           >
             <div className="relative textSSS flex flex-col md:flex-row  items-start md:items-center gap-1 md:gap-6 px-4  md:py-1 z-10">
               <span className="role-text textSSS flex items-center gap-3 text-[5vw] md:text-[1.3vw] text-black">
-                {s.icon} {s.title} <span className="bg-red-400 md:block hidden w-3 h-0.5"></span>{s.desc}
+                {s.icon} {s.title} <span className="bg-red-400 md:block hidden w-3 h-0.5"></span><span className="md:block hidden">{s.desc}</span>
               </span>
 
             </div>
