@@ -15,7 +15,7 @@ import purpleflower from './purpleflower.png'
 import spin from './spin.png'
 import pooja1 from './Pooja1.jpg'
 
-import ruthwik from './Ruthwik Profile.jpg'
+import ruthwik from './ruthwik.png'
 
 import { FaLinkedin } from "react-icons/fa";
 import { FaSquareInstagram,FaGithub } from "react-icons/fa6";

@@ -245,8 +245,13 @@ const Navbar = () => {
 
       {/* Top Bar */}
       <div className="fixed z-50 md:mx-10 mx-3 flex items-center justify-between w-full">
-        <Link to="/" className={`text-[7vh] transition-all duration-1000 font-[font2] ${!open ? "text-black" : "text-white"}`}>R</Link>
-        <div
+        <Link
+          to="/"
+          onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}
+          className={`text-[7vh] transition-all duration-1000 font-[font2] ${!open ? "text-black" : "text-white"}`}
+        >
+          R
+        </Link>        <div
           ref={pillRef}
           onClick={toggleMenu}
           className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[1.9vh] md:right-[8.7vh] items-center justify-between px-2  cursor-pointer h-10 rounded-full bg-black transition-all duration-900 ${open ? "w-11" : "w-22"}`} >
