@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const GsapMarquee = ({
-  speed = 35,
+  speed = 5,
   direction = "left",
   children,
 }) => {
@@ -39,7 +39,7 @@ const GsapMarquee = ({
     <div className="overflow-hidden w-full bg-white cursor-default border">
       <div
         ref={marqueeRef}
-        className="flex whitespace-nowrap uppercase text-[7vw] md:text-[4vw] md:gap-[7vh] font-poppins font-poppins-300 tracking-tight"
+        className="flex whitespace-nowrap uppercase text-[7vw] md:text-[4.5vw]  md:gap-[7vh] font-poppins font-poppins-400 tracking-tight"
       >
         <div className="flex items-center justify-center gap-2 md:gap-8">{children}</div>
         <div className="flex items-center justify-center gap-2 md:gap-8">{children}</div>

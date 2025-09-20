@@ -119,7 +119,7 @@ const Home = () => {
                 scrollTrigger: {
                     trigger: item,
                     start: "top 95%",
-                    end: "top 80%",
+                    end: "top 60%",
                     scrub: true,
                 }
             })
@@ -288,14 +288,11 @@ const Home = () => {
                     </div>
                 </div>
 
-
-
-
-                <div className="bottom md:mt-0 bg-amber-300 mt-[13vh]">
+                <div className="bottom md:mt-[13vh]  mt-[29vh]">
                     <div className="flex items-center justify-around">
                         {bottom.map((items, index) => (
                             <div key={index} className="between">
-                                <h1 className="text-[1.1vw] font-[font2] flex ">
+                                <h1 className="text-[3vw] md:text-[2vh] font-[font2] flex ">
                                     {items.name}{" "}
                                     {items.name === "Scroll Down" ? (
                                         <span className="animate-bounce [animation-duration:2s]">   {items.icon} </span>
@@ -309,8 +306,8 @@ const Home = () => {
                 </div>
 
             </section>
-            <div className="z-0 -mt-[10vh] md:-mt-[15vh] ">
-                <GsapMarquee speed={90} direction="left">
+            <div className="z-0 mt-[10vh]  ">
+                <GsapMarquee speed={40} direction="left">
                     <span className="flex items-center justify-center gap-2">
                         <FaDiamond className="md:w-15 md:h-15 h-5 w-5 " /> Web Developer
                     </span>
