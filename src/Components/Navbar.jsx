@@ -257,7 +257,7 @@ const Navbar = () => {
         <div
           ref={iconRef}
           onClick={() => { toggleMenu() }}
-          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.3vh] right-[3.3vh] md:top-[2.4vh] md:right-[9vh] bg-orange-500 transition-all duration-700 rounded-full w-8 h-8 md:w-8 md:h-8 ${open ? "scale-120" : "scale-100"} `} >
+          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.6vh] right-[3.5vh] md:top-[2.4vh] md:right-[9.2vh] bg-orange-500 transition-all duration-700 rounded-full w-8 h-8 md:w-8 md:h-8 ${open ? "scale-130" : "scale-100"} `} >
           <span ref={topline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black"  ></span>
           <span ref={bottomline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black" ></span>
         </div>

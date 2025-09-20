@@ -12,9 +12,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 import { useFrame } from "@react-three/fiber";
 import { useEffect } from "react";
-import { MouseIcon } from "lucide-react";
+import { Code, Diamond, Monitor, MouseIcon, Shapes, Spade } from "lucide-react";
 import Architecture from "../Components/Architecture";
 import Buttons from "./Buttons";
+import GsapMarquee from "./GsapMarquee";
+import { FaDiamond, FaLeaf, FaShapes } from "react-icons/fa6";
 
 
 
@@ -285,15 +287,15 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <Buttons />
-                </div>
 
-                <div className="bottom mt-[13vh]">
+
+
+
+                <div className="bottom md:mt-0 bg-amber-300 mt-[13vh]">
                     <div className="flex items-center justify-around">
                         {bottom.map((items, index) => (
                             <div key={index} className="between">
-                                <h1 className="text-[1.1vw] font-[font2] flex opacity-80">
+                                <h1 className="text-[1.1vw] font-[font2] flex ">
                                     {items.name}{" "}
                                     {items.name === "Scroll Down" ? (
                                         <span className="animate-bounce [animation-duration:2s]">   {items.icon} </span>
@@ -306,9 +308,20 @@ const Home = () => {
                     </div>
                 </div>
 
-
-
             </section>
+            <div className="z-0 -mt-[10vh] md:-mt-[15vh] ">
+                <GsapMarquee speed={90} direction="left">
+                    <span className="flex items-center justify-center gap-2">
+                        <FaDiamond className="md:w-15 md:h-15 h-5 w-5 " /> Web Developer
+                    </span>
+                    <span className="flex justify-center items-center gap-2">
+                        <FaLeaf className="md:w-15 md:h-15 h-5 w-5" /> Interactive Developer
+                    </span>
+                    <span className="flex justify-center items-center gap-2">
+                        <FaShapes className="md:w-15 md:h-15 h-5 w-5" /> 3D Enthusiast
+                    </span>
+                </GsapMarquee>
+            </div>
             <section className="w-full min-h-screen font-poppins page2 tracking-tighter relative">
                 <div className="relative z-10 flex">
                     <div className="overflow-hidden md:mt-[15vh] mt-[30vh] ">

@@ -66,6 +66,7 @@ const Home = () => {
             <section className='w-full '>
                 <Hero />
             </section>
+            
             <section className="w-full h-screen px-2 page3">
                 <div ref={containRef} className=" overflow-hidden flex w-full h-full text-white mt-[10vh] rounded-t-3xl bg-black">
                     <div className="overflow-hidden mt-[15vh] ">

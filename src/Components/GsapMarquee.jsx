@@ -2,32 +2,29 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const GsapMarquee = ({
-  text = "Hello | Hello | Hello | Hello |",
-  speed = 15,
+  speed = 35,
   direction = "left",
-  pauseOnHover = true,
+  children,
 }) => {
   const marqueeRef = useRef(null);
   const tweenRef = useRef(null);
 
   useEffect(() => {
     const el = marqueeRef.current;
+    const distance = el.scrollWidth / 2; // half, since duplicated
 
-    // Duplicate content for seamless loop
-    const content = el.innerHTML;
-    el.innerHTML = content + content;
-
-    // Direction: left (-x) or right (+x)
-    const xPercent = direction === "left" ? -50 : 50;
-
-    // Animate
     tweenRef.current = gsap.to(el, {
-      xPercent: xPercent,
+      x: direction === "left" ? -distance : 0,
       duration: speed,
       ease: "linear",
-      repeat: Infinity,
+      repeat: -1,
       modifiers: {
-        xPercent: gsap.utils.wrap(-50, 0), // keeps loop seamless
+        x: (x) => {
+          const num = parseFloat(x);
+          return direction === "left"
+            ? `${num % -distance}px`
+            : `${num % distance}px`;
+        },
       },
     });
 
@@ -36,31 +33,16 @@ const GsapMarquee = ({
     };
   }, [speed, direction]);
 
-  // Pause on hover
-  useEffect(() => {
-    if (!pauseOnHover) return;
-    const el = marqueeRef.current;
-    const tween = tweenRef.current;
 
-    const handleEnter = () => tween?.pause();
-    const handleLeave = () => tween?.resume();
-
-    el.addEventListener("mouseenter", handleEnter);
-    el.addEventListener("mouseleave", handleLeave);
-
-    return () => {
-      el.removeEventListener("mouseenter", handleEnter);
-      el.removeEventListener("mouseleave", handleLeave);
-    };
-  }, [pauseOnHover]);
 
   return (
-    <div className="overflow-hidden border w-full bg-white cursor-default">
+    <div className="overflow-hidden w-full bg-white cursor-default border">
       <div
         ref={marqueeRef}
-        className="whitespace-nowrap text-[5vw] font-bold tracking-tight"
+        className="flex whitespace-nowrap uppercase text-[7vw] md:text-[4vw] md:gap-[7vh] font-poppins font-poppins-300 tracking-tight"
       >
-        {text}
+        <div className="flex items-center justify-center gap-2 md:gap-8">{children}</div>
+        <div className="flex items-center justify-center gap-2 md:gap-8">{children}</div>
       </div>
     </div>
   );
