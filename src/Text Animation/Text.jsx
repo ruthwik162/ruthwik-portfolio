@@ -7,7 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Text = ({
   text,
-  className = "",
+  className = "text-justify break-words hyphens-auto",
   triggerParent = null,
   stagger = 0.03,
   start = "top 70%",

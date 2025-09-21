@@ -27,15 +27,19 @@ import {
     SiSvelte,      // ✅ fixed
     SiGraphql,
     SiTensorflow,  // ✅ fixed
-    SiGoogleanalytics 
+    SiGoogleanalytics
 } from "react-icons/si";
 import { MdBarChart } from "react-icons/md";
 import ProjectCard from "./Components/ProjectCard";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { assets } from "./assets/assets";
+import { useNavigate } from "react-router-dom";
 
 
 const Projects = () => {
     const containerRef = useRef(null);
     gsap.registerPlugin(ScrollTrigger);
+    const navigate = useNavigate();
 
     // Map stack names to React icons
     const getStackIcon = (name) => {
@@ -62,12 +66,14 @@ const Projects = () => {
         return <IconComponent className="text-white text-lg" />;
     };
 
+
+
     const projects = [
         {
-            image: "https://k72.ca/uploads/caseStudies/PJC/Thumbnails/PJC_SiteK72_Thumbnail_1280x960-1280x960.jpg",
-            title: "PJC",
-            description: "A modern e-commerce platform with seamless user experience and advanced inventory management system.",
-            url: "https://example.com/pjc",
+            image: assets.mainbanner,
+            title: "Student-Teacher Appointment Scheduler",
+            description: "Comprehensive appointment scheduling platform for educational institutions, enabling seamless booking and management of student-teacher meetings.",
+            url: "https://teacher-student-appointment-a7hf.onrender.com/",
             stacks: [
                 { name: "React" },
                 { name: "Node.js" },
@@ -76,58 +82,50 @@ const Projects = () => {
             ]
         },
         {
-            image: "https://k72.ca/uploads/caseStudies/WIDESCAPE/WS---K72.ca---Thumbnail-1280x960.jpg",
-            title: "Widescape",
-            description: "Landscape design platform featuring AR visualization and project management tools for professionals.",
-            url: "https://example.com/widescape",
+            image: assets.otSchedular,
+            title: "Operation Theatre Scheduler",
+            description: "Operation theatre scheduling system with real-time updates, resource management, and analytics dashboard for optimized hospital workflows.",
+            url: "https://operartion-theatre-schedular.vercel.app/",
             stacks: [
-                { name: "Vue.js" },
-                { name: "Python" },
-                { name: "PostgreSQL" },
-                { name: "Three.js" }
+                { name: "React" },
+                { name: "Node.js" },
+                { name: "MongoDB" },
+                { name: "Tailwind" }
             ]
         },
         {
-            image: "https://k72.ca/uploads/caseStudies/OKA/OKA_thumbnail-1280x960.jpg",
-            title: "OKA",
-            description: "Health and wellness app with personalized workout plans and nutrition tracking capabilities.",
-            url: "https://example.com/oka",
+            image: assets.hostel,
+            title: "Mallareddy University Hostel",
+            description: "Mallareddy university website with interactive campus map, event calendar, and integrated student portal for enhanced user experience.",
+            url: "https://malla-reddy-university.vercel.app/",
             stacks: [
-                { name: "Angular" },
-                { name: "Firebase" },
-                { name: "TypeScript" },
-                { name: "Chart.js" }
+                { name: "React" },
+                { name: "Node.js" },
+                { name: "MongoDB" },
+                { name: "Tailwind" }
             ]
         },
         {
-            image: "https://k72.ca/uploads/caseStudies/Opto/thumbnailimage_opto-1280x960.jpg",
-            title: "Opto",
-            description: "Optical prescription management system with AI-powered lens recommendations and virtual try-on.",
-            url: "https://example.com/opto",
+            image: assets.ecommers,
+            title: "e-Commerce Platform",
+            description: "E-commerce platform with AI-driven product recommendations, dynamic pricing, and seamless checkout experience.",
+            url: "https://e-commerce-ten-rose-60.vercel.app/",
             stacks: [
-                { name: "Svelte" },
-                { name: "GraphQL" },
-                { name: "AWS" },
-                { name: "TensorFlow" }
+                { name: "React" },
+                { name: "Node.js" },
+                { name: "MongoDB" },
+                { name: "Tailwind" }
             ]
         },
     ];
 
+    const length = projects.length;
+
     useGSAP(() => {
-        // Pin the title section
-        gsap.to(".title-container", {
-            scrollTrigger: {
-                trigger: ".title-container",
-                start: "top top",
-                end: "+=400",
-                pin: true,
-                pinSpacing: false,
-                anticipatePin: 1,
-            }
-        });
+
 
         // Animate heading characters
-        gsap.from(".section-char", {
+        gsap.from(".char", {
             y: -200,
             opacity: 0,
             duration: 1.2,
@@ -139,15 +137,12 @@ const Projects = () => {
         gsap.utils.toArray(".project-card").forEach((card, i) => {
             gsap.fromTo(card,
                 {
-                    x: i % 2 === 0 ? -300 : 300,
-                    opacity: 0,
-                    rotation: i % 2 === 0 ? -5 : 5,
-                    filter: "blur(5px)"
+                    opacity: 1,
+                    y: -200,
                 },
                 {
-                    x: 0,
+                    y: 0,
                     opacity: 1,
-                    rotation: 0,
                     filter: "blur(0px)",
                     duration: 1.5,
                     ease: "power3.out",
@@ -181,48 +176,79 @@ const Projects = () => {
         <div ref={containerRef} className="bg-white md:mt-[10vh] mt-[30vh]">
             {/* Title with pin container */}
             <div className="title-container bg-white">
-                <div className='bg-white overflow-hidden'>
-                    <div className="">
-                        <div className='text-[15vw] md:text-[7vw] mx-[2vw] md:mx-[5vw] mt-[10vh] md:mt-[40vh] text font-[font2] uppercase text-black'>
-                            {"Projects".split("").map((char, idx) => (
-                                <span key={idx} className="section-char inline-block">
-                                    {char}
-                                </span>
-                            ))}
+                <div className='bg-white mt-[10vh] md:mt-[40vh] overflow-hidden'>
+                    <div className="overflow-hidden">
+                        <div className='text-[15vw] md:text-[7vw] mx-[2vw] md:mx-[5vw] font-[font2] uppercase text-black'>
+                            <div className="char relative">
+                                Projects <span className="absolute top-[10%] md:right-[57%] text-[7vw] md:text-[2vw]">[{length}]</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
-            {/* Projects Grid */}
-            <div className="px-6 lg:px-16 mt-[20vh] md:mt-[10vh]  grid md:grid-cols-2 gap-10">
-                {projects.map((project, idx) => (
-                    <div key={idx} className="project-card">
-                        <ProjectCard
-                            image={project.image}
-                            title={project.title}
-                            description={project.description}
-                            stacks={project.stacks}
-                            url={project.url}
-                            getStackIcon={getStackIcon}
-                        />
-                    </div>
-                ))}
+            <div>
+                {/* Projects Grid */}
+                <div className="px-6 lg:px-16 mt-[20vh] md:mt-[10vh] flex-col md:grid md:grid-cols-1 md:gap-10">
+                    {projects.map((project, idx) => (
+                        <div className="border-t-2 border-gray-400 ">
+                            <div className="flex items-start pb-0 mt-[4vw] md:mt-[1vw] flex-col-reverse  md:flex-row gap-10 justify-center">
+                                <div className="md:leading-[1.9vw] flex gap-5 leading-[1vw] pb-10 md:pb-0 md:mt-0 tracking-tighter text-[4vw] md:text-[2.1vw] font-[font2] ">
+                                    <span className="md:text-[1.5vw] ">[{idx + 1}]</span><h1> {project.title}</h1>
+                                </div>
+                                <div className="md:leading-[1.5vw] md:block hidden  md:text-[1.5vw] tracking-tight text-[2.5vw] font-[font2]">
+                                    <h1>{project.description}</h1>
+                                    <div className="flex gap-2 md:mt-[3vh] flex-wrap">
+                                        {project.stacks.slice(0, 3).map((stack, index) => (
+                                            <span key={index} className="text-xs text-white bg-black px-3 py-1 border rounded-full">
+                                                {stack.name}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <a
+                                        href={project.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className=" text-black rounded-xl p-3 md:text-[1.8vw]  transform flex items-center gap-3 justify-start transition-all duration-500 ease-out "
+                                        style={{ transitionDelay: `${project.stacks.length * 100}ms` }}
+                                    >
+                                        <FaArrowUpRightFromSquare className="w-5 h-5" /> Link
+                                    </a>
+                                </div>
+                                <div className="w-full md:w-[50%] flex justify-center items-center">
+                                    <div className="">
+                                        <div key={idx} className="project-card tracking-tighter">
+                                            <ProjectCard
+                                                image={project.image}
+                                                title={project.title}
+                                                description={project.description}
+                                                stacks={project.stacks}
+                                                url={project.url}
+                                                getStackIcon={getStackIcon}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             {/* Contact Section */}
-            <div className="contact-section min-h-screen flex flex-col items-center justify-center gap-8 px-6  bg-gray-50">
-                <div className="text-center max-w-3xl mx-auto">
-                    <h2 className="contact-item text-4xl font-poppins font-poppins-400 md:text-6xl font-bold text-black mb-6">
+            <div className="contact-section min-h-screen flex flex-col items-center justify-center gap-8 px-6">
+                <div className="text-start  ">
+                    <h2 className="contact-item text-4xl text-start font-[font2] md:text-[9vw] md:leading-[9vw] font-bold text-black mb-6">
                         Ready to Start Your Next Project?
                     </h2>
-                    <p className="contact-item font-poppins font-poppins-200 text-lg md:text-3xl text-gray-600 mb-8">
+                    <p className="contact-item max-w-5xl text-start font-[font2] text-lg md:text-3xl text-gray-600 mb-8">
                         Let's collaborate to bring your vision to life with innovative solutions and cutting-edge technology.
                     </p>
                 </div>
 
                 <div className="contact-item flex flex-col sm:flex-row gap-4">
-                    <button className="px-8 py-4 bg-black text-white rounded-full font-poppins font-poppins-300 uppercase flex items-center gap-2 hover:bg-gray-800 transition-colors">
+                    <button onClick={() => { navigate("/contact"); scrollTo(0, 0) }} className="px-8 py-4 bg-black text-white rounded-full font-poppins font-poppins-300 uppercase flex items-center gap-2 hover:bg-gray-800 transition-colors">
                         Start a Project
                         <FaArrowRight />
                     </button>

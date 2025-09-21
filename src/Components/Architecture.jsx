@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import Lenis from "@studio-freight/lenis";
-import { Code2, Lightbulb, PenTool, Rocket, RocketIcon, Server, Users, Zap } from "lucide-react";
+import { ArrowBigRight, ArrowBigRightIcon, ArrowRight, Code2, Lightbulb, PenTool, Rocket, RocketIcon, Server, Users, Zap } from "lucide-react";
 import { FaArrowRight } from "react-icons/fa6";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "react-responsive";
@@ -232,8 +232,9 @@ const Architecture = () => {
       {/* ✅ Arrow + Title */}
       <div ref={headingWrapperRef} className="overflow-hidden  leading-[3vh] md:w-[35%] border-gray-200 cursor-pointer mx-2" >
         <div ref={arrowRef} className="overflow-hidden flex items-center justify-start">
-          <h2 className="text-[12vw] md:text-[5vw] flex items-center px-3 md:px-0 mt-5 gap-4 font-[font2] mb-6"  >
-            <span className="inline-block"> <FaArrowRight /> </span> Architecture
+          <ArrowRight className="w-8 h-8 md:w-20 md:h-15 text-black" strokeWidth={1.5} />
+          <h2 className="text-[12vw] md:text-[5vw] flex items-center font-poppins tracking-tighter font-poppins-200 px-12 md:px-0 mt-5 gap-4  mb-6"  >
+            Architecture
           </h2>
         </div>
       </div>
@@ -260,9 +261,10 @@ const Architecture = () => {
       {/* ✅ Plans */}
       <div className="md:ml-[45%]  md:mt-2 ">
         <div ref={planRef} className="overflow-hidden md:w-[35%] leading-[5vh] border-gray-200 cursor-pointer mx-2" >
-          <div ref={arrow2Ref} className="overflow-hidden flex items-center justify-start">
-            <h2 className="text-[12vw] md:text-[3vw] mt-5  flex items-center gap-4 px-4 md:px-3 font-[font2] mb-6"  >
-              <span className="inline-block"> <FaArrowRight /> </span>[ Plan ]
+          <div ref={arrow2Ref} className="overflow-hidden flex items-center justify-center">
+            <ArrowRight className="w-8 h-8 md:w-13 md:h-13 text-black" strokeWidth={1.5} />
+            <h2 className="text-[12vw] md:text-[3vw] mt-5  font-poppins tracking-tighter font-poppins-200 flex items-center gap-4 px-5 md:px-3 font-[font2] mb-6"  >
+              [ Plan ]
             </h2>
           </div>
         </div>
@@ -282,18 +284,19 @@ const Architecture = () => {
         </div>
       </div>
       {/* ✅ Plans */}
-      <div className="w-full font-[font2] ">
+      <div className="w-full  ">
         <div ref={bottomRef} className="overflow-hidden  cursor-pointer w-full md:w-[20%]" >
           <div ref={arrow3Ref} className="flex items-center">
-            <h2 className="text-[9vw] md:text-[3vw] flex items-center px-7 md:px-5 md:mt-0 mt-[2vh] gap-2 font-[font2]">
-              <FaArrowRight /> [ Service ]
+            <ArrowRight className="w-8 h-8 md:w-13 md:h-13 text-black" strokeWidth={1.5} />
+            <h2 className="text-[9vw] md:text-[3vw] font-poppins tracking-tighter font-poppins-200 flex items-center px-10 md:px-5 md:mt-0 mt-[2vh] gap-2 font-[font2]">
+              [ Service ]
             </h2>
           </div>
         </div>
         {services.map((s, i) => (
           <div
             key={i}
-            className="relative max-w-7xl overflow-hidden border-b  border-gray-200"
+            className="relative max-w-7xl font-[font2] overflow-hidden border-b  border-gray-200"
           >
             <div className="relative textSSS flex flex-col md:flex-row  items-start md:items-center gap-1    z-10">
               <span className="role-text textSSS flex items-center gap-3 text-[5vw] md:text-[1.7vw] text-black">
@@ -307,7 +310,7 @@ const Architecture = () => {
 
 
       <div className="mt-12 w-full md:ml-[50%] max-w-4xl font-[font2] ">
-        <h3 className="text-[10vw] md:text-[4vw] font-bold mb-4">Vision & Mission</h3>
+        <h3 className="text-[10vw] md:text-[4vw] font-poppins tracking-tighter font-poppins-200 mb-4">Vision & Mission</h3>
         <div className="overflow-hidden leading-[5vh]">
           <p className="text-lg md:text-xl textSSS text-black leading-relaxed">
             We believe in merging creativity with technology to build experiences that matter.

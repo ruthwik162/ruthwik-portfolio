@@ -77,7 +77,7 @@ const Home = () => {
             icon: <MouseIcon />
         },
         {
-            name: "Welcome",
+            name: "",
             icon: ""
         }
     ];
@@ -90,7 +90,7 @@ const Home = () => {
 
         tl.from(".textL", {
             y: -200,
-            duration: 2,
+            duration: 2.5,
             stagger: 0.2,
             ease: "power3.inOut",
 
@@ -172,7 +172,7 @@ const Home = () => {
         ScrollTrigger.create({
             trigger: modelDiv.current,
             start: "top top",
-            end: `${mobile ? "bottom+=80% 80%" : "bottom+=65% 80%"}`,
+            end: `${mobile ? "bottom+=80% 80%" : "bottom+=88% 80%"}`,
             pin: true,
             pinSpacing: true,
             scrub: 1, // smooth animation
@@ -189,6 +189,9 @@ const Home = () => {
 
     return (
         <div className="w-full main overflow-x-hidden relative">
+
+            <h1 className="absolute md:top-[36vw] md:-right-[1vw] mx-3 md:mx-1 font-poppins font-poppins-200 text-[20vw] top-1/4 md:text-[13vw] uppercase text-black/50 tracking-tighter ">WelCome</h1>
+
             <div className="relative">
                 <section ref={modelDiv} className="w-full  h-screen overflow-hidden absolute  z-0 md:top-0 top-[0vh] md:left-0 left-[0vh]">
                     <figure className="w-full model-wrapper z-0 relative h-full left-23 -top-[5vh] md:top-0  overflow-hidden md:left-1/4" >
@@ -288,11 +291,11 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="bottom md:mt-[13vh]  mt-[29vh]">
+                <div className="bottom md:mt-[13vh]  mt-[35vh]">
                     <div className="flex items-center justify-around">
                         {bottom.map((items, index) => (
                             <div key={index} className="between">
-                                <h1 className="text-[3vw] md:text-[2vh] font-[font2] flex ">
+                                <h1 className="text-[4vw] text-black/50 md:text-[2vh] font-[font2] flex ">
                                     {items.name}{" "}
                                     {items.name === "Scroll Down" ? (
                                         <span className="animate-bounce [animation-duration:2s]">   {items.icon} </span>

@@ -1,38 +1,40 @@
+import React, { useRef, useEffect, useState } from 'react';
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
-import React, { useRef } from "react";
-import Image from "../Components/Image";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useMediaQuery } from "react-responsive";
-import { Book, Code2, Heart, LightbulbIcon, MouseIcon, Projector, RocketIcon } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import Text from "../Text Animation/Text";
-import { Canvas } from "@react-three/fiber";
-import { Float, OrbitControls, Sphere, MeshDistortMaterial } from "@react-three/drei";
-import { Briefcase } from "lucide-react";
-import GsapMarquee from "../Components/GsapMarquee";
-import { FaDiamond, FaShapes } from "react-icons/fa6";
-import { FaLeaf } from "react-icons/fa";
-import { GiSpain } from "react-icons/gi";
-import { RiSearch2Fill } from "@remixicon/react";
+import {
+    Book, Briefcase, BriefcaseBusiness, Code2, Heart,
+    LightbulbIcon, MouseIcon, Projector
+} from "lucide-react";
+import { RiSearch2Fill } from "react-icons/ri";
+import Image from '../Components/Image';
+import Text from '../Text Animation/Text';
+import { useNavigate } from 'react-router-dom';
+import { Model2 } from '../Components/Model2';
+import { Canvas } from '@react-three/fiber';
+import { Float, OrbitControls } from '@react-three/drei';
 
-gsap.registerPlugin(SplitText, ScrollTrigger);
-
-const bottom = [
-    { name: "", icon: "" },
-    { name: "Scroll Down", icon: <MouseIcon /> },
-    { name: "", icon: "" },
-];
+// Register GSAP plugins
+gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
 
 const Aboutme = () => {
     const imageDivRef = useRef(null);
-    const mobile = useMediaQuery({ maxWidth: 853 });
-    const naviaget = useNavigate();
+    const [fontsLoaded, setFontsLoaded] = useState(false);
+    const isMobile = window.innerWidth <= 853;
+    const navigate = useNavigate();
+
+    // Check if fonts are loaded
+    useEffect(() => {
+        document.fonts.ready.then(() => {
+            setFontsLoaded(true);
+        });
+    }, []);
 
     useGSAP(() => {
+        if (!fontsLoaded) return;
 
-
+        // Bottom section animation
         gsap.utils.toArray(".bottom").forEach((item) => {
             gsap.fromTo(
                 item,
@@ -51,7 +53,7 @@ const Aboutme = () => {
             );
         });
 
-        // ✅ Animate "About me" heading
+        // Animate "About me" heading
         const splitHeading = new SplitText(".heading-text", { types: "chars" });
         gsap.from(splitHeading.chars, {
             y: -180,
@@ -60,7 +62,7 @@ const Aboutme = () => {
             ease: "power3.inOut",
         });
 
-        // ✅ Animate ALL paragraphs (split into lines)
+        // Animate paragraphs
         gsap.utils
             .toArray([
                 ".about-para",
@@ -95,6 +97,40 @@ const Aboutme = () => {
                     }
                 );
             });
+
+        // Animate "What I Can Do" section
+        gsap.utils.toArray([".do-para"]).forEach((selector) => {
+            const split = new SplitText(selector, { type: "lines" });
+            split.lines.forEach((line) => {
+                const inner = document.createElement("span");
+                inner.className = "inline-block";
+                inner.textContent = line.textContent;
+
+                const wrapper = document.createElement("span");
+                wrapper.className = "overflow-hidden py-1 block";
+                wrapper.appendChild(inner);
+
+                line.textContent = "";
+                line.appendChild(wrapper);
+            });
+
+            gsap.from(
+                split.lines.map((l) => l.querySelector("span.inline-block")),
+                {
+                    y: -100,
+                    
+                    duration: 1,
+                    ease: "power3.out",
+                    stagger: 0.2,
+                    scrollTrigger: {
+                        trigger: selector,
+                        start: "top 80%",
+                        end: "top 28%",
+                        scrub: true,
+                    }
+                }
+            );
+        });
 
         // Title animations
         gsap.utils.toArray(".text").forEach((title) => {
@@ -135,25 +171,57 @@ const Aboutme = () => {
             );
         });
 
-        gsap.from(".expo", {
-            x: mobile ? -100 : -700,
-            duration: 2,
-            scrollTrigger: {
-                trigger: ".expo",
-                start: "top 80%",
-                end: "top 30%",
-                scrub: true,
-            }
-        })
-    });
+        // Only animate .expo if it exists
+        const expoElement = document.querySelector(".expo");
+        if (expoElement) {
+            gsap.from(".expo", {
+                x: isMobile ? -100 : -700,
+                duration: 2,
+                scrollTrigger: {
+                    trigger: ".expo",
+                    start: "top 80%",
+                    end: "top 30%",
+                    scrub: true,
+                }
+            });
+        }
+    }, { dependencies: [fontsLoaded] });
+
+    // Marquee component
+    const GsapMarquee = ({ speed, direction, children }) => {
+        return (
+            <div className="overflow-hidden whitespace-nowrap">
+                <div
+                    className="inline-block whitespace-nowrap"
+                    style={{
+                        animation: `marquee-${direction} ${speed}s linear infinite`,
+                    }}
+                >
+                    {React.Children.map(children, (child, index) => (
+                        <span key={index} className="mx-8 inline-block">
+                            {child}
+                        </span>
+                    ))}
+                </div>
+            </div>
+        );
+    };
+
+    const bottom = [
+        { name: "", icon: "" },
+        { name: "Scroll Down", icon: <MouseIcon /> },
+        { name: "", icon: "" },
+    ];
 
     return (
         <div className="w-full min-h-screen bg-white/90 relative overflow-x-hidden">
             <section className="w-full min-h-screen relative">
+
+
                 {/* Pinned Image */}
                 <div
                     ref={imageDivRef}
-                    className="absolute overflow-hidden lg:h-[40vw] xl:h-[40vw] md:z-5 z-0 md:h-[60vw] h-[85vw] w-[65vw] lg:rounded-3xl rounded-xl xl:w-[25vw] lg:w-[40vw]  md:top-[25vh] lg:top-[10vh] xl:left-[10vw] lg:-left-[2vw] top-[5vh] md:-left-[15vw] left-[3vw]"
+                    className="absolute overflow-hidden lg:h-[40vw] rounded-md xl:h-[35vw]  md:z-5 z-0 md:h-[60vw] h-[85vw] w-[65vw]   xl:w-[35vw] lg:w-[40vw]  md:top-[25vh] lg:top-[20vh] xl:left-[5vw] lg:-left-[2vw] top-[12vh] md:-left-[15vw] left-[3vw]"
                 >
                     <Image className="object-cover" />
                 </div>
@@ -173,9 +241,9 @@ const Aboutme = () => {
                 </div>
 
                 {/* About Paragraph */}
-                <div className="overflow-hidden ml-[12%] md:ml-[40%] z-50 md:px-5 flex flex-col">
-                    <p className="about-para md:text-[2vw] text-[5vw] text-justify font-poppins font-poppins-500 text-black/70 mt-[0vh] md:mt-[0vh] leading-[2vh] md:leading-[4vh]  md:px-0">
-                        I'm Ruthwik <Heart className="inline" /> , a passionate web developer dedicated to
+                <div className="overflow-hidden ml-[3%] md:ml-[55%] z-50 md:px-5 flex flex-col">
+                    <p className="about-para md:text-[1.3vw] text-[5vw] text-justify break-words hyphens-auto font-poppins  font-poppins-500 text-black/70 mt-[0vh] md:mt-[5vh] leading-[2vh] md:leading-[2vh]  md:px-0">
+                        I'm NagaRuthwik <Heart className="inline" /> , a passionate web developer dedicated to
                         crafting engaging and user-friendly digital experiences. With a strong foundation in
                         both front-end and back-end technologies, I specialize in creating responsive websites
                         and applications that not only look great but also perform seamlessly across all devices.
@@ -213,15 +281,16 @@ const Aboutme = () => {
 
                 <div className="leading-[2vw] md:w-1/2 md:mr-[50%] text-start font-poppins font-poppins-500  overflow-hidden">
                     <div className="lg:mt-[1vh] flex items-center justify-start  mt-[4vh]">
-                        <h1 className="md:text-[4vw] border-b-2 flex items-center justify-end border-gray-200  text-[7vw] text-black textMd text-end md:text-end uppercase md:leading-[7vw] leading-[9vw]">
-                            <Book className="md:w-10 md:h-10" /> 10th + 2
+                        <Book className="md:w-10 textMd md:h-10" strokeWidth={1.2} />
+                        <h1 className="md:text-[4vw] border-b-2 flex items-center justify-end border-gray-200  text-[7vw] text-black textMd text-end md:text-end uppercase md:leading-[5vw] leading-[9vw]">
+                            10th + 2
                         </h1>
                     </div>
                 </div>
 
-                <div className="lg:mr-[55%] p-3 text-justify tracking-tighter  mt-4 md:mr-[40%] overflow-hidden">
+                <div className="lg:mr-[40%] p-3 text-justify tracking-tighter  mt-4 md:mr-[40%] overflow-hidden">
                     <Text
-                        className="lg:text-[2vw] text-md  font-poppins font-poppins-600 md:leading-[4.5vh]"
+                        className="lg:text-[1.6vw] text-md  font-poppins font-poppins-500 md:leading-[4vh] text-justify break-words hyphens-auto"
                         text={` I completed my schooling at ZPHS School at Challagariga, where I consistently focused on academics and extracurricular activities. I am proud to mention that I secured a perfect GPA of ' 9.8 ' in my 10th board examinations. Following that, I pursued my intermediate studies in the MPC stream at Vidwan Junior College, Telangana, where I scored an impressive 80.05% in the Intermediate Public Exams. These early educational achievements laid a solid foundation for my journey in higher education. `}
                     />
                 </div>
@@ -234,103 +303,113 @@ const Aboutme = () => {
                     </div>
                 </div>
 
-                <div className="lg:ml-[50%] tracking-tighter p-3 mt-4 md:ml-[40%] overflow-hidden">
+                <div className="lg:ml-[40%] tracking-tighter p-3 mt-4 md:ml-[40%] text-justify break-words hyphens-auto overflow-hidden">
                     <Text
-                        className="lg:text-[2vw] text-md text-justify font-poppins font-poppins-600 md:leading-[4.5vh]"
+                        className="lg:text-[1.6vw] text-md  font-poppins font-poppins-500 md:leading-[4vh] text-justify break-words hyphens-auto"
                         text={`Currently, I'm in my 4-1 semester at Malla Reddy University, pursuing my B.Tech in Computer Science and Engineering. Throughout my undergraduate studies, I have been actively involved in hands-on projects and technical learning, which have enhanced my understanding of both theoretical concepts and real-world applications. I am constantly seeking opportunities to improve my skills, explore new technologies, and contribute meaningfully to projects in the field of computer science.`}
                     />
                 </div>
+
+
+                <div className="leading-[2vw] lg:mt-[15vh] font-poppins font-poppins-500 overflow-hidden">
+                    <div className="lg:mt-[5vh] md:mx-[3vh] md:w-2/3 mt-[6vh]">
+                        <h1 className="md:text-[6vw] py-1 border-b-2 md:text-start border-gray-200 text-[11vw] text  text-justify uppercase md:leading-[7vw] leading-[10vw]">
+                            What I Can Do!!
+                        </h1>
+                    </div>
+                </div>
+                <div className="overflow-hidden ml-[3%] md:ml-[55%] z-50 md:px-5 flex flex-col">
+                    <p className="do-para md:text-[1.3vw] text-[5vw] text-justify break-words hyphens-auto font-poppins  font-poppins-500 text-black/70 mt-[0vh] md:mt-[8vh] leading-[2vh] md:leading-[2.5vh]  md:px-0">
+                        I primarily work with custom  and JavaScript, with both Library & FrameWork having developed a well-structured and maintainable front-end architecture . I also have experience with frameworks like Vue and React. I strive to make the most of CSS for styling, layout and even for animations. I also mainly rely on GSAP to create smooth and dynamic interactions.
+                    </p>
+                </div>
+
             </section>
 
-            <div className="z-0 mt-[10vh]  ">
-                <GsapMarquee speed={40} direction="left">
-                    <span className="flex items-center justify-center gap-2">
-                        <Code2 className="md:w-15 md:h-15 h-5 w-5 " />Full Stack Web Developer
-                    </span>
-                    <span className="flex justify-center items-center gap-2">
-                        <LightbulbIcon className="md:w-15 md:h-15 h-5 w-5" />Think
-                    </span>
-                    <span className="flex justify-center items-center gap-2">
-                        <RiSearch2Fill className="md:w-15 md:h-15 h-5 w-5" /> Impact
-                    </span>
-                </GsapMarquee>
-            </div>
+
+
 
             {/* Experience Section */}
             <section className="w-full  z-10 relative min-h-screen">
-                {/* 3D Floating Background */}
-                <div className="absolute inset-0 -z-10">
-                    <Canvas camera={{ position: [0, 0, 8] }}>
-                        <ambientLight intensity={0.5} />
-                        <directionalLight position={[5, 5, 5]} />
-                        {/* Floating Sphere */}
-                        <Float speed={2} rotationIntensity={1} floatIntensity={2}>
-                            <Sphere args={[1, 64, 64]} scale={1.2} position={[-3, 2, -3]}>
-                                <MeshDistortMaterial color="#60a5fa" distort={0.3} speed={2} />
-                            </Sphere>
-                        </Float>
-                        {/* Floating Cube */}
-
-                        <OrbitControls enableZoom={false} />
-                    </Canvas>
-
-                </div>
 
                 {/* Experience Title */}
-                <div className="leading-[2vw] font-poppins font-poppins-500 overflow-hidden">
-                    <div className="lg:mt-[15vh] mt-[16vh]">
-                        <h1 className="md:text-[8vw] text-[11vw] text text-start md:text-start uppercase md:leading-[7vw] leading-[10vw]">
-                            Experience
-                        </h1>
+                <div className="leading-[2vw]  font-poppins font-poppins-500 overflow-hidden">
+
+                    <div className="absolute top-[80vh] md:top-1/5 md:left-2/6 left-0 w-full h-full  z-10">
+                        <Canvas camera={{ position: [0, 0, 10] }}>
+                            <ambientLight intensity={0.5} />
+                            <directionalLight position={[5, 5, 5]} intensity={1} />
+                            <Float speed={2} rotationIntensity={1} floatIntensity={2}>
+                                <Model2 position={[0, 0, 0]} scale={isMobile ? 1.7 : 1.6} />
+                            </Float>
+                            <OrbitControls enableZoom={false} enablePan={false} />
+                        </Canvas>
+
+                    </div>
+                    <div className="lg:mt-[15vh] md:mx-[2vw] mt-[16vh] overflow-hidden">
+                        <div className=" uppercase md:leading-[7vw] leading-[10vw] ">
+                            <h1 className="md:text-[8vw] text-[12vw] text text-center md:text-start ">
+                                Experience
+                            </h1>
+                        </div>
+                    </div>
+
+                    <div className="lg:mr-[35%] md:mx-[2vw] md:mr-[40%]  mt-[5vh] p-8 md:border-2 md:border-gray-300 rounded-sm ">
+
+                        {/* Header */}
+                        <div className="flex items-center gap-3 mb-4">
+                            <BriefcaseBusiness className="w-8 h-8 text-black" strokeWidth={1} />
+                            <h3 className="md:text-[3vw] text-[6vw] font-semibold leading-tight">
+                                Fullstack Developer
+                            </h3>
+                        </div>
+
+                        {/* Company Info */}
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
+                            <span className="text-xs uppercase tracking-widest bg-black text-white px-3 py-1 rounded-full">
+                                3 Months
+                            </span>
+                            <div className="text-sm mt-2 md:mt-0 text-right">
+                                <p className="font-medium">UnifiedMentor Private Limited</p>
+                                <p className="text-gray-600">May 2023 - July 2023</p>
+                            </div>
+                        </div>
+
+                        {/* Description */}
+                        <p className=" lg:text-[1.3vw] text-base text-justify leading-[3vh] mt-6 text-gray-800">
+                            During my internship at UnifiedMentor, I worked on developing and maintaining fullstack
+                            applications using modern technologies like React, Node.js, and MongoDB. I collaborated
+                            with the development team to implement new features, fix bugs, and optimize application
+                            performance.
+                        </p>
+
+                        {/* Tech Stack */}
+                        <div className="mt-6 flex flex-wrap gap-3">
+                            {["React", "Node.js", "MongoDB", "Express", "REST APIs"].map((tech, i) => (
+                                <span
+                                    key={i}
+                                    className="border border-black text-black text-xs font-medium px-3 py-1 rounded-full hover:bg-black hover:text-white transition-all"
+                                >
+                                    {tech}
+                                </span>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
 
 
                 {/* Experience Card */}
-                <div className="expo lg:mr-[35%] mx-5 md:mx-10 p-6 mt-6 md:mr-[40%] bg-white/10 backdrop-blur-sm shadow-2xl rounded-2xl border border-gray-200 relative overflow-hidden">
-                    <div className="flex items-center gap-3 mb-2">
-                        <Briefcase className="w-8 h-8 text-blue-600" />
-                        <h3 className="md:text-[3vw] text-[5vw] font-poppins font-semibold text-gray-900">
-                            Fullstack Developer
-                        </h3>
-                    </div>
-                    <span className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
-                        3 months
-                    </span>
-                    <p className="text-blue-600 mt-2 font-medium">
-                        UnifiedMentor Private Limited
-                    </p>
-                    <p className="text-gray-500 text-sm">May 2023 - July 2023</p>
 
-                    <p className="lg:text-[1.5vw] text-md text-justify font-[font2] leading-[3.5vh] mt-4">
-                        During my internship at UnifiedMentor, I worked on developing and maintaining fullstack
-                        applications using modern technologies like React, Node.js, and MongoDB. I collaborated
-                        with the development team to implement new features, fix bugs, and optimize application
-                        performance.
-                    </p>
-
-                    {/* Tech Stack Badges */}
-                    <div className="mt-4 flex flex-wrap gap-2">
-                        {["React", "Node.js", "MongoDB", "Express", "REST APIs"].map((tech, i) => (
-                            <span
-                                key={i}
-                                className="bg-gray-200 text-gray-800 text-xs font-medium px-3 py-1 rounded-lg shadow-sm"
-                            >
-                                {tech}
-                            </span>
-                        ))}
-                    </div>
-                </div>
             </section>
 
             {/* Projects Section */}
             <section className="w-full md:px-10 flex flex-col items-center justify-center h-screen">
                 <div className="leading-[2vw] font-poppins font-poppins-500 overflow-hidden text-center">
-                    <h1 className="md:text-[8vw] text-[11vw] uppercase md:leading-[7vw] leading-[10vw] text-black">
+                    <h1 className="md:text-[10vw] text-[11vw] text-start uppercase tracking-tighter md:leading-[8vw] leading-[10vw] text-black">
                         Explore My Projects
                     </h1>
-                    <p className="mt-4 md:text-[1.6vw] leading-[2vh] text-[3.5vw] text-gray-600 max-w-2xl">
+                    <p className="mt-4 md:text-[1.6vw] md:leading-[3.5vh] leading-[2vh] text-start text-[3.5vw] text-gray-600 max-w-2xl">
                         Take a look at the projects I've built — each crafted with attention to detail and a
                         focus on user experience.
                     </p>
@@ -338,10 +417,10 @@ const Aboutme = () => {
 
                 <div className="mt-8">
                     <button onClick={() => {
-                        naviaget("/projects");
-                        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+                        navigate("/projects");
+                        scrollTo(0, 0);
                     }}
-                    className="md:px-8 px-4 py-3 flex items-center justify-center gap-2 rounded-full bg-black text-white font-semibold hover:scale-105 hover:bg-gray-800 transition-all duration-300 text-lg md:text-xl shadow-xl">
+                        className="md:px-8 px-4 py-3 flex items-center justify-center gap-2 rounded-full bg-black text-white font-semibold hover:scale-105 hover:bg-gray-800 transition-all duration-300 text-lg md:text-xl shadow-xl">
                         View Projects <Projector className="w-5 h-5" />
                     </button>
                 </div>

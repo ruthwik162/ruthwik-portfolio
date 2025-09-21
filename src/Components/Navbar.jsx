@@ -174,7 +174,7 @@ const Navbar = () => {
 
         <div className="flex flex-col md:ml-[50%] items-center justify-start md:-mt-[20vh] md:flex-row">
           <div className="relative -ml-[13vh] md:ml-0  -mt-[13vh] pt-2  md:mt-0 md:pt-0  md:w-full flex flex-col font-poppins font-poppins-400 text-4xl gap-y-3 md:text-6xl lg:text-[3vw] ">
-            {["Home", "About Me", "Projects", "Contact", "Services"].map(
+            {["Home", "About Me", "Projects", "Contact"].map(
               (text, index) => (
                 <div className="overflow-hidden" key={index}>
                   <div
@@ -254,7 +254,7 @@ const Navbar = () => {
         </Link>        <div
           ref={pillRef}
           onClick={toggleMenu}
-          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[1.9vh] md:right-[8.7vh] items-center justify-between px-2  cursor-pointer h-10 rounded-full bg-black transition-all duration-900 ${open ? "w-11" : "w-22"}`} >
+          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[1.05vw] md:right-[4.7vw] items-center justify-between px-2  cursor-pointer h-10 rounded-full bg-black transition-all duration-900 ${open ? "w-11" : "w-22"}`} >
           <h1 className="text-white text-[1.5vh] font-bold transition-all -px-3 duration-700 uppercase"> Menu  </h1>
         </div>
 
@@ -262,7 +262,7 @@ const Navbar = () => {
         <div
           ref={iconRef}
           onClick={() => { toggleMenu() }}
-          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.6vh] right-[3.5vh] md:top-[2.4vh] md:right-[9.2vh] bg-orange-500 transition-all duration-700 rounded-full w-8 h-8 md:w-8 md:h-8 ${open ? "scale-130" : "scale-100"} `} >
+          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.6vh] right-[3.5vh] md:top-[1.31vw] md:right-[5vw] bg-orange-500 transition-all duration-700 rounded-full w-8 h-8 md:w-8 md:h-8 ${open ? "scale-130" : "scale-100"} `} >
           <span ref={topline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black"  ></span>
           <span ref={bottomline} className="h-[0.29vh] w-5 block origin-center rounded-full bg-black" ></span>
         </div>
