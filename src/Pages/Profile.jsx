@@ -241,9 +241,9 @@ const Aboutme = () => {
                 </div>
 
                 {/* About Paragraph */}
-                <div className="overflow-hidden ml-[3%] md:ml-[55%] z-50 md:px-5 flex flex-col">
-                    <p className="about-para md:text-[1.3vw] text-[5vw] text-justify break-words hyphens-auto font-poppins  font-poppins-500 text-black/70 mt-[0vh] md:mt-[5vh] leading-[2vh] md:leading-[2vh]  md:px-0">
-                        I'm NagaRuthwik <Heart className="inline" /> , a passionate web developer dedicated to
+                <div className="overflow-hidden ml-[3%] md:ml-[45%] z-50 md:px-5 flex flex-col">
+                    <p className="about-para md:text-[1.6vw] text-[5vw] text-justify break-words hyphens-auto font-poppins  font-poppins-500 text-black/70 mt-[0vh] md:mt-[5vh] leading-[2vh] md:leading-[2.5vh]  md:px-0">
+                        I'm NagaRuthwik , a passionate web developer dedicated to
                         crafting engaging and user-friendly digital experiences. With a strong foundation in
                         both front-end and back-end technologies, I specialize in creating responsive websites
                         and applications that not only look great but also perform seamlessly across all devices.
@@ -290,7 +290,7 @@ const Aboutme = () => {
 
                 <div className="lg:mr-[40%] p-3 text-justify tracking-tighter  mt-4 md:mr-[40%] overflow-hidden">
                     <Text
-                        className="lg:text-[1.6vw] text-md  font-poppins font-poppins-500 md:leading-[4vh] text-justify break-words hyphens-auto"
+                        className="lg:text-[2vw] text-md  font-poppins font-poppins-500 md:leading-[4vh] text-justify break-words hyphens-auto"
                         text={` I completed my schooling at ZPHS School at Challagariga, where I consistently focused on academics and extracurricular activities. I am proud to mention that I secured a perfect GPA of ' 9.8 ' in my 10th board examinations. Following that, I pursued my intermediate studies in the MPC stream at Vidwan Junior College, Telangana, where I scored an impressive 80.05% in the Intermediate Public Exams. These early educational achievements laid a solid foundation for my journey in higher education. `}
                     />
                 </div>
@@ -305,7 +305,7 @@ const Aboutme = () => {
 
                 <div className="lg:ml-[40%] tracking-tighter p-3 mt-4 md:ml-[40%] text-justify break-words hyphens-auto overflow-hidden">
                     <Text
-                        className="lg:text-[1.6vw] text-md  font-poppins font-poppins-500 md:leading-[4vh] text-justify break-words hyphens-auto"
+                        className="lg:text-[2vw] text-md  font-poppins font-poppins-500 md:leading-[4vh] text-justify break-words hyphens-auto"
                         text={`Currently, I'm in my 4-1 semester at Malla Reddy University, pursuing my B.Tech in Computer Science and Engineering. Throughout my undergraduate studies, I have been actively involved in hands-on projects and technical learning, which have enhanced my understanding of both theoretical concepts and real-world applications. I am constantly seeking opportunities to improve my skills, explore new technologies, and contribute meaningfully to projects in the field of computer science.`}
                     />
                 </div>
@@ -318,8 +318,8 @@ const Aboutme = () => {
                         </h1>
                     </div>
                 </div>
-                <div className="overflow-hidden ml-[3%] md:ml-[55%] z-50 md:px-5 flex flex-col">
-                    <p className="do-para md:text-[1.3vw] text-[5vw] text-justify break-words hyphens-auto font-poppins  font-poppins-500 text-black/70 mt-[0vh] md:mt-[8vh] leading-[2vh] md:leading-[2.5vh]  md:px-0">
+                <div className="overflow-hidden ml-[3%] md:ml-[30%] z-50 md:px-5 flex flex-col">
+                    <p className="do-para md:text-[2vw] text-[5vw] text-justify break-words hyphens-auto font-poppins  font-poppins-500 text-black/70 mt-[0vh] md:mt-[8vh] leading-[2vh] md:leading-[3.5vh]  md:px-0">
                         I primarily work with custom  and JavaScript, with both Library & FrameWork having developed a well-structured and maintainable front-end architecture . I also have experience with frameworks like Vue and React. I strive to make the most of CSS for styling, layout and even for animations. I also mainly rely on GSAP to create smooth and dynamic interactions.
                     </p>
                 </div>
@@ -335,17 +335,7 @@ const Aboutme = () => {
                 {/* Experience Title */}
                 <div className="leading-[2vw]  font-poppins font-poppins-500 overflow-hidden">
 
-                    <div className="absolute top-[80vh] md:top-1/5 md:left-2/6 left-0 w-full h-full  z-10">
-                        <Canvas camera={{ position: [0, 0, 10] }}>
-                            <ambientLight intensity={0.5} />
-                            <directionalLight position={[5, 5, 5]} intensity={1} />
-                            <Float speed={2} rotationIntensity={1} floatIntensity={2}>
-                                <Model2 position={[0, 0, 0]} scale={isMobile ? 1.7 : 1.6} />
-                            </Float>
-                            <OrbitControls enableZoom={false} enablePan={false} />
-                        </Canvas>
 
-                    </div>
                     <div className="lg:mt-[15vh] md:mx-[2vw] mt-[16vh] overflow-hidden">
                         <div className=" uppercase md:leading-[7vw] leading-[10vw] ">
                             <h1 className="md:text-[8vw] text-[12vw] text text-center md:text-start ">
@@ -359,7 +349,7 @@ const Aboutme = () => {
                         {/* Header */}
                         <div className="flex items-center gap-3 mb-4">
                             <BriefcaseBusiness className="w-8 h-8 text-black" strokeWidth={1} />
-                            <h3 className="md:text-[3vw] text-[6vw] font-semibold leading-tight">
+                            <h3 className="md:text-[3vw] text-[6vw] font-semfibold leading-tight">
                                 Fullstack Developer
                             </h3>
                         </div>
@@ -406,7 +396,7 @@ const Aboutme = () => {
             {/* Projects Section */}
             <section className="w-full md:px-10 flex flex-col items-center justify-center h-screen">
                 <div className="leading-[2vw] font-poppins font-poppins-500 overflow-hidden text-center">
-                    <h1 className="md:text-[10vw] text-[11vw] text-start uppercase tracking-tighter md:leading-[8vw] leading-[10vw] text-black">
+                    <h1 className="md:text-[11vw] text-[11vw] text-start uppercase tracking-tighter md:leading-[12vw] leading-[10vw] text-black">
                         Explore My Projects
                     </h1>
                     <p className="mt-4 md:text-[1.6vw] md:leading-[3.5vh] leading-[2vh] text-start text-[3.5vw] text-gray-600 max-w-2xl">

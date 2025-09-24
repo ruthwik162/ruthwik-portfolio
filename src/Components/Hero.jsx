@@ -12,11 +12,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 import { useFrame } from "@react-three/fiber";
 import { useEffect } from "react";
-import { Code, Diamond, Monitor, MouseIcon, Shapes, Spade } from "lucide-react";
+import { Code, Diamond, Monitor, MouseIcon, Play, Shapes, Spade } from "lucide-react";
 import Architecture from "../Components/Architecture";
 import Buttons from "./Buttons";
 import GsapMarquee from "./GsapMarquee";
 import { FaDiamond, FaLeaf, FaShapes } from "react-icons/fa6";
+import { FaPlay } from "react-icons/fa";
+import { FiPlay } from "react-icons/fi";
+import { GrPlayFill } from "react-icons/gr";
 
 
 
@@ -69,7 +72,7 @@ const Home = () => {
 
     const bottom = [
         {
-            name: "",
+            name: "+",
             icon: ""
         },
         {
@@ -77,7 +80,7 @@ const Home = () => {
             icon: <MouseIcon />
         },
         {
-            name: "",
+            name: "+",
             icon: ""
         }
     ];
@@ -86,6 +89,12 @@ const Home = () => {
         const tl = gsap.timeline();
 
         // Text animation
+        gsap.from(".wel", {
+            x: 1000,
+            opacity:0.5,
+            duration: 2.5,
+                ease: "power3.inOut",
+        })
 
 
         tl.from(".textL", {
@@ -95,6 +104,7 @@ const Home = () => {
             ease: "power3.inOut",
 
         })
+
         gsap.from(lineRef.current, {
             width: 0,
             delay: 2,
@@ -190,7 +200,13 @@ const Home = () => {
     return (
         <div className="w-full main overflow-x-hidden relative">
 
-            <h1 className="absolute md:top-[36vw] md:-right-[1vw] mx-3 md:mx-1 font-poppins font-poppins-200 text-[20vw] top-1/4 md:text-[13vw] uppercase text-black/50 tracking-tighter ">WelCome</h1>
+            <div className="absolute md:top-[36vw] md:-right-[1vw] mx-3 md:mx-1 font-poppins font-poppins-200  top-1/4  ">
+                <div className="overflow-hidden">
+                    <div className="md:text-[13vw] wel text-[20vw] uppercase text-black/50 tracking-tighter">
+                        WelCome
+                    </div>
+                </div>
+            </div>
 
             <div className="relative">
                 <section ref={modelDiv} className="w-full  h-screen overflow-hidden absolute  z-0 md:top-0 top-[0vh] md:left-0 left-[0vh]">
@@ -265,7 +281,7 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="overflow-hidden">
-                        <div className="textL text-[20vw] md:text-[13vw] uppercase  font-poppins font-poppins-600 text-black leading-[17vw] md:leading-[10vw]">
+                        <div className="textL text-[20vw] md:text-[10vw] uppercase  font-poppins font-poppins-600 text-black leading-[17vw] md:leading-[10vw]">
                             Ruthwik
                         </div>
                     </div>
@@ -312,13 +328,13 @@ const Home = () => {
             <div className="z-0 mt-[10vh]  ">
                 <GsapMarquee speed={40} direction="left">
                     <span className="flex items-center justify-center gap-2">
-                        <FaDiamond className="md:w-15 md:h-15 h-5 w-5 " /> Web Developer
+                        <GrPlayFill className="md:w-15 md:h-15 h-5 w-5 text-black" /> Inspire
                     </span>
                     <span className="flex justify-center items-center gap-2">
-                        <FaLeaf className="md:w-15 md:h-15 h-5 w-5" /> Interactive Developer
+                        <GrPlayFill className="md:w-15 md:h-15 h-5 w-5" /> Innovate
                     </span>
                     <span className="flex justify-center items-center gap-2">
-                        <FaShapes className="md:w-15 md:h-15 h-5 w-5" /> 3D Enthusiast
+                        <GrPlayFill className="md:w-15 md:h-15 h-5 w-5" /> Impact
                     </span>
                 </GsapMarquee>
             </div>

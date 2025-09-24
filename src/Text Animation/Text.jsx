@@ -2,8 +2,9 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import SplitText from "gsap/SplitText"; // use official plugin path
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Text = ({
   text,
@@ -19,25 +20,34 @@ const Text = ({
     const element = textRef.current;
     if (!element) return;
 
-    // Split text into characters
-    const chars = text.split("").map((char) => {
-      const span = document.createElement("span");
-      span.textContent = char === " " ? "\u00A0" : char;
-      span.style.display = "inline-block";
-      return span;
+    element.innerHTML = text;
+
+    // Split text into chars (nested spans: wrapper + inner)
+    const split = new SplitText(element, {
+      type: "chars",
+      charsClass: "char-inner",
+      tag: "span",
     });
 
-    element.innerHTML = "";
-    chars.forEach((c) => element.appendChild(c));
+    // Wrap chars in overflow-hidden containers
+    split.chars.forEach((char) => {
+      const wrapper = document.createElement("span");
+      wrapper.style.overflow = "hidden";
+      wrapper.style.display = "inline-block";
+
+      char.parentNode.insertBefore(wrapper, char);
+      wrapper.appendChild(char);
+    });
 
     // Initial state
-    gsap.set(chars, { opacity: 0.1, color: "#000" });
+    gsap.set(split.chars, { opacity: 0.1, x: -10, color: "#000" });
 
-    // Determine trigger: parent element if triggerParent is null
+    // Trigger element
     const triggerElement = triggerParent || element.parentElement;
 
-    // Animate characters
-    gsap.to(chars, {
+    // Animate
+    gsap.to(split.chars, {
+      x: 0,
       opacity: 1,
       stagger,
       ease: "power4.out",
@@ -46,9 +56,13 @@ const Text = ({
         start,
         end,
         scrub: 1,
-        // markers: true, // enable for debugging
+        // markers: true,
       },
     });
+
+    return () => {
+      split.revert(); // clean up SplitText
+    };
   }, [text, stagger, start, end, triggerParent]);
 
   return <span ref={textRef} className={className}></span>;

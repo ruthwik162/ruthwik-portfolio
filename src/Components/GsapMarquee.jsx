@@ -36,13 +36,14 @@ const GsapMarquee = ({
 
 
   return (
-    <div className="overflow-hidden w-full bg-black text-white cursor-default border">
+    <div className="overflow-hidden w-full  text-black cursor-default border">
       <div
         ref={marqueeRef}
         className="flex whitespace-nowrap uppercase text-[7vw] md:text-[4.5vw]  md:gap-[7vh] font-poppins font-poppins-400 tracking-tight"
       >
         <div className="flex items-center justify-center gap-2 md:gap-8">{children}</div>
         <div className="flex items-center justify-center gap-2 md:gap-8">{children}</div>
+        
       </div>
     </div>
   );
