@@ -88,11 +88,11 @@ const App = () => {
         className="cursor hidden fixed md:flex items-center rounded-full -top-1.5 -left-1.5 gap-2 z-[9999] pointer-events-none"
       >
         {/* Dot (relative to flex, not fixed) */}
-        <div className="w-3 h-3 rounded-full bg-indigo-700" />
+        <div className="w-3 h-3 rounded-full bg-black" />
 
         {/* Enable sound text */}
         {!soundEnabled && (
-          <p className="font-[font2] text-sm text-indigo-700 whitespace-nowrap">
+          <p className="font-[font2] text-sm text-black whitespace-nowrap">
             [ click to enable sound ]
           </p>
         )}
