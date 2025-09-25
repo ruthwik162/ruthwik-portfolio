@@ -72,12 +72,20 @@ const Home = () => {
 
     const bottom = [
         {
+            name: "+ ",
+            icon: ""
+        },
+        {
             name: "+",
             icon: ""
         },
         {
             name: "Scroll Down",
             icon: <MouseIcon />
+        },
+        {
+            name: "+ ",
+            icon: ""
         },
         {
             name: "+",
@@ -99,8 +107,8 @@ const Home = () => {
 
         tl.from(".textL", {
             y: -200,
-            duration: 2.5,
-            stagger: 0.2,
+            duration: 1.8,
+            stagger: 0.1,
             ease: "power3.inOut",
 
         })
@@ -128,7 +136,7 @@ const Home = () => {
                 ease: "power3.inOut",
                 scrollTrigger: {
                     trigger: item,
-                    start: "top 95%",
+                    start: "top 98%",
                     end: "top 60%",
                     scrub: true,
                 }
@@ -200,9 +208,9 @@ const Home = () => {
     return (
         <div className="w-full main overflow-x-hidden relative">
 
-            <div className="absolute md:top-[36vw] md:-right-[1vw] mx-3 md:mx-1 font-poppins font-poppins-200  top-1/4  ">
+            <div className="absolute md:top-[2vw] md:right-[1vw] mx-3 md:mx-1 font-poppins font-poppins-200  top-1/4  ">
                 <div className="overflow-hidden">
-                    <div className="md:text-[13vw] wel text-[20vw] uppercase text-black/50 tracking-tighter">
+                    <div className="md:text-[10vw] wel text-[20vw] uppercase text-black/50 tracking-tighter">
                         WelCome
                     </div>
                 </div>
@@ -273,21 +281,21 @@ const Home = () => {
 
 
 
-            <section className="w-full h-screen  z-50">
+            <section data-scroll data-scroll-speed="0.9" className="w-full h-screen  z-50">
                 <div className="md:ml-[4.5vh] w-1/2 flex flex-col items-start ">
                     <div className="mt-[25vh]  overflow-hidden">
-                        <div className="textL text-[15vw]   leading-[14vw] md:text-[10vw] uppercase font-poppins font-poppins-400  text-black md:leading-[9vw]">
+                        <div className="textL text-[15vw]   leading-[14vw] md:text-[6vw] uppercase font-poppins font-poppins-500  text-black md:leading-[5vw]">
                             Naga
                         </div>
                     </div>
                     <div className="overflow-hidden">
-                        <div className="textL text-[20vw] md:text-[10vw] uppercase  font-poppins font-poppins-600 text-black leading-[17vw] md:leading-[10vw]">
+                        <div className="textL text-[20vw] md:text-[7vw] uppercase  font-poppins font-poppins-500 text-black leading-[17vw] md:leading-[6vw]">
                             Ruthwik
                         </div>
                     </div>
                     <div className="overflow-hidden  flex flex-col items-start">
                         <div className="flex">
-                            <div className="textL text-[15vw] md:text-[7.6vw] uppercase  font-poppins font-poppins-300 text-black leading-[15vw] md:leading-[7vw]">
+                            <div className="textL text-[15vw] md:text-[4.5vw] uppercase  font-poppins font-poppins-300 text-black leading-[15vw] md:leading-[4vw]">
                                 Merugu.
                             </div>
                         </div>
@@ -307,11 +315,11 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="bottom md:mt-[13vh]  mt-[35vh]">
+                <div className="bottom md:mt-[32vh]  mt-[35vh]">
                     <div className="flex items-center justify-around">
                         {bottom.map((items, index) => (
                             <div key={index} className="between">
-                                <h1 className="text-[4vw] text-black/50 md:text-[2vh] font-[font2] flex ">
+                                <h1 className="text-[4vw] text-black md:text-[2vh] font-[font2] flex ">
                                     {items.name}{" "}
                                     {items.name === "Scroll Down" ? (
                                         <span className="animate-bounce [animation-duration:2s]">   {items.icon} </span>

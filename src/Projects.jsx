@@ -200,9 +200,9 @@ const Projects = () => {
                                 <div className="md:leading-[1.5vw] md:block hidden  md:text-[1.5vw] tracking-tight text-[2.5vw] font-[font2]">
                                     <h1>{project.description}</h1>
                                     <div className="flex gap-2 md:mt-[3vh] flex-wrap">
-                                        {project.stacks.slice(0, 3).map((stack, index) => (
-                                            <span key={index} className="text-xs text-white bg-black px-3 py-1 border rounded-full">
-                                                {stack.name}
+                                        {project.stacks.slice(0, 4).map((stack, index) => (
+                                            <span key={index} className="text-xs text-white flex items-center justify-center bg-black px-3 py-2 gap-1 border rounded-full">
+                                                {getStackIcon(stack.name)}{stack.name}
                                             </span>
                                         ))}
                                     </div>

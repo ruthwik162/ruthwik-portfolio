@@ -251,11 +251,12 @@ const Navbar = () => {
           className={`text-[7vh] transition-all duration-1000 font-[font2] ${!open ? "text-black" : "text-white"}`}
         >
           R
-        </Link>        <div
+        </Link>
+        <div
           ref={pillRef}
           onClick={toggleMenu}
           className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[1.05vw] md:right-[4.7vw] items-center justify-between px-2  cursor-pointer h-10 rounded-full bg-black transition-all duration-900 ${open ? "w-11" : "w-22"}`} >
-          <h1 className="text-white text-[1.5vh] font-bold transition-all -px-3 duration-700 uppercase"> Menu  </h1>
+          <h1 className="text-white text-[0.9vw] font-[font2] transition-all -px-3 duration-700 "> Menu  </h1>
         </div>
 
         {/* Orange icon */}
