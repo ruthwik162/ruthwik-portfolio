@@ -284,8 +284,8 @@ const Home = () => {
             <section data-scroll data-scroll-speed="0.9" className="w-full h-screen  z-50">
                 <div className="md:ml-[4.5vh] w-1/2 flex flex-col items-start ">
                     <div className="mt-[25vh]  overflow-hidden">
-                        <div className="textL text-[15vw]   leading-[14vw] md:text-[6vw] uppercase font-poppins font-poppins-500  text-black md:leading-[5vw]">
-                            Naga
+                        <div className="textL text-[15vw] md:px-   leading-[14vw] md:text-[6vw] uppercase font-poppins font-poppins-500  text-black md:leading-[5vw]">
+                            <span className="font-[font3] md:text-[8vw] text-[19vw] leading-[18vw] relative md:top-5 inline-block  md:leading-[7vw]">N</span>aga
                         </div>
                     </div>
                     <div className="overflow-hidden">
@@ -315,11 +315,11 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="bottom md:mt-[32vh]  mt-[35vh]">
+                <div className="bottom md:mt-[30vh] font-[font4] mt-[35vh]">
                     <div className="flex items-center justify-around">
                         {bottom.map((items, index) => (
                             <div key={index} className="between">
-                                <h1 className="text-[4vw] text-black md:text-[2vh] font-[font2] flex ">
+                                <h1 className="text-[4vw] text-red-600 md:text-[2vh] font-[font3] flex ">
                                     {items.name}{" "}
                                     {items.name === "Scroll Down" ? (
                                         <span className="animate-bounce [animation-duration:2s]">   {items.icon} </span>

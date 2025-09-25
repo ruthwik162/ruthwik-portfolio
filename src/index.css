@@ -14,6 +14,16 @@
   font-family: font2;
   src: url(../public/fonts/Lausanne-500.woff2);
 }
+@font-face {
+  font-family: font3;
+  src: url(../public/fonts/The_Last_Shuriken.ttf);
+}
+@font-face {
+  font-family: font4;
+  src: url(../public/fonts/Storm_Gust.ttf);
+}
+
+
 
 body {
   background-color: #111;

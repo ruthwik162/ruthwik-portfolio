@@ -52,7 +52,7 @@ const Home = () => {
                     ease: "power3.out",
                     scrollTrigger: {
                         trigger: num,
-                        start: "top 43%",
+                        start: "top bottom%",
                         end: "top 37%",
                         scrub: true,
                     },
@@ -67,8 +67,8 @@ const Home = () => {
                 <Hero />
             </section>
             
-            <section className="w-full h-screen px-2 page3">
-                <div ref={containRef} className=" overflow-hidden flex w-full h-full text-white mt-[10vh] rounded-t-3xl bg-black">
+            <section className="w-full h-screen  page3">
+                <div ref={containRef} className=" overflow-hidden flex w-[95vw] h-[95vh] text-white mt-[10vh] rounded-3xl mx-auto bg-black">
                     <div className="overflow-hidden mt-[15vh] ">
                         <div className="md:ml-[5vh]  ml-[3vh]  font-poppins-400 text-[5vh] text-center md:text-[4vw]">
                             <h1 className="num1  md:leading-[3.2vw]  tracking-tighter ">.03</h1>
