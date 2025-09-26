@@ -355,7 +355,7 @@ const Architecture = () => {
         </div>
         <div className="overflow-hidden leading-[5vh]">
           <p className="text-lg md:text-[3vw] text3 text-black leading-[4vw] md:leading-[3vw]">
-            scale innovation, and deliver impact that lasts. Our mission is to empower ideas, scale innovation, and deliver impact
+            scale innovation, and deliver impact that lasts
           </p>
         </div>
       </div>

@@ -286,7 +286,7 @@ const Navbar = () => {
           onClick={() =>
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
           }
-          className={`text-[7vh] transition-all duration-1000 font-[font4] ${
+          className={`text-[7vh] transition-all duration-1000 font-[aeonik2] ${
             !open ? "text-black" : "text-white"
           }`}
         >
