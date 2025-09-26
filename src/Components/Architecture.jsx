@@ -87,7 +87,7 @@ const Architecture = () => {
       stagger: 0.18,
       scrollTrigger: {
         trigger: ".textSS",
-        start: mobile ? "top 50%" : "top 70%",
+        start: mobile ? "top 50%" : "top 60%",
 
       }
     })
@@ -98,7 +98,7 @@ const Architecture = () => {
       stagger: 0.05,
       scrollTrigger: {
         trigger: ".textSSS",
-        start: mobile ? "top 50%" : "top 30%",
+        start: mobile ? "top 50%" : "top 60%",
       }
     })
     gsap.from(".text3", {
@@ -293,7 +293,7 @@ const Architecture = () => {
                 key={i}
                 className="relative max-w-9xl font-[font2]  overflow-hidden "
               >
-                <div className="relative textSSS flex flex-col md:flex-row  items-start md:items-center gap-1    z-10">
+                <div className="relative  flex flex-col md:flex-row  items-start md:items-center gap-1    z-10">
                   <span className="role-text textSS flex items-center gap-3 text-[4vw] md:text-[1.5vw] md:leading-[2.5vw] text-black">
                     <BsArrowReturnRight strokeWidth={0.05} /> {role.desc}
                   </span>
