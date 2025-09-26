@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@react-three/drei": "^9.55.0",
-    "@react-three/fiber": "^9.3.0",
+    "@react-three/fiber": "^8.13.0",
+"@react-three/drei": "^9.55.0",
     "@react-three/postprocessing": "^3.0.4",
     "@remixicon/react": "^4.6.0",
     "@studio-freight/lenis": "^1.0.42",
