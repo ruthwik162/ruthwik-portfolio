@@ -71,12 +71,12 @@ const Home = () => {
                 <div ref={containRef} className=" overflow-hidden flex w-[95vw] h-[95vh] text-white mt-[10vh] rounded-3xl mx-auto bg-black">
                     <div className="overflow-hidden mt-[15vh] ">
                         <div className="md:ml-[5vh]  ml-[3vh]  font-poppins-400 text-[5vh] text-center md:text-[4vw]">
-                            <h1 className="num1  md:leading-[3.2vw]  tracking-tighter ">.03</h1>
+                            <h1 className="  md:leading-[3.2vw]  tracking-tighter ">.03</h1>
                         </div>
                     </div>
                     <div className="overflow-hidden">
                         <div className="overflow-hidden  md:ml-[5vh] ml-[3vh] mt-[15vh]  text-[5vh] text-start md:text-[4vw]">
-                            <h1 className="num2 font-poppins-500  md:leading-[3.5vw] tracking-tight ">Skills </h1>
+                            <h1 className=" font-poppins-500  md:leading-[3.5vw] tracking-tight ">Skills </h1>
                         </div>
                     </div>
                 </div>

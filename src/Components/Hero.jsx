@@ -72,11 +72,11 @@ const Home = () => {
 
     const bottom = [
         {
-            name: "+ ",
+            name: "_____+_____ ",
             icon: ""
         },
         {
-            name: "+",
+            name: "_____+_____",
             icon: ""
         },
         {
@@ -84,11 +84,11 @@ const Home = () => {
             icon: <MouseIcon />
         },
         {
-            name: "+ ",
+            name: "_____+_____",
             icon: ""
         },
         {
-            name: "+",
+            name: "_____+_____",
             icon: ""
         }
     ];
@@ -295,11 +295,11 @@ const Home = () => {
                     </div>
                     <div className="overflow-hidden  flex flex-col items-start">
                         <div className="flex">
-                            <div className="textL text-[15vw] md:text-[4.5vw] uppercase  font-poppins font-poppins-300 text-black leading-[15vw] md:leading-[4vw]">
+                            <div className="textL text-[15vw] md:text-[4.5vw] uppercase  font-[aeonik1] text-black leading-[15vw] md:leading-[4vw]">
                                 Merugu.
                             </div>
                         </div>
-                        <span ref={lineRef} className="h-0.5 w-full ml-3  bg-black flex items-start justify-start"></span>
+                        <span ref={lineRef} className="h-0.5 w-full ml-1  bg-black flex items-start justify-start"></span>
                     </div>
                 </div>
                 <div className="overflow-hidden gap-0 md:text-black text-gray-500 ml-[5vh] md:ml-[25vh]">
@@ -319,7 +319,7 @@ const Home = () => {
                     <div className="flex items-center justify-around">
                         {bottom.map((items, index) => (
                             <div key={index} className="between">
-                                <h1 className="text-[4vw] text-red-600 md:text-[2vh] font-[font3] flex ">
+                                <h1 className="text-[4vw] text-black md:text-[2vh] font-[font2] flex ">
                                     {items.name}{" "}
                                     {items.name === "Scroll Down" ? (
                                         <span className="animate-bounce [animation-duration:2s]">   {items.icon} </span>
@@ -333,24 +333,12 @@ const Home = () => {
                 </div>
 
             </section>
-            <div className="z-0 mt-[10vh]  ">
-                <GsapMarquee speed={40} direction="left">
-                    <span className="flex items-center justify-center gap-2">
-                        <GrPlayFill className="md:w-15 md:h-15 h-5 w-5 text-black" /> Inspire
-                    </span>
-                    <span className="flex justify-center items-center gap-2">
-                        <GrPlayFill className="md:w-15 md:h-15 h-5 w-5" /> Innovate
-                    </span>
-                    <span className="flex justify-center items-center gap-2">
-                        <GrPlayFill className="md:w-15 md:h-15 h-5 w-5" /> Impact
-                    </span>
-                </GsapMarquee>
-            </div>
+
             <section className="w-full min-h-screen font-poppins page2 tracking-tighter relative">
                 <div className="relative z-10 flex">
                     <div className="overflow-hidden md:mt-[15vh] mt-[30vh] ">
-                        <div className="md:ml-[5vh] ml-[3vh] font-poppins-400 text-[5vh] text-center md:text-[4vw]">
-                            <h1 className="num1 md:leading-[3.2vw] tracking-tighter">.02</h1>
+                        <div className="md:ml-[5vh] ml-[3vh] font-poppins-400 text-[5vh] text-center md:text-[6vw]">
+                            <h1 className=" md:leading-[5vw] tracking-tighter">.02</h1>
                         </div>
                     </div>
 

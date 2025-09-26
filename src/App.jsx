@@ -5,10 +5,11 @@ import Navbar from "./Components/Navbar";
 import Hero from "./Components/Hero";
 import Lenis from "@studio-freight/lenis";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Projects from "./Projects";
+import Projects from "./Pages/Projects";
 import Aboutme from "./Pages/Profile";
 import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
+import { ReactLenis } from "@studio-freight/react-lenis"; // ✅ FIXED
 
 const App = () => {
   const cursorRef = useRef(null);
@@ -52,7 +53,6 @@ const App = () => {
 
   // Handle click
   const handleClick = () => {
-    // First click → enable sound
     if (!soundEnabled) {
       setSoundEnabled(true);
     }
@@ -60,10 +60,10 @@ const App = () => {
     // Animate cursor pulse
     gsap.fromTo(
       cursorRef.current,
-      { scale: 0.9, backgroundColor: "#4338ca" }, // indigo-700
+      { scale: 0.9, backgroundColor: "#4338ca" },
       {
         scale: 1.6,
-        backgroundColor: "#22c55e", // green pulse
+        backgroundColor: "#22c55e",
         duration: 0.3,
         yoyo: true,
         repeat: 1,
@@ -78,42 +78,37 @@ const App = () => {
   };
 
   return (
-    <div
-      ref={mainRef}
-      onClick={handleClick}
-      className="main relative bg-white w-full min-h-screen overflow-x-hidden"
-    >
+    <ReactLenis root options={{ smoothWheel: true }}>
       <div
-        ref={cursorRef}
-        className="cursor hidden fixed md:flex items-center rounded-full -top-1.5 -left-1.5 gap-2 z-[9999] pointer-events-none"
+        ref={mainRef}
+        onClick={handleClick}
+        className="main relative bg-white w-full min-h-screen overflow-x-hidden"
       >
-        {/* Dot (relative to flex, not fixed) */}
-        <div className="w-3 h-3 rounded-full bg-black" />
+        <div
+          ref={cursorRef}
+          className="cursor hidden fixed md:flex items-center rounded-full -top-1.5 -left-1.5 gap-2 z-[9999] pointer-events-none"
+        >
+          <div className="w-3 h-3 rounded-full bg-black" />
+          {!soundEnabled && (
+            <p className="font-[font2] text-sm text-black whitespace-nowrap">
+              [ click to enable sound ]
+            </p>
+          )}
+        </div>
 
-        {/* Enable sound text */}
-        {!soundEnabled && (
-          <p className="font-[font2] text-sm text-black whitespace-nowrap">
-            [ click to enable sound ]
-          </p>
-        )}
+        <audio ref={audioRef} src="/click.mp3" preload="auto" />
+
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about-me" element={<Aboutme />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </BrowserRouter>
       </div>
-
-
-
-
-
-      <audio ref={audioRef} src="/click.mp3" preload="auto" />
-
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about-me" element={<Aboutme />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    </ReactLenis>
   );
 };
 

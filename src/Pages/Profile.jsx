@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { Model2 } from '../Components/Model2';
 import { Canvas } from '@react-three/fiber';
 import { Float, OrbitControls } from '@react-three/drei';
+import ParellaxImage from '../Components/ParellaxImage';
 
 // Register GSAP plugins
 gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText);
@@ -63,9 +64,40 @@ const Aboutme = () => {
         });
 
         // Animate paragraphs
+
         gsap.utils
             .toArray([
                 ".about-para",
+            ])
+            .forEach((selector) => {
+                const split = new SplitText(selector, { type: "lines" });
+                split.lines.forEach((line) => {
+                    const inner = document.createElement("span");
+                    inner.className = "inline-block";
+                    inner.textContent = line.textContent;
+
+                    const wrapper = document.createElement("span");
+                    wrapper.className = "overflow-hidden py-1 block";
+                    wrapper.appendChild(inner);
+
+                    line.textContent = "";
+                    line.appendChild(wrapper);
+                });
+
+                gsap.from(
+                    split.lines.map((l) => l.querySelector("span.inline-block")),
+                    {
+                        y: 100,
+                        duration: 1,
+                        ease: "power3.out",
+                        stagger: 0.1,
+
+                    }
+                );
+            });
+
+        gsap.utils
+            .toArray([
                 ".education-text",
                 ".btech-text",
                 ".skills-text",
@@ -90,10 +122,13 @@ const Aboutme = () => {
                     split.lines.map((l) => l.querySelector("span.inline-block")),
                     {
                         y: 100,
-                        rotate: 7,
                         duration: 1,
                         ease: "power3.out",
-                        stagger: 0.2,
+                        stagger: 0.1,
+                        scrollTrigger: {
+                            trigger: selector,
+                            start: "top 50%"
+                        }
                     }
                 );
             });
@@ -118,7 +153,7 @@ const Aboutme = () => {
                 split.lines.map((l) => l.querySelector("span.inline-block")),
                 {
                     y: -100,
-                    
+
                     duration: 1,
                     ease: "power3.out",
                     stagger: 0.2,
@@ -214,14 +249,14 @@ const Aboutme = () => {
     ];
 
     return (
-        <div className="w-full min-h-screen bg-white/90 relative overflow-x-hidden">
-            <section className="w-full min-h-screen relative">
+        <div className="w-full min-h-screen  relative overflow-x-hidden">
+            <section className="w-full min-h-screen  relative">
 
 
                 {/* Pinned Image */}
                 <div
                     ref={imageDivRef}
-                    className="absolute overflow-hidden lg:h-[40vw] rounded-md xl:h-[35vw]  md:z-5 z-0 md:h-[60vw] h-[85vw] w-[65vw]   xl:w-[35vw] lg:w-[40vw]  md:top-[25vh] lg:top-[20vh] xl:left-[5vw] lg:-left-[2vw] top-[12vh] md:-left-[15vw] left-[3vw]"
+                    className="absolute overflow-hidden lg:h-[40vw] rounded-md xl:h-[35vw]  md:z-5 z-0 md:h-[60vw] h-[65vw] w-[65vw]   xl:w-[35vw] lg:w-[40vw]  md:top-[25vh] lg:top-[20vh] xl:left-[5vw] lg:-left-[2vw] top-[12vh] md:-left-[15vw] left-[3vw]"
                 >
                     <Image className="object-cover" />
                 </div>
@@ -243,7 +278,7 @@ const Aboutme = () => {
                 {/* About Paragraph */}
                 <div className="overflow-hidden ml-[3%] md:ml-[45%] z-50 md:px-5 flex flex-col">
                     <p className="about-para md:text-[1.6vw] text-[5vw] text-justify break-words hyphens-auto font-poppins  font-poppins-500 text-black/70 mt-[0vh] md:mt-[5vh] leading-[2vh] md:leading-[2.5vh]  md:px-0">
-                        I'm NagaRuthwik , a passionate web developer dedicated to
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I'm NagaRuthwik , a passionate web developer dedicated to
                         crafting engaging and user-friendly digital experiences. With a strong foundation in
                         both front-end and back-end technologies, I specialize in creating responsive websites
                         and applications that not only look great but also perform seamlessly across all devices.
@@ -271,7 +306,7 @@ const Aboutme = () => {
                 </div>
 
                 {/* Education Section */}
-                <div className="leading-[2vw] md:w-1/2 md:mr-[50%] font-poppins font-poppins-500 overflow-hidden">
+                <div className="leading-[2vw] md:w-1/2 md:mt-[10vw] md:mx-10 md:mr-[50%] font-poppins font-poppins-500 overflow-hidden">
                     <div className="lg:mt-[5vh] mt-[6vh]">
                         <h1 className="md:text-[8vw] py-1 border-b-2 md:text-start border-gray-200 text-[15vw] text text-start  uppercase md:leading-[7vw] leading-[10vw]">
                             Education
@@ -279,7 +314,7 @@ const Aboutme = () => {
                     </div>
                 </div>
 
-                <div className="leading-[2vw] md:w-1/2 md:mr-[50%] text-start font-poppins font-poppins-500  overflow-hidden">
+                <div className="leading-[2vw] md:w-1/2 md:mt-[5vw] md:mx-10 md:mr-[50%] text-start font-poppins font-poppins-500  overflow-hidden">
                     <div className="lg:mt-[1vh] flex items-center justify-start  mt-[4vh]">
                         <Book className="md:w-10 textMd md:h-10" strokeWidth={1.2} />
                         <h1 className="md:text-[4vw] border-b-2 flex items-center justify-end border-gray-200  text-[7vw] text-black textMd text-end md:text-end uppercase md:leading-[5vw] leading-[9vw]">
@@ -288,14 +323,21 @@ const Aboutme = () => {
                     </div>
                 </div>
 
-                <div className="lg:mr-[40%] p-3 text-justify tracking-tighter  mt-4 md:mr-[40%] overflow-hidden">
-                    <Text
-                        className="lg:text-[2vw] text-md  font-poppins font-poppins-500 md:leading-[4vh] text-justify break-words hyphens-auto"
-                        text={` I completed my schooling at ZPHS School at Challagariga, where I consistently focused on academics and extracurricular activities. I am proud to mention that I secured a perfect GPA of ' 9.8 ' in my 10th board examinations. Following that, I pursued my intermediate studies in the MPC stream at Vidwan Junior College, Telangana, where I scored an impressive 80.05% in the Intermediate Public Exams. These early educational achievements laid a solid foundation for my journey in higher education. `}
-                    />
+                <div className='px-2  flex-col-reverse md:flex-row-reverse flex items-center justify-around md:px-3'>
+                    <div className="p-3 text-justify md:w-[60%] break-words hyphens-auto bg-indigo-200 tracking-tighter  mt-4  md:p-5 overflow-hidden">
+                        <p
+                            className="education-text lg:text-[1.5vw] text-md  font-poppins font-poppins-500 md:leading-[1.5vw] leading-[3.5vw] ">
+                            I completed my schooling at ZPHS School at Challagariga, where I consistently focused on academics and extracurricular activities. I am proud to mention that I secured a perfect GPA of ' 9.8 ' in my 10th board examinations. Following that, I pursued my intermediate studies in the MPC stream at Vidwan Junior College, Telangana, where I scored an impressive 80.05% in the Intermediate Public Exams. These early educational achievements laid a solid foundation for my journey in higher education.
+                        </p>
+                    </div>
+                    <div className='overflow-hidden  md:mt-0 mt-[5vh]'>
+                        <div className='md:w-[28vw] w-[75vw] h-[50vw] md:h-[16vw]'>
+                            <ParellaxImage className='w-full h-full object-center object-cover' src="https://plus.unsplash.com/premium_photo-1681487787308-52f293cd3bce?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmFjaGVsb3J8ZW58MHx8MHx8fDA%3D" alt="" />
+                        </div>
+                    </div>
                 </div>
 
-                <div className="leading-[2vw] w-1/2 ml-[50%] font-poppins font-poppins-500 overflow-hidden">
+                <div className="leading-[2vw] md:mt-[10vw] w-1/2 md:px- ml-[50%] font-poppins font-poppins-500 overflow-hidden">
                     <div className="lg:mt-[1vh] border-b-2 border-gray-200 mt-[4vh]">
                         <h1 className="md:text-[4vw]  text-[7vw] text-black textMd text-end md:text-end uppercase md:leading-[7vw] leading-[9vw]">
                             Bachelors
@@ -303,11 +345,20 @@ const Aboutme = () => {
                     </div>
                 </div>
 
-                <div className="lg:ml-[40%] tracking-tighter p-3 mt-4 md:ml-[40%] text-justify break-words hyphens-auto overflow-hidden">
-                    <Text
-                        className="lg:text-[2vw] text-md  font-poppins font-poppins-500 md:leading-[4vh] text-justify break-words hyphens-auto"
-                        text={`Currently, I'm in my 4-1 semester at Malla Reddy University, pursuing my B.Tech in Computer Science and Engineering. Throughout my undergraduate studies, I have been actively involved in hands-on projects and technical learning, which have enhanced my understanding of both theoretical concepts and real-world applications. I am constantly seeking opportunities to improve my skills, explore new technologies, and contribute meaningfully to projects in the field of computer science.`}
-                    />
+
+
+                <div className='px-2  flex  flex-col-reverse md:flex-row items-center justify-around md:px-3'>
+                    <div className="p-3 text-justify w-full md:w-[60%] break-words hyphens-auto bg-indigo-200 tracking-tighter  mt-4  md:p-5 overflow-hidden">
+                        <p
+                            className="btech-text lg:text-[1.5vw] text-md text-justify font-poppins font-poppins-500 md:leading-[1.5vw] leading-[3.5vw] ">
+                            Currently, I'm in my 4-1 semester at Malla Reddy University, pursuing my B.Tech in Computer Science and Engineering. Throughout my undergraduate studies, I have been actively involved in hands-on projects and technical learning, which have enhanced my understanding of both theoretical concepts and real-world applications. I am constantly seeking opportunities to improve my skills, explore new technologies, and contribute meaningfully to projects in the field of computer science.
+                        </p>
+                    </div>
+                    <div className='overflow-hidden'>
+                        <div className='md:w-[28vw] w-[75vw] mt-[5vh] md:mt-0 h-[50vw] md:h-[18vw] '>
+                            <ParellaxImage className='w-full h-full object-center object-cover' src="https://images.unsplash.com/photo-1658235081483-8f06aa0882cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmFjaGVsb3J8ZW58MHx8MHx8fDA%3D" alt="" />
+                        </div>
+                    </div>
                 </div>
 
 
@@ -318,10 +369,12 @@ const Aboutme = () => {
                         </h1>
                     </div>
                 </div>
-                <div className="overflow-hidden ml-[3%] md:ml-[30%] z-50 md:px-5 flex flex-col">
-                    <p className="do-para md:text-[2vw] text-[5vw] text-justify break-words hyphens-auto font-poppins  font-poppins-500 text-black/70 mt-[0vh] md:mt-[8vh] leading-[2vh] md:leading-[3.5vh]  md:px-0">
-                        I primarily work with custom  and JavaScript, with both Library & FrameWork having developed a well-structured and maintainable front-end architecture . I also have experience with frameworks like Vue and React. I strive to make the most of CSS for styling, layout and even for animations. I also mainly rely on GSAP to create smooth and dynamic interactions.
-                    </p>
+                <div className='md:px-0 px-2'>
+                    <div className="overflow-hidden ml-[3%] md:ml-[30%] z-50 md:px-5 bg-indigo-200 flex flex-col">
+                        <p className="skills-text md:text-[2vw] text-[5vw] text-justify break-words hyphens-auto font-poppins  font-poppins-500  p-5 leading-[2vh] md:leading-[3.5vh]  md:px-0">
+                            I primarily work with custom  and JavaScript, with both Library & FrameWork having developed a well-structured and maintainable front-end architecture . I also have experience with frameworks like Vue and React. I strive to make the most of CSS for styling, layout and even for animations. I also mainly rely on GSAP to create smooth and dynamic interactions.
+                        </p>
+                    </div>
                 </div>
 
             </section>

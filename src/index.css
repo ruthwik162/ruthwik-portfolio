@@ -22,8 +22,14 @@
   font-family: font4;
   src: url(../public/fonts/Storm_Gust.ttf);
 }
-
-
+@font-face {
+  font-family: aeonik1;
+  src: url(../public/fonts/Aeonik-Regular.ttf);
+}
+@font-face {
+  font-family: aeonik2;
+  src: url(../public/fonts/Aeonik-Bold.ttf);
+}
 
 body {
   background-color: #111;
