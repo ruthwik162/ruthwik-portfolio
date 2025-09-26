@@ -9,7 +9,6 @@ import Projects from "./Pages/Projects";
 import Aboutme from "./Pages/Profile";
 import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
-import { ReactLenis } from "@studio-freight/react-lenis"; // ✅ FIXED
 
 const App = () => {
   const cursorRef = useRef(null);
@@ -57,7 +56,6 @@ const App = () => {
       setSoundEnabled(true);
     }
 
-    // Animate cursor pulse
     gsap.fromTo(
       cursorRef.current,
       { scale: 0.9, backgroundColor: "#4338ca" },
@@ -70,7 +68,6 @@ const App = () => {
       }
     );
 
-    // Play click sound if enabled
     if (soundEnabled && audioRef.current) {
       audioRef.current.currentTime = 0;
       audioRef.current.play().catch((err) => console.log("Audio play error:", err));
@@ -78,37 +75,35 @@ const App = () => {
   };
 
   return (
-    <ReactLenis root options={{ smoothWheel: true }}>
+    <div
+      ref={mainRef}
+      onClick={handleClick}
+      className="main relative bg-white w-full min-h-screen overflow-x-hidden"
+    >
       <div
-        ref={mainRef}
-        onClick={handleClick}
-        className="main relative bg-white w-full min-h-screen overflow-x-hidden"
+        ref={cursorRef}
+        className="cursor hidden fixed md:flex items-center rounded-full -top-1.5 -left-1.5 gap-2 z-[9999] pointer-events-none"
       >
-        <div
-          ref={cursorRef}
-          className="cursor hidden fixed md:flex items-center rounded-full -top-1.5 -left-1.5 gap-2 z-[9999] pointer-events-none"
-        >
-          <div className="w-3 h-3 rounded-full bg-black" />
-          {!soundEnabled && (
-            <p className="font-[font2] text-sm text-black whitespace-nowrap">
-              [ click to enable sound ]
-            </p>
-          )}
-        </div>
-
-        <audio ref={audioRef} src="/click.mp3" preload="auto" />
-
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about-me" element={<Aboutme />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </BrowserRouter>
+        <div className="w-3 h-3 rounded-full bg-black" />
+        {!soundEnabled && (
+          <p className="font-[font2] text-sm text-black whitespace-nowrap">
+            [ click to enable sound ]
+          </p>
+        )}
       </div>
-    </ReactLenis>
+
+      <audio ref={audioRef} src="/click.mp3" preload="auto" />
+
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about-me" element={<Aboutme />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 };
 
