@@ -3,7 +3,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { links } from "../assets/assets";
-import { ArrowRight, ArrowUpRight, Quote, Rocket } from "lucide-react";
+import { ArrowBigRight, ArrowRight, ArrowUpRight, Quote, Rocket, Send } from "lucide-react";
 
 
 const Contact = () => {
@@ -217,121 +217,107 @@ const Contact = () => {
         ))}
       </div>
 
-      {/* Heading Section */}
-      <div className="contact-heading overflow-hidden text-start relative mx-5 pt-24 md:pt-32">
-        <div className="overflow-hidden md:w-1/2 mt-[2vw] md:mt-[1vw]  ">
-          <div className="overflow-hidden md:leading-[9vw]">
-            <h1 className="connect-heading text-6xl md:text-[14vw] font-[font2] text-start uppercase font-bold">
-              Let's
-            </h1>
-          </div>
-        </div>
 
-        <div className="md:w-1/2 md:ml-[50%]   overflow-hidden">
-          <div className="overflow-hidden md:leading-[9vw]">
-            <h1 className="connect-heading text-6xl md:text-[8vw] font-[font2] uppercase font-bold text-start md:text-end">
-              Connect
-            </h1>
-          </div>
-        </div>
-      </div>
 
       {/* Tagline */}
-      <div className="tagline-section absolute md:top-[21.3vw] top-[13%] right-[3%] md:-left-[10vw] overflow-hidden">
+      <div className="tagline-section absolute md:top-[21.3vw] top-[13%] right-[10%] md:left-[0vw] md:-translate-x-[25%] overflow-hidden">
         <div className="overflow-hidden md:leading-[3vw]">
-          <h1 className="tagline-text text-[3vw] md:text-[2.5vw] md:leading-[2.5vw] font-[font2] leading-[2.3vw]  font-bold text-center">
+          <h1 className="tagline-text text-[6vw] md:text-[2.5vw] md:leading-[2.5vw] text-black/50 font-[font2] leading-[6vw]  font-bold text-center">
             Design is the conversation between <br />{" "}
 
           </h1>
-          <h1 className="tagline-text text-[2.7vw] md:text-[2.5vw] leading-[2.5vw] relative md:leading-[2.5vw] font-[font2]  font-bold text-center">
+          <h1 className="tagline-text text-[6vw] md:text-[2.5vw] leading-[6vw] text-black/50 relative  md:leading-[2.5vw] font-[font2]  font-bold text-center">
 
-            <span className="text-black/50">imagination</span> and{" "}
-            <span className="text-red-600">reality</span> &nbsp;<Quote className="inline-block absolute top-0" />
+            <span className="text-black">imagination</span> and{" "}
+            <span className="text-black">reality</span> &nbsp;<Quote className="inline-block absolute top-0" />
           </h1>
         </div>
       </div>
 
       {/* Contact Form */}
-      <div className="contact-form font-[font2] md:ml-[45%] md:w-[50%] mt-[5vw]  text-black backdrop-blur-md p-8 mb-[5vw] rounded-2xl   form-container">
-        <h2 className="form-element text-2xl md:text-3xl font-[font2] font-bold mb-8 uppercase text-center">
-          Start a Conversation
-        </h2>
-        <form className="flex flex-col gap-6 text-black" onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Your Name"
-            className="form-element bg-transparent border-b-2 p-5  border-b-indigo-200 focus:border-red-600 outline-none py-3 text-lg placeholder-black/40 transition-all duration-300 focus:scale-105"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Your Email"
-            className="form-element bg-transparent border-b-2 p-5  border-b-indigo-200 focus:border-red-600 outline-none py-3 text-lg placeholder-black/40 transition-all duration-300 focus:scale-105"
-            required
-          />
-          <input
-            type="text"
-            name="subject"
-            value={formData.subject}
-            onChange={handleChange}
-            placeholder="Subject"
-            className="form-element bg-transparent border-b-2 p-5  border-b-indigo-200 focus:border-red-600 outline-none py-3 text-lg placeholder-black/40 transition-all duration-300 focus:scale-105"
-            required
-          />
-          <textarea
-            rows="4"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Your Message"
-            className="form-element bg-transparent border-b-2 p-5  border-b-indigo-200 focus:border-red-600 outline-none py-3 text-lg placeholder-black/40 resize-none transition-all duration-300 focus:scale-105"
-            required
-          />
+      <div className="flex items-center md:flex-row flex-col-reverse justify-between w-full h-full">
+        <div className="w-full h-full ">
+          <div className="flex items-start justify-center flex-col md:mx-[3vw]">
+            {links.map((link, id) => (
+              <div key={id} className="flex flex-col items-center justify-center">
+                <a href={link.href} className="flex  items-center justify-center hover:text-indigo-200 transition-all duration-400 md:text-[1.8vw] font-[aeonik2] "><span className="md:block hidden"><ArrowRight/></span> &nbsp;&nbsp;&nbsp; {link.name} <ArrowUpRight /> </a>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="contact-form mt-[70vw] md:mt-[2vw] font-[font1] md:w-[60%]   text-black backdrop-blur-md p-3 md:p-8 mb-[5vw]    form-container">
+          <h2 className="form-element text-2xl md:text-3xl font-[font2] font-bold mb-8 uppercase text-center">
+            Start a Conversation
+          </h2>
+          <form className="flex flex-col gap-6 text-black bg-gray-50 p-5" onSubmit={handleSubmit}>
+            <label htmlFor="" className="  md:text-[2vw]">Name*</label>
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              className="bg-transparent border-b-2 p-5  border-b-black focus:border-red-600 outline-none py-3 text-lg placeholder-black/40 transition-all duration-300 focus:scale-105"
+              required
+            />
+            <label htmlFor="" className="text-[4.6vw] md:text-[2vw]">Email*</label>
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              className="bg-transparent border-b-2 p-5  border-b-border-b-black focus:border-red-600 outline-none py-3 text-lg placeholder-black/40 transition-all duration-300 focus:scale-105"
+              required
+            />
+            <label htmlFor="" className="text-[4.6vw] md:text-[2vw]">Subject*</label>
+            <input
+              type="text"
+              name="subject"
+              value={formData.subject}
+              onChange={handleChange}
+              className=" bg-transparent border-b-2 p-5  border-b-border-b-black focus:border-red-600 outline-none py-3 text-lg placeholder-black/40 transition-all duration-300 focus:scale-105"
+              required
+            />
+            <label htmlFor="" className="text-[4.6vw] md:text-[2vw]">Message*</label>
+            <textarea
+              rows="4"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              className=" bg-transparent border-b-2 p-5  border-b-border-b-black focus:border-red-600 outline-none py-3 text-lg placeholder-black/40 resize-none transition-all duration-300 focus:scale-105"
+              required
+            />
+          </form>
 
-
-          <div className="overflow-hidden  w-1/2 h-[3vw] flex items-center justify-center border-indigo-200   rounded-full border">
+          <div className="overflow-hidden relative  w-[70%] md:w-[45%] md:h-[3vw] h-[18vw] mt-5 flex items-center justify-center border-b-black   rounded-sm border">
             <button
               ref={boxRef}
               type="submit"
-              className="form-element  px-8 py-5 md:text-[1.2vw] text-[2vw] w-full has-first:cursor-pointer    font-[font2] uppercase  transform"
+              className="  px-3 md:px-2 py-5 md:py-10 md:text-[1vw] text-[4vw] w-full flex items-center justify-between    font-[font2] uppercase  transform"
             >
               <div
                 ref={fillRef}
-                className="absolute top-1 left-0 w-full h-full flex items-center justify-center bg-black text-white"
+                className="absolute top-0 left-0 h-full w-full flex items-center justify-center bg-black text-white"
               >
                 <h1 className="text-[2vw] flex items-center justify-center gap-5 md:text-[1.2vw] font-semibold text-white">
                   Send Message <Rocket />
                 </h1>
               </div>
-              Send Message
+              Send Message <span className="border p-2 text-white bg-black rounded-sm"><Send /></span>
             </button>
           </div>
-        </form>
 
-        {/* Contact Info */}
+          {/* Contact Info */}
 
+        </div>
       </div>
 
       <div className="w-full h-[10vw] md:w-full flex  items-center md:py-0 py-[1vw] justify-between px-5 ">
-        <div className="flex items-end text-[1.5vw] justify-between font-[font2] gap-10">
+        <div className="flex items-end text-[4vw] md:text-[1.5vw] justify-between font-[font2] gap-10">
           Terms & Conditions
-          <div>
-            {links.map((link, id) => (
-              <div key={id} className="flex flex-col items-center justify-center">
-                <a href={link.href} className="flex  items-center justify-center hover:text-indigo-200 transition-all duration-400 md:text-[1.8vw] font-[aeonik2] ">{link.name} <ArrowUpRight /> </a>
-              </div>
-            ))}
-          </div>
         </div>
 
-        <div className="font-[font2]  md:text-[1.5vw]">
-            copyrights Ruthwik 2024
+        <div className="font-[font2] text-[4vw] md:text-[1.5vw]">
+          copyrights Ruthwik 2024
         </div>
 
       </div>

@@ -14,7 +14,11 @@ const Image = () => {
             {
                 clipPath: 'inset(0 0% 0 0 )', // fully visible, rounded corners intact
                 duration: 3,
-                ease: 'power3.out'
+                ease: 'power3.out',
+                scrollTrigger:{
+                    trigger:imgWrapperRef.current,
+                    start:"top 30%"
+                }
             }
         )
 

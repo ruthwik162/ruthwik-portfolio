@@ -75,7 +75,7 @@ const ParallaxImage = ({ src, alt }) => {
     const handleScroll = () => {
       if (!bounds.current || !lenisRef.current) return;
       const relativeScroll = lenisRef.current.scroll - bounds.current.top;
-      targetTranslateY.current = relativeScroll * 0.1; // parallax strength
+      targetTranslateY.current = relativeScroll * 0.13; // parallax strength
     };
 
     lenisRef.current?.on("scroll", handleScroll);

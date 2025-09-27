@@ -309,11 +309,11 @@ const Architecture = () => {
       <div className="w-full mt-[10vw] md:flex-row flex-col-reverse flex items-center justify-start">
 
         <div className=" w-full  md:px-5  md:p-5">
-          <div ref={bottomRef} className="overflow-hidden  cursor-pointer w-full md:px-2 md:w-[35%]" >
+          <div ref={bottomRef} className="overflow-hidden  cursor-pointer w-full md:px-2 md:w-[55%]" >
             <div ref={arrow3Ref} className="flex items-center">
               <ArrowRight className="w-8 h-8 md:w-13 md:h-13 text-black" strokeWidth={1.5} />
               <h2 className="text-[9vw] md:text-[3vw] font-[aeonik2] tracking-tight flex items-center px-10 md:px-4 md:mt-0 mt-[2vh] gap-2 ">
-                [ Service ]
+                [ Capabilities ]
               </h2>
             </div>
           </div>

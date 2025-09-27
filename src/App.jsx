@@ -9,6 +9,7 @@ import Projects from "./Pages/Projects";
 import Aboutme from "./Pages/Profile";
 import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
+import Capability from "./Pages/Capability";
 
 const App = () => {
   const cursorRef = useRef(null);
@@ -94,15 +95,13 @@ const App = () => {
 
       <audio ref={audioRef} src="/click.mp3" preload="auto" />
 
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about-me" element={<Aboutme />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/capability" element={<Capability />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
     </div>
   );
 };

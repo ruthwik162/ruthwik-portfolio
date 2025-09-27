@@ -203,7 +203,7 @@ const Navbar = () => {
 
         <div className="flex flex-col md:ml-[50%] items-center justify-start md:-mt-[20vh] md:flex-row">
           <div className="relative -ml-[13vh] md:ml-0 -mt-[13vh] pt-2 md:mt-0 md:pt-0 md:w-full flex flex-col font-poppins text-4xl gap-y-3 md:text-6xl lg:text-[3vw]">
-            {["Home", "About Me", "Projects", "Contact"].map((text, index) => (
+            {["Home", "capability", "Projects", "Contact"].map((text, index) => (
               <div className="overflow-hidden" key={index}>
                 <div
                   ref={(el) => (linksRef.current[index] = el)}
@@ -224,14 +224,15 @@ const Navbar = () => {
                     className="transition-all duration-300 hover:text-white cursor-pointer"
                   >
                     {text}
-                  </h2>
-                  {/* Hover underline */}
-                  <div className="w-[90%] h-[.08vw] overflow-hidden rounded ">
+                    <div className="w-[60%] h-[.08vw] overflow-hidden rounded ">
                     <div
                       ref={(el) => (hoverFillRef.current[index] = el)}
                       className="w-full h-full bg-white"
                     />
                   </div>
+                  </h2>
+                  {/* Hover underline */}
+                  
                 </div>
               </div>
             ))}
@@ -295,11 +296,11 @@ const Navbar = () => {
         <div
           ref={pillRef}
           onClick={toggleMenu}
-          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[1.05vw] md:right-[4.7vw] items-center justify-between px-2 cursor-pointer h-10 rounded-full bg-black transition-all duration-900 ${
+          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[1.05vw] md:right-[4.7vw] items-center justify-between px-2 cursor-pointer h-10 rounded-sm bg-black/50 transition-all duration-900 ${
             open ? "w-11" : "w-22"
           }`}
         >
-          <h1 className="text-white text-[4vw] md:text-[0.9vw] font-[font2] transition-all -px-3 duration-700">
+          <h1 className="text-black text-[4vw] md:text-[0.9vw] font-[font2] transition-all -px-3 duration-700">
             Menu
           </h1>
         </div>
@@ -308,7 +309,7 @@ const Navbar = () => {
         <div
           ref={iconRef}
           onClick={toggleMenu}
-          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.6vh] right-[3.5vh] md:top-[1.31vw] md:right-[5vw] bg-orange-500 transition-all duration-700 rounded-full w-8 h-8 md:w-8 md:h-8 ${
+          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.6vh] right-[3.5vh] md:top-[1.31vw] md:right-[5vw] bg-white transition-all duration-700 rounded-sm w-8 h-8 md:w-8 md:h-8 ${
             open ? "scale-130" : "scale-100"
           }`}
         >

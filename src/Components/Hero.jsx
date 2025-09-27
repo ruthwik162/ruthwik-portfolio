@@ -6,6 +6,7 @@ import { Environment, Float, OrbitControls } from "@react-three/drei";
 import { useMediaQuery } from "react-responsive";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Model } from "../Components/Model";
+import Profile from '../Pages/Profile'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -72,11 +73,11 @@ const Home = () => {
 
     const bottom = [
         {
-            name: "_____+_____ ",
+            name: "+",
             icon: ""
         },
         {
-            name: "_____+_____",
+            name: "+",
             icon: ""
         },
         {
@@ -84,11 +85,11 @@ const Home = () => {
             icon: <MouseIcon />
         },
         {
-            name: "_____+_____",
+            name: "+",
             icon: ""
         },
         {
-            name: "_____+_____",
+            name: "+",
             icon: ""
         }
     ];
@@ -190,7 +191,7 @@ const Home = () => {
         ScrollTrigger.create({
             trigger: modelDiv.current,
             start: "top top",
-            end: `${mobile ? "bottom+=80% 80%" : "bottom+=88% 80%"}`,
+            end: `${mobile ? "bottom+=50% 80%" : "bottom+=10% 80%"}`,
             pin: true,
             pinSpacing: true,
             scrub: 1, // smooth animation
@@ -208,7 +209,7 @@ const Home = () => {
     return (
         <div className="w-full main overflow-x-hidden relative">
 
-            <div className="absolute md:top-[2vw] md:right-[1vw] mx-3 md:mx-1 font-poppins font-poppins-200  top-1/4  ">
+            <div className="absolute md:top-[2vw] md:right-[1vw] mx-3 md:mx-1 font-poppins font-poppins-200  top-[140vw] ">
                 <div className="overflow-hidden">
                     <div className="md:text-[10vw] wel text-[20vw] uppercase text-black/50 tracking-tighter">
                         WelCome
@@ -335,21 +336,15 @@ const Home = () => {
 
             </section>
 
-            <section className="w-full min-h-screen font-poppins page2 tracking-tighter relative">
-                <div className="relative z-10 flex">
-                    <div className="overflow-hidden md:mt-[15vh] mt-[30vh] ">
-                        <div className="md:ml-[5vh] ml-[3vh] font-poppins-400 text-[5vh] text-center md:text-[6vw]">
-                            <h1 className=" md:leading-[5vw] tracking-tighter">.02</h1>
-                        </div>
-                    </div>
-
-                </div>
-                <div className="md:w-full md:mt-[0vh] mt-[5vh]  w-[80%]">
-                    <Architecture />
+            <section className="w-full min-h-screen font-poppins page2 md:px-[2vw] tracking-tighter relative">
+                
+                <div className="md:w-full md:mt-[0vh] mt-[5vh]  w-full">
+                    <Profile />
                 </div>
 
 
             </section>
+
 
         </div >
     );
