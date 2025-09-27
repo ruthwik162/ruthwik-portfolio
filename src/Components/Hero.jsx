@@ -99,9 +99,9 @@ const Home = () => {
         // Text animation
         gsap.from(".wel", {
             x: 1000,
-            opacity:0.5,
+            opacity: 0.5,
             duration: 2.5,
-                ease: "power3.inOut",
+            ease: "power3.inOut",
         })
 
 
@@ -225,13 +225,13 @@ const Home = () => {
                                 camera={{ position: [-1, -3, 10], fov: 35 }}
                                 className="absolute inset-0"
                             >
-                                {/* Ambient light for soft overall illumination */}
-                                <ambientLight intensity={0.4} color="#ffffff" />
+                                {/* Main Ambient Light for overall illumination */}
+                                <ambientLight intensity={0.3} color="#ffffff" />
 
-                                {/* Key directional light (main light source) */}
+                                {/* Key Light (main directional) */}
                                 <directionalLight
                                     position={[10, 10, 10]}
-                                    intensity={3}
+                                    intensity={2.5}
                                     castShadow
                                     shadow-mapSize-width={2048}
                                     shadow-mapSize-height={2048}
@@ -243,37 +243,38 @@ const Home = () => {
                                     shadow-camera-bottom={-10}
                                 />
 
-                                {/* Fill light to soften shadows */}
+                                {/* Fill Light to soften shadows */}
                                 <directionalLight
-                                    position={[-5, 4, -4]}
-                                    intensity={0.8}
+                                    position={[-10, 5, -5]}
+                                    intensity={1.2}
                                     color="#a0c4ff"
                                 />
 
-                                {/* Rim/back light to highlight edges */}
+                                {/* Rim Light / Back Light to highlight edges */}
                                 <spotLight
                                     position={[0, 5, -10]}
-                                    intensity={0.8}
+                                    intensity={1.5}
                                     angle={0.3}
                                     penumbra={0.5}
                                     castShadow
                                     color="#ffffff"
                                 />
 
-                                {/* Optional point lights for sparkle/highlights */}
-                                <pointLight position={[5, 2, 5]} intensity={0.6} color="#ffd6a5" />
-                                <pointLight position={[-5, -2, 5]} intensity={0.4} color="#ffadad" />
+                                {/* Additional Point Lights for extra highlights and color variation */}
+                                <pointLight position={[5, 3, 5]} intensity={0.7} color="#ffd6a5" />
+                                <pointLight position={[-5, -3, 5]} intensity={0.5} color="#ffadad" />
+                                <pointLight position={[0, 5, 0]} intensity={0.4} color="#b5f5ec" />
+                                <pointLight position={[2, 3, -4]} intensity={0.3} color="#ffe3ff" />
 
+                                {/* Model with floating animation */}
                                 <Float speed={mobile ? 3.5 : 2}>
                                     <FollowCursorModel mobile={mobile} />
                                 </Float>
 
-
-                                {/* Optional environment */}
+                                {/* Orbit controls */}
                                 <OrbitControls enablePan={false} enableZoom={false} />
-                                <Environment preset="studio" resolution={512} />
-
                             </Canvas>
+
                         </div>
                     </figure>
                 </section >

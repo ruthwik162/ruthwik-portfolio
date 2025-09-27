@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
-import {  links } from "../assets/assets";
-import { ArrowRight, ArrowUpRight, Quote } from "lucide-react";
+import { links } from "../assets/assets";
+import { ArrowRight, ArrowUpRight, Quote, Rocket } from "lucide-react";
 
 
 const Contact = () => {
@@ -295,18 +295,18 @@ const Contact = () => {
           />
 
 
-          <div className="overflow-hidden ">
+          <div className="overflow-hidden  w-1/2 h-[3vw] flex items-center justify-center border-indigo-200   rounded-full border">
             <button
               ref={boxRef}
               type="submit"
-              className="form-element mt-6 px-8 py-4 cursor-pointer border border-indigo-200  w-1/2 flex items-end justify-center font-[font2] uppercase  transform"
+              className="form-element  px-8 py-5 md:text-[1.2vw] text-[2vw] w-full has-first:cursor-pointer    font-[font2] uppercase  transform"
             >
               <div
                 ref={fillRef}
-                className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-indigo-200"
+                className="absolute top-1 left-0 w-full h-full flex items-center justify-center bg-black text-white"
               >
-                <h1 className="text-[2vw] md:text-[1.2vw] font-semibold text-black">
-                  Send Message
+                <h1 className="text-[2vw] flex items-center justify-center gap-5 md:text-[1.2vw] font-semibold text-white">
+                  Send Message <Rocket />
                 </h1>
               </div>
               Send Message
@@ -318,12 +318,21 @@ const Contact = () => {
 
       </div>
 
-      <div className="w-full h-[10vw] md:w-1/3 flex items-center md:py-0 py-[5vw] justify-between px-5 "> 
-        {links.map((link,id)=>(
-          <div key={id} className="flex flex-row items-center justify-center">
-            <a href={link.href} className="flex items-center justify-center hover:text-indigo-200 transition-all duration-400 md:text-[1.5vw] font-[aeonik2] ">{link.name} <ArrowUpRight/> </a>
+      <div className="w-full h-[10vw] md:w-full flex  items-center md:py-0 py-[1vw] justify-between px-5 ">
+        <div className="flex items-end text-[1.5vw] justify-between font-[font2] gap-10">
+          Terms & Conditions
+          <div>
+            {links.map((link, id) => (
+              <div key={id} className="flex flex-col items-center justify-center">
+                <a href={link.href} className="flex  items-center justify-center hover:text-indigo-200 transition-all duration-400 md:text-[1.8vw] font-[aeonik2] ">{link.name} <ArrowUpRight /> </a>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
+
+        <div className="font-[font2]  md:text-[1.5vw]">
+            copyrights Ruthwik 2024
+        </div>
 
       </div>
 

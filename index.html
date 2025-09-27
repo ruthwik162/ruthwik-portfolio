@@ -1,13 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/logo.png" />
+    <link rel="icon" type="image/png" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nagaruthwik</title>
+    <meta name="description" content="Portfolio of Nagaruthwik – Full Stack Developer, MERN Stack, Creative Projects" />
+    <meta name="author" content="Nagaruthwik Merugu" />
+    <meta name="theme-color" content="#000000" />
+
+    <title>Nagaruthwik Portfolio</title>
+
+    <!-- SEO / Social sharing -->
+    <meta property="og:title" content="Nagaruthwik Portfolio" />
+    <meta property="og:description" content="Full Stack Developer specializing in MERN stack projects." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/logo.png" />
+    <meta property="og:url" content="https://yourdomain.com" />
+
+    <!-- Fallback for SPA routing -->
+    <script type="text/javascript">
+      (function () {
+        const { pathname, search, hash } = window.location;
+        if (pathname !== "/" && !/\.[a-zA-Z0-9]+$/.test(pathname)) {
+          // Reload the current path so React Router can handle it
+          window.location.href = pathname + search + hash;
+        }
+      })();
+    </script>
+
+    <!-- Optional: Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
   </head>
-  <body>
+
+  <body class="bg-white text-black font-sans">
+    <!-- React mounting point -->
     <div id="root"></div>
+
+    <!-- Main JS entry -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
