@@ -4,7 +4,7 @@ import { RiExternalLinkLine } from "react-icons/ri";
 
 const ProjectCard = ({ image, title, description, stacks, url, getStackIcon }) => {
   return (
-    <div className="group relative w-full h-[400px] md:w-[30vw] lg:h-[20vw] rounded-xl  overflow-hidden md:rounded-md shadow-lg cursor-pointer">
+    <div className="group relative w-full h-[400px] md:w-[30vw] lg:h-[20vw]   overflow-hidden  shadow-lg cursor-pointer">
 
 
       <img className="h-full w-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
@@ -26,8 +26,8 @@ const ProjectCard = ({ image, title, description, stacks, url, getStackIcon }) =
 
         {/* Content at bottom */}
         <div className="transform translate-y-0 md:translate-y-8 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
-          <h2 className="uppercase text-3xl md:text-[1.6vw] font-poppins-500 font-poppins text-white mb-3 tracking-tighter">{title} </h2>
-          <p className="text-white/90 text-sm md:text-[1vw] md:leading-[1vw] mb-4 font-poppins-200 tracking-tight font-poppins line-clamp-3">{description} </p>
+          <h2 className=" text-3xl md:text-[1.2vw] font-poppins-500 font-poppins text-white mb-3 tracking-tighter">{title} </h2>
+          <p className="text-white/90 text-sm md:text-[0.8vw] md:leading-[1vw] mb-4 font-poppins-200 tracking-tight font-poppins ">{description} </p>
           <div className="flex items-center gap-4">
             <div className="flex gap-2 flex-wrap">
               {stacks.slice(0, 3).map((stack, index) => (

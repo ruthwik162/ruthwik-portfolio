@@ -9,9 +9,6 @@ import {
     FaPython,
     FaAngular,
     FaAws,
-    FaMobile,
-    FaRocket,
-    FaShieldAlt,
     FaEnvelope,
     FaLinkedin,
     FaGithub,
@@ -24,22 +21,20 @@ import {
     SiThreedotjs,
     SiFirebase,
     SiTypescript,
-    SiSvelte,      // ✅ fixed
+    SiSvelte,
     SiGraphql,
-    SiTensorflow,  // ✅ fixed
-    SiGoogleanalytics
+    SiTensorflow
 } from "react-icons/si";
 import { MdBarChart } from "react-icons/md";
 import ProjectCard from "../Components/ProjectCard";
-import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
-
 
 const Projects = () => {
     const containerRef = useRef(null);
     gsap.registerPlugin(ScrollTrigger);
     const navigate = useNavigate();
+    const projectRef = useRef(null);
 
     // Map stack names to React icons
     const getStackIcon = (name) => {
@@ -56,17 +51,15 @@ const Projects = () => {
             "Firebase": SiFirebase,
             "TypeScript": SiTypescript,
             "Chart.js": MdBarChart,
-            "Svelte": SiSvelte,         // ✅ fixed
+            "Svelte": SiSvelte,
             "GraphQL": SiGraphql,
             "AWS": FaAws,
-            "TensorFlow": SiTensorflow  // ✅ fixed
+            "TensorFlow": SiTensorflow
         };
 
         const IconComponent = iconMap[name] || FaReact;
         return <IconComponent className="text-white text-lg" />;
     };
-
-
 
     const projects = [
         {
@@ -122,8 +115,6 @@ const Projects = () => {
     const length = projects.length;
 
     useGSAP(() => {
-
-
         // Animate heading characters
         gsap.from(".char", {
             y: -200,
@@ -133,27 +124,16 @@ const Projects = () => {
             stagger: 0.05,
         });
 
-        // Animate each project card with scrub and rotation
-        gsap.utils.toArray(".project-card").forEach((card, i) => {
-            gsap.fromTo(card,
-                {
-                    opacity: 1,
-                    y: -200,
-                },
-                {
-                    y: 0,
-                    opacity: 1,
-                    filter: "blur(0px)",
-                    duration: 1.5,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top 90%",
-                        end: "top 50%",
-                        scrub: 1.5,
-                    }
-                }
-            );
+
+
+        // ✅ Pin the left red box while scrolling project section
+        ScrollTrigger.create({
+            trigger: ".box", // whole section
+            start: "top 10%",
+            end: "bottom+=90% bottom",
+            pin: projectRef.current.querySelector(".box"), // only pin .box
+            pinSpacing: false, // remove spacing
+            markers: false
         });
 
         // Animate contact section
@@ -163,18 +143,19 @@ const Projects = () => {
             duration: 1,
             stagger: 0.2,
             ease: "power3.out",
+            marginTop: "5vw",
             scrollTrigger: {
                 trigger: ".contact-section",
                 start: "top 85%",
                 end: "top 50%",
                 scrub: 1,
-            }
+            },
         });
     }, { scope: containerRef });
 
     return (
         <div ref={containerRef} className="bg-white md:mt-[10vh] mt-[30vh]">
-            {/* Title with pin container */}
+            {/* Title */}
             <div className="title-container bg-white">
                 <div className='bg-white mt-[10vh] md:mt-[40vh] overflow-hidden'>
                     <div className="overflow-hidden">
@@ -185,50 +166,31 @@ const Projects = () => {
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <div>
+            {/* Projects Section */}
+            <div ref={projectRef} className="flex items-start justify-center md:mt-[5vw] md:flex-row flex-col">
+                <div className="  h-screen tracking-wide gap-1 md:w-1/2 md:mt-[5vw] flex flex-col items-center justify-start">
+                    <div className="box w-full h-full text-center">
+                        <h1 className="md:text-[3vw] font-[font2] md:leading-[3vw]">Selected Projects</h1>
+                        <h1 className="md:text-[2vw] font-[font2] md:leading-[2vw]">[2024-2025]</h1>
+                    </div>
+                </div>
+
                 {/* Projects Grid */}
-                <div className="px-6 lg:px-16 mt-[20vh] md:mt-[10vh] flex-col md:grid md:grid-cols-1 md:gap-10">
+                <div className="px-6 lg:px-16 mt-[20vh] md:mt-[0vh] flex-col md:gap-10">
                     {projects.map((project, idx) => (
-                        <div className="border-t-2 border-gray-400 ">
-                            <div className="flex items-start pb-0 mt-[4vw] md:mt-[1vw] flex-col-reverse  md:flex-row gap-10 justify-center">
-                                <div className="md:leading-[1.9vw] flex gap-5 leading-[1vw] pb-10 md:pb-0 md:mt-0 tracking-tighter text-[4vw] md:text-[2.1vw] font-[font2] ">
-                                    <span className="md:text-[1.5vw] ">[{idx + 1}]</span><h1> {project.title}</h1>
-                                </div>
-                                <div className="md:leading-[1.5vw] md:block hidden  md:text-[1.5vw] tracking-tight text-[2.5vw] font-[font2]">
-                                    <h1>{project.description}</h1>
-                                    <div className="flex gap-2 md:mt-[3vh] flex-wrap">
-                                        {project.stacks.slice(0, 4).map((stack, index) => (
-                                            <span key={index} className="text-xs text-white flex items-center justify-center bg-black px-3 py-2 gap-1 border rounded-full">
-                                                {getStackIcon(stack.name)}{stack.name}
-                                            </span>
-                                        ))}
-                                    </div>
-                                    <a
-                                        href={project.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className=" text-black rounded-xl p-3 md:text-[1.8vw]  transform flex items-center gap-3 justify-start transition-all duration-500 ease-out "
-                                        style={{ transitionDelay: `${project.stacks.length * 100}ms` }}
-                                    >
-                                        <FaArrowUpRightFromSquare className="w-5 h-5" /> Link
-                                    </a>
-                                </div>
-                                <div className="w-full md:w-[50%] flex justify-center items-center">
-                                    <div className="">
-                                        <div key={idx} className="project-card tracking-tighter">
-                                            <ProjectCard
-                                                image={project.image}
-                                                title={project.title}
-                                                description={project.description}
-                                                stacks={project.stacks}
-                                                url={project.url}
-                                                getStackIcon={getStackIcon}
-                                            />
-                                        </div>
-                                    </div>
+                        <div key={idx} className="project-card">
+                            <div className="flex items-center pb-0 mt-[4vw] md:mt-[1vw] flex-col-reverse md:flex-row gap-10 justify-center">
+                                <div className="w-full flex justify-center items-center">
+                                    <ProjectCard
+                                        image={project.image}
+                                        title={project.title}
+                                        description={project.description}
+                                        stacks={project.stacks}
+                                        url={project.url}
+                                        getStackIcon={getStackIcon}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -238,21 +200,23 @@ const Projects = () => {
 
             {/* Contact Section */}
             <div className="contact-section min-h-screen flex flex-col items-center justify-center gap-8 px-6">
-                <div className="text-start  ">
-                    <h2 className="contact-item text-4xl text-start font-[font2] md:text-[9vw] md:leading-[9vw] font-bold text-black mb-6">
-                        Ready to Start Your Next Project?
+                <div className="text-start">
+                    <h2 className="contact-item text-4xl font-[font2] md:text-[6vw] md:leading-[9vw] font-bold text-start text-gray-400 mb-6">
+                        Ready to <span className="text-black">Start</span> Your <span className="text-black">Next Project?</span>
                     </h2>
-                    <p className="contact-item max-w-5xl text-start font-[font2] text-lg md:text-3xl text-gray-600 mb-8">
+                    <p className="contact-item max-w-5xl font-[font2] text-lg md:text-3xl text-gray-600 mb-8">
                         Let's collaborate to bring your vision to life with innovative solutions and cutting-edge technology.
                     </p>
                 </div>
 
                 <div className="contact-item flex flex-col sm:flex-row gap-4">
-                    <button onClick={() => { navigate("/contact"); scrollTo(0, 0) }} className="px-8 py-4 bg-black text-white rounded-full font-poppins font-poppins-300 uppercase flex items-center gap-2 hover:bg-gray-800 transition-colors">
+                    <button
+                        onClick={() => { navigate("/contact"); scrollTo(0, 0); }}
+                        className="px-8 py-4 bg-black text-white rounded-full font-poppins uppercase flex items-center gap-2 hover:bg-gray-800 transition-colors"
+                    >
                         Start a Project
                         <FaArrowRight />
                     </button>
-
                 </div>
 
                 <div className="contact-item mt-12 text-center">

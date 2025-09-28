@@ -284,14 +284,14 @@ const Aboutme = () => {
                         <Image />
                     </div>
                     <div className='overflow-hidden px-3 md:w-1/2'>
-                        <div className="overflow-hidden md:px-[5vh]   z-20 px-2">
+                        <div className="overflow-hidden md:px-[5vh]   z-20 px-4">
                             <div className="overflow-hidden  ">
-                                <div className="heading-text  leading-[9vw] tracking-tighter text-[12vw] md:text-[6vw] text-black/50 font-poppins font-poppins-500 uppercase text-end  md:leading-[5vw] py-1">
+                                <div className="heading-text  leading-[9vw] tracking-tight text-[12vw] md:text-[6vw] text-black/50 font-[font2]  text-end  md:leading-[5vw] py-1">
                                     About
                                 </div>
                             </div>
                             <div className="overflow-hidden ">
-                                <div className="heading-text  leading-[9vw] tracking-tighter text-[12vw] md:text-[6vw] text-black/50 font-poppins font-poppins-500 uppercase text-end  md:leading-[5vw] py-1">
+                                <div className="heading-text  leading-[9vw] tracking-tight text-[12vw] md:text-[6vw] text-black/50 font-[font2]  text-end  md:leading-[5vw] py-1">
                                     me
                                 </div>
                             </div>
@@ -360,7 +360,7 @@ const Aboutme = () => {
 
                 <div className="leading-[2vw] lg:mt-[15vh] font-[aeonik2] overflow-hidden">
                     <div className="lg:mt-[5vh] md:mx-[3vh] md:w-2/3 mt-[6vh]">
-                        <h1 className="md:text-[6vw]  border-b-2 md:text-start text-gray-400 border-gray-200 text-[11vw] text  text-justify  md:leading-[5vw] leading-[10vw]">
+                        <h1 className="md:text-[6vw]   md:text-start text-gray-400  text-[11vw] text  text-justify  md:leading-[5vw] leading-[10vw]">
                             What I <span className='text-black'>Can</span> Do!!
                         </h1>
                     </div>
