@@ -6,7 +6,7 @@ import Hero from "./Components/Hero";
 import Lenis from "@studio-freight/lenis";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Projects from "./Pages/Projects";
-import Aboutme from "./Pages/Profile";
+import Profile from "./Pages/Profile";
 import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
 import Capability from "./Pages/Capability";
@@ -98,6 +98,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile/>}/>
         <Route path="/capability" element={<Capability />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/contact" element={<Contact />} />

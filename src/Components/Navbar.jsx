@@ -188,7 +188,7 @@ const Navbar = () => {
       {/* Nav Overlay */}
       <nav
         ref={navRef}
-        className="fixed z-50 flex flex-col justify-around w-full h-full md:px-10 px-5 bg-black/90 backdrop-blur-2xl text-white/80"
+        className="fixed z-50 overflow-hidden flex flex-col justify-around w-full h-screen md:px-10 px-5 bg-black/90 backdrop-blur-2xl text-white/80"
       >
         {/* Floating letters */}
         <h1 className="letter absolute md:block hidden md:-bottom-[10vh] text-white/50 -bottom-[6vh] right-[19vw] md:right-[53vh] font-[font2] text-[17vh] md:text-[30vh]">
@@ -201,9 +201,9 @@ const Navbar = () => {
           R
         </h1>
 
-        <div className="flex flex-col md:ml-[50%] items-center justify-start md:-mt-[20vh] md:flex-row">
-          <div className="relative -ml-[13vh] md:ml-0 -mt-[13vh] pt-2 md:mt-0 md:pt-0 md:w-full flex flex-col font-poppins text-4xl gap-y-3 md:text-6xl lg:text-[3vw]">
-            {["Home", "capability", "Projects", "Contact"].map((text, index) => (
+        <div className="flex flex-col md:ml-[50%] items-center justify-start md:-mt-[20vh] md:flex-col">
+          <div className="relative -ml-[13vh] md:ml-0 -mt-[13vh] pt-2 md:mt-0 md:pt-0 md:w-full flex flex-col font-[font2] text-4xl gap-y-3 md:text-6xl lg:text-[3vw]">
+            {["Profile", "capability", "Projects", "Contact"].map((text, index) => (
               <div className="overflow-hidden" key={index}>
                 <div
                   ref={(el) => (linksRef.current[index] = el)}
@@ -224,7 +224,7 @@ const Navbar = () => {
                     className="transition-all duration-300 hover:text-white cursor-pointer"
                   >
                     {text}
-                    <div className="w-[60%] h-[.08vw] overflow-hidden rounded ">
+                    <div className="w-[20%] h-[.08vw] overflow-hidden rounded ">
                     <div
                       ref={(el) => (hoverFillRef.current[index] = el)}
                       className="w-full h-full bg-white"

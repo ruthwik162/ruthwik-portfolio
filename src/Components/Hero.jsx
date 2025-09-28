@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 import { useFrame } from "@react-three/fiber";
 import { useEffect } from "react";
-import { Code, Diamond, Monitor, MouseIcon, Play, Shapes, Spade } from "lucide-react";
+import { ArrowUpRight, Code, Diamond, Monitor, MouseIcon, Play, Shapes, Spade } from "lucide-react";
 import Architecture from "../Components/Architecture";
 import Buttons from "./Buttons";
 import GsapMarquee from "./GsapMarquee";
@@ -21,12 +21,37 @@ import { FaDiamond, FaLeaf, FaShapes } from "react-icons/fa6";
 import { FaPlay } from "react-icons/fa";
 import { FiPlay } from "react-icons/fi";
 import { GrPlayFill } from "react-icons/gr";
+import { SplitText } from "gsap/SplitText";
 
+
+const expert = [
+    {
+        name: "Web Design",
+        desc: "Crafting stunning layouts that catch the eye."
+    },
+    {
+        name: "Web Development",
+        desc: "Turning ideas into fast, functional websites."
+    },
+    {
+        name: "UX Design",
+        desc: "Designing smooth, intuitive user journeys."
+    },
+    {
+        name: "Brand Identity",
+        desc: "Building visuals that make brands unforgettable."
+    },
+    {
+        name: "Art Direction",
+        desc: "Shaping the mood, style, and creative vision."
+    }
+];
 
 
 const FollowCursorModel = ({ mobile, ...props }) => {
     const modelRef = useRef();
     const target = useRef({ x: 0, y: 0 });
+
 
     // Capture mouse movement
     useEffect(() => {
@@ -65,10 +90,9 @@ const FollowCursorModel = ({ mobile, ...props }) => {
 
 
 const Home = () => {
-    const modelRef = useRef();
-    const modelDiv = useRef();
-    const mobile = useMediaQuery({ maxWidth: 853 });
     const lineRef = useRef(null);
+    const rolesRef = useRef([])
+
 
 
     const bottom = [
@@ -96,14 +120,6 @@ const Home = () => {
 
     useGSAP(() => {
         const tl = gsap.timeline();
-
-        // Text animation
-        gsap.from(".wel", {
-            x: 1000,
-            opacity: 0.5,
-            duration: 2.5,
-            ease: "power3.inOut",
-        })
 
 
         tl.from(".textL", {
@@ -185,107 +201,96 @@ const Home = () => {
         });
 
 
+        rolesRef.current.forEach((el) => {
+            if (!el) return;
+            const fill = el.querySelector(".fill");
+            const text = el.querySelector(".role-text");
+            const icon = el.querySelector(".role-icon");
 
+            gsap.set(fill, { scaleY: 0, transformOrigin: "bottom" });
 
-        // Pin the model section
-        ScrollTrigger.create({
-            trigger: modelDiv.current,
-            start: "top top",
-            end: `${mobile ? "bottom+=50% 80%" : "bottom+=10% 80%"}`,
-            pin: true,
-            pinSpacing: true,
-            scrub: 1, // smooth animation
-            onUpdate: (self) => {
-                if (modelRef.current) {
-                    // Rotate in X as we scroll
-                    modelRef.current.rotation.x = self.progress * Math.PI * 10;
-                    // self.progress goes 0 → 1 between start and end
-                    // Math.PI * 2 = full 360° rotation
-                }
-            },
+            el.addEventListener("mouseenter", () => {
+                gsap.to(fill, { scaleY: 1, duration: 0.5, ease: "power2.out" });
+                gsap.to([text, icon], {
+                    marginRight: "2vw",
+                    marginLeft: "2vw",
+                    color: "#ffffff",
+                    duration: 0.3,
+                    ease: "power2.out",
+                });
+
+            });
+
+            el.addEventListener("mouseleave", () => {
+                gsap.to(fill, { scaleY: 0, duration: 0.5, ease: "power3.out" });
+                gsap.to([text, icon], {
+                    color: "#000000",
+                    marginRight: "0vw",
+                    marginLeft: "0vw",
+                    duration: 0.3,
+                    ease: "power2.out",
+                });
+            });
         });
+
+        gsap.utils
+            .toArray([
+                ".do-text",
+            ])
+            .forEach((selector) => {
+                const split = new SplitText(selector, { type: "lines" });
+                split.lines.forEach((line) => {
+                    const inner = document.createElement("span");
+                    inner.className = "inline-block";
+                    inner.textContent = line.textContent;
+
+                    const wrapper = document.createElement("span");
+                    wrapper.className = "overflow-hidden py-1 block";
+                    wrapper.appendChild(inner);
+
+                    line.textContent = "";
+                    line.appendChild(wrapper);
+                });
+
+                gsap.from(
+                    split.lines.map((l) => l.querySelector("span.inline-block")),
+                    {
+                        y: 100,
+                        delay:0.2,
+                        duration: 2,
+                        ease: "power3.out",
+                        stagger: 0.25,
+                        scrollTrigger: {
+                            trigger: selector,
+                            start: "top 85%"
+                        }
+                    }
+                );
+            });
+
+        gsap.from(".textD", {
+            y: 100,
+            duration: 1.2,
+            scrollTrigger: {
+                trigger: ".sec2",
+                start: "top 80%"
+            },
+        })
+
+
+
+
+
     }, []);
 
     return (
         <div className="w-full main overflow-x-hidden relative">
 
-            <div className="absolute md:top-[2vw] md:right-[1vw] mx-3 md:mx-1 font-poppins font-poppins-200  top-[140vw] ">
-                <div className="overflow-hidden">
-                    <div className="md:text-[10vw] wel text-[20vw] uppercase text-black/50 tracking-tighter">
-                        WelCome
-                    </div>
-                </div>
-            </div>
-
-            <div className="relative">
-                <section ref={modelDiv} className="w-full  h-screen overflow-hidden absolute  z-0 md:top-0 top-[0vh] md:left-0 left-[0vh]">
-                    <figure className="w-full model-wrapper z-0 relative h-full left-23 -top-[5vh] md:top-0  overflow-hidden md:left-1/4" >
-                        <div className="w-full h-full absolute ">
-                            <Canvas
-                                shadows
-                                camera={{ position: [-1, -3, 10], fov: 35 }}
-                                className="absolute inset-0"
-                            >
-                                {/* Main Ambient Light for overall illumination */}
-                                <ambientLight intensity={0.3} color="#ffffff" />
-
-                                {/* Key Light (main directional) */}
-                                <directionalLight
-                                    position={[10, 10, 10]}
-                                    intensity={2.5}
-                                    castShadow
-                                    shadow-mapSize-width={2048}
-                                    shadow-mapSize-height={2048}
-                                    shadow-camera-near={1}
-                                    shadow-camera-far={50}
-                                    shadow-camera-left={-10}
-                                    shadow-camera-right={10}
-                                    shadow-camera-top={10}
-                                    shadow-camera-bottom={-10}
-                                />
-
-                                {/* Fill Light to soften shadows */}
-                                <directionalLight
-                                    position={[-10, 5, -5]}
-                                    intensity={1.2}
-                                    color="#a0c4ff"
-                                />
-
-                                {/* Rim Light / Back Light to highlight edges */}
-                                <spotLight
-                                    position={[0, 5, -10]}
-                                    intensity={1.5}
-                                    angle={0.3}
-                                    penumbra={0.5}
-                                    castShadow
-                                    color="#ffffff"
-                                />
-
-                                {/* Additional Point Lights for extra highlights and color variation */}
-                                <pointLight position={[5, 3, 5]} intensity={0.7} color="#ffd6a5" />
-                                <pointLight position={[-5, -3, 5]} intensity={0.5} color="#ffadad" />
-                                <pointLight position={[0, 5, 0]} intensity={0.4} color="#b5f5ec" />
-                                <pointLight position={[2, 3, -4]} intensity={0.3} color="#ffe3ff" />
-
-                                {/* Model with floating animation */}
-                                <Float speed={mobile ? 3.5 : 2}>
-                                    <FollowCursorModel mobile={mobile} />
-                                </Float>
-
-                                {/* Orbit controls */}
-                                <OrbitControls enablePan={false} enableZoom={false} />
-                            </Canvas>
-
-                        </div>
-                    </figure>
-                </section >
-            </div>
-
 
 
             <section data-scroll data-scroll-speed="0.9" className="w-full h-screen  z-50">
                 <div className="md:ml-[4.5vh] w-1/2 flex flex-col items-start ">
-                    <div className="mt-[25vh]  overflow-hidden">
+                    <div className="mt-[15vh]  overflow-hidden">
                         <div className="textL text-[15vw] md:px-   leading-[14vw] md:text-[6vw] uppercase font-poppins font-poppins-500  text-black md:leading-[5vw]">
                             <span className="font-[font3] md:text-[8vw] text-[19vw] leading-[18vw] relative md:top-5 inline-block  md:leading-[7vw]">N</span>aga
                         </div>
@@ -317,7 +322,22 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="bottom md:mt-[30vh] font-[font4] mt-[35vh]">
+                <div className="overlflow-hidden md:mx-[3vw] w-[80%] mt-[5vw] ">
+                    <div className=" md:text-[2.5vw] whitespace-pre-line w-full md:leading-[2.5vw] leading-[3vw] text-[4vw] font-[font2]">
+                        <p className="do-text">I create digital experiences that</p>
+                    </div>
+                    <div className="do-text md:text-[2.5vw] w-full  md:leading-[2.5vw] leading-[3vw] text-[4vw] font-[font2]">
+                        <p>spark curiosity and leave a mark.</p>
+                    </div>
+                    <div className="do-text md:text-[2.5vw] w-full  md:leading-[2.5vw] leading-[3vw] text-[4vw] font-[font2]">
+                        <p>Every interface I design is a space where creativity and </p>
+                    </div>
+                    <div className="do-text md:text-[2.5vw] w-full  md:leading-[2.5vw] leading-[3vw] text-[4vw] font-[font2]">
+                        <p>functionality meet to tell unique stories.</p>
+                    </div>
+                </div>
+
+                <div className="bottom  font-[font4] md:mt-[10vh] mt-[15vh]">
                     <div className="flex items-center justify-around">
                         {bottom.map((items, index) => (
                             <div key={index} className="between">
@@ -335,15 +355,44 @@ const Home = () => {
                 </div>
 
             </section>
+            <section className="sec2">
+                <div className='overflow-hidden md:mt-[10vh]'>
+                    <div className='text-center md:text-[2.5vw] font-[font2] text-gray-400'>
+                        <h1 className="textD">Designing for <span className='text-black'>clarity</span>, <span className='text-black'>impact</span>, and delight—one project at a time.</h1>
+                    </div>
+                </div>
+            </section>
 
-            <section className="w-full min-h-screen font-poppins page2 md:px-[2vw] tracking-tighter relative">
-                
-                <div className="md:w-full md:mt-[0vh] mt-[5vh]  w-full">
-                    <Profile />
+            <section className="w-full h-full md:mt-[5vw] font-poppins page2 md:px-[2vw] tracking-tighter relative">
+
+
+                <div className='overflow-hidden  '>
+                    <div className='text-[10vw] px-5 md:px-0 md:text-[3vw] text-gray-400 font-[aeonik.]'>
+                        <h1>Capabilties</h1>
+                    </div>
+                    <div className="w-full md:p-0  p-5 md:py-5 font-[font2]">
+                        {expert.map((role, i) => (
+                            <div
+                                key={i}
+                                ref={(el) => (rolesRef.current[i] = el)}
+                                className="relative  overflow-hidden border-b border-gray-200 cursor-pointer"
+                            >
+                                <div className="relative  md:gap-[20vh]  z-10">
+                                    <span className="role-text textS flex items-center flex-row-reverse gap-3 justify-between text-[6.5vw] md:text-[3vw] text-black">
+                                        <ArrowUpRight strokeWidth={0.5} className="md:w-20 md:h-15" />
+                                        <span className="flex items-center gap-1">
+                                            {role.name}
+                                        </span>
+                                    </span>
+                                </div>
+                                <div className="fill absolute inset-0 bg-black z-0"></div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
 
-
             </section>
+            
 
 
         </div >

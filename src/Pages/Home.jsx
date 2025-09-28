@@ -9,11 +9,11 @@ const Home = () => {
 
     useGSAP(() => {
 
-        gsap.set(containRef.current, { scale:0.9 });
+        gsap.set(containRef.current, { scale: 0.9 });
 
         gsap.to(containRef.current, {
-            scale:1,
-            duration:3,
+            scale: 1,
+            duration: 3,
             ease: "power3.out",
             scrollTrigger: {
                 trigger: containRef.current,
@@ -62,28 +62,20 @@ const Home = () => {
     })
 
     return (
-        <div className=''>
+        <div className=' '>
             <section className='w-full '>
                 <Hero />
             </section>
-            
-            <section className="w-full h-screen  page3">
-                <div ref={containRef} className=" overflow-hidden flex w-[95vw] h-[95vh] text-white mt-[10vh] rounded-3xl mx-auto bg-black">
-                    <div className="overflow-hidden mt-[15vh] ">
-                        <div className="md:ml-[5vh]  ml-[3vh]  font-poppins-400 text-[5vh] text-center md:text-[4vw]">
-                            <h1 className="  md:leading-[3.2vw]  tracking-tighter ">.03</h1>
-                        </div>
+            <section className='w-full flex items-center justify-start min-h-screen'>
+                <div className='overflow-hidden px-10'>
+                    <div className='md:text-[5vw] md:leading-[5vw] font-[font2] '>
+                        <h1>The <span className='text-gray-400 font-[font3]'>End</span>...</h1>
                     </div>
-                    <div className="overflow-hidden">
-                        <div className="overflow-hidden  md:ml-[5vh] ml-[3vh] mt-[15vh]  text-[5vh] text-start md:text-[4vw]">
-                            <h1 className=" font-poppins-500  md:leading-[3.5vw] tracking-tight ">Skills </h1>
-                        </div>
+                    <div className='md:text-[5vw] md:leading-[5vw] font-[font2] '>
+                        <h1>Not our Journey</h1>
                     </div>
                 </div>
-
             </section>
-
-
         </div>
     )
 }

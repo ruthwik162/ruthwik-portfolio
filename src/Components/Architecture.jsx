@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import Lenis from "@studio-freight/lenis";
-import { ArrowBigRight, ArrowBigRightIcon, ArrowRight, ArrowUpRight, Code2, Lightbulb, PenTool, Plus, Rocket, RocketIcon, Server, Users, Zap } from "lucide-react";
+import { ArrowBigRight, ArrowBigRightIcon, ArrowRight, ArrowUpRight, Code2, Lightbulb, PenTool, Plus, Rocket, RocketIcon, Send, Server, Users, Zap } from "lucide-react";
 import { FaArrowRight } from "react-icons/fa6";
 import { useGSAP } from "@gsap/react";
 import { useMediaQuery } from "react-responsive";
@@ -63,8 +63,9 @@ const Architecture = () => {
   const planRef = useRef(null);
   const arrow2Ref = useRef(null);
   const mobile = useMediaQuery({ maxWidth: 853 });
-  const bottomRef = useRef(null);
-  const arrow3Ref = useRef(null);
+  const boxRef = useRef(null);
+  const fillRef = useRef(null);
+
 
 
   // ✅ Arrow Animation
@@ -87,7 +88,7 @@ const Architecture = () => {
       stagger: 0.18,
       scrollTrigger: {
         trigger: ".textSS",
-        start: mobile ? "top 50%" : "top 60%",
+        start: mobile ? "top 50%" : "top 70%",
 
       }
     })
@@ -98,7 +99,7 @@ const Architecture = () => {
       stagger: 0.05,
       scrollTrigger: {
         trigger: ".textSSS",
-        start: mobile ? "top 50%" : "top 60%",
+        start: mobile ? "top 50%" : "top 80%",
       }
     })
     gsap.from(".text3", {
@@ -108,7 +109,7 @@ const Architecture = () => {
       stagger: 0.2,
       scrollTrigger: {
         trigger: ".text3",
-        start: mobile ? "top 50%" : "top 60%",
+        start: mobile ? "top 50%" : "top 80%",
 
       }
     })
@@ -152,25 +153,24 @@ const Architecture = () => {
       });
     });
 
-    gsap.set(arrow3Ref.current, { x: -75, opacity: 1 });
+    gsap.set(fillRef.current, { yPercent: 100 });
 
-    bottomRef.current.addEventListener("mouseenter", () => {
-      gsap.to(arrow3Ref.current, {
-        x: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
+    boxRef.current.onmouseenter = () => {
+      gsap.to(fillRef.current, {
+        yPercent: 0,
+        duration: 0.4,
+        ease: "power3.inOut"
       });
-    });
+    };
 
-    bottomRef.current.addEventListener("mouseleave", () => {
-      gsap.to(arrow3Ref.current, {
-        x: -75,
-        opacity: 1,
-        duration: 0.6,
-        ease: "power3.inOut",
+    boxRef.current.onmouseleave = () => {
+      gsap.to(fillRef.current, {
+        yPercent: 100,
+        duration: 0.4,
+        ease: "power3.inOut"
       });
-    });
+    };
+
   });
 
   useEffect(() => {
@@ -238,11 +238,10 @@ const Architecture = () => {
   }, []);
 
   return (
-    <div className="z-0 w-full h-full mx-[10vw] md:mx-0 md:mt-0 md:px-[18vh] flex flex-col items-start justify-start">
+    <div className="z-0 w-full h-full px-[2vw] md:mx-0 md:mt-0  flex flex-col items-start justify-start">
       {/* ✅ Arrow + Title */}
-      <div ref={headingWrapperRef} className="overflow-hidden  leading-[3vh] mt-[5vw] md:w-[35%] border-gray-200 cursor-pointer mx-2" >
-        <div ref={arrowRef} className="overflow-hidden flex items-center justify-start">
-          <ArrowRight className="w-8 h-8 md:w-20 md:h-15 text-black" strokeWidth={1} />
+      <div ref={headingWrapperRef} className="overflow-hidden  leading-[3vh] mt-[5vw] md:mt-0 md:w-[35%] border-gray-200 cursor-pointer mx-2" >
+        <div className="overflow-hidden flex items-center justify-start">
           <h2 className="text-[9vw] md:text-[3vw] flex items-center font-[aeonik2] tracking-tight  px-11 md:px-0 mt-5 gap-4  mb-6"  >
             Architecture
           </h2>
@@ -250,7 +249,7 @@ const Architecture = () => {
       </div>
 
       {/* ✅ Roles */}
-      <div className="w-full md:max-w-3xl max-w-9xl  bg-indigo-200 p-5 md:p-10 font-[font2]">
+      <div className="w-full   bg-gray-200 p-5 md:p-10 font-[font2]">
         {roles.map((role, i) => (
           <div
             key={i}
@@ -272,14 +271,10 @@ const Architecture = () => {
       </div>
 
       {/* ✅ Plans */}
-      <div className="w-full mt-[10vw] md:flex-row flex-col flex gap-[2vw] items-center justify-center">
-        <div className="overflow-hidden md:h-[18vw] h-[45vw] md:mt-[3vw]">
-          <div className="md:w-[28vw] md:mt-[5vw] w-[80vw] h-[70vw] md:h-[25vw]">
-            <ParallaxImage className="object-cover w-full h-full" src="https://media.istockphoto.com/id/2193447488/photo/red-domino-for-leadership-concept.webp?a=1&b=1&s=612x612&w=0&k=20&c=bpEMfK_WoyJkuEvWzKoJzZRxYGMlZ5bmF1-3Udn99tw=" alt="" />
-          </div>
-        </div>
+      <div className="w-full mt-[10vw] md:mt-0 md:flex-row flex-col flex gap-[2vw] items-center justify-center">
+
         <div className=" w-full  md:px-5  md:p-5">
-          <div ref={planRef} className="overflow-hidden  cursor-pointer w-full md:px- md:w-[42%]" >
+          <div ref={planRef} className="overflow-hidden  cursor-pointer w-full md:px- md:w-[50%]" >
             <div ref={arrow2Ref} className="flex items-center">
               <ArrowRight className="w-8 h-8 md:w-13 md:h-13 text-black" strokeWidth={1.5} />
               <h2 className="text-[9vw] md:text-[3vw] font-[aeonik2] tracking-tight flex items-center px-10 md:px-4 md:mt-0 mt-[2vh] gap-2 ">
@@ -287,7 +282,7 @@ const Architecture = () => {
               </h2>
             </div>
           </div>
-          <div className=" w-full h-full bg-indigo-200 md:py-18 p-2 md:p-7">
+          <div className=" w-full h-full bg-gray-200 md:py-18 p-2 md:p-7">
             {roles.map((role, i) => (
               <div
                 key={i}
@@ -305,67 +300,46 @@ const Architecture = () => {
         </div>
 
       </div>
-      {/* ✅ Plans */}
-      <div className="w-full mt-[10vw] md:flex-row flex-col-reverse flex items-center justify-start">
 
-        <div className=" w-full  md:px-5  md:p-5">
-          <div ref={bottomRef} className="overflow-hidden  cursor-pointer w-full md:px-2 md:w-[55%]" >
-            <div ref={arrow3Ref} className="flex items-center">
-              <ArrowRight className="w-8 h-8 md:w-13 md:h-13 text-black" strokeWidth={1.5} />
-              <h2 className="text-[9vw] md:text-[3vw] font-[aeonik2] tracking-tight flex items-center px-10 md:px-4 md:mt-0 mt-[2vh] gap-2 ">
-                [ Capabilities ]
-              </h2>
-            </div>
-          </div>
-          <div className="md:w-3/4 w-full h-full bg-indigo-200 md:py-18  p-7">
-            {services.map((s, i) => (
-              <div
-                key={i}
-                className="relative max-w-9xl font-[font2]  overflow-hidden border-b  border-gray-200"
-              >
-                <div className="relative textSSS flex flex-col md:flex-row  items-start md:items-center gap-1    z-10">
-                  <span className="role-text textSSS flex items-center gap-3 text-[8vw] md:text-[3vw] md:leading-[4.5vw] text-black">
-                    {s.title}
-                  </span>
-
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="overflow-hidden md:mt-[3vw]">
-          <div className="md:w-[28vw] md:mt-[5vw] w-[80vw] h-[70vw] md:h-[20vw]">
-            <ParallaxImage className="object-cover w-full h-full" src="https://images.unsplash.com/photo-1649030616224-9b3d1221e304?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHNlcnZpY2V8ZW58MHx8MHx8fDA%3D" alt="" />
-          </div>
-        </div>
-      </div>
 
 
       <div className="mt-12 w-full  font-[font2] ">
         <h3 className="text-[10vw] md:text-[6vw] font-[aeonik2] tracking-tighter  mb-4">Vision & Mission</h3>
         <div className="overflow-hidden leading-[5vh]">
-          <p className="text-lg md:text-[3vw] text3 text-black leading-[4vw] md:leading-[3vw]">
+          <p className="text-lg md:text-[1.8vw] text3 text-black leading-[4vw] md:leading-[2vw]">
             We believe in merging creativity with technology to build
           </p>
         </div>
         <div className="overflow-hidden leading-[5vh]">
-          <p className="text-lg md:text-[3vw] text3 text-black leading-[4vw] md:leading-[3vw]">
+          <p className="text-lg md:text-[1.8vw] text3 text-black leading-[4vw] md:leading-[2vw]">
             experiences that matter. Our mission is to empower ideas,
           </p>
         </div>
         <div className="overflow-hidden leading-[5vh]">
-          <p className="text-lg md:text-[3vw] text3 text-black leading-[4vw] md:leading-[3vw]">
+          <p className="text-lg md:text-[1.8vw] text3 text-black leading-[4vw] md:leading-[2vw]">
             scale innovation, and deliver impact that lasts
           </p>
         </div>
       </div>
 
       {/* ✅ CTA */}
-      <div className="mt-5">
-        <button className="md:px-8 px-2 py-2 flex items-center justify-center gap-1 rounded-full bg-black text-white font-semibold hover:bg-gray-800 transition text-lg md:text-xl shadow-lg">
+      
+
+      <div className="overflow-hidden relative bg-black w-[70%] md:w-[45%] md:h-[3vw] h-[18vw] mt-5 flex items-center border  justify-center border-b-black   rounded-full ">
+        <button
+          ref={boxRef}
+          type="submit"
+          className="  px-3 md:px-2 py-5 md:py-10 md:text-[1.2vw] text-[4vw] w-full flex items-center justify-center   text-white font-[font2]   transform">
+          <div  ref={fillRef} className="absolute top-0 left-0 h-full w-full flex items-center justify-center bg-red-600 text-black">
+            <h1 className="text-[2vw] flex items-center justify-center mt-1 md:text-[1.2vw] font-[font2] text-black">
+              Let’s Build Something Great <RocketIcon />
+            </h1>
+          </div>
           Let’s Build Something Great <RocketIcon />
         </button>
       </div>
+
+
 
       {/* ✅ Hover Sound */}
       <audio
