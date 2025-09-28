@@ -4,7 +4,7 @@ import { RiExternalLinkLine } from "react-icons/ri";
 
 const ProjectCard = ({ image, title, description, stacks, url, getStackIcon }) => {
   return (
-    <div className="group relative w-full h-[400px] md:w-[30vw] lg:h-[20vw]   overflow-hidden  shadow-lg cursor-pointer">
+    <div className="group relative w-full h-[400px] md:w-[40vw] md:h-[20vw] lg:w-[50vw] lg:h-[30vw]  xl:w-[30vw] xl:h-[20vw]  overflow-hidden  shadow-lg cursor-pointer">
 
 
       <img className="h-full w-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"

@@ -191,18 +191,18 @@ const Navbar = () => {
         className="fixed z-50 overflow-hidden flex flex-col justify-around w-full h-screen md:px-10 px-5 bg-black/90 backdrop-blur-2xl text-white/80"
       >
         {/* Floating letters */}
-        <h1 className="letter absolute md:block hidden md:-bottom-[10vh] text-white/50 -bottom-[6vh] right-[19vw] md:right-[53vh] font-[font2] text-[17vh] md:text-[30vh]">
+        <h1 className="letter absolute md:block hidden xl:-bottom-[10vh] text-white/50 -bottom-[6vh] right-[19vw] md:left-[2vw] xl:left-[58vw] font-[font2] text-[17vh] md:text-[30vw] xl:text-[30vh]">
           M
         </h1>
-        <h1 className="letter absolute -bottom-[16vh] md:leading-[42vw] n md:block right-[19vh] md:-bottom-[21vh] md:right-[20vh] font-[font2] text-[38vh] md:text-[50vh]">
+        <h1 className="letter absolute -bottom-[16vh] md:leading-[42vw] text-white/50  md:block right-[19vh] xl:-bottom-[21vh] md:-bottom-[1vw] md:left-[30vw] xl:left-[70vw] font-[font2] text-[38vh] md:text-[50vw] xl:text-[25vw]">
           N
         </h1>
-        <h1 className="letter absolute md:-bottom-[10vh] text-white/50 -bottom-[6vh] right-[19vw] md:right-[5vh] font-[font2] text-[17vh] md:text-[30vh]">
+        <h1 className="letter absolute xl:-bottom-[10vh] text-white/50 -bottom-[6vh] right-[19vw] xl:right-[5vh] font-[font2] text-[17vh] md:right-[4vw] md:-bottom-[12vw] md:text-[40vw] xl:text-[30vh]">
           R
         </h1>
 
         <div className="flex flex-col md:ml-[50%] items-center justify-start md:-mt-[20vh] md:flex-col">
-          <div className="relative -ml-[13vh] md:ml-0 -mt-[13vh] pt-2 md:mt-0 md:pt-0 md:w-full flex flex-col font-[font2] text-4xl gap-y-3 md:text-6xl lg:text-[3vw]">
+          <div className="relative -ml-[13vh] md:ml-0 -mt-[13vh] pt-2 md:mt-0 md:pt-0 md:w-full flex flex-col font-[font2] text-4xl gap-y-3 md:text-6xl lg:text-[7vw] xl:text-[4vw]">
             {["Profile", "capability", "Projects", "Contact"].map((text, index) => (
               <div className="overflow-hidden" key={index}>
                 <div
@@ -296,11 +296,11 @@ const Navbar = () => {
         <div
           ref={pillRef}
           onClick={toggleMenu}
-          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] md:top-[1.05vw] md:right-[4.7vw] items-center justify-between px-2 cursor-pointer h-10 rounded-sm bg-black/50 transition-all duration-900 ${
-            open ? "w-11" : "w-22"
+          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] xl:top-[1.05vw] lg:right-[5vw] lg:top-[2.5vw] md:right-[6vw] xl:right-[4.7vw] items-center justify-between px-2 cursor-pointer h-10 md:h-12 lg:h-16 xl:h-10 rounded-sm bg-black/50 transition-all duration-900 ${
+            open ? "w-11" : "md:w-29  w-22 lg:w-38 xl:w-25"
           }`}
         >
-          <h1 className="text-black text-[4vw] md:text-[0.9vw] font-[font2] transition-all -px-3 duration-700">
+          <h1 className="text-black text-[3vw] md:text-[2.5vw] lg:text-[2.5vw] xl:text-[1.2vw]   font-[font2] transition-all -px-3 duration-700">
             Menu
           </h1>
         </div>
@@ -309,7 +309,7 @@ const Navbar = () => {
         <div
           ref={iconRef}
           onClick={toggleMenu}
-          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.6vh] right-[3.5vh] md:top-[1.31vw] md:right-[5vw] bg-white transition-all duration-700 rounded-sm w-8 h-8 md:w-8 md:h-8 ${
+          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.6vh] right-[3.5vh] md:top-[3.2vw]  md:right-[6.5vw] lg:right-[5.5vw] lg:top-[2.8vw] xl:top-[1.31vw] xl:right-[5vw] bg-white transition-all duration-700 rounded-sm w-8 h-8 md:w-10 md:h-10 lg:h-14 lg:w-14 xl:w-8 xl:h-8 ${
             open ? "scale-130" : "scale-100"
           }`}
         >

@@ -35,6 +35,7 @@ const Projects = () => {
     gsap.registerPlugin(ScrollTrigger);
     const navigate = useNavigate();
     const projectRef = useRef(null);
+    const mobile = window.innerWidth < 850;
 
     // Map stack names to React icons
     const getStackIcon = (name) => {
@@ -127,14 +128,40 @@ const Projects = () => {
 
 
         // ✅ Pin the left red box while scrolling project section
-        ScrollTrigger.create({
-            trigger: ".box", // whole section
-            start: "top 10%",
-            end: "bottom+=90% bottom",
-            pin: projectRef.current.querySelector(".box"), // only pin .box
-            pinSpacing: false, // remove spacing
-            markers: false
+        gsap.registerPlugin(ScrollTrigger);
+
+        ScrollTrigger.matchMedia({
+
+            // Mobile (up to 849px)
+            "(max-width: 849px)": function () {
+                ScrollTrigger.create({
+                    trigger: ".box",
+                    start: "top 10%",
+                    end: "bottom+=40% bottom",
+                    pin: projectRef.current.querySelector(".box"),
+                    pinSpacing: false,
+                    markers: false,
+                });
+            },
+
+            // Desktop (850px and up)
+            "(min-width: 850px)": function () {
+                ScrollTrigger.create({
+                    trigger: ".box",
+                    start: "top 10%",
+                    end: "bottom+=90% bottom",
+                    pin: projectRef.current.querySelector(".box"),
+                    pinSpacing: false,
+                    markers: false,
+                });
+            },
+
+            // All devices (common settings)
+            "all": function () {
+                // Any ScrollTriggers or animations that apply to all
+            }
         });
+
 
         // Animate contact section
         gsap.from(".contact-item", {
@@ -169,10 +196,10 @@ const Projects = () => {
             </div>
 
             {/* Projects Section */}
-            <div ref={projectRef} className="flex items-start justify-center md:mt-[5vw] md:flex-row flex-col">
-                <div className="  h-screen tracking-wide gap-1 md:w-1/2 md:mt-[5vw] flex flex-col items-center justify-start">
+            <div ref={projectRef} className="flex items-center md:items-start justify-center md:mt-[5vw] md:flex-row flex-col">
+                <div className="  md:h-screen tracking-wide  gap-1 md:w-1/2 md:mt-[5vw] flex flex-col items-center justify-center md:justify-start">
                     <div className="box w-full h-full text-center">
-                        <h1 className="md:text-[3vw] font-[font2] md:leading-[3vw]">Selected Projects</h1>
+                        <h1 className="md:text-[3vw] text-[6vw] font-[font2] md:leading-[3vw]">Selected Projects</h1>
                         <h1 className="md:text-[2vw] font-[font2] md:leading-[2vw]">[2024-2025]</h1>
                     </div>
                 </div>

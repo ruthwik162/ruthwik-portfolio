@@ -280,18 +280,18 @@ const Aboutme = () => {
 
                 {/* About me heading */}
                 <div className='flex items-center justify-center md:justify-around md:gap-[10vw] md:mt-[10vw] md:flex-row flex-col'>
-                    <div className='md:w-[30%] '>
+                    <div className='xl:w-[30%] lg:w-[45%] md:w-[70%] '>
                         <Image />
                     </div>
-                    <div className='overflow-hidden px-3 md:w-1/2'>
+                    <div className='overflow-hidden px-3 w-full lg:w-1/2'>
                         <div className="overflow-hidden md:px-[5vh]   z-20 px-4">
                             <div className="overflow-hidden  ">
-                                <div className="heading-text  leading-[9vw] tracking-tight text-[12vw] md:text-[6vw] text-black/50 font-[font2]  text-end  md:leading-[5vw] py-1">
+                                <div className="heading-text  leading-[9vw] tracking-tight text-[12vw] xl:leading-[4vw] xl:text-[6vw] lg:text-[9vw] lg:leading-[7vw] md:text-[10vw] md:leading-[8vw] text-black/50 font-[font2]  text-end   py-1">
                                     About
                                 </div>
                             </div>
                             <div className="overflow-hidden ">
-                                <div className="heading-text  leading-[9vw] tracking-tight text-[12vw] md:text-[6vw] text-black/50 font-[font2]  text-end  md:leading-[5vw] py-1">
+                                <div className="heading-text  leading-[9vw] tracking-tight text-[12vw] xl:leading-[4vw] xl:text-[6vw] lg:text-[9vw] lg:leading-[7vw] md:text-[10vw] md:leading-[6vw] text-black/50 font-[font2]  text-end   py-1">
                                     me
                                 </div>
                             </div>
@@ -299,7 +299,7 @@ const Aboutme = () => {
 
                         {/* About Paragraph */}
                         <div className="overflow-hidden  z-50 md:px-5 flex flex-col">
-                            <p className="about-para md:text-[1.5vw] text-[5vw] text-justify break-words hyphens-auto font-[font2] text-black/50 mt-[0vh] md:mt-[5vh] leading-[2vh] md:leading-[2vw]  md:px-0">
+                            <p className="about-para xl:text-[2vw] xl:leading-[1.8vw] lg:text-[2vw] lg:leading-[1.5vw] md:text-[2.5vw] md:leading-[2vw] text-[5vw] text-justify break-words hyphens-auto font-[font2] text-black/50 mt-[0vh] md:mt-[5vh] leading-[2vh]   md:px-0">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I'm NagaRuthwik , a passionate web developer dedicated to
                                 crafting engaging and user-friendly digital experiences. With a strong foundation in
                                 both front-end and back-end technologies, I specialize in creating responsive websites
@@ -313,7 +313,7 @@ const Aboutme = () => {
                 {/* Education Section */}
                 <div className=" md:w-1/2 md:mt-[2vw] mt-[10vw]  md:mx-[5vw]  md:mr-[50%] font-[aeonik2] overflow-hidden">
                     <div className="">
-                        <h1 className="md:text-[5vw]  md:text-start text-[10vw] text text-start  text-gray-700 md:leading-[5vw] leading-[10vw]">
+                        <h1 className="xl:text-[5vw] xl:leading-[4vw] lg:text-[7vw] lg:leading-[6vw] md:text-[9vw] md:leading-[8vw]  md:text-start text-[10vw] text text-start  text-gray-700  leading-[10vw]">
                             Education
                         </h1>
                     </div>
@@ -321,16 +321,16 @@ const Aboutme = () => {
 
                 <div className="leading-[2vw] md:w-1/2 md:mt-[2vw] md:mx-[5vw] md:mr-[50%] text-start font-poppins font-poppins-500  overflow-hidden">
                     <div className="lg:mt-[1vh] flex items-center justify-start  mt-[4vh]">
-                        <h1 className="md:text-[3vw]  flex items-center justify-end  text-[7vw] text-black/50 textMd text-end md:text-start  md:leading-[2.5vw] leading-[9vw]">
+                        <h1 className="xl:text-[3vw] xl:leading-[2.5vw] lg:text-[4vw] lg:leading-[3vw] md:text-[5vw] md:leading-[4vw]  flex items-center justify-end  text-[7vw] text-black/50 textMd text-end md:text-start  leading-[9vw]">
                             Ssc + 2
                         </h1>
                     </div>
                 </div>
 
                 <div className='px-2 p-3  flex-col-reverse md:flex-row flex items-start w-full h-full justify-between md:px-[4vw]'>
-                    <div className="p-3 text-justify md:w-[50%] break-words hyphens-auto  tracking-tighter  md:p-5 overflow-hidden">
+                    <div className="p-3 text-justify lg:w-[65%] xl:w-[50%] md:w-[60%] break-words hyphens-auto  tracking-tighter  md:p-5 overflow-hidden">
                         <p
-                            className="education-text lg:text-[1vw] text-sm text-gray-600 text-justify  font-poppins font-poppins-500 md:leading-[1.1vw] leading-[3.5vw] ">
+                            className="education-text lg:text-[2vw] lg:leading-[1.8vw] xl:text-[1.5vw] xl:leading-[1vw] md:text-[2.5vw] md:leading-[2.1vw] text-sm text-gray-600 text-justify  font-poppins font-poppins-500  leading-[3.5vw] ">
                             I completed my schooling at ZPHS School at Challagariga, where I consistently focused on academics and extracurricular activities. I am proud to mention that I secured a perfect GPA of ' 9.8 ' in my 10th board examinations. Following that, I pursued my intermediate studies in the MPC stream at Vidwan Junior College, Telangana, where I scored an impressive 80.05% in the Intermediate Public Exams. These early educational achievements laid a solid foundation for my journey in higher education.
                         </p>
                     </div>
@@ -339,7 +339,7 @@ const Aboutme = () => {
 
                 <div className="leading-[2vw] md:mt-[vw] w-1/2 md:px-[6vw] tracking-tight font-poppins font-poppins-500 overflow-hidden">
                     <div className="lg:mt-[1vw]  mt-[4vh]">
-                        <h1 className="md:text-[4vw]  text-[7vw] text-black/50 textMd text-end md:text-start  md:leading-[3.5vw] leading-[9vw]">
+                        <h1 className="xl:text-[4vw] xl:leading-[3vw] lg:leading-[5vw] lg:text-[6vw] md:text-[8vw] md:leading-[7vw] text-[7vw] text-black/50 textMd text-start px-5 md:text-start   leading-[9vw]">
                             Bachelors
                         </h1>
                     </div>
@@ -348,9 +348,9 @@ const Aboutme = () => {
 
 
                 <div className='px-2  flex  flex-col-reverse md:flex-row items-start justify-between md:px-[4vw]'>
-                    <div className="p-3 text-justify w-full md:w-[50%] break-words hyphens-auto  tracking-tighter   md:p-5 overflow-hidden">
+                    <div className="p-3 text-justify w-full lg:w-[65%] xl:w-[50%] md:w-[60%] break-words hyphens-auto  tracking-tighter   md:p-5 overflow-hidden">
                         <p
-                            className="btech-text lg:text-[1vw] text-sm text-justify text-gray-600 font-poppins font-poppins-500 md:leading-[1.1vw] leading-[3.5vw] ">
+                            className="btech-text lg:text-[2vw] lg:leading-[1.8vw] xl:text-[1.5vw] xl:leading-[1vw] md:text-[2.5vw] md:leading-[2.1vw] text-sm text-justify text-gray-600 font-poppins font-poppins-500  leading-[3.5vw] ">
                             Currently, I'm in my 4-1 semester at Malla Reddy University, pursuing my B.Tech in Computer Science and Engineering. Throughout my undergraduate studies, I have been actively involved in hands-on projects and technical learning, which have enhanced my understanding of both theoretical concepts and real-world applications. I am constantly seeking opportunities to improve my skills, explore new technologies, and contribute meaningfully to projects in the field of computer science.
                         </p>
                     </div>
@@ -367,7 +367,7 @@ const Aboutme = () => {
                 </div>
                 <div className='md:px-0 px-2'>
                     <div className="overflow-hidden ml-[3%] md:ml-[40%] z-50 md:px-5  flex flex-col">
-                        <p className="skills-text md:text-[1.6vw] text-[5vw] text-justify text-gray-600 break-words hyphens-auto font-[font2]  p-5 leading-[2vh] md:leading-[1.5vw]  md:px-0">
+                        <p className="skills-text lg:text-[2.2vw] lg:leading-[1.8vw] xl:text-[1.5vw] xl:leading-[1vw] md:text-[2.5vw] md:leading-[2.1vw] text-justify text-gray-600 break-words hyphens-auto font-[font2]  p-5 leading-[2vh]   md:px-0">
                             I primarily work with custom  and JavaScript, with both Library & FrameWork having developed a well-structured and maintainable front-end architecture . I also have experience with frameworks like Vue and React. I strive to make the most of CSS for styling, layout and even for animations. I also mainly rely on GSAP to create smooth and dynamic interactions.
                         </p>
                     </div>
@@ -390,7 +390,7 @@ const Aboutme = () => {
                 </div>
 
 
-                <div className="overflow-hidden relative  w-[60%] md:w-[20%] md:h-[3vw] h-[12vw] mt-5 flex items-center justify-center border-b-black   rounded-full border">
+                <div className="overflow-hidden relative  w-[60%] lg:w-[30%] xl:w-[20%] xl:h-[3vw] h-[12vw] lg:h-[6vw] mt-5 flex items-center justify-center border-b-black   rounded-full border">
                     <button
 
                         onClick={() => {
@@ -399,13 +399,13 @@ const Aboutme = () => {
                         }}
                         ref={boxRef}
                         type="submit"
-                        className="  px-3 md:px-2 py-5 md:py-10 md:text-[1vw] text-[4vw] w-full flex items-center justify-center gap-5    font-[font2] uppercase  transform"
+                        className="  px-3 md:px-2 py-5 md:py-10 xl:text-[1vw] lg:text-[2vw] text-[4vw] w-full flex items-center justify-center gap-5    font-[font2] uppercase  transform"
                     >
                         <div
                             ref={fillRef}
                             className="absolute top-0 left-0 h-full w-full flex items-center justify-center bg-black text-white"
                         >
-                            <h1 className="text-[2vw] flex items-center justify-center gap-5 md:text-[1.2vw] font-semibold text-white">
+                            <h1 className="text-[2vw] flex items-center justify-center gap-5 lg:text-[2vw] xl:text-[1.2vw] font-semibold text-white">
                                 View Projects <Rocket />
                             </h1>
                         </div>

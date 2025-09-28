@@ -236,17 +236,17 @@ const Contact = () => {
 
       {/* Contact Form */}
       <div className="flex items-center md:flex-row flex-col-reverse justify-between w-full h-full">
-        <div className="w-full h-full ">
+        <div className="w-full md:w-[70%] xl:w-full h-full ">
           <div className="flex items-start justify-center flex-col md:mx-[3vw]">
             {links.map((link, id) => (
               <div key={id} className="flex flex-col items-center justify-center">
-                <a href={link.href} className="flex  items-center justify-center hover:text-indigo-200 transition-all duration-400 md:text-[1.8vw] font-[aeonik2] "><span className="md:block hidden"><ArrowRight/></span> &nbsp;&nbsp;&nbsp; {link.name} <ArrowUpRight /> </a>
+                <a href={link.href} className="flex  items-center justify-center hover:text-indigo-200 transition-all duration-400 md:text-[3vw] xl:text-[1.8vw] font-[aeonik2] "><span className="md:block hidden"><ArrowRight/></span> &nbsp;&nbsp;&nbsp; {link.name} <ArrowUpRight /> </a>
               </div>
             ))}
           </div>
         </div>
-        <div className="contact-form mt-[70vw] md:mt-[2vw] font-[font1] md:w-[60%]   text-black backdrop-blur-md p-3 md:p-8 mb-[5vw]    form-container">
-          <h2 className="form-element text-2xl md:text-3xl font-[font2] font-bold mb-8 uppercase text-center">
+        <div className="contact-form mt-[70vw] md:mt-[10vw] xl:mt-[2vw] font-[font1] xl:w-[60%] md:w-[100%]   text-black  p-3 md:p-8 mb-[5vw]    form-container">
+          <h2 className="form-element text-2xl md:text-[3vw] font-[font2] font-bold mb-8 uppercase text-center">
             Start a Conversation
           </h2>
           <form className="flex flex-col gap-6 text-black bg-gray-50 p-5" onSubmit={handleSubmit}>
@@ -288,17 +288,17 @@ const Contact = () => {
             />
           </form>
 
-          <div className="overflow-hidden relative  w-[70%] md:w-[45%] md:h-[3vw] h-[18vw] mt-5 flex items-center justify-center border-b-black   rounded-sm border">
+          <div className="overflow-hidden relative  w-[70%] xl:w-[45%] md:h-[6vw] md:w-[50%] xl:h-[3vw] h-[18vw] mt-5 flex items-center justify-center border-b-black   rounded-sm border">
             <button
               ref={boxRef}
               type="submit"
-              className="  px-3 md:px-2 py-5 md:py-10 md:text-[1vw] text-[4vw] w-full flex items-center justify-between    font-[font2] uppercase  transform"
+              className="  px-3 md:px-2 py-5 md:py-10 md:text-[2vw] xl:text-[1vw] text-[4vw] w-full flex items-center justify-between    font-[font2] uppercase  transform"
             >
               <div
                 ref={fillRef}
                 className="absolute top-0 left-0 h-full w-full flex items-center justify-center bg-black text-white"
               >
-                <h1 className="text-[2vw] flex items-center justify-center gap-5 md:text-[1.2vw] font-semibold text-white">
+                <h1 className="text-[2vw] flex items-center justify-center gap-5 md:text-[2vw] xl:text-[1.2vw] font-semibold text-white">
                   Send Message <Rocket />
                 </h1>
               </div>
@@ -312,11 +312,11 @@ const Contact = () => {
       </div>
 
       <div className="w-full h-[10vw] md:w-full flex  items-center md:py-0 py-[1vw] justify-between px-5 ">
-        <div className="flex items-end text-[4vw] md:text-[1.5vw] justify-between font-[font2] gap-10">
+        <div className="flex items-end text-[4vw] md:text-[2vw] xl:text-[1.5vw] justify-between font-[font2] gap-10">
           Terms & Conditions
         </div>
 
-        <div className="font-[font2] text-[4vw] md:text-[1.5vw]">
+        <div className="font-[font2] text-[4vw] md:text-[2vw] xl:text-[1.5vw]">
           copyrights Ruthwik 2024
         </div>
 

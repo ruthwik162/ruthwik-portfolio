@@ -257,7 +257,7 @@ const Architecture = () => {
             className="relative  overflow-hidden border-b border-gray-200 cursor-pointer"
           >
             <div className="relative  md:gap-[20vh] px-2 z-10">
-              <span className="role-text textS flex items-center flex-row-reverse gap-3 justify-between text-[6.5vw] md:text-[2.3vw] text-black">
+              <span className="role-text textS flex items-center flex-row-reverse gap-3 justify-between text-[6.5vw] lg:text-[2.5vw] lg:leading-[3vw] md:text-[3vw] xl:leading-[2vw] xl:text-[1.8vw] md:leading-[2.5vw] text-black">
                 <ArrowUpRight strokeWidth={1.1} className="" />
                 <span className="flex items-center gap-1">
                   {role.icon}
@@ -273,7 +273,7 @@ const Architecture = () => {
       {/* ✅ Plans */}
       <div className="w-full mt-[10vw] md:mt-0 md:flex-row flex-col flex gap-[2vw] items-center justify-center">
 
-        <div className=" w-full  md:px-5  md:p-5">
+        <div className=" w-full  md:px-1  md:p-5">
           <div ref={planRef} className="overflow-hidden  cursor-pointer w-full md:px- md:w-[50%]" >
             <div ref={arrow2Ref} className="flex items-center">
               <ArrowRight className="w-8 h-8 md:w-13 md:h-13 text-black" strokeWidth={1.5} />
@@ -282,14 +282,14 @@ const Architecture = () => {
               </h2>
             </div>
           </div>
-          <div className=" w-full h-full bg-gray-200 md:py-18 p-2 md:p-7">
+          <div className=" w-full h-full bg-gray-200 md:py-18 p-2 space-y-3 md:p-7">
             {roles.map((role, i) => (
               <div
                 key={i}
-                className="relative max-w-9xl font-[font2]  overflow-hidden "
+                className="relative gap-5 font-[font2]  overflow-hidden "
               >
-                <div className="relative  flex flex-col md:flex-row  items-start md:items-center gap-1    z-10">
-                  <span className="role-text textSS flex items-center gap-3 text-[4vw] md:text-[1.5vw] md:leading-[2.5vw] text-black">
+                <div className="relative  flex flex-col md:flex-row  items-start md:items-center gap-2     z-10">
+                  <span className="role-text textSS flex items-center gap-3 text-[4vw] lg:text-[2.5vw] lg:leading-[3vw] md:text-[2.5vw] xl:leading-[2vw] xl:text-[1.5vw] md:leading-[2.5vw] text-black">
                     <BsArrowReturnRight strokeWidth={0.05} /> {role.desc}
                   </span>
 
@@ -306,17 +306,17 @@ const Architecture = () => {
       <div className="mt-12 w-full  font-[font2] ">
         <h3 className="text-[10vw] md:text-[6vw] font-[aeonik2] tracking-tighter  mb-4">Vision & Mission</h3>
         <div className="overflow-hidden leading-[5vh]">
-          <p className="text-lg md:text-[1.8vw] text3 text-black leading-[4vw] md:leading-[2vw]">
+          <p className="text-lg lg:text-[3vw] lg:leading-[3vw] md:text-[3vw] xl:leading-[2vw] xl:text-[1.8vw] text3 text-black leading-[4vw] md:leading-[3vw]">
             We believe in merging creativity with technology to build
           </p>
         </div>
         <div className="overflow-hidden leading-[5vh]">
-          <p className="text-lg md:text-[1.8vw] text3 text-black leading-[4vw] md:leading-[2vw]">
+          <p className="lg:text-[3vw] lg:leading-[3vw] md:text-[3vw] xl:leading-[2vw] xl:text-[1.8vw] text3 text-black leading-[4vw] md:leading-[3vw]">
             experiences that matter. Our mission is to empower ideas,
           </p>
         </div>
         <div className="overflow-hidden leading-[5vh]">
-          <p className="text-lg md:text-[1.8vw] text3 text-black leading-[4vw] md:leading-[2vw]">
+          <p className="lg:text-[3vw] lg:leading-[3vw] md:text-[3vw] xl:leading-[2vw] xl:text-[1.8vw] text3 text-black leading-[4vw] md:leading-[3vw]">
             scale innovation, and deliver impact that lasts
           </p>
         </div>
@@ -325,13 +325,13 @@ const Architecture = () => {
       {/* ✅ CTA */}
       
 
-      <div className="overflow-hidden relative bg-black w-[70%] md:w-[45%] md:h-[3vw] h-[18vw] mt-5 flex items-center border  justify-center border-b-black   rounded-full ">
+      <div className="overflow-hidden relative bg-black w-[70%] md:w-[45%] lg:h-[5vw] md:h-[5vw] xl:h-[3vw] h-[18vw] mt-5 flex items-center border  justify-center border-b-black   rounded-full ">
         <button
           ref={boxRef}
           type="submit"
-          className="  px-3 md:px-2 py-5 md:py-10 md:text-[1.2vw] text-[4vw] w-full flex items-center justify-center   text-white font-[font2]   transform">
+          className="  px-3 md:px-2 py-5 md:py-10 lg:text-[2vw] lg:leading-[3vw] md:text-[2vw] xl:leading-[2vw] xl:text-[1.2vw] text-[4vw] w-full flex items-center justify-center   text-white font-[font2]   transform">
           <div  ref={fillRef} className="absolute top-0 left-0 h-full w-full flex items-center justify-center bg-red-600 text-black">
-            <h1 className="text-[2vw] flex items-center justify-center mt-1 md:text-[1.2vw] font-[font2] text-black">
+            <h1 className="text-[2vw] flex items-center justify-center mt-1 lg:text-[3vw] lg:leading-[3vw] md:text-[2vw] xl:leading-[2vw] xl:text-[1.8vw] font-[font2] text-black">
               Let’s Build Something Great <RocketIcon />
             </h1>
           </div>

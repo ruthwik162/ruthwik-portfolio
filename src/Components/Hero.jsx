@@ -288,35 +288,35 @@ const Home = () => {
 
 
 
-            <section data-scroll data-scroll-speed="0.9" className="w-full h-screen  z-50">
+            <section data-scroll data-scroll-speed="0.9" className="w-full h-full  z-50">
                 <div className="md:ml-[4.5vh] w-1/2 flex flex-col items-start ">
                     <div className="mt-[15vh]  overflow-hidden">
-                        <div className="textL text-[15vw] md:px-   leading-[14vw] md:text-[6vw] uppercase font-poppins font-poppins-500  text-black md:leading-[5vw]">
-                            <span className="font-[font3] md:text-[8vw] text-[19vw] leading-[18vw] relative md:top-5 inline-block  md:leading-[7vw]">N</span>aga
+                        <div className="textL text-[15vw] md:px-   leading-[14vw] xl:text-[8vw] xl:leading-[7vw] lg:text-[10vw] lg:leading-[8vw] md:text-[12vw] md:leading-[12vw] uppercase font-poppins font-poppins-500  text-black ">
+                            <span className="font-[font3]  relative inline-block  ">N</span>aga
                         </div>
                     </div>
                     <div className="overflow-hidden">
-                        <div className="textL text-[20vw] md:text-[7vw] uppercase  font-poppins font-poppins-500 text-black leading-[17vw] md:leading-[6vw]">
+                        <div className="textL text-[20vw] xl:text-[7vw] md:text-[15vw] md:leading-[14vw] lg:text-[12vw] lg:leading-[10vw] uppercase  font-poppins font-poppins-500 text-black leading-[17vw] xl:leading-[6vw]">
                             Ruthwik
                         </div>
                     </div>
                     <div className="overflow-hidden  flex flex-col items-start">
                         <div className="flex">
-                            <div className="textL text-[15vw] md:text-[4.5vw] uppercase  font-[aeonik1] text-black leading-[15vw] md:leading-[4vw]">
+                            <div className="textL text-[15vw] xl:text-[4.5vw] leading-[15vw] xl:leading-[4vw] md:text-[7vw] md:leading-[7vw]  uppercase  font-[aeonik1] text-black ">
                                 Merugu.
                             </div>
                         </div>
                         <span ref={lineRef} className="h-0.5 w-full ml-1  bg-black flex items-start justify-start"></span>
                     </div>
                 </div>
-                <div className="overflow-hidden gap-0 md:text-black text-gray-500 ml-[5vh] md:ml-[25vh]">
+                <div className="overflow-hidden gap-0 md:text-black text-gray-500 ml-[5vh] lg:ml-[20vw] md:ml-[7vw] xl:ml-[25vh]">
                     <div className="overflow-hidden">
-                        <div className="md:text-[2vw] mt-[2vh] text-[5vw] leading-[3vh] md:leading-[3vh]">
+                        <div className="xl:text-[2vw] lg:text-[3vw] lg:leading-[3vw] mt-[2vh] text-[5vw] md:text-[4vw] md:leading-[4vw] leading-[3vh] xl:leading-[3vh]">
                             <p className="text2 font-[font2]">An Interactive Developer</p>
                         </div>
                     </div>
                     <div className="overflow-hidden">
-                        <div className="md:ml-[15vh] ml-[9vh] md:text-[2vw] text-[5vw] leading-[3vh] md:leading-[4vh]">
+                        <div className="xl:ml-[15vh] lg:ml-[10vw] md:ml-[7vw] ml-[9vh] xl:text-[2vw] md:text-[4vw] md:leading-[4vw] lg:text-[3vw] lg:leading-[3vw] mt-[2vh] md:mt-0 xl:mt-[1vw] text-[5vw] leading-[3vh] xl:leading-[3vh]">
                             <p className="text2 font-[font2]">Based in Hyderabad, India</p>
                         </div>
                     </div>
@@ -356,14 +356,14 @@ const Home = () => {
 
             </section>
             <section className="sec2">
-                <div className='overflow-hidden md:mt-[10vh]'>
-                    <div className='text-center md:text-[2.5vw] font-[font2] text-gray-400'>
+                <div className='overflow-hidden md:mt-0 xl:mt-[10vh]'>
+                    <div className='text-center xl:text-[2.5vw] md:text-[3.3vw] font-[font2] text-gray-400'>
                         <h1 className="textD">Designing for <span className='text-black'>clarity</span>, <span className='text-black'>impact</span>, and delight—one project at a time.</h1>
                     </div>
                 </div>
             </section>
 
-            <section className="w-full h-full md:mt-[5vw] font-poppins page2 md:px-[2vw] tracking-tighter relative">
+            <section className="w-full h-full md:mt-[15vw] lg:mt-[8vw] xl:mt-[5vw] font-poppins page2 md:px-[2vw] tracking-tighter relative">
 
 
                 <div className='overflow-hidden  '>
@@ -378,7 +378,7 @@ const Home = () => {
                                 className="relative  overflow-hidden border-b border-gray-200 cursor-pointer"
                             >
                                 <div className="relative  md:gap-[20vh]  z-10">
-                                    <span className="role-text textS flex items-center flex-row-reverse gap-3 justify-between text-[6.5vw] md:text-[3vw] text-black">
+                                    <span className="role-text textS flex items-center flex-row-reverse gap-3 justify-between text-[6.5vw] md:text-[4.8vw] lg:text-[4vw] xl:text-[3vw] text-black">
                                         <ArrowUpRight strokeWidth={0.5} className="md:w-20 md:h-15" />
                                         <span className="flex items-center gap-1">
                                             {role.name}
