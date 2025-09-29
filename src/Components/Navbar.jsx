@@ -3,6 +3,7 @@ import { contact, links } from "../assets/assets";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Link, useNavigate } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 const Navbar = () => {
   const navRef = useRef(null);
@@ -33,7 +34,7 @@ const Navbar = () => {
 
     // Hover underline setup
     hoverFillRef.current.forEach((fill) => {
-      gsap.set(fill, { xPercent: -100 });
+      gsap.set(fill, { xPercent: -110 });
     });
 
     // Add hover events for each link underline
@@ -43,7 +44,7 @@ const Navbar = () => {
       link.onmouseenter = () => {
         gsap.to(fill, {
           xPercent: 0,
-          duration: 0.4,
+          duration: 1,
           ease: "power3.inOut",
         });
       };
@@ -51,7 +52,7 @@ const Navbar = () => {
       link.onmouseleave = () => {
         gsap.to(fill, {
           xPercent: 100,
-          duration: 0.4,
+          duration: 1,
           ease: "power3.inOut",
           onComplete: () => gsap.set(fill, { xPercent: -100 }), // reset
         });
@@ -202,12 +203,13 @@ const Navbar = () => {
         </h1>
 
         <div className="flex flex-col md:ml-[50%] items-center justify-start md:-mt-[20vh] md:flex-col">
-          <div className="relative -ml-[13vh] md:ml-0 -mt-[13vh] pt-2 md:mt-0 md:pt-0 md:w-full flex flex-col font-[font2] text-4xl gap-y-3 md:text-6xl lg:text-[7vw] xl:text-[4vw]">
+          <div className="relative -ml-[13vh] md:ml-0  -mt-[13vh] pt-2 md:mt-0 md:pt-0  flex flex-col font-[font2] text-4xl gap-y-3 md:text-6xl lg:text-[7vw] xl:text-[4vw]">
             {["Profile", "capability", "Projects", "Contact"].map((text, index) => (
               <div className="overflow-hidden" key={index}>
                 <div
+                  key={index}
                   ref={(el) => (linksRef.current[index] = el)}
-                  className="overflow-hidden flex flex-col"
+                  className="flex "
                 >
                   <h2
                     onClick={() => {
@@ -221,18 +223,15 @@ const Navbar = () => {
                       scrollTo(0, 0);
                       iconTl.current.reverse();
                     }}
-                    className="transition-all duration-300 hover:text-white cursor-pointer"
-                  >
-                    {text}
-                    <div className="w-[20%] h-[.08vw] overflow-hidden rounded ">
-                    <div
-                      ref={(el) => (hoverFillRef.current[index] = el)}
-                      className="w-full h-full bg-white"
-                    />
-                  </div>
+                   className="flex items-start cursor-pointer flex-col justify-center">
+                    <span className="flex items-center justify-center">{text} <ArrowRight strokeWidth={0.8} className="-rotate-45 inline-block xl:w-15 xl:h-15 lg:h-18 lg:w-18 md:w-18 md:h-18 w-10 h-10" /></span>
+                    <div className="w-full h-[0.15vw] overflow-hidden rounded">
+                      <div
+                        ref={(el) => (hoverFillRef.current[index] = el)}
+                        className="w-full h-full bg-white"
+                      />
+                    </div>
                   </h2>
-                  {/* Hover underline */}
-                  
                 </div>
               </div>
             ))}
@@ -287,18 +286,16 @@ const Navbar = () => {
           onClick={() =>
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
           }
-          className={`text-[7vh] transition-all duration-1000 font-[aeonik2] ${
-            !open ? "text-black" : "text-white"
-          }`}
+          className={`text-[7vh] transition-all duration-1000 font-[aeonik2] ${!open ? "text-black" : "text-white"
+            }`}
         >
           R
         </Link>
         <div
           ref={pillRef}
           onClick={toggleMenu}
-          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] xl:top-[1.05vw] lg:right-[5vw] lg:top-[2.5vw] md:right-[6vw] xl:right-[4.7vw] items-center justify-between px-2 cursor-pointer h-10 md:h-12 lg:h-16 xl:h-10 rounded-sm bg-black/50 transition-all duration-900 ${
-            open ? "w-11" : "md:w-29  w-22 lg:w-38 xl:w-25"
-          }`}
+          className={`menu-pill flex absolute z-50 top-[2vh] right-[3vh] xl:top-[1.05vw] lg:right-[5vw] lg:top-[2.5vw] md:right-[6vw] xl:right-[4.7vw] items-center justify-between px-2 cursor-pointer h-10 md:h-12 lg:h-16 xl:h-10 rounded-sm bg-black/50 transition-all duration-900 ${open ? "w-11" : "md:w-29  w-22 lg:w-38 xl:w-25"
+            }`}
         >
           <h1 className="text-black text-[3vw] md:text-[2.5vw] lg:text-[2.5vw] xl:text-[1.2vw]   font-[font2] transition-all -px-3 duration-700">
             Menu
@@ -309,9 +306,8 @@ const Navbar = () => {
         <div
           ref={iconRef}
           onClick={toggleMenu}
-          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.6vh] right-[3.5vh] md:top-[3.2vw]  md:right-[6.5vw] lg:right-[5.5vw] lg:top-[2.8vw] xl:top-[1.31vw] xl:right-[5vw] bg-white transition-all duration-700 rounded-sm w-8 h-8 md:w-10 md:h-10 lg:h-14 lg:w-14 xl:w-8 xl:h-8 ${
-            open ? "scale-130" : "scale-100"
-          }`}
+          className={`menu-icon z-50 flex cursor-pointer flex-col items-center justify-center gap-1 absolute top-[2.6vh] right-[3.5vh] md:top-[3.2vw]  md:right-[6.5vw] lg:right-[5.5vw] lg:top-[2.8vw] xl:top-[1.31vw] xl:right-[5vw] bg-white transition-all duration-700 rounded-sm w-8 h-8 md:w-10 md:h-10 lg:h-14 lg:w-14 xl:w-8 xl:h-8 ${open ? "scale-130" : "scale-100"
+            }`}
         >
           <span
             ref={topline}

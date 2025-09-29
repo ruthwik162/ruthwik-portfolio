@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 import { links } from "../assets/assets";
 import { ArrowBigRight, ArrowRight, ArrowUpRight, Quote, Rocket, Send } from "lucide-react";
+import Footer from "../Components/Footer";
 
 
 const Contact = () => {
@@ -176,6 +177,15 @@ const Contact = () => {
         ease: "power3.inOut"
       });
     };
+    gsap.from(".end", {
+      y: 100,
+      duration: 1.2,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: ".end",
+        start: "top 60%"
+      }
+    })
   });
 
   return (
@@ -240,7 +250,7 @@ const Contact = () => {
           <div className="flex items-start justify-center flex-col md:mx-[3vw]">
             {links.map((link, id) => (
               <div key={id} className="flex flex-col items-center justify-center">
-                <a href={link.href} className="flex  items-center justify-center hover:text-indigo-200 transition-all duration-400 md:text-[3vw] xl:text-[1.8vw] font-[aeonik2] "><span className="md:block hidden"><ArrowRight/></span> &nbsp;&nbsp;&nbsp; {link.name} <ArrowUpRight /> </a>
+                <a href={link.href} className="flex  items-center justify-center hover:text-indigo-200 transition-all duration-400 md:text-[3vw] xl:text-[1.8vw] font-[aeonik2] "><span className="md:block hidden"><ArrowRight /></span> &nbsp;&nbsp;&nbsp; {link.name} <ArrowUpRight /> </a>
               </div>
             ))}
           </div>
@@ -311,16 +321,14 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className="w-full h-[10vw] md:w-full flex  items-center md:py-0 py-[1vw] justify-between px-5 ">
-        <div className="flex items-end text-[4vw] md:text-[2vw] xl:text-[1.5vw] justify-between font-[font2] gap-10">
-          Terms & Conditions
-        </div>
+      <section className='w-full flex items-start flex-col justify-center min-h-screen'>
 
-        <div className="font-[font2] text-[4vw] md:text-[2vw] xl:text-[1.5vw]">
-          copyrights Ruthwik 2024
+        <div className='w-full'>
+          <Footer />
         </div>
+      </section>
 
-      </div>
+
 
 
 

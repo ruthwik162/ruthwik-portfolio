@@ -1,16 +1,15 @@
 import React from "react";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
-import { RiExternalLinkLine } from "react-icons/ri";
 
 const ProjectCard = ({ image, title, description, stacks, url, getStackIcon }) => {
   return (
-    <div className="group relative w-full h-[400px] md:w-[40vw] md:h-[20vw] lg:w-[50vw] lg:h-[30vw]  xl:w-[30vw] xl:h-[20vw]  overflow-hidden  shadow-lg cursor-pointer">
+    <div className="group relative w-full h-[400px] md:w-[45vw] md:h-[30vw] lg:w-[50vw] lg:h-[30vw]  xl:w-[30vw] xl:h-[20vw]  overflow-hidden  shadow-lg cursor-pointer">
 
 
       <img className="h-full w-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
         src={image} alt={title} />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-between p-6">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent xl:opacity-0 xl:group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-between p-6">
 
         <div className="flex flex-wrap gap-3 justify-end">
           {stacks.map((stack, index) => (
@@ -25,9 +24,9 @@ const ProjectCard = ({ image, title, description, stacks, url, getStackIcon }) =
         </div>
 
         {/* Content at bottom */}
-        <div className="transform translate-y-0 md:translate-y-8 md:group-hover:translate-y-0 transition-transform duration-500 ease-out">
-          <h2 className=" text-3xl md:text-[1.2vw] font-poppins-500 font-poppins text-white mb-3 tracking-tighter">{title} </h2>
-          <p className="text-white/90 text-sm md:text-[0.8vw] md:leading-[1vw] mb-4 font-poppins-200 tracking-tight font-poppins ">{description} </p>
+        <div className="transform translate-y-0 xl:translate-y-8 xl:group-hover:translate-y-0 transition-transform duration-500 ease-out">
+          <h2 className=" text-3xl xl:text-[1.5vw] lg:text-[2vw] md:text-[2vw] font-poppins-500 font-poppins text-white mb-3 tracking-tighter">{title} </h2>
+          <p className="text-white/90 text-sm xl:text-[0.8vw] lg:text-[1.8vw] lg:leading-[1.8vw] md:text-[1.5vw] md:leading-[2vw] xl:leading-[0.8vw] mb-4 tracking-tight font-[font2] ">{description} </p>
           <div className="flex items-center gap-4">
             <div className="flex gap-2 flex-wrap">
               {stacks.slice(0, 3).map((stack, index) => (

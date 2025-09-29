@@ -1,6 +1,12 @@
 import React from 'react'
 import Architecture from '../Components/Architecture'
 import ParallaxImage from '../Components/ParellaxImage'
+import Footer from '../Components/Footer';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import gsap from 'gsap';
+
+gsap.registerPlugin(ScrollTrigger)
 
 const expert = [
   {
@@ -47,6 +53,19 @@ const skill = [
 
 
 const Capability = () => {
+
+  useGSAP(() => {
+    gsap.from(".end", {
+      y: 100,
+      duration: 1.2,
+      stagger: 0.1,
+      scrollTrigger: {
+        trigger: ".end",
+        start: "top 60%"
+      }
+    })
+  })
+
   return (
     <div className='w-full min-h-screen'>
 
@@ -134,16 +153,24 @@ const Capability = () => {
       </section>
 
 
-      <section className='w-full flex items-center justify-start min-h-screen'>
+      <section className='w-full flex items-start flex-col justify-center min-h-screen'>
         <div className='overflow-hidden px-10'>
-          <div className='md:text-[5vw] md:leading-[5vw] font-[font2] '>
-            <h1>The <span className='text-gray-400 font-[font3]'>End</span>...</h1>
+          <div className='overflow-hidden'>
+            <div className='xl:text-[5vw] end text-[7vw] leading-[7vw] lg:text-[8vw] overflow-hidden lg:leading-[8vw] xl:leading-[5vw] font-[font2] '>
+              <h1>The <span className='text-gray-400 font-[font3]'>End</span>...</h1>
+            </div>
           </div>
-          <div className='md:text-[5vw] md:leading-[5vw] font-[font2] '>
-            <h1>Not our Journey</h1>
+          <div className='overflow-hidden'>
+            <div className='xl:text-[5vw] end text-[7vw] leading-[7vw] lg:text-[8vw] overflow-hidden lg:leading-[8vw] xl:leading-[5vw] font-[font2] '>
+              <h1>Not our Journey</h1>
+            </div>
           </div>
         </div>
+        <div className='w-full'>
+          <Footer />
+        </div>
       </section>
+
     </div>
   )
 }

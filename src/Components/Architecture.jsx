@@ -331,7 +331,7 @@ const Architecture = () => {
           type="submit"
           className="  px-3 md:px-2 py-5 md:py-10 lg:text-[2vw] lg:leading-[3vw] md:text-[2vw] xl:leading-[2vw] xl:text-[1.2vw] text-[4vw] w-full flex items-center justify-center   text-white font-[font2]   transform">
           <div  ref={fillRef} className="absolute top-0 left-0 h-full w-full flex items-center justify-center bg-red-600 text-black">
-            <h1 className="text-[2vw] flex items-center justify-center mt-1 lg:text-[3vw] lg:leading-[3vw] md:text-[2vw] xl:leading-[2vw] xl:text-[1.8vw] font-[font2] text-black">
+            <h1 className="text-[2vw] flex items-center justify-center mt-1 lg:text-[2vw] lg:leading-[3vw] md:text-[2vw] xl:leading-[2vw] xl:text-[1.2vw] font-[font2] text-black">
               Let’s Build Something Great <RocketIcon />
             </h1>
           </div>

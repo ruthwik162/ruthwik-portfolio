@@ -6,29 +6,29 @@
 /* Self-hosted Lausanne font */
 @font-face {
   font-family: font1;
-  src: url(../public/fonts/Lausanne-300.woff2);
+  src: url(../fonts/Lausanne-300.woff2);
 
 }
 
 @font-face {
   font-family: font2;
-  src: url(../public/fonts/Lausanne-500.woff2);
+  src: url(../fonts/Lausanne-500.woff2);
 }
 @font-face {
   font-family: font3;
-  src: url(../public/fonts/The_Last_Shuriken.ttf);
+  src: url(../fonts/The_Last_Shuriken.ttf);
 }
 @font-face {
   font-family: font4;
-  src: url(../public/fonts/Storm_Gust.ttf);
+  src: url(../fonts/Storm_Gust.ttf);
 }
 @font-face {
   font-family: aeonik1;
-  src: url(../public/fonts/Aeonik-Regular.ttf);
+  src: url(../fonts/Aeonik-Regular.ttf);
 }
 @font-face {
   font-family: aeonik2;
-  src: url(../public/fonts/Aeonik-Bold.ttf);
+  src: url(../fonts/Aeonik-Bold.ttf);
 }
 
 body {

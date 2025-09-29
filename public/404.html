@@ -2,88 +2,32 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Nagaruthwik Portfolio</title>
+    <title>Nagaruthwik portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
-    <!--
-      This script ensures that if the user visits a non-root route (like /projects)
-      directly on static hosting (Vite SPA), they are redirected to the root "/"
-      so React can handle routing properly.
-    -->
     <script type="text/javascript">
       (function () {
         const { protocol, host, pathname, search, hash } = window.location;
-
-        // Split the URL path into segments and filter out empty strings
         const pathSegments = pathname.split("/").filter(Boolean);
 
-        // If there are path segments AND it is not a direct file like .js, .css
+        // If we are not on the root path and it's not a direct file (like .css, .js)
         if (
           pathSegments.length > 0 &&
           !/\.[a-zA-Z0-9]+$/.test(pathSegments[pathSegments.length - 1])
         ) {
-          // Store the original path in a query parameter
+          // Store original path in query param
           const redirectPath = pathname + search + hash;
           const newUrl = `${protocol}//${host}/?redirect=${encodeURIComponent(
             redirectPath
           )}`;
-
-          // Redirect only if we are not already on a redirect URL
           if (!window.location.search.includes("redirect=")) {
             window.location.replace(newUrl);
           }
         }
       })();
     </script>
-
-    <style>
-      /* Simple 404 style */
-      body {
-        margin: 0;
-        font-family: 'Poppins', sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: #f5f5f5;
-        color: #333;
-      }
-      .container {
-        text-align: center;
-      }
-      h1 {
-        font-size: 6rem;
-        margin: 0;
-      }
-      p {
-        font-size: 1.5rem;
-        margin: 1rem 0 0 0;
-      }
-      a {
-        display: inline-block;
-        margin-top: 2rem;
-        padding: 0.8rem 2rem;
-        background: #000;
-        color: #fff;
-        border-radius: 8px;
-        text-decoration: none;
-        transition: 0.3s;
-      }
-      a:hover {
-        background: #333;
-      }
-    </style>
   </head>
-
   <body>
-    <div class="container">
-      <!-- Fallback 404 content -->
-      <h1>404</h1>
-      <p>Oops! Page not found.</p>
-      <a href="/">Go to Home</a>
-    </div>
-
-    <!-- React mounting point -->
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
 </html>

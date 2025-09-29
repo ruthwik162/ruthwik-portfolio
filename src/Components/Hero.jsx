@@ -322,17 +322,17 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="overlflow-hidden md:mx-[3vw] w-[80%] mt-[5vw] ">
-                    <div className=" md:text-[2.5vw] whitespace-pre-line w-full md:leading-[2.5vw] leading-[3vw] text-[4vw] font-[font2]">
-                        <p className="do-text">I create digital experiences that</p>
+                <div className="overlflow-hidden md:mx-[3vw] md:w-[80%] px-2 mt-[5vw] ">
+                    <div className=" md:text-[2.5vw] whitespace-pre-line w-full md:leading-[2.5vw] leading-[3vw] text-[3.5vw] font-[font2]">
+                        <p className="do-text">I create digital experiences that spark</p>
                     </div>
-                    <div className="do-text md:text-[2.5vw] w-full  md:leading-[2.5vw] leading-[3vw] text-[4vw] font-[font2]">
-                        <p>spark curiosity and leave a mark.</p>
+                    <div className="do-text md:text-[2.5vw] w-full  md:leading-[2.5vw] leading-[3vw] text-[3.5vw] font-[font2]">
+                        <p> curiosity and leave a mark.Every  interface</p>
                     </div>
-                    <div className="do-text md:text-[2.5vw] w-full  md:leading-[2.5vw] leading-[3vw] text-[4vw] font-[font2]">
-                        <p>Every interface I design is a space where creativity and </p>
+                    <div className="do-text md:text-[2.5vw] w-full  md:leading-[2.5vw] leading-[3vw] text-[3.5vw] font-[font2]">
+                        <p>  I design is a space where creativity and </p>
                     </div>
-                    <div className="do-text md:text-[2.5vw] w-full  md:leading-[2.5vw] leading-[3vw] text-[4vw] font-[font2]">
+                    <div className="do-text md:text-[2.5vw] w-full  md:leading-[2.5vw] leading-[3vw] text-[3.5vw] font-[font2]">
                         <p>functionality meet to tell unique stories.</p>
                     </div>
                 </div>

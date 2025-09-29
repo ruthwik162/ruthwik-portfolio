@@ -29,13 +29,16 @@ import { MdBarChart } from "react-icons/md";
 import ProjectCard from "../Components/ProjectCard";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
+import { RocketIcon } from "lucide-react";
+import Footer from "../Components/Footer";
 
 const Projects = () => {
     const containerRef = useRef(null);
     gsap.registerPlugin(ScrollTrigger);
     const navigate = useNavigate();
     const projectRef = useRef(null);
-    const mobile = window.innerWidth < 850;
+    const boxRef = useRef(null);
+    const fillRef = useRef(null);
 
     // Map stack names to React icons
     const getStackIcon = (name) => {
@@ -64,7 +67,7 @@ const Projects = () => {
 
     const projects = [
         {
-            image: assets.mainbanner,
+            image: "https://plus.unsplash.com/premium_vector-1682298541598-7683a95289e9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx2aXN1YWwtc2VhcmNofDc2fHx8ZW58MHx8fHx8",
             title: "Student-Teacher Appointment Scheduler",
             description: "Comprehensive appointment scheduling platform for educational institutions, enabling seamless booking and management of student-teacher meetings.",
             url: "https://teacher-student-appointment-a7hf.onrender.com/",
@@ -76,7 +79,7 @@ const Projects = () => {
             ]
         },
         {
-            image: assets.otSchedular,
+            image: "https://plus.unsplash.com/premium_vector-1682298570780-c416aa7b710f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx2aXN1YWwtc2VhcmNofDYzfHx8ZW58MHx8fHx8",
             title: "Operation Theatre Scheduler",
             description: "Operation theatre scheduling system with real-time updates, resource management, and analytics dashboard for optimized hospital workflows.",
             url: "https://operartion-theatre-schedular.vercel.app/",
@@ -88,7 +91,7 @@ const Projects = () => {
             ]
         },
         {
-            image: assets.hostel,
+            image: "https://media.istockphoto.com/id/2196521057/vector/hostel-check-in-isolated-cartoon-vector-illustrations.webp?a=1&b=1&s=612x612&w=0&k=20&c=DNzwPGcWP-ysAR8oKZSOhTsKaNKCP5VosdSMd_PKdEg=",
             title: "Mallareddy University Hostel",
             description: "Mallareddy university website with interactive campus map, event calendar, and integrated student portal for enhanced user experience.",
             url: "https://malla-reddy-university.vercel.app/",
@@ -178,6 +181,34 @@ const Projects = () => {
                 scrub: 1,
             },
         });
+
+        gsap.set(fillRef.current, { yPercent: 100 });
+
+        boxRef.current.onmouseenter = () => {
+            gsap.to(fillRef.current, {
+                yPercent: 0,
+                duration: 0.4,
+                ease: "power3.inOut"
+            });
+        };
+
+        boxRef.current.onmouseleave = () => {
+            gsap.to(fillRef.current, {
+                yPercent: 100,
+                duration: 0.4,
+                ease: "power3.inOut"
+            });
+        };
+
+        gsap.from(".end", {
+            y: 100,
+            duration: 1.2,
+            stagger: 0.1,
+            scrollTrigger: {
+                trigger: ".end",
+                start: "top 60%"
+            }
+        })
     }, { scope: containerRef });
 
     return (
@@ -226,41 +257,53 @@ const Projects = () => {
             </div>
 
             {/* Contact Section */}
-            <div className="contact-section min-h-screen flex flex-col items-center justify-center gap-8 px-6">
+            <div className="contact-section min-h-screen flex flex-col items-start justify-center gap-8 px-6">
                 <div className="text-start">
-                    <h2 className="contact-item text-4xl font-[font2] md:text-[6vw] md:leading-[9vw] font-bold text-start text-gray-400 mb-6">
+                    <h2 className="contact-item text-4xl font-[font2] xl:text-[5vw] xl:leading-[5vw] lg:text-[6vw] lg:leading-[6vw] md:text-[7vw] md:leading-[7vw] font-bold text-start text-gray-400 mb-6">
                         Ready to <span className="text-black">Start</span> Your <span className="text-black">Next Project?</span>
                     </h2>
-                    <p className="contact-item max-w-5xl font-[font2] text-lg md:text-3xl text-gray-600 mb-8">
+                    <p className="contact-item max-w-5xl font-[font2] text-[4vw] leading-[4vw] xl:text-[2vw] xl:leading-[1.5vw] lg:text-[2.5vw] lg:leading-[2vw] md:text-[3vw] md:leading-[2.5vw ] text-gray-600 mb-8">
                         Let's collaborate to bring your vision to life with innovative solutions and cutting-edge technology.
                     </p>
                 </div>
 
-                <div className="contact-item flex flex-col sm:flex-row gap-4">
+                <div className="overflow-hidden relative bg-black w-[65%] md:w-[45%] lg:w-[35%] xl:w-[25%] lg:h-[5vw] md:h-[5vw] xl:h-[3vw] h-[10vw] mt-5 flex items-center border  justify-center border-red-600   rounded-full ">
                     <button
-                        onClick={() => { navigate("/contact"); scrollTo(0, 0); }}
-                        className="px-8 py-4 bg-black text-white rounded-full font-poppins uppercase flex items-center gap-2 hover:bg-gray-800 transition-colors"
-                    >
-                        Start a Project
-                        <FaArrowRight />
+                        onClick={() => {
+                            navigate("/contact");
+                            scrollTo(0, 0);
+                        }}
+                        ref={boxRef}
+                        type="submit"
+                        className="  px-3 md:px-2 py-5 md:py-10 lg:text-[2vw] lg:leading-[3vw] md:text-[2vw] xl:leading-[2vw] xl:text-[1.2vw] text-[4vw] w-full flex items-center justify-center gap-2  text-white font-[font2]   transform">
+                        <div ref={fillRef} className="absolute top-0 left-0 h-full w-full flex items-center justify-center bg-red-600 text-black">
+                            <h1 className="text-[2vw] flex items-center gap-2 justify-center mt-1 lg:text-[2vw] lg:leading-[3vw] md:text-[2vw] xl:leading-[2vw] xl:text-[1.2vw] font-[font2] text-black">
+                                Let’s Start Project <FaArrowRight />
+                            </h1>
+                        </div>
+                        Wanna Start Project <FaArrowRight />
                     </button>
                 </div>
 
-                <div className="contact-item mt-12 text-center">
-                    <p className="text-gray-500 mb-4">Get in touch</p>
-                    <div className="flex justify-center gap-6">
-                        <a href="mailto:nagaruthwikmerugu162@gmail.com" className="text-black hover:text-blue-800">
-                            <FaEnvelope className="text-2xl" />
-                        </a>
-                        <a href="https://linkedin.com/in/nagaruthwikmerugu/" className="text-black hover:text-blue-800">
-                            <FaLinkedin className="text-2xl" />
-                        </a>
-                        <a href="https://github.com/ruthwik162" className="text-black hover:text-blue-800">
-                            <FaGithub className="text-2xl" />
-                        </a>
+            </div>
+
+            <section className='w-full flex items-start flex-col justify-center min-h-screen'>
+                <div className='overflow-hidden px-10'>
+                    <div className='overflow-hidden'>
+                        <div className='xl:text-[5vw] end text-[7vw] leading-[7vw] lg:text-[8vw] overflow-hidden lg:leading-[8vw] xl:leading-[5vw] font-[font2] '>
+                            <h1>The <span className='text-gray-400 font-[font3]'>End</span>...</h1>
+                        </div>
+                    </div>
+                    <div className='overflow-hidden'>
+                        <div className='xl:text-[2vw] end text-[5vw] leading-[5vw] lg:text-[4vw] overflow-hidden lg:leading-[4vw] xl:leading-[3vw] font-[font2] '>
+                            <h1>Great idea deserve great Collaboration</h1>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div className='w-full'>
+                    <Footer />
+                </div>
+            </section>
         </div>
     );
 };

@@ -2,19 +2,18 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 
 const GsapMarquee = ({
-  speed = 5,
+  speed = 30,
   direction = "left",
   children,
 }) => {
   const marqueeRef = useRef(null);
-  const tweenRef = useRef(null);
 
   useEffect(() => {
     const el = marqueeRef.current;
-    const distance = el.scrollWidth / 2; // half, since duplicated
+    const distance = el.scrollWidth / 2; // width of one duplicated set
 
-    tweenRef.current = gsap.to(el, {
-      x: direction === "left" ? -distance : 0,
+    gsap.to(el, {
+      x: direction === "left" ? -distance : distance,
       duration: speed,
       ease: "linear",
       repeat: -1,
@@ -27,23 +26,18 @@ const GsapMarquee = ({
         },
       },
     });
-
-    return () => {
-      tweenRef.current?.kill();
-    };
   }, [speed, direction]);
 
-
-
   return (
-    <div className="overflow-hidden w-full  text-black cursor-default border">
+    <div className="overflow-hidden w-full cursor-default">
       <div
         ref={marqueeRef}
-        className="flex whitespace-nowrap uppercase text-[7vw] md:text-[4.5vw]  md:gap-[7vh] font-poppins font-poppins-400 tracking-tight"
+        className="flex whitespace-nowrap uppercase text-[7vw] md:text-[4.5vw] md:gap-[7vh] font-poppins tracking-tight"
       >
-        <div className="flex items-center justify-center gap-2 md:gap-8">{children}</div>
-        <div className="flex items-center justify-center gap-2 md:gap-8">{children}</div>
-        
+        {/* duplicate at least twice for seamless loop */}
+        <div className="flex items-center gap-2 md:gap-8">{children}</div>
+        <div className="flex items-center gap-2 md:gap-8">{children}</div>
+        <div className="flex items-center gap-2 md:gap-8">{children}</div>
       </div>
     </div>
   );
