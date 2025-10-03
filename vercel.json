@@ -14,8 +14,9 @@
       "dest": "/$1"
     },
     {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "src": "/(.*)",         
+      "headers": { "cache-control": "no-cache" },
+      "dest": "/index.html"    
     }
   ]
 }

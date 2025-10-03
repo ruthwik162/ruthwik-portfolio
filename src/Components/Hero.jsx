@@ -256,7 +256,7 @@ const Home = () => {
                     split.lines.map((l) => l.querySelector("span.inline-block")),
                     {
                         y: 100,
-                        delay:0.2,
+                        delay: 0.2,
                         duration: 2,
                         ease: "power3.out",
                         stagger: 0.25,
@@ -289,72 +289,72 @@ const Home = () => {
 
 
             <section data-scroll data-scroll-speed="0.9" className="w-full h-full  z-50">
-                <div className="md:ml-[4.5vh] w-1/2 flex flex-col items-start ">
-                    <div className="mt-[15vh]  overflow-hidden">
-                        <div className="textL text-[15vw] md:px-   leading-[14vw] xl:text-[8vw] xl:leading-[7vw] lg:text-[10vw] lg:leading-[8vw] md:text-[12vw] md:leading-[12vw] uppercase font-poppins font-poppins-500  text-black ">
-                            <span className="font-[font3]  relative inline-block  ">N</span>aga
-                        </div>
-                    </div>
-                    <div className="overflow-hidden">
-                        <div className="textL text-[20vw] xl:text-[7vw] md:text-[15vw] md:leading-[14vw] lg:text-[12vw] lg:leading-[10vw] uppercase  font-poppins font-poppins-500 text-black leading-[17vw] xl:leading-[6vw]">
-                            Ruthwik
-                        </div>
-                    </div>
-                    <div className="overflow-hidden  flex flex-col items-start">
-                        <div className="flex">
-                            <div className="textL text-[15vw] xl:text-[4.5vw] leading-[15vw] xl:leading-[4vw] md:text-[7vw] md:leading-[7vw]  uppercase  font-[aeonik1] text-black ">
-                                Merugu.
+                <div className="overflow-hidden">
+                    <div className="md:ml-[4.5vh] w-1/2 flex flex-col items-start ">
+                        <div className="mt-[15vh]  overflow-hidden">
+                            <div className="textL text-[15vw] md:px-   leading-[14vw] xl:text-[8vw] xl:leading-[7vw] lg:text-[10vw] lg:leading-[8vw] md:text-[12vw] md:leading-[12vw] uppercase font-poppins font-poppins-500  text-black ">
+                                <span className="font-[font3]  relative inline-block  ">N</span>aga
                             </div>
                         </div>
-                        <span ref={lineRef} className="h-0.5 w-full ml-1  bg-black flex items-start justify-start"></span>
-                    </div>
-                </div>
-                <div className="overflow-hidden gap-0 md:text-black text-gray-500 ml-[5vh] lg:ml-[20vw] md:ml-[7vw] xl:ml-[25vh]">
-                    <div className="overflow-hidden">
-                        <div className="xl:text-[2vw] lg:text-[3vw] lg:leading-[3vw] mt-[2vh] text-[5vw] md:text-[4vw] md:leading-[4vw] leading-[3vh] xl:leading-[3vh]">
-                            <p className="text2 font-[font2]">An Interactive Developer</p>
-                        </div>
-                    </div>
-                    <div className="overflow-hidden">
-                        <div className="xl:ml-[15vh] lg:ml-[10vw] md:ml-[7vw] ml-[9vh] xl:text-[2vw] md:text-[4vw] md:leading-[4vw] lg:text-[3vw] lg:leading-[3vw] mt-[2vh] md:mt-0 xl:mt-[0vw] text-[5vw] leading-[3vh] xl:leading-[3vh]">
-                            <p className="text2 font-[font2]">Based in Hyderabad, India</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="overlflow-hidden md:mx-[3vw] md:w-[60%] px-2 mt-[5vw]  ">
-                    <div className=" md:text-[2.5vw] whitespace-pre-line w-full md:leading-[2.5vw] leading-[3vw] text-[3.5vw] font-[font2]">
-                        <p className="do-text">I create digital experiences that spark</p>
-                    </div>
-                    <div className="do-text md:text-[2.5vw] w-full  md:leading-[2.5vw] leading-[3vw] text-[3.5vw] font-[font2]">
-                        <p> curiosity and leave a mark.Every  interface</p>
-                    </div>
-                    <div className="do-text md:text-[2.5vw] w-full  md:leading-[2.5vw] leading-[3vw] text-[3.5vw] font-[font2]">
-                        <p>  I design is a space where creativity and </p>
-                    </div>
-                    <div className="do-text md:text-[2.5vw] w-full  md:leading-[2.5vw] leading-[3vw] text-[3.5vw] font-[font2]">
-                        <p>functionality meet to tell unique stories.</p>
-                    </div>
-                </div>
-
-                <div className="bottom  font-[font4] md:mt-[10vh] mt-[15vh]">
-                    <div className="flex items-center justify-around">
-                        {bottom.map((items, index) => (
-                            <div key={index} className="between">
-                                <h1 className="text-[4vw] text-black md:text-[2vh] font-[font2] flex ">
-                                    {items.name}{" "}
-                                    {items.name === "Scroll Down" ? (
-                                        <span className="animate-bounce [animation-duration:2s]">   {items.icon} </span>
-                                    ) : (
-                                        items.icon
-                                    )}
-                                </h1>
+                        <div className="overflow-hidden">
+                            <div className="textL text-[20vw] xl:text-[7vw] md:text-[15vw] md:leading-[14vw] lg:text-[12vw] lg:leading-[10vw] uppercase  font-poppins font-poppins-500 text-black leading-[17vw] xl:leading-[6vw]">
+                                Ruthwik
                             </div>
-                        ))}
+                        </div>
+                        <div className="overflow-hidden  flex flex-col items-start">
+                            <div className="flex">
+                                <div className="textL text-[15vw] xl:text-[4.5vw] leading-[15vw] xl:leading-[4vw] md:text-[7vw] md:leading-[7vw]  uppercase  font-[aeonik1] text-black ">
+                                    Merugu.
+                                </div>
+                            </div>
+                            <span ref={lineRef} className="h-0.5 w-full ml-1  bg-black flex items-start justify-start"></span>
+                        </div>
+                    </div>
+                    <div className="overflow-hidden gap-0 md:text-black text-gray-500 ml-[5vh] lg:ml-[20vw] md:ml-[7vw] xl:ml-[25vh]">
+                        <div className="overflow-hidden">
+                            <div className="xl:text-[2vw] lg:text-[3vw] lg:leading-[3vw] mt-[2vh] text-[5vw] md:text-[4vw] md:leading-[4vw] leading-[3vh] xl:leading-[3vh]">
+                                <p className="text2 font-[font2]">An Interactive Developer</p>
+                            </div>
+                        </div>
+                        <div className="overflow-hidden">
+                            <div className="xl:ml-[15vh] lg:ml-[10vw] md:ml-[7vw] ml-[9vh] xl:text-[2vw] md:text-[4vw] md:leading-[4vw] lg:text-[3vw] lg:leading-[3vw] mt-[2vh] md:mt-0 xl:mt-[0vw] text-[5vw] leading-[3vh] xl:leading-[3vh]">
+                                <p className="text2 font-[font2]">Based in Hyderabad, India</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="overlflow-hidden md:mx-[3vw] md:w-[60%] px-2 mt-[5vw]  ">
+                        <div className=" md:text-[2.5vw] whitespace-pre-line w-full md:leading-[1.8vw] leading-[3vw] text-[3.5vw] font-[font2]">
+                            <p className="do-text">I create digital experiences that spark</p>
+                        </div>
+                        <div className="do-text md:text-[2.5vw] w-full  md:leading-[1.8vw] leading-[3vw] text-[3.5vw] font-[font2]">
+                            <p> curiosity and leave a mark.Every  interface</p>
+                        </div>
+                        <div className="do-text md:text-[2.5vw] w-full  md:leading-[1.8vw] leading-[3vw] text-[3.5vw] font-[font2]">
+                            <p>  I design is a space where creativity and </p>
+                        </div>
+                        <div className="do-text md:text-[2.5vw] w-full  md:leading-[1.8vw] leading-[3vw] text-[3.5vw] font-[font2]">
+                            <p>functionality meet to tell unique stories.</p>
+                        </div>
                     </div>
                 </div>
-
             </section>
+            <div className="bottom  font-[font4] md:mt-[5vw] mt-[15vh]">
+                <div className="flex items-center justify-around">
+                    {bottom.map((items, index) => (
+                        <div key={index} className="between">
+                            <h1 className="text-[4vw] text-black md:text-[2vh] font-[font2] flex ">
+                                {items.name}{" "}
+                                {items.name === "Scroll Down" ? (
+                                    <span className="animate-bounce [animation-duration:2s]">   {items.icon} </span>
+                                ) : (
+                                    items.icon
+                                )}
+                            </h1>
+                        </div>
+                    ))}
+                </div>
+            </div>
             <section className="sec2">
                 <div className='overflow-hidden md:mt-0 xl:mt-[10vh]'>
                     <div className='text-center xl:text-[2.5vw] md:text-[3.3vw] font-[font2] text-gray-400'>
@@ -392,7 +392,7 @@ const Home = () => {
                 </div>
 
             </section>
-            
+
 
 
         </div >

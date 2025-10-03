@@ -1,10 +1,9 @@
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useRef, useEffect, useState } from "react";
 import Navbar from "./Components/Navbar";
 import Hero from "./Components/Hero";
 import Lenis from "@studio-freight/lenis";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Projects from "./Pages/Projects";
 import Profile from "./Pages/Profile";
 import Home from "./Pages/Home";
@@ -17,9 +16,12 @@ const App = () => {
   const mainRef = useRef(null);
   const [soundEnabled, setSoundEnabled] = useState(false);
   const audioRef = useRef(null);
+  const location = useLocation(); // to track current route
 
   // Smooth cursor movement
-  useGSAP(() => {
+  useEffect(() => {
+    if (!mainRef.current || !cursorRef.current) return;
+
     const handleMove = (e) => {
       gsap.to(cursorRef.current, {
         x: e.clientX,
@@ -31,7 +33,7 @@ const App = () => {
 
     mainRef.current.addEventListener("mousemove", handleMove);
     return () => mainRef.current.removeEventListener("mousemove", handleMove);
-  });
+  }, []);
 
   // Lenis smooth scrolling
   useEffect(() => {
@@ -41,33 +43,27 @@ const App = () => {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
-    function raf(time) {
+    let rafId;
+    const animate = (time) => {
       lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(animate);
+    };
+    rafId = requestAnimationFrame(animate);
 
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);
 
   // Handle click
   const handleClick = () => {
-    if (!soundEnabled) {
-      setSoundEnabled(true);
-    }
+    if (!soundEnabled) setSoundEnabled(true);
 
     gsap.fromTo(
       cursorRef.current,
       { scale: 0.9, backgroundColor: "#4338ca" },
-      {
-        scale: 1.6,
-        backgroundColor: "#22c55e",
-        duration: 0.3,
-        yoyo: true,
-        repeat: 1,
-      }
+      { scale: 1.6, backgroundColor: "#22c55e", duration: 0.3, yoyo: true, repeat: 1 }
     );
 
     if (soundEnabled && audioRef.current) {
@@ -75,6 +71,11 @@ const App = () => {
       audioRef.current.play().catch((err) => console.log("Audio play error:", err));
     }
   };
+
+  // Optional: log current route only once per navigation
+  useEffect(() => {
+    console.log(`Navigated to ${location.pathname}`);
+  }, [location.pathname]);
 
   return (
     <div

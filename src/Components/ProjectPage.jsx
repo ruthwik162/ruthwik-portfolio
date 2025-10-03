@@ -27,6 +27,8 @@ import {
 } from "react-icons/si";
 import { MdBarChart } from "react-icons/md";
 import { ArrowLeft } from 'lucide-react';
+import TextY from './TextY';
+import Footer from './Footer';
 
 
 const ProjectPage = () => {
@@ -61,24 +63,24 @@ const ProjectPage = () => {
 
     return (
 
-        <div className='w-full min-h-screen   '>
+        <div className='w-full min-h-screen overflow-hidden  '>
 
-            <div className='w-full h-full  flex items-start md:flex-row flex-col-reverse pb-10 justify-center md:justify-between  px-[3vw] xl:px-[2vw]  '>
+            <section className='w-full h-full  flex items-start md:flex-row flex-col-reverse pb-10 justify-center md:justify-between  px-[3vw] xl:px-[2vw]  '>
 
                 <div className='overflow-hidden max-w-3xl mt-[20vw] xl:mt-[10vw]'>
-                    <div onClick={()=>{navigate(-1)}} className='w-50 h-10 cursor-pointer gap-3 flex items-center font-[Helvetica]  justify-center'>
-                       <span><ArrowLeft/></span> <span>Back to Projects</span>
+                    <div onClick={() => { navigate(-1) }} className='w-50 h-10 cursor-pointer gap-3 flex items-center font-[Helvetica]  justify-center'>
+                        <span><ArrowLeft /></span> <span>Back to Projects</span>
                     </div>
-                    
+
                     <div className='overflow-hidden xl:max-w-3xl mt-[3vw] font-[Helvetica] '>
                         <div className='xl:text-[5vw] md:text-[5vw] md:leading-[5vw] text-[8vw] leading-[8vw] xl:leading-[5vw]'>
                             <h1>{project.title}</h1>
                         </div>
                     </div>
                     <div className='overflow-hidden max-w-xl mt-[2vw] font-[Helvetica]'>
-                        <div className='xl:text-[1.2vw] md:text-[2vw] md:leading-[1.8vw] text-[4vw] leading-[4vw] md:text-justify xl:leading-[1vw]'>
-                            <p>{project.description}</p>
-                        </div>
+                        <TextY>
+                            <p className='xl:text-[1.2vw] md:text-[2vw] md:leading-[1.8vw] text-[4vw] leading-[4vw] md:text-justify xl:leading-[1vw]'>{project.description}</p>
+                        </TextY>
                     </div>
                     <div className='overflow-hidden xl:max-w-3xl mt-[2vw] font-[Helvetica] '>
                         <div className='xl:text-[1.2vw] text-black/60 text-[4vw] md:text-[2.2vw] leading-[4vw] xl:leading-[1vw]'>
@@ -108,9 +110,10 @@ const ProjectPage = () => {
                         <div className='xl:text-[2vw] text-[7vw] md:text-[4vw] py-2 text-justify xl:leading-[1.5vw]'>
                             <p>Description:</p>
                         </div>
-                        <div className='xl:text-[1.2vw] text-[3vw] leading-[3vw] md:text-[2vw] md:leading-[2vw] text-justify xl:leading-[1vw]'>
-                            <p>{project.maindesc}</p>
-                        </div>
+
+                        <TextY>
+                            <p className='xl:text-[1.2vw] text-[3vw] leading-[3vw] md:text-[2vw] md:leading-[2vw] text-justify xl:leading-[1.3vw]'>{project.maindesc}</p>
+                        </TextY>
                     </div>
 
                     <div className='overflow-hidden max-w-xl mt-[5vw] font-[Helvetica]'>
@@ -127,7 +130,10 @@ const ProjectPage = () => {
                         <img src={project.image} alt="project-image" />
                     </div>
                 </div>
-            </div>
+            </section>
+            <section className='w-full h-full'>
+                <Footer/>
+            </section>
 
 
 
