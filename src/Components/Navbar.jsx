@@ -286,10 +286,10 @@ const Navbar = () => {
           onClick={() =>
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
           }
-          className={`text-[7vh] transition-all duration-1000 font-[aeonik2] ${!open ? "text-black" : "text-white"
+          className={`md:text-[2vw] md:leading-[3vw] md:mt-[2vw] mt-[5vw] xl:text-[1vw] xl:leading-[2vw] text-[3.5vw] transition-all duration-1000 font-[aeonik2] ${!open ? "text-black" : "text-white"
             }`}
         >
-          R
+          Nagaruthwik ©
         </Link>
         <div
           ref={pillRef}

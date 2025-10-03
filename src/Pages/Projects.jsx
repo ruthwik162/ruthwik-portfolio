@@ -27,7 +27,7 @@ import {
 } from "react-icons/si";
 import { MdBarChart } from "react-icons/md";
 import ProjectCard from "../Components/ProjectCard";
-import { assets } from "../assets/assets";
+import { assets, projects } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { RocketIcon } from "lucide-react";
 import Footer from "../Components/Footer";
@@ -65,58 +65,8 @@ const Projects = () => {
         return <IconComponent className="text-white text-lg" />;
     };
 
-    const projects = [
-        {
-            image: "https://plus.unsplash.com/premium_vector-1682298541598-7683a95289e9?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx2aXN1YWwtc2VhcmNofDc2fHx8ZW58MHx8fHx8",
-            title: "Student-Teacher Appointment Scheduler",
-            description: "Comprehensive appointment scheduling platform for educational institutions, enabling seamless booking and management of student-teacher meetings.",
-            url: "https://teacher-student-appointment-a7hf.onrender.com/",
-            stacks: [
-                { name: "React" },
-                { name: "Node.js" },
-                { name: "MongoDB" },
-                { name: "Tailwind" }
-            ]
-        },
-        {
-            image: "https://plus.unsplash.com/premium_vector-1682298570780-c416aa7b710f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHx2aXN1YWwtc2VhcmNofDYzfHx8ZW58MHx8fHx8",
-            title: "Operation Theatre Scheduler",
-            description: "Operation theatre scheduling system with real-time updates, resource management, and analytics dashboard for optimized hospital workflows.",
-            url: "https://operartion-theatre-schedular.vercel.app/",
-            stacks: [
-                { name: "React" },
-                { name: "Node.js" },
-                { name: "MongoDB" },
-                { name: "Tailwind" }
-            ]
-        },
-        {
-            image: "https://media.istockphoto.com/id/2196521057/vector/hostel-check-in-isolated-cartoon-vector-illustrations.webp?a=1&b=1&s=612x612&w=0&k=20&c=DNzwPGcWP-ysAR8oKZSOhTsKaNKCP5VosdSMd_PKdEg=",
-            title: "Mallareddy University Hostel",
-            description: "Mallareddy university website with interactive campus map, event calendar, and integrated student portal for enhanced user experience.",
-            url: "https://malla-reddy-university.vercel.app/",
-            stacks: [
-                { name: "React" },
-                { name: "Node.js" },
-                { name: "MongoDB" },
-                { name: "Tailwind" }
-            ]
-        },
-        {
-            image: assets.ecommers,
-            title: "e-Commerce Platform",
-            description: "E-commerce platform with AI-driven product recommendations, dynamic pricing, and seamless checkout experience.",
-            url: "https://e-commerce-ten-rose-60.vercel.app/",
-            stacks: [
-                { name: "React" },
-                { name: "Node.js" },
-                { name: "MongoDB" },
-                { name: "Tailwind" }
-            ]
-        },
-    ];
 
-    const length = projects.length;
+
 
     useGSAP(() => {
         // Animate heading characters
@@ -212,14 +162,14 @@ const Projects = () => {
     }, { scope: containerRef });
 
     return (
-        <div ref={containerRef} className="bg-white md:mt-[10vh] mt-[30vh]">
+        <div ref={containerRef} className="bg-white md:mt-[10vh] mt-[30vh] overflow-hidden">
             {/* Title */}
             <div className="title-container bg-white">
                 <div className='bg-white mt-[10vh] md:mt-[40vh] overflow-hidden'>
                     <div className="overflow-hidden">
                         <div className='text-[15vw] md:text-[7vw] mx-[2vw] md:mx-[5vw] font-[font2] uppercase text-black'>
                             <div className="char relative">
-                                Projects <span className="absolute top-[10%] md:right-[57%] text-[7vw] md:text-[2vw]">[{length}]</span>
+                                Projects <span className="absolute top-[10%] md:right-[57%] text-[7vw] md:text-[2vw]">[{projects.length}]</span>
                             </div>
                         </div>
                     </div>
@@ -230,8 +180,20 @@ const Projects = () => {
             <div ref={projectRef} className="flex items-center md:items-start justify-center md:mt-[5vw] md:flex-row flex-col">
                 <div className="  md:h-screen tracking-wide  gap-1 md:w-1/2 md:mt-[5vw] flex flex-col items-center justify-center md:justify-start">
                     <div className="box w-full h-full text-center">
-                        <h1 className="md:text-[3vw] text-[6vw] font-[font2] md:leading-[3vw]">Selected Projects</h1>
-                        <h1 className="md:text-[2vw] font-[font2] md:leading-[2vw]">[2024-2025]</h1>
+                        <div className="overflow-hidden">
+                            <h1 className="md:text-[3vw] text-[6vw] font-[font2] md:leading-[3vw]">Selected Projects</h1>
+                            <h1 className="md:text-[2vw] font-[font2] md:leading-[2vw]">[2024-2025]</h1>
+                        </div>
+                        <div className="text-[4vw] xl:text-[2vw] font-[Helvetica] text-start ">
+                            <h1>Full Stack Projects:</h1>
+                        </div>
+                        <div className="flex flex-col items-start font-[Helvetica] justify-center">
+                            {projects.map((prj,idx)=>(
+                                <div key={idx}>
+                                    <div><span className="text-[1vw] text-black/60">[{idx + 1}]</span> {prj.title}</div>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
@@ -242,9 +204,9 @@ const Projects = () => {
                             <div className="flex items-center pb-0 mt-[4vw] md:mt-[1vw] flex-col-reverse md:flex-row gap-10 justify-center">
                                 <div className="w-full flex justify-center items-center">
                                     <ProjectCard
+                                        {...project}
                                         image={project.image}
                                         title={project.title}
-                                        description={project.description}
                                         stacks={project.stacks}
                                         url={project.url}
                                         getStackIcon={getStackIcon}

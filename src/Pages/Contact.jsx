@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/all";
 import { links } from "../assets/assets";
 import { ArrowBigRight, ArrowRight, ArrowUpRight, Quote, Rocket, Send } from "lucide-react";
 import Footer from "../Components/Footer";
+import axios from "axios";
 
 
 const Contact = () => {
@@ -15,6 +16,7 @@ const Contact = () => {
     message: ""
   });
   const [toasts, setToasts] = useState([]);
+  const [loading, setLoading] = useState()
 
   const contactRef = useRef([]);
   const socailRef = useRef([]);
@@ -39,19 +41,32 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    // Simulate form submission
-    showToast("Message sent successfully! I'll get back to you soon.", "success");
+    try {
+      const response = await axios.post(
+        "https://portfolio-backend-q8dg.onrender.com/contact",
+        formData
+      );
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: ""
-    });
+      if (response.status === 200) {
+        showToast("Message sent successfully! I'll get back to you soon.", "success");
+
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      }
+    } catch (err) {
+      showToast("Failed to send message. Please try again later.", "error");
+    } finally {
+      setLoading(false);
+    }
   };
 
   useGSAP(() => {
@@ -309,10 +324,12 @@ const Contact = () => {
                 className="absolute top-0 left-0 h-full w-full flex items-center justify-center bg-black text-white"
               >
                 <h1 className="text-[2vw] flex items-center justify-center gap-5 md:text-[2vw] xl:text-[1.2vw] font-semibold text-white">
-                  Send Message <Rocket />
+                  <h1 className="flex items-center justify-center gap-3 font-semibold">
+                    {loading ? "Sending..." : "Send Message"} <Rocket />
+                  </h1>
                 </h1>
               </div>
-              Send Message <span className="border p-2 text-white bg-black rounded-sm"><Send /></span>
+              {loading ? "Sending..." : "Send Message"}  <span className="border p-2 text-white bg-black rounded-sm"><Send /></span>
             </button>
           </div>
 

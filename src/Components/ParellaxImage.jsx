@@ -3,7 +3,7 @@ import Lenis from "@studio-freight/lenis";
 
 const lerp = (start, end, factor) => start + (end - start) * factor;
 
-const ParallaxImage = ({ src, alt }) => {
+const ParallaxImage = ({ src, alt,loading }) => {
   const imageRef = useRef(null);
   const bounds = useRef(null);
   const currentTranslateY = useRef(0);
@@ -90,6 +90,7 @@ const ParallaxImage = ({ src, alt }) => {
       src={src}
       alt={alt}
       ref={imageRef}
+      loading="lazy"
       className="will-change-transform translate-y-0 scale-[1.1]"
     />
   );

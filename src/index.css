@@ -14,23 +14,31 @@
   font-family: font2;
   src: url(../fonts/Lausanne-500.woff2);
 }
+
 @font-face {
   font-family: font3;
   src: url(../fonts/The_Last_Shuriken.ttf);
 }
+
 @font-face {
   font-family: font4;
   src: url(../fonts/Storm_Gust.ttf);
 }
+
 @font-face {
   font-family: aeonik1;
   src: url(../fonts/Aeonik-Regular.ttf);
 }
+
 @font-face {
   font-family: aeonik2;
   src: url(../fonts/Aeonik-Bold.ttf);
 }
 
+@font-face {
+  font-family: Helvetica;
+  src: url(../fonts/Helvetica_Now_Display_W05_Bold.ttf);
+}
 body {
   background-color: #111;
   overflow-x: hidden;
@@ -49,15 +57,41 @@ body {
 }
 
 /* Weight utilities */
-.font-poppins-100 { font-weight: 100; }
-.font-poppins-200 { font-weight: 200; }
-.font-poppins-300 { font-weight: 300; }
-.font-poppins-400 { font-weight: 400; }
-.font-poppins-500 { font-weight: 500; }
-.font-poppins-600 { font-weight: 600; }
-.font-poppins-700 { font-weight: 700; }
-.font-poppins-800 { font-weight: 800; }
-.font-poppins-900 { font-weight: 900; }
+.font-poppins-100 {
+  font-weight: 100;
+}
+
+.font-poppins-200 {
+  font-weight: 200;
+}
+
+.font-poppins-300 {
+  font-weight: 300;
+}
+
+.font-poppins-400 {
+  font-weight: 400;
+}
+
+.font-poppins-500 {
+  font-weight: 500;
+}
+
+.font-poppins-600 {
+  font-weight: 600;
+}
+
+.font-poppins-700 {
+  font-weight: 700;
+}
+
+.font-poppins-800 {
+  font-weight: 800;
+}
+
+.font-poppins-900 {
+  font-weight: 900;
+}
 
 
 .font-jetbrains {
@@ -69,16 +103,41 @@ body {
 }
 
 /* Weight utilities */
-.font-inter-100 { font-weight: 100; }
-.font-inter-200 { font-weight: 200; }
-.font-inter-300 { font-weight: 300; }
-.font-inter-400 { font-weight: 400; }
-.font-inter-500 { font-weight: 500; }
-.font-inter-600 { font-weight: 600; }
-.font-inter-700 { font-weight: 700; }
-.font-inter-800 { font-weight: 800; }
-.font-inter-900 { font-weight: 900; }
+.font-inter-100 {
+  font-weight: 100;
+}
 
+.font-inter-200 {
+  font-weight: 200;
+}
+
+.font-inter-300 {
+  font-weight: 300;
+}
+
+.font-inter-400 {
+  font-weight: 400;
+}
+
+.font-inter-500 {
+  font-weight: 500;
+}
+
+.font-inter-600 {
+  font-weight: 600;
+}
+
+.font-inter-700 {
+  font-weight: 700;
+}
+
+.font-inter-800 {
+  font-weight: 800;
+}
+
+.font-inter-900 {
+  font-weight: 900;
+}
 
 
 
@@ -86,67 +145,30 @@ body {
 /* For Webkit browsers (Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
   width: 2px;
-  /* scrollbar width */
+  /* thin scrollbar */
   height: 6px;
-  /* scrollbar height for horizontal scroll */
+  /* for horizontal scroll */
 }
 
 ::-webkit-scrollbar-track {
-  background: #fff;
-  /* track background */
+  background: transparent;
+  /* fully transparent track */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #fff;
-  /* scrollbar color */
+  background-color: transparent;
+  /* black scrollbar thumb */
   border-radius: 10px;
   /* rounded edges */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #fff;
-  /* hover effect */
+  background-color: #222;
 }
 
 /* For Firefox */
 * {
   scrollbar-width: thin;
-  /* makes scrollbar thin */
-  scrollbar-color: #ffffff transparent;
-  
-}
-
-
-/* Custom text selection color */
-::selection {
-  background: #000000;
-  /* highlight background */
-  color: #ffffff;
-  /* selected text color */
-}
-
-/* For Firefox specifically */
-::-moz-selection {
-  background: #D3FD50;
-  color: #000;
-}
-
-
-
-.n {
-  color: transparent;                
-  -webkit-text-stroke: 1px white;    
-  paint-order: stroke fill;
-  transition: color 0.3s ease;       
-}
-
-.n:hover {
-  color: wheat;                      
-}
-
-.m {
-  color: transparent;                /* Fill */
-  -webkit-text-stroke: 1px black; /* Stroke around each letter */
-  paint-order: stroke fill; 
-  color: transparent;   /* Ensures stroke is visible */
+  /* thin scrollbar */
+  scrollbar-color: #000000 ;
 }

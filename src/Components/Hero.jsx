@@ -316,13 +316,13 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="overflow-hidden">
-                        <div className="xl:ml-[15vh] lg:ml-[10vw] md:ml-[7vw] ml-[9vh] xl:text-[2vw] md:text-[4vw] md:leading-[4vw] lg:text-[3vw] lg:leading-[3vw] mt-[2vh] md:mt-0 xl:mt-[1vw] text-[5vw] leading-[3vh] xl:leading-[3vh]">
+                        <div className="xl:ml-[15vh] lg:ml-[10vw] md:ml-[7vw] ml-[9vh] xl:text-[2vw] md:text-[4vw] md:leading-[4vw] lg:text-[3vw] lg:leading-[3vw] mt-[2vh] md:mt-0 xl:mt-[0vw] text-[5vw] leading-[3vh] xl:leading-[3vh]">
                             <p className="text2 font-[font2]">Based in Hyderabad, India</p>
                         </div>
                     </div>
                 </div>
 
-                <div className="overlflow-hidden md:mx-[3vw] md:w-[80%] px-2 mt-[5vw] ">
+                <div className="overlflow-hidden md:mx-[3vw] md:w-[60%] px-2 mt-[5vw]  ">
                     <div className=" md:text-[2.5vw] whitespace-pre-line w-full md:leading-[2.5vw] leading-[3vw] text-[3.5vw] font-[font2]">
                         <p className="do-text">I create digital experiences that spark</p>
                     </div>

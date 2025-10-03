@@ -67,7 +67,7 @@ const Capability = () => {
   })
 
   return (
-    <div className='w-full min-h-screen'>
+    <div className='w-full min-h-screen overflow-hidden'>
 
 
       <section className='w-full  min-h-screen'>
@@ -118,7 +118,7 @@ const Capability = () => {
           <div className='w-2/3 xl:block hidden h-full bg-black'>
             <div className='overflow-hidden w-full h-full'>
               <div className='w-full h-full object-center object-cover'>
-                <ParallaxImage src="https://images.unsplash.com/photo-1702538091338-cc70d39db3c7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTcyfHxjYWJhbGl0eSUyMG9mJTIwd29yayUyMHdpdGglMjBtb2JpbGV8ZW58MHx8MHx8fDA%3D" alt="" />
+                <ParallaxImage loading="lazy" src="https://images.unsplash.com/photo-1702538091338-cc70d39db3c7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTcyfHxjYWJhbGl0eSUyMG9mJTIwd29yayUyMHdpdGglMjBtb2JpbGV8ZW58MHx8MHx8fDA%3D" alt="" />
               </div>
             </div>
           </div>

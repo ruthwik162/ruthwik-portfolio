@@ -284,7 +284,7 @@ const Aboutme = () => {
     ];
 
     return (
-        <div className="w-full min-h-screen  relative overflow-x-hidden">
+        <div className="w-full min-h-screen  relative overflow-hidden">
             <section className="w-full min-h-screen  relative">
 
 
@@ -311,7 +311,7 @@ const Aboutme = () => {
 
                         {/* About Paragraph */}
                         <div className="overflow-hidden  z-50 md:px-5 flex flex-col">
-                            <p className="about-para xl:text-[2vw] xl:leading-[1.8vw] lg:text-[2vw] lg:leading-[1.5vw] md:text-[2.2vw] md:leading-[2vw] text-[5vw] text-justify break-words hyphens-auto font-[font2] text-black/50 mt-[0vh] md:mt-[5vh] leading-[2vh]   md:px-0">
+                            <p className="about-para xl:text-[1.6vw] xl:leading-[1.3vw] lg:text-[2vw] lg:leading-[1.5vw] md:text-[2.2vw] md:leading-[2vw] text-[5vw] text-justify break-words hyphens-auto font-[Helvetica] text-black mt-[0vh] md:mt-[5vh] leading-[2vh]   md:px-0">
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I'm Nagaruthwik , a passionate web developer dedicated to
                                 crafting engaging and user-friendly digital experiences. With a strong foundation in
                                 both front-end and back-end technologies, I specialize in creating responsive websites
@@ -325,49 +325,53 @@ const Aboutme = () => {
                 {/* Education Section */}
                 <div className=" md:w-1/2 md:mt-[2vw] mt-[10vw]  md:mx-[5vw]  md:mr-[50%] font-[aeonik2] overflow-hidden">
                     <div className="">
-                        <h1 className="xl:text-[5vw] xl:leading-[4vw] lg:text-[7vw] lg:leading-[6vw] md:text-[9vw] md:leading-[8vw]  md:text-start text-[10vw] text text-start  text-gray-700  leading-[10vw]">
+                        <h1 className="xl:text-[5vw] xl:leading-[5vw] lg:text-[7vw] lg:leading-[6vw] md:text-[9vw] md:leading-[8vw]  md:text-start text-[10vw] text text-start  text-gray-700  leading-[10vw]">
                             Education
                         </h1>
                     </div>
                 </div>
 
-                <div className="leading-[2vw] md:w-1/2 md:mt-[2vw] md:mx-[5vw] md:mr-[50%] text-start font-poppins font-poppins-500  overflow-hidden">
-                    <div className="lg:mt-[1vh] flex items-center justify-start  mt-[4vh]">
-                        <h1 className="xl:text-[3vw] xl:leading-[4vw] lg:text-[4vw] lg:leading-[3vw] md:text-[5vw] md:leading-[4vw]  flex items-center justify-end  text-[7vw] text-black/50 textMd text-end md:text-start  leading-[9vw]">
-                            High School
-                        </h1>
+                <div className='flex items-start justify-between md:flex-row flex-col gap-6 md:gap-10 w-full px-5 md:px-[5vw]'>
+
+                    {/* School Section */}
+                    <div className='school overflow-hidden  flex-1'>
+                        <div className=" md:mx-[2vw] text-start font-poppins font-poppins-500 overflow-hidden">
+                            <div className="lg:mt-[1vw] flex items-center justify-start mt-[4vh]">
+                                <h1 className="xl:text-[4vw] lg:text-[6vw] md:text-[8vw] text-[7vw] text-black/50 textMd">
+                                    High School
+                                </h1>
+                            </div>
+                        </div>
+
+                        <div className='px-2 p-3 md:px-[2vw] w-full  xl:w-[70%] md:w-[90%]'>
+                            <div className="p-3  md:p-5 overflow-hidden">
+                                <p className="education-text text-justify xl:text-[1.2vw] xl:leading-[1vw] lg:text-[2vw] lg:leading-[1.5vw] md:text-[2.5vw] md:leading-[2vw] text-[3.5vw] leading-[2.5vw] text-black font-[Helvetica]">
+                                    I completed my schooling at ZPHS School at Challagariga, where I consistently focused on academics and extracurricular activities. I am proud to mention that I secured a perfect GPA of ' 9.8 ' in my 10th board examinations. Following that, I pursued my intermediate studies in the MPC stream at Vidwan Junior College, Telangana, where I scored an impressive 80.05% in the Intermediate Public Exams. These early educational achievements laid a solid foundation for my journey in higher education.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Btech Section */}
+                    <div className='btch overflow-hidden  flex-1'>
+                        <div className=" md:px-[2vw] tracking-tight font-poppins font-poppins-500 overflow-hidden">
+                            <div className="lg:mt-[1vw] mt-[4vh]">
+                                <h1 className="xl:text-[4vw] lg:text-[6vw] md:text-[8vw] text-[7vw] text-black/50 textMd">
+                                    Bachelors
+                                </h1>
+                            </div>
+                        </div>
+
+                        <div className='px-2 flex flex-col-reverse md:px-[2vw] w-full xl:w-[70%] md:w-[90%]   '>
+                            <div className="p-3  md:p-5 overflow-hidden">
+                                <p className="btech-text text-justify xl:text-[1.2vw] xl:leading-[1vw] lg:text-[2vw] lg:leading-[1.5vw] md:text-[2.5vw] md:leading-[2vw] text-[3.5vw] leading-[2.5vw] text-black font-[Helvetica]">
+                                    Currently, I'm in my 4-1 semester at Malla Reddy University, pursuing my B.Tech in Computer Science and Engineering. Throughout my undergraduate studies, I have been actively involved in hands-on projects and technical learning, which have enhanced my understanding of both theoretical concepts and real-world applications. I am constantly seeking opportunities to improve my skills, explore new technologies, and contribute meaningfully to projects in the field of computer science.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className='px-2 p-3  flex-col-reverse md:flex-row flex items-start w-full h-full justify-between md:px-[4vw]'>
-                    <div className="p-3 text-justify lg:w-[65%] xl:w-[50%] md:w-[60%] break-words hyphens-auto  tracking-tighter  md:p-5 overflow-hidden">
-                        <p
-                            className="education-text lg:text-[2vw] lg:leading-[1.8vw] xl:text-[1.2vw] xl:leading-[1vw] md:text-[2.5vw] md:leading-[2.1vw] text-sm text-gray-600 text-justify  font-poppins font-poppins-500  leading-[3.5vw] ">
-                            I completed my schooling at ZPHS School at Challagariga, where I consistently focused on academics and extracurricular activities. I am proud to mention that I secured a perfect GPA of ' 9.8 ' in my 10th board examinations. Following that, I pursued my intermediate studies in the MPC stream at Vidwan Junior College, Telangana, where I scored an impressive 80.05% in the Intermediate Public Exams. These early educational achievements laid a solid foundation for my journey in higher education.
-                        </p>
-                    </div>
-
-                </div>
-
-                <div className="leading-[2vw] md:mt-[vw] w-1/2 md:px-[4vw] tracking-tight font-poppins font-poppins-500 overflow-hidden">
-                    <div className="lg:mt-[1vw]  mt-[4vh]">
-                        <h1 className="xl:text-[4vw] xl:leading-[3vw] lg:leading-[5vw] lg:text-[6vw] md:text-[8vw] md:leading-[7vw] text-[7vw] text-black/50 textMd text-start px-5 md:text-start   leading-[9vw]">
-                            Bachelors
-                        </h1>
-                    </div>
-                </div>
-
-
-
-                <div className='px-2  flex  flex-col-reverse md:flex-row items-start justify-between md:px-[4vw]'>
-                    <div className="p-3 text-justify w-full lg:w-[65%] xl:w-[50%] md:w-[60%] break-words hyphens-auto  tracking-tighter   md:p-5 overflow-hidden">
-                        <p
-                            className="btech-text lg:text-[2vw] lg:leading-[1.8vw] xl:text-[1.2vw] xl:leading-[1vw] md:text-[2.5vw] md:leading-[2.1vw] text-sm text-justify text-gray-600 font-poppins font-poppins-500  leading-[3.5vw] ">
-                            Currently, I'm in my 4-1 semester at Malla Reddy University, pursuing my B.Tech in Computer Science and Engineering. Throughout my undergraduate studies, I have been actively involved in hands-on projects and technical learning, which have enhanced my understanding of both theoretical concepts and real-world applications. I am constantly seeking opportunities to improve my skills, explore new technologies, and contribute meaningfully to projects in the field of computer science.
-                        </p>
-                    </div>
-
-                </div>
 
 
                 <div className="leading-[2vw] lg:mt-[15vh] font-[aeonik2] overflow-hidden">
@@ -407,7 +411,7 @@ const Aboutme = () => {
                     </div>
 
                 </div>
-                <div className='overflow-hidden w-full mx-[3vw]'>
+                <div className='overflow-hidden  w-full mx-[3vw]'>
                     <div className="overflow-hidden relative bg-black w-[45%] md:w-[45%] lg:w-[30%] xl:w-[20%] lg:h-[5vw] md:h-[5vw] xl:h-[3vw] h-[10vw] mt-5 flex items-center border  justify-center border-b-black   rounded-full ">
                         <button
                             onClick={() => {
@@ -427,7 +431,7 @@ const Aboutme = () => {
                     </div>
                 </div>
 
-                <div className='w-full'>
+                <div className='w-full '>
                     <Footer />
                 </div>
 

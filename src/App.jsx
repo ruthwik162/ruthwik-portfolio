@@ -10,6 +10,7 @@ import Profile from "./Pages/Profile";
 import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
 import Capability from "./Pages/Capability";
+import ProjectPage from "./Components/ProjectPage";
 
 const App = () => {
   const cursorRef = useRef(null);
@@ -98,9 +99,10 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/profile" element={<Profile />} />
         <Route path="/capability" element={<Capability />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:_id" element={<ProjectPage />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>

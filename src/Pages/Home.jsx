@@ -5,6 +5,12 @@ import gsap from 'gsap'
 import Footer from '../Components/Footer'
 import { Hand, RocketIcon } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
+import { Canvas } from '@react-three/fiber'
+import { Glassbox } from '../Components/Glassbox'
+import { Environment, OrbitControls } from '@react-three/drei'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const Home = () => {
 
@@ -84,7 +90,9 @@ const Home = () => {
     })
 
     return (
-        <div className=' '>
+        <div className='  overflow-hidden relative' >
+            
+
             <section className='w-full '>
                 <Hero />
             </section>

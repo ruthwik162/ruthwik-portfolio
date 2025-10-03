@@ -32,6 +32,7 @@ const Image = () => {
                 <div className=''>
                     <img
                         src={images.ruthwik}
+                        loading='lazy'
                         alt=""
                         className='h-full w-full hover:scale-105 transition-all duration-500 object-cover'
                     />

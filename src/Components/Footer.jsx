@@ -29,7 +29,7 @@ const Footer = () => {
             link.onmouseenter = () => {
                 gsap.to(fill, {
                     xPercent: 0,
-                    duration: 1,
+                    duration: 0.6,
                     ease: "power3.inOut",
                 });
             };
@@ -37,7 +37,7 @@ const Footer = () => {
             link.onmouseleave = () => {
                 gsap.to(fill, {
                     xPercent: 100,
-                    duration: 1,
+                    duration: 0.6,
                     ease: "power3.inOut",
                     onComplete: () => gsap.set(fill, { xPercent: -100 }),
                 });
@@ -183,7 +183,7 @@ const Footer = () => {
             <div className="flex items-center con flex-col overflow-hidden w-full h-full mx-auto justify-center">
                 <div className="overflow-hidden  text-[8vw] leading-[15vw] md:text-[7vw] md:leading-[9vw] xl:text-[5vw] xl:leading-[7vw]">
                     <div className="textN md:block hidden">
-                        <GsapMarquee speed={15}>
+                        <GsapMarquee speed={25}>
                             <span>Nagaruthwik ©</span>
                             <span>Nagaruthwik ©</span>
                             <span>Nagaruthwik ©</span>
