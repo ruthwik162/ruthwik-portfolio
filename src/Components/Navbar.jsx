@@ -186,21 +186,10 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Nav Overlay */}
-      <nav
-        ref={navRef}
-        className="fixed z-50 overflow-hidden flex flex-col justify-around w-full h-screen md:px-10 px-5 bg-black/90 backdrop-blur-2xl text-white/80"
-      >
-        {/* Floating letters */}
-        <h1 className="letter absolute md:block hidden xl:-bottom-[10vh] text-white/50 -bottom-[6vh] right-[19vw] md:left-[2vw] xl:left-[58vw] font-[font2] text-[17vh] md:text-[30vw] xl:text-[30vh]">
-          M
-        </h1>
-        <h1 className="letter absolute -bottom-[16vh] md:leading-[42vw] text-white/50  md:block right-[19vh] xl:-bottom-[21vh] md:-bottom-[1vw] md:left-[30vw] xl:left-[70vw] font-[font2] text-[38vh] md:text-[50vw] xl:text-[25vw]">
-          N
-        </h1>
-        <h1 className="letter absolute xl:-bottom-[10vh] text-white/50 -bottom-[6vh] right-[19vw] xl:right-[5vh] font-[font2] text-[17vh] md:right-[4vw] md:-bottom-[12vw] md:text-[40vw] xl:text-[30vh]">
-          R
-        </h1>
+      <nav  ref={navRef} className="fixed z-20  overflow-hidden flex flex-col justify-around w-full h-screen md:px-10 px-5 bg-black text-white/80" >
+        <h1 className="letter absolute md:block hidden xl:-bottom-[10vh] text-white/50 -bottom-[6vh] right-[19vw] md:left-[2vw] xl:left-[58vw] font-[font2] text-[17vh] md:text-[30vw] xl:text-[30vh]"> M </h1>
+        <h1 className="letter absolute -bottom-[16vh] md:leading-[42vw] text-white/50  md:block right-[19vh] xl:-bottom-[21vh] md:-bottom-[1vw] md:left-[30vw] xl:left-[70vw] font-[font2] text-[38vh] md:text-[50vw] xl:text-[25vw]"> N </h1>
+        <h1 className="letter absolute xl:-bottom-[10vh] text-white/50 -bottom-[6vh] right-[19vw] xl:right-[5vh] font-[font2] text-[17vh] md:right-[4vw] md:-bottom-[12vw] md:text-[40vw] xl:text-[30vh]">R</h1>
 
         <div className="flex flex-col md:ml-[50%] items-center justify-start md:-mt-[20vh] md:flex-col">
           <div className="relative -ml-[13vh] md:ml-0  -mt-[13vh] pt-2 md:mt-0 md:pt-0  flex flex-col font-[font2] text-4xl gap-y-3 md:text-6xl lg:text-[7vw] xl:text-[4vw]">
@@ -223,7 +212,7 @@ const Navbar = () => {
                       scrollTo(0, 0);
                       iconTl.current.reverse();
                     }}
-                   className="flex items-start cursor-pointer flex-col justify-center">
+                    className="flex items-start cursor-pointer flex-col justify-center">
                     <span className="flex items-center justify-center">{text} <ArrowRight strokeWidth={0.8} className="-rotate-45 inline-block xl:w-15 xl:h-15 lg:h-18 lg:w-18 md:w-18 md:h-18 w-10 h-10" /></span>
                     <div className="w-full h-[0.15vw] overflow-hidden rounded">
                       <div
@@ -286,11 +275,12 @@ const Navbar = () => {
           onClick={() =>
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
           }
-          className={`md:text-[2vw] md:leading-[3vw] md:mt-[2vw] mt-[5vw] xl:text-[1vw] xl:leading-[2vw] text-[3.5vw] transition-all duration-1000 font-[aeonik2] ${!open ? "text-black" : "text-white"
-            }`}
+          className={`md:text-[2vw] md:leading-[3vw] md:mt-[2vw] mt-[5vw] xl:text-[1vw] xl:leading-[2vw] text-[3.5vw] transition-all duration-1000 font-[aeonik2] text-gray-800 mix-blend-difference z-50 select-none pointer-events-non`}
         >
           Nagaruthwik ©
         </Link>
+        
+
         <div
           ref={pillRef}
           onClick={toggleMenu}

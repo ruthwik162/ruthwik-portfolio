@@ -18,8 +18,7 @@ const Contact = () => {
   const [toasts, setToasts] = useState([]);
   const [loading, setLoading] = useState()
 
-  const contactRef = useRef([]);
-  const socailRef = useRef([]);
+
   const boxRef = useRef();
   const fillRef = useRef();
 
@@ -63,7 +62,7 @@ const Contact = () => {
         });
       }
     } catch (err) {
-      showToast("Failed to send message. Please try again later.", "error");
+      showToast("Failed to send message. Please try again later.", "error",err);
     } finally {
       setLoading(false);
     }
@@ -71,27 +70,9 @@ const Contact = () => {
 
   useGSAP(() => {
 
-    gsap.set(contactRef.current, { y: -100, opacity: 0 });
-    gsap.set(socailRef.current, { x: -100, opacity: 0 });
+    
     // Animate the heading sections
-    gsap.fromTo(".connect-heading",
-      {
-        y: 100,
-        opacity: 0
-      },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: "power3.out",
-        stagger: 0.3,
-        scrollTrigger: {
-          trigger: ".contact-heading",
-          start: "top 80%",
-          toggleActions: "play none none reverse"
-        }
-      }
-    );
+
 
     // Animate the tagline
     gsap.fromTo(".tagline-text",
@@ -113,28 +94,7 @@ const Contact = () => {
         }
       }
     );
-    gsap.to(
-      contactRef.current,
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
-        stagger: 0.1,
-      },
-      "-=0.8"
-    )
-    gsap.to(
-      socailRef.current,
-      {
-        x: 0,
-        opacity: 1,
-        duration: 0.8,
-        ease: "power3.out",
-        stagger: 0.1,
-      },
-      "-=0.8"
-    );
+
 
     // Animate form elements sequentially
     gsap.fromTo(".form-element",
@@ -192,15 +152,7 @@ const Contact = () => {
         ease: "power3.inOut"
       });
     };
-    gsap.from(".end", {
-      y: 100,
-      duration: 1.2,
-      stagger: 0.1,
-      scrollTrigger: {
-        trigger: ".end",
-        start: "top 60%"
-      }
-    })
+
   });
 
   return (
@@ -245,7 +197,7 @@ const Contact = () => {
 
 
       {/* Tagline */}
-      <div className="tagline-section absolute md:top-[21.3vw] top-[13%] right-[10%] md:left-[0vw] md:-translate-x-[25%] overflow-hidden">
+      <div className="tagline-section absolute md:top-[21.3vw] top-[7%] right-[10%] md:left-[0vw] md:-translate-x-[25%] overflow-hidden">
         <div className="overflow-hidden md:leading-[3vw]">
           <h1 className="tagline-text text-[6vw] md:text-[2.5vw] md:leading-[2.5vw] text-black/50 font-[font2] leading-[6vw]  font-bold text-center">
             Design is the conversation between <br />{" "}
@@ -261,7 +213,7 @@ const Contact = () => {
 
       {/* Contact Form */}
       <div className="flex items-center md:flex-row flex-col-reverse justify-between w-full h-full">
-        <div className="w-full md:w-[70%] xl:w-full h-full ">
+        <div className="w-full md:block hidden md:w-[70%] xl:w-full h-full ">
           <div className="flex items-start justify-center flex-col md:mx-[3vw]">
             {links.map((link, id) => (
               <div key={id} className="flex flex-col items-center justify-center">
@@ -270,7 +222,7 @@ const Contact = () => {
             ))}
           </div>
         </div>
-        <div className="contact-form mt-[70vw] md:mt-[10vw] xl:mt-[2vw] font-[font1] xl:w-[60%] md:w-[100%]   text-black  p-3 md:p-8 mb-[5vw]    form-container">
+        <div className="contact-form mt-[70vw] md:mt-[10vw] xl:mt-[2vw] font-[font1] xl:w-[60%] md:w-[100%] w-full  text-black  p-3 md:p-8 mb-[5vw]    form-container">
           <h2 className="form-element text-2xl md:text-[3vw] font-[font2] font-bold mb-8 uppercase text-center">
             Start a Conversation
           </h2>
@@ -323,11 +275,11 @@ const Contact = () => {
                 ref={fillRef}
                 className="absolute top-0 left-0 h-full w-full flex items-center justify-center bg-black text-white"
               >
-                <h1 className="text-[2vw] flex items-center justify-center gap-5 md:text-[2vw] xl:text-[1.2vw] font-semibold text-white">
+                <span className="text-[4vw] flex items-center justify-center gap-5 md:text-[2vw] xl:text-[1.2vw] font-semibold text-white">
                   <h1 className="flex items-center justify-center gap-3 font-semibold">
                     {loading ? "Sending..." : "Send Message"} <Rocket />
                   </h1>
-                </h1>
+                </span>
               </div>
               {loading ? "Sending..." : "Send Message"}  <span className="border p-2 text-white bg-black rounded-sm"><Send /></span>
             </button>

@@ -85,15 +85,7 @@ const Footer = () => {
                 start: mobile ? "bottom 90%" : "top bottom",
             }
         })
-        gsap.from(".emails", {
-            y: 100,
-            duration: 2,
-            ease: "power4.inOut",
-            scrollTrigger: {
-                trigger: ".legal",
-                start: mobile ? "bottom 95%" : "top bottom",
-            }
-        })
+
         gsap.from(".legal", {
             y: 100,
             duration: 2,
@@ -111,7 +103,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="w-full h-full md:h-[30vh] pb-[10vw] xl:pb-0 font-poppins p-5 mt-[10vw] md:mt-[5vw] ">
+        <footer className="w-full h-[50vh] md:h-full pb-[10vw] xl:pb-0 font-poppins p-5 mt-[10vw] md:mt-[5vw] ">
             <div className="flex flex-col md:flex-row items-start justify-start md:justify-between gap-5 px-[10vw] md:px-[4vw] xl:px-[3vw] md:gap-10">
                 {/* Brand / Identity */}
                 <div className="overflow-hidden">

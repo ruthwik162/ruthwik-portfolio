@@ -14,26 +14,12 @@ gsap.registerPlugin(ScrollTrigger)
 
 const Home = () => {
 
-    const containRef = useRef(null);
     const boxRef = useRef(null);
     const fillRef = useRef(null);
     const navigate = useNavigate()
 
     useGSAP(() => {
 
-        gsap.set(containRef.current, { scale: 0.9 });
-
-        gsap.to(containRef.current, {
-            scale: 1,
-            duration: 3,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: containRef.current,
-                start: "top 80%",
-                end: "top 0%",
-                scrub: true,
-            },
-        });
 
         gsap.utils.toArray(".num1").forEach((num) => {
             gsap.fromTo(

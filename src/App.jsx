@@ -16,7 +16,6 @@ const App = () => {
   const mainRef = useRef(null);
   const [soundEnabled, setSoundEnabled] = useState(false);
   const audioRef = useRef(null);
-  const location = useLocation(); // to track current route
 
   // Smooth cursor movement
   useEffect(() => {
@@ -72,20 +71,17 @@ const App = () => {
     }
   };
 
-  // Optional: log current route only once per navigation
-  useEffect(() => {
-    console.log(`Navigated to ${location.pathname}`);
-  }, [location.pathname]);
+  
 
   return (
     <div
       ref={mainRef}
       onClick={handleClick}
-      className="main relative bg-white w-full min-h-screen overflow-x-hidden"
+      className="main relative bg-white w-full min-h-screen  overflow-x-hidden"
     >
       <div
         ref={cursorRef}
-        className="cursor hidden fixed md:flex items-center rounded-full -top-1.5 -left-1.5 gap-2 z-[9999] pointer-events-none"
+        className="cursor hidden fixed xl:flex items-center rounded-full -top-1.5 -left-1.5 gap-2 z-[9999] pointer-events-none"
       >
         <div className="w-3 h-3 rounded-full bg-black" />
         {!soundEnabled && (
@@ -96,6 +92,7 @@ const App = () => {
       </div>
 
       <audio ref={audioRef} src="/click.mp3" preload="auto" />
+      
 
       <Navbar />
       <Routes>

@@ -172,3 +172,20 @@ body {
   /* thin scrollbar */
   scrollbar-color: #000000 ;
 }
+
+.blend-text {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.ripple {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 50;
+}
