@@ -1,9 +1,9 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import Hero from '../Components/Hero'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import Footer from '../Components/Footer'
-import { Hand, RocketIcon } from 'lucide-react'
+import { ArrowRight, Hand, RocketIcon } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { Canvas } from '@react-three/fiber'
 import { Glassbox } from '../Components/Glassbox'
@@ -14,9 +14,10 @@ gsap.registerPlugin(ScrollTrigger)
 
 const Home = () => {
 
-    const boxRef = useRef(null);
-    const fillRef = useRef(null);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const button3Ref = useRef(null);
+    const text3Ref = useRef(null);
+    const circleRef = useRef(null);
 
     useGSAP(() => {
 
@@ -68,16 +69,70 @@ const Home = () => {
             }
         })
 
-        gsap.set(fillRef.current, { yPercent: 100 })
-        const hoverTimeline = gsap.timeline({ paused: true })
-        hoverTimeline.to(fillRef.current, { yPercent: 0, duration: 0.4, ease: "power3.inOut" })
-        boxRef.current.addEventListener("mouseenter", () => hoverTimeline.play())
-        boxRef.current.addEventListener("mouseleave", () => hoverTimeline.reverse())
     })
+
+    useEffect(() => {
+        if (!button3Ref.current || !circleRef.current || !text3Ref.current) return;
+
+        // Function to create hover animation
+        const addHoverEffect = (button, circle, text) => {
+            const tl = gsap.timeline({ paused: true });
+
+            tl.to(circle, {
+                scale: 39, // Circle expansion
+                duration: 0.6,
+                backgroundColor: "#6565FB",
+                ease: "power3.out"
+            })
+                .to(
+                    text,
+                    {
+                        x: "-0.5vw", // Text moves slightly
+                        color: "#FFFFFF",
+                        duration: 0.45,
+                        ease: "power4.inout",
+                    },
+                    "<" // start simultaneously
+                );
+
+            // Hover in
+            button.addEventListener("mouseenter", () => tl.play());
+            // Hover out
+            button.addEventListener("mouseleave", () => tl.reverse());
+        };
+
+        addHoverEffect(button3Ref.current, circleRef.current, text3Ref.current);
+
+        // Ripple effect on click
+        const addRippleEffect = (button) => {
+            button.addEventListener("click", (e) => {
+                const ripple = document.createElement("span");
+                ripple.className = "ripple";
+                ripple.style.left = `${e.offsetX}px`;
+                ripple.style.top = `${e.offsetY}px`;
+                button.appendChild(ripple);
+
+                gsap.fromTo(
+                    ripple,
+                    { scale: 0, opacity: 0.5 },
+                    {
+                        scale: 10,
+                        opacity: 0,
+                        duration: 0.6,
+                        ease: "power2.out",
+                        onComplete: () => ripple.remove()
+                    }
+                );
+            });
+        };
+
+        addRippleEffect(button3Ref.current);
+
+    }, []);
 
     return (
         <div className='  overflow-hidden relative' >
-            
+
 
             <section className='w-full '>
                 <Hero />
@@ -99,20 +154,14 @@ const Home = () => {
                             <div className='xl:text-[1.8vw] end text-[3vw] text-center mt-5 leading-[4vw] lg:text-[3vw] overflow-hidden lg:leading-[8vw] xl:leading-[2vw] font-[font2] '>
                                 <h1>I'm in Next page</h1>
                             </div>
-                            <div className="overflow-hidden end  relative bg-black w-[70%] md:w-[45%] lg:h-[5vw] md:h-[5vw] xl:h-[3vw] h-[9vw] mt-5 flex items-center   justify-center    rounded-3xl ">
-                                <button
-                                    ref={boxRef}
-                                    type="submit"
-                                    onClick={() => { navigate("/profile"); scrollTo(0, 0) }}
-                                    className="  px-3 md:px-2 cursor-pointer py-5 md:py-10 lg:text-[2vw] lg:leading-[3vw] md:text-[2vw] xl:leading-[2vw] xl:text-[1.2vw] text-[4vw] w-full flex items-center justify-center   text-white font-[font2]   transform">
-                                    <div ref={fillRef} className="absolute top-0 left-0 h-full w-full flex items-center justify-center bg-red-600 text-black">
-                                        <h1 className="text-[2vw] flex items-center justify-center mt-1 lg:text-[2vw] lg:leading-[3vw] md:text-[2vw] xl:leading-[2vw] xl:text-[1.2vw] font-[font2] text-black">
-                                            Let’s Build Something <RocketIcon />
-                                        </h1>
-                                    </div>
-                                    Hire Me Today <Hand />
-                                </button>
+
+
+                            <div className='end flex items-center justify-center xl:w-1/2 p-5 will-change-transform will-change-opacity gap-2 overflow-hidden'>
+                                <div onClick={() => { navigate("/profile") }} ref={button3Ref} className="xl:w-45 md:w-39 w-39 rounded-full h-12 shadow-md flex overflow-hidden items-center justify-center">
+                                    <button className="flex items-center justify-center font-[font2] gap-2 xl:text-[1.1vw] "> <span ref={circleRef} className="w-2 h-2 z-0 bg-black rounded-full "></span> <span ref={text3Ref} className="z-50 text-black flex items-center uppercase justify-center gap-2 ">Hire Me <ArrowRight /> </span></button>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@ import { Environment, Float, OrbitControls } from "@react-three/drei";
 import { useMediaQuery } from "react-responsive";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { ArrowRight, ArrowUpRight, Download, MouseIcon } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Download, MouseIcon, Quote } from "lucide-react";
 import { Model } from "../Components/Model";
 import Profile from "../Pages/Profile";
 import Architecture from "../Components/Architecture";
@@ -15,6 +15,8 @@ import GsapMarquee from "./GsapMarquee";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import LiquidErase from "./LiquidErase";
+import { FaQuoteRight } from "react-icons/fa";
+import { FaQuoteLeft } from "react-icons/fa6";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -83,6 +85,7 @@ const Home = () => {
     const textRef = useRef(null);
     const text2Ref = useRef(null);
     const navigate = useNavigate();
+
 
     const bottom = [
         { name: "+", icon: "" },
@@ -277,7 +280,7 @@ const Home = () => {
             const tl = gsap.timeline({ paused: true });
 
             tl.to(circle, {
-                scale: 35, // Circle expansion
+                scale: 39, // Circle expansion
                 duration: 0.6,
                 backgroundColor: "#6565FB",
                 ease: "power3.out"
@@ -287,8 +290,8 @@ const Home = () => {
                     {
                         x: "-0.5vw", // Text moves slightly
                         color: "#FFFFFF",
-                        duration: 0.4,
-                        ease: "power2.out"
+                        duration: 0.45,
+                        ease: "power4.inout",
                     },
                     "<" // start simultaneously
                 );
@@ -336,7 +339,7 @@ const Home = () => {
 
             <section data-scroll data-scroll-speed="0.9" className="w-full h-full flex items-center md:flex-row flex-col-reverse justify-center z-0">
                 <div className="overflow-hidden px-5 md:px-2  w-full h-full ">
-                    <div className="  mt-[2vw] flex flex-col items-start ">
+                    <div className="  mt-[2vw] flex flex-col xl:mx-[3.5vw] items-start ">
                         <div className="  overflow-hidden">
                             <div className="textL text-[12vw] will-change-transform   leading-[11vw] xl:text-[8vw] xl:leading-[7vw] lg:text-[10vw] lg:leading-[8vw] md:text-[9vw] md:leading-[8vw] uppercase font-poppins font-poppins-500  text-black ">
                                 <span className="font-[font3]  relative inline-block  ">N</span>aga
@@ -358,12 +361,12 @@ const Home = () => {
                     </div>
                     <div className="overflow-hidden gap-0 will-change-transform md:text-black text-gray-500 ml-[5vh] lg:ml-[20vw] md:ml-[7vw] xl:ml-[25vh]">
                         <div className="overflow-hidden">
-                            <div className="xl:text-[2vw] lg:text-[2.1vw] lg:leading-[3vw] mt-[2vh] text-[3.5vw] md:text-[3vw] md:leading-[4vw] leading-[3vw] xl:leading-[3vh]">
+                            <div className="xl:text-[1.7vw] lg:text-[2.1vw] lg:leading-[3vw] mt-[2vh] text-[3.5vw] md:text-[3vw] md:leading-[4vw] leading-[3vw] xl:leading-[3vh]">
                                 <p className="text2 font-[font2]">An Interactive Developer</p>
                             </div>
                         </div>
                         <div className="overflow-hidden">
-                            <div className="xl:ml-[15vh] lg:ml-[1vw] md:ml-[3vw] ml-[9vh] xl:text-[2vw] md:text-[3vw] md:leading-[3vw] lg:text-[2.1vw] lg:leading-[2.5vw]  md:mt-0 xl:mt-[0vw] text-[3.5vw] leading-[3vw] xl:leading-[3vh]">
+                            <div className="xl:ml-[15vh] lg:ml-[1vw] md:ml-[3vw] ml-[9vh] xl:text-[1.7vw] md:text-[3vw] md:leading-[3vw] lg:text-[2.1vw] lg:leading-[2.5vw]  md:mt-0 xl:mt-[0vw] text-[3.5vw] leading-[3vw] xl:leading-[3vh]">
                                 <p className="text2 font-[font2]">Based in Hyderabad, India</p>
                             </div>
                         </div>
@@ -384,15 +387,15 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="flex items-center justify-center xl:w-1/2 p-5 will-change-transform will-change-opacity gap-2 overflow-hidden ">
-                        <div onClick={() => { navigate("/contact") }} ref={button1Ref} className="xl:w-39 md:w-39 w-39 rounded-full h-12 shadow-md flex overflow-hidden items-center justify-center">
-                            <button className="flex items-center justify-center font-[font2] gap-2 xl:text-[1.1vw] "> <span ref={circleRef} className="w-2 h-2 z-0 bg-black rounded-full "></span> <span ref={textRef} className="z-50 text-black flex items-center justify-center gap-2 ">Contact me <ArrowRight /> </span></button>
+                    <div className="flex items-center  justify-center xl:w-1/2 p-5 will-change-transform will-change-opacity gap-2 overflow-hidden ">
+                        <div onClick={() => { navigate("/contact") }} ref={button1Ref} className="xl:w-45 md:w-45 w-45 rounded-full h-12 shadow-md flex overflow-hidden items-center justify-center">
+                            <button className="flex items-center justify-center font-[font2] gap-2 xl:text-[1.1vw] "> <span ref={circleRef} className="w-2 h-2 z-0 bg-black rounded-full "></span> <span ref={textRef} className="z-50 text-black flex items-center justify-center uppercase gap-2 ">Contact me <ArrowRight /> </span></button>
                         </div>
                         <div ref={button2Ref} className="xl:w-39 md:w-39 w-39 rounded-full h-12 shadow-md flex overflow-hidden items-center justify-center">
                             <a
                                 href={assets.resume_fullstack} // path to your resume in the public folder
                                 download={assets.resume_fullstack}
-                                className="flex items-center justify-center font-[font2] gap-2 xl:text-[1.1vw] "> <span ref={circle2Ref} className="w-2 h-2 z-0 bg-black rounded-full "></span> <span ref={text2Ref} className="z-50 text-black flex items-center justify-center gap-2">Resume <Download /> </span></a>
+                                className="flex items-center justify-center font-[font2] gap-2 xl:text-[1.1vw] "> <span ref={circle2Ref} className="w-2 h-2 z-0 bg-black rounded-full "></span> <span ref={text2Ref} className="z-50 text-black flex items-center justify-center uppercase gap-2">Resume <Download /> </span></a>
                         </div>
                     </div>
                 </div>
@@ -408,10 +411,10 @@ const Home = () => {
                                 Crafting Interactive Experiences
                             </h2>
                             <h3 className="text-[4vw] md:text-[2.5vw] md:leading-[2vw] lg:text-[2vw] xl:text-[1.3vw] font-[font2] text-gray-200">
-                                Where design meets emotion and motion tells stories.
-                            </h3>
-                            <p className="text-[2.8vw] md:text-[2vw] lg:text-[1.8vw] md:leading-[1.5vw] xl:text-[1.2vw] font-[Helvetica] mix-blend-difference text-white ">
                                 “Every pixel has a purpose — every animation, a mindgame.”
+                            </h3>
+                            <p className="text-[2.8vw] md:text-[2vw] flex items-center justify-center lg:text-[1.8vw] md:leading-[1.5vw] xl:text-[1.2vw] font-[Helvetica] mix-blend-difference text-white ">
+                                 -  <FaQuoteLeft/> యోగ యుక్తో విశుద్ధాత్మా విజయాన్ని సాధిస్తాడు <FaQuoteRight/>
                             </p>
                         </div>
 
