@@ -418,7 +418,7 @@ const Home = () => {
                             </p>
                         </div>
 
-                        <div className="absolute top-0 left-0 overflow-hidden flex items-center justify-center  h-full w-full ">
+                        <div className="absolute top-0 left-0 overflow-hidden flex items-center justify-center z-0 h-full w-full ">
                             {[...Array(5)].map((_, i) => (
                                 <div
                                     key={i}
