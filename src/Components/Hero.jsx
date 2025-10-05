@@ -418,12 +418,12 @@ const Home = () => {
                             </p>
                         </div>
 
-                        <div className="absolute top-0 left-0 overflow-hidden flex items-center justify-center z-0 h-full w-full ">
+                        <div className="absolute top-0 left-0 overflow-hidden flex items-center justify-center rounded-3xl bg-amber-100 z-0 h-full w-full ">
                             {[...Array(5)].map((_, i) => (
                                 <div
                                     key={i}
                                     ref={(el) => (slideRef.current[i] = el)}
-                                    className="w-1/5 h-full border border-red-600 bg-red-600"
+                                    className="w-1/5 h-full  bg-red-600"
                                 ></div>
                             ))}
                         </div>
