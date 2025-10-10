@@ -1,112 +1,77 @@
-import React, { useRef, useEffect } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, Float, OrbitControls } from "@react-three/drei";
-import { useMediaQuery } from "react-responsive";
+import { useGSAP } from '@gsap/react'
+import gsap from 'gsap'
+import { ArrowDown, ArrowUpRight, Globe, Pen, PenTool, WholeWord } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react'
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
-import { ArrowRight, ArrowUpRight, Download, MouseIcon, Quote } from "lucide-react";
-import { Model } from "../Components/Model";
-import Profile from "../Pages/Profile";
-import Architecture from "../Components/Architecture";
-import Buttons from "./Buttons";
-import GsapMarquee from "./GsapMarquee";
-import { assets } from "../assets/assets";
-import { useNavigate } from "react-router-dom";
-import LiquidErase from "./LiquidErase";
-import { FaQuoteRight } from "react-icons/fa";
-import { FaQuoteLeft } from "react-icons/fa6";
+import Image from '../Components/Image'
+import TextY from '../Components/TextY';
+import { RiFileWordLine } from '@remixicon/react';
+import Footer from '../Components/Footer';
+gsap.registerPlugin(ScrollTrigger);
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
 
-const expert = [
-    { name: "Web Design", desc: "Crafting stunning layouts that catch the eye." },
-    { name: "Web Development", desc: "Turning ideas into fast, functional websites." },
-    { name: "UX Design", desc: "Designing smooth, intuitive user journeys." },
-    { name: "Brand Identity", desc: "Building visuals that make brands unforgettable." },
-    { name: "Art Direction", desc: "Shaping the mood, style, and creative vision." }
-];
 
-const FollowCursorModel = ({ mobile, ...props }) => {
-    const modelRef = useRef();
-    const target = useRef({ x: 0, y: 0 });
-    const raf = useRef(null);
-    const last = useRef(0);
-
-    // ✅ Throttled mousemove with requestAnimationFrame
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            const now = Date.now();
-            if (now - last.current < 16) return; // ~60fps
-            last.current = now;
-
-            const x = (e.clientX / window.innerWidth) * 2 - 1;
-            const y = -(e.clientY / window.innerHeight) * 2 + 1;
-            gsap.to(target.current, {
-                x,
-                y,
-                duration: 0.6,
-                ease: "power2.out"
-            });
-        };
-
-        window.addEventListener("mousemove", handleMouseMove, { passive: true });
-        return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, []);
-
-    // ✅ Smooth rotation tied to GPU compositing
-    useFrame(() => {
-        if (!modelRef.current) return;
-        const rot = modelRef.current.rotation;
-        rot.y += (target.current.x * 0.8 - rot.y) * 0.08;
-        rot.x += (target.current.y * 0.5 - rot.x) * 0.08;
-    });
-
-    return (
-        <Model
-            ref={modelRef}
-            scale={mobile ? 0.007 : 0.0085}
-            position={[0, -0.5, 0]}
-            {...props}
-        />
-    );
-};
 
 const Home = () => {
+
+    const today = new Date().toLocaleDateString();
+    const redFill = useRef(null);
+    const blackFill = useRef(null);
     const lineRef = useRef(null);
+    const imgRef = useRef(null);
+    const [time, setTime] = useState("");
+
+    useEffect(() => {
+        const updateTime = () => {
+            const now = new Date().toLocaleTimeString("en-IN", {
+                timeZone: "Asia/Kolkata",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: true,
+            });
+            setTime(now);
+        };
+
+        updateTime(); // run once immediately
+        const interval = setInterval(updateTime, 1000); // update every second
+        return () => clearInterval(interval); // cleanup
+    }, []);
+
     const rolesRef = useRef([]);
-    const containerRef = useRef(null);
-    const slideRef = useRef([]);
-    const button1Ref = useRef(null);
-    const circleRef = useRef(null);
-    const button2Ref = useRef(null);
-    const circle2Ref = useRef(null);
-    const textRef = useRef(null);
-    const text2Ref = useRef(null);
-    const navigate = useNavigate();
-
-
-    const bottom = [
-        { name: "+", icon: "" },
-        { name: "+", icon: "" },
-        { name: "Scroll Down", icon: <MouseIcon /> },
-        { name: "+", icon: "" },
-        { name: "+", icon: "" }
+    const section1 = useRef(null);
+    const section2 = useRef(null);
+    const expert = [
+        { name: "Web Design", desc: "Crafting stunning layouts that catch the eye." },
+        { name: "Web Development", desc: "Turning ideas into fast, functional websites." },
+        { name: "UX Design", desc: "Designing smooth, intuitive user journeys." },
+        { name: "Brand Identity", desc: "Building visuals that make brands unforgettable." },
+        { name: "Art Direction", desc: "Shaping the mood, style, and creative vision." }
     ];
 
+
+
+
     useGSAP(() => {
-        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-        // Hero text animation
-        tl.from(".textL", {
-            y: -200,
+        gsap.from(".text-B", {
+            xPercent: -150,
             duration: 1.8,
-            stagger: 0.1,
-            ease: "power3.inOut",
-            willChange: "transform"
+            stagger: -0.11,
+            ease: "power4.out",
+            force3D: true,
+            transformOrigin: "center center",
+            willChange: "transform , opacity"
         });
-
+        gsap.from(".text-R", {
+            yPercent: -150,
+            opacity: 0,
+            duration: 1.4,
+            stagger: -0.11,
+            ease: "power4.out",
+            force3D: true,
+            transformOrigin: "center center",
+            willChange: "transform , opacity"
+        });
         gsap.from(lineRef.current, {
             width: 0,
             delay: 1.5,
@@ -115,54 +80,33 @@ const Home = () => {
             willChange: "width"
         });
 
-        gsap.from(".text2", {
-            y: 100,
-            duration: 1.5,
-            delay: 0.8,
-            stagger: 0.2,
-            ease: "power3.out",
-            willChange: "transform"
+        gsap.from(".text-I", {
+            xPercent: 150,
+            opacity: 0,
+            duration: 1.6,
+            stagger: 0.05,
+            ease: "power4.out",
+            force3D: true,
+            transformOrigin: "center center",
+        });
+        gsap.from(".text-I2", {
+            xPercent: -250,
+            opacity: 0,
+            duration: 1.7,
+            stagger: -0.1,
+            ease: "power4.out",
+            force3D: true,
+            transformOrigin: "center center",
         });
 
-        // Bottom fade-out
-        gsap.utils.toArray(".bottom").forEach((item) => {
-            gsap.fromTo(
-                item,
-                { opacity: 1 },
-                {
-                    opacity: 0,
-                    duration: 1.2,
-                    ease: "power2.inOut",
-                    scrollTrigger: {
-                        trigger: item,
-                        start: "top 98%",
-                        end: "top 60%",
-                        scrub: true
-                    }
-                }
-            );
-        });
 
-        // Number animations
-        const animateNum = (selector, yStart, start, end) => {
-            gsap.utils.toArray(selector).forEach((num) => {
-                gsap.fromTo(
-                    num,
-                    { y: yStart, opacity: 1, willChange: "transform" },
-                    {
-                        y: 0,
-                        opacity: 1,
-                        duration: 2,
-                        ease: "power3.out",
-                        scrollTrigger: { trigger: num, start, end, scrub: true }
-                    }
-                );
-            });
-        };
-        animateNum(".num1", -180, "top 3%", "top -5%");
-        animateNum(".num2", 180, "top 43%", "top 35%");
 
-        // Hover animation for capabilities
+    })
+
+
+    useEffect(() => {
+
+
         rolesRef.current.forEach((el) => {
             if (!el) return;
             const fill = el.querySelector(".fill");
@@ -192,277 +136,203 @@ const Home = () => {
                 });
             });
         });
+    }, []);
 
-        // Text line reveal (SplitText)
-        // Text line reveal (SplitText) - wait for fonts to load
-        document.fonts.ready.then(() => {
-            const selectors = [".do-text"];
-            selectors.forEach((selector) => {
-                const split = new SplitText(selector, { type: "lines" });
-                const lines = split.lines.map((line) => {
-                    const inner = document.createElement("span");
-                    inner.className = "inline-block";
-                    inner.textContent = line.textContent;
-                    const wrapper = document.createElement("span");
-                    wrapper.className = "overflow-hidden py-1 block";
-                    wrapper.appendChild(inner);
-                    line.textContent = "";
-                    line.appendChild(wrapper);
-                    return inner;
-                });
 
-                gsap.from(lines, {
-                    y: 100,
-                    opacity: 0,
-                    duration: 1.8,
-                    ease: "power3.out",
-                    stagger: 0.2,
-                    scrollTrigger: {
-                        trigger: selector,
-                        start: "top 85%"
-                    }
-                });
-            });
+    // Sticky Scroll Stack
+
+    useGSAP(() => {
+        // === Sticky Scroll Effect ===
+        ScrollTrigger.create({
+            trigger: section1.current,
+            start: "top top",
+            end: "+=100%", // controls how long section1 stays pinned
+            pin: true,
+            pinSpacing: false, // disables extra space after unpinning
+            scrub: true,
         });
 
-
-
-
-
-
-
-
-
-
-
-        // Animate each word with GSAP
-        gsap.from(".textD", {
-            y: 100,
-            opacity: 0,
-            duration: 1.2,
-            ease: "power3.out",
-            stagger: 0.05,
+        gsap.to(imgRef.current, {
+            scale: 1.1,
+            transformOrigin: "center center",
+            ease: "none",
             scrollTrigger: {
-                trigger: ".textD",
-                start: "top 80%"
+                trigger: section2.current,
+                start: "top bottom", // when section2 starts entering viewport
+                end: "top 20%",   // fade completes when section2 reaches middle
+                scrub: true,
+            },
+        });
+        gsap.to(section1.current, {
+            scale: 1,
+            opacity: 0.2,
+            ease: "none",
+            scrollTrigger: {
+                trigger: section2.current,
+                start: "top bottom", // when section2 starts entering viewport
+                end: "top 20%",   // fade completes when section2 reaches middle
+                scrub: true,
+            },
+        });
+
+        // === Animate section2 rising over section1 ===
+        gsap.fromTo(
+            section2.current,
+            { y: "10%" }, // start below viewport
+            {
+                y: "0%",
+                ease: "power2.inOut",
+                scrollTrigger: {
+                    trigger: section2.current,
+                    start: "top bottom",
+                    end: "top top",
+                    scrub: true,
+                },
             }
-        });
+        );
+    });
 
-
-        // Slide animation reveal
-        slideRef.current.forEach((slide, i) => {
-            gsap.set(slide, {
-                yPercent: i % 2 === 0 ? 100 : -100,
-                willChange: "transform"
-            });
-        });
-        gsap.to(slideRef.current, {
-            yPercent: 0,
-            duration: 1.6,
-            ease: "power4.inOut",
-            stagger: 0.1
-        });
-
-        gsap.from(containerRef.current, {
-            rotate: 15,
-            scale: 0.7,
-            duration: 1.2,
-            ease: "expo.inOut"
-        })
-    }, []);
-
-    useEffect(() => {
-        if (!button1Ref.current || !circleRef.current || !textRef.current) return;
-        if (!button2Ref.current || !circle2Ref.current || !text2Ref.current) return;
-
-        // Function to create hover animation
-        const addHoverEffect = (button, circle, text) => {
-            const tl = gsap.timeline({ paused: true });
-
-            tl.to(circle, {
-                scale: 39, // Circle expansion
-                duration: 0.6,
-                backgroundColor: "#6565FB",
-                ease: "power3.out"
-            })
-                .to(
-                    text,
-                    {
-                        x: "-0.5vw", // Text moves slightly
-                        color: "#FFFFFF",
-                        duration: 0.45,
-                        ease: "power4.inout",
-                    },
-                    "<" // start simultaneously
-                );
-
-            // Hover in
-            button.addEventListener("mouseenter", () => tl.play());
-            // Hover out
-            button.addEventListener("mouseleave", () => tl.reverse());
-        };
-
-        addHoverEffect(button1Ref.current, circleRef.current, textRef.current);
-        addHoverEffect(button2Ref.current, circle2Ref.current, text2Ref.current);
-
-        // Ripple effect on click
-        const addRippleEffect = (button) => {
-            button.addEventListener("click", (e) => {
-                const ripple = document.createElement("span");
-                ripple.className = "ripple";
-                ripple.style.left = `${e.offsetX}px`;
-                ripple.style.top = `${e.offsetY}px`;
-                button.appendChild(ripple);
-
-                gsap.fromTo(
-                    ripple,
-                    { scale: 0, opacity: 0.5 },
-                    {
-                        scale: 10,
-                        opacity: 0,
-                        duration: 0.6,
-                        ease: "power2.out",
-                        onComplete: () => ripple.remove()
-                    }
-                );
-            });
-        };
-
-        addRippleEffect(button1Ref.current);
-        addRippleEffect(button2Ref.current);
-
-    }, []);
 
 
     return (
-        <div className="w-full main overflow-x-hidden relative  main  will-change-transform will-change-opacity">
-
-            <section data-scroll data-scroll-speed="0.9" className="w-full h-full flex items-center md:flex-row flex-col-reverse justify-center z-0">
-                <div className="overflow-hidden px-5 md:px-2  w-full h-full ">
-                    <div className="  mt-[2vw] flex flex-col xl:mx-[3.5vw] items-start ">
-                        <div className="  overflow-hidden">
-                            <div className="textL text-[12vw] will-change-transform   leading-[11vw] xl:text-[8vw] xl:leading-[7vw] lg:text-[10vw] lg:leading-[8vw] md:text-[9vw] md:leading-[8vw] uppercase font-poppins font-poppins-500  text-black ">
-                                <span className="font-[font3]  relative inline-block  ">N</span>aga
-                            </div>
-                        </div>
-                        <div className="overflow-hidden">
-                            <div className="textL text-[15vw] will-change-transform xl:text-[7vw] md:text-[10vw] md:leading-[10vw] lg:text-[10vw] lg:leading-[10vw] uppercase  font-poppins font-poppins-500 text-black leading-[12vw] xl:leading-[6vw]">
-                                Ruthwik
-                            </div>
-                        </div>
-                        <div className="overflow-hidden  flex flex-col items-start">
-                            <div className="flex">
-                                <div className="textL text-[10vw] will-change-transform xl:text-[4.5vw] leading-[10vw] xl:leading-[4vw] md:text-[7vw] md:leading-[7vw]  uppercase  font-[aeonik1] text-black ">
-                                    Merugu.
+        <div className='w-full h-full bg-[#EFEFEF] '>
+            <section ref={section1} className='w-full sticky section1 will-change-transform  will-change-opacity transform-gpu h-screen '>
+                <div className='flex h-[92vh] w-full  items-center lg:justify-center xl:justify-between'>
+                    <div className='flex h-full w-full flex-col items-start justify-center overflow-hidden'>
+                        {/* Name */}
+                        <div className=" h-[50%] mt-[10vw] mx-[3vw] flex flex-col  justify-center items-start ">
+                            <div className="  overflow-hidden">
+                                <div className="text-B text-[12vw] will-change-transform will-change-opacity   leading-[11vw] xl:text-[6vw] xl:leading-[7vw] lg:text-[9vw] lg:leading-[10.5vw] md:text-[9vw] md:leading-[8vw]  font-[Helvetica] font-[400]  text-black ">
+                                    Naga
                                 </div>
                             </div>
-                            <span ref={lineRef} className="h-0.5 w-full ml-1  bg-black flex items-start justify-start"></span>
-                        </div>
-                    </div>
-                    <div className="overflow-hidden gap-0 will-change-transform md:text-black text-gray-500 ml-[5vh] lg:ml-[20vw] md:ml-[7vw] xl:ml-[25vh]">
-                        <div className="overflow-hidden">
-                            <div className="xl:text-[1.7vw] lg:text-[2.1vw] lg:leading-[3vw] mt-[2vh] text-[3.5vw] md:text-[3vw] md:leading-[4vw] leading-[3vw] xl:leading-[3vh]">
-                                <p className="text2 font-[font2]">An Interactive Developer</p>
+                            <div className="overflow-hidden md:-mt-[1.5vw]">
+                                <div className="text-B text-[15vw] will-change-transform will-change-opacity xl:text-[8vw] md:text-[10vw] md:leading-[10vw] lg:text-[10vw] lg:leading-[9vw]   font-Helvetica font-poppins-500 text-black leading-[12vw] xl:leading-[7vw]">
+                                    Ruthwik
+                                </div>
+                            </div>
+                            <div className="overflow-hidden  flex flex-col items-start">
+                                <div className="flex">
+                                    <div className="text-B text-[10vw] will-change-transform xl:text-[4.5vw] leading-[10vw] xl:leading-[5vw] lg:text-[7vw] lg:leading-[9vw] md:text-[7vw] md:leading-[7vw]    font-[aeonik1] text-black ">
+                                        Merugu.
+                                    </div>
+                                </div>
+                                <span ref={lineRef} className="h-0.5 w-full ml-1 mt-[1vw] bg-black flex items-start justify-start"></span>
+                            </div>
+                            <div className="overflow-hidden gap-0 will-change-transform md:text-black text-gray-500 ml-[5vh] lg:ml-[20vw] md:ml-[7vw] xl:ml-[25vh]">
+                                <div className="overflow-hidden">
+                                    <div className="xl:text-[1.1vw] lg:text-[2.1vw] will-change-transform will-change-opacity lg:leading-[3vw] mt-[2vh] text-[3.5vw] md:text-[3vw] md:leading-[4vw] leading-[3vw] xl:leading-[1vw]">
+                                        <p className="text-I font-[font2]">An Interactive Developer</p>
+                                    </div>
+                                </div>
+                                <div className="overflow-hidden">
+                                    <div className="  xl:text-[1.1vw] md:text-[3vw] will-change-transform will-change-opacity md:leading-[3vw] lg:text-[2.1vw] lg:leading-[2.5vw]  md:mt-0 xl:mt-[0vw] text-[3.5vw] leading-[3vw] xl:leading-[1vw]">
+                                        <p className="text-I2 font-[font2]">Based in Hyderabad, India</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className="overflow-hidden">
-                            <div className="xl:ml-[15vh] lg:ml-[1vw] md:ml-[3vw] ml-[9vh] xl:text-[1.7vw] md:text-[3vw] md:leading-[3vw] lg:text-[2.1vw] lg:leading-[2.5vw]  md:mt-0 xl:mt-[0vw] text-[3.5vw] leading-[3vw] xl:leading-[3vh]">
-                                <p className="text2 font-[font2]">Based in Hyderabad, India</p>
+                        {/* intro */}
+                        <div className='w-full h-[20%] flex mt-[2vw] overflow-hidden'>
+                            <div className='h-full xl:w-2/3 lg:w-2/5 w-1/2 '>
+
+                            </div>
+                            <div className='h-full w-full flex-col  overflow-hidden font-[font2] text-black/50 flex items-end justify-end xl:text-[1.3vw] xl:leading-[1.2vw] lg:text-[2vw] text-end p-2'>
+                                <TextY>
+                                    <p>Crafting intuitive, human-focused interfaces — from <span className='text-black'>pixels</span> to <span className='text-black'>backend logic</span>.</p>
+                                </TextY>
+                                <div className='h-full w-full overflow-hidden font-[font2] text-black/50 flex items-end justify-end xl:text-[1.3vw] xl:leading-[1.5vw] lg:text-[2vw]  p-2'>
+                                    <TextY>
+                                        <p>Every inch. Every pixel. <span className='text-black'>Hand-crafted.</span></p>
+                                    </TextY>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        {/* Descriptio */}
+                        <div className='w-full h-[35%]  flex items-start flex-col justify-end  overflow-hidden'>
+                            <div className="overlflow-hidden md:mx-[3vw] font-[font2]  will-change-transform xl:w-[50%] lg:w-[80%] tracking-wider xl:text-[1.7vw] xl:leading-[1.5vw] lg:text-[2.5vw] lg:leading-[2.7vw] px-2 mt-[5vw] xl:mt-[2vw]  ">
+                                <TextY>
+                                    <p>I create digital experiences that spark curiosity and leave a mark. Every interface I design is a space where creativity and functionality meet to tell unique stories.
+                                    </p>
+                                </TextY>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="overlflow-hidden md:mx-[3vw] will-change-transform xl:w-[60%] px-2 mt-[5vw] xl:mt-[2vw]  ">
-                        <div className=" md:text-[2vw] md:leading-[2vw] xl:text-[1.5vw] w-full xl:leading-[1.1vw] leading-[3vw] text-[3.5vw] font-[Helvetica]">
-                            <p className="do-text">I create digital experiences that spark</p>
-                        </div>
-                        <div className="do-text md:text-[2vw] md:leading-[2vw] xl:text-[1.5vw] w-full xl:leading-[1.1vw] leading-[3vw] text-[3.5vw] font-[Helvetica]">
-                            <p> curiosity and leave a mark.Every  interface</p>
-                        </div>
-                        <div className="do-text md:text-[2vw] md:leading-[2vw] xl:text-[1.5vw] w-full xl:leading-[1.1vw] leading-[3vw] text-[3.5vw] font-[Helvetica]">
-                            <p>  I design is a space where creativity and </p>
-                        </div>
-                        <div className="do-text md:text-[2vw] md:leading-[2vw] xl:text-[1.5vw] w-full xl:leading-[1.1vw] leading-[3vw] text-[3.5vw] font-[Helvetica]">
-                            <p>functionality meet to tell unique stories.</p>
-                        </div>
                     </div>
-
-                    <div className="flex items-center  justify-center xl:w-1/2 p-5 will-change-transform will-change-opacity gap-2 overflow-hidden ">
-                        <div onClick={() => { navigate("/contact") }} ref={button1Ref} className="xl:w-45 md:w-45 w-45 rounded-full h-12 shadow-md flex overflow-hidden items-center justify-center">
-                            <button className="flex items-center justify-center font-[font2] gap-2 xl:text-[1.1vw] "> <span ref={circleRef} className="w-2 h-2 z-0 bg-black rounded-full "></span> <span ref={textRef} className="z-50 text-black flex items-center justify-center uppercase gap-2 ">Contact me <ArrowRight /> </span></button>
-                        </div>
-                        <div ref={button2Ref} className="xl:w-39 md:w-39 w-39 rounded-full h-12 shadow-md flex overflow-hidden items-center justify-center">
-                            <a
-                                href={assets.resume_fullstack} // path to your resume in the public folder
-                                download={assets.resume_fullstack}
-                                className="flex items-center justify-center font-[font2] gap-2 xl:text-[1.1vw] "> <span ref={circle2Ref} className="w-2 h-2 z-0 bg-black rounded-full "></span> <span ref={text2Ref} className="z-50 text-black flex items-center justify-center uppercase gap-2">Resume <Download /> </span></a>
+                    <div className='xl:w-1/2 md:w-2/3 h-full mt-[2vw] flex items-center mx-auto justify-center '>
+                        <div ref={imgRef} className='xl:w-[20vw] xl:h-[22vw] lg:w-[35vw] h-auto'>
+                            <Image />
                         </div>
                     </div>
                 </div>
-                <div className=" xl:w-[70vw] w-full md:w-full h-full  md:h-screen overflow-hidden flex z-0 items-center md:p-10 px-3 pt-15 justify-center xl:h-screen">
-                    <div ref={containerRef} className="w-full xl:w-[90%] md:px-5  h-[35vh] md:h-[40vw] xl:h-[30vw] overflow-hidden relative p-2  z-0 bg-black rounded-3xl">
+                <div className='overflow-hidden w-full flex items-center justify-between h-[8vh] '>
+                    <div className='w-full h-full  flex items-center justify-center font-[aeonik2]'>
+                        [ Scroll To Explore <ArrowDown className='inline-block' /> ]
 
-
-                        <h1 className="blend-text absolute top-0 left-3 md:left-1/2 md:-translate-x-1/2 flex items-center justify-center text-[18vw] leading-[15vw] xl:text-[7vw] md:text-[10vw] lg:text-[9vw] lg:leading-[9vw] md:leading-[9vw]  xl:leading-[7vw] font-[aeonik1] text-white mix-blend-difference tracking-tight z-20 select-none pointer-events-none">
-                            Rightfull <br /> Thoughts
-                        </h1>
-                        <div className="blend-text absolute bottom-1 md:bottom-0 md:pb-10 flex flex-col items-center justify-center  z-30 mix-blend-difference text-center">
-                            <h2 className="text-[5vw] md:text-[4vw] lg:text-[3vw] xl:text-[2vw]  font-[aeonik2] text-red-200 leading-[3vw]  ">
-                                Crafting Interactive Experiences
-                            </h2>
-                            <h3 className="text-[4vw] md:text-[2.5vw] md:leading-[2vw] lg:text-[2vw] xl:text-[1.3vw] font-[font2] text-gray-200">
-                                “Every pixel has a purpose — every animation, a mindgame.”
-                            </h3>
-                            <p className="text-[2.8vw] md:text-[2vw] flex items-center justify-center lg:text-[1.8vw] md:leading-[1.5vw] xl:text-[1.2vw] font-[Helvetica] mix-blend-difference text-white ">
-                                 -  <FaQuoteLeft/> యోగ యుక్తో విశుద్ధాత్మా విజయాన్ని సాధిస్తాడు <FaQuoteRight/>
-                            </p>
-                        </div>
-
-                        <div className="absolute top-0 left-0 overflow-hidden flex items-center justify-center rounded-3xl bg-amber-100 z-0 h-full w-full ">
-                            {[...Array(5)].map((_, i) => (
-                                <div
-                                    key={i}
-                                    ref={(el) => (slideRef.current[i] = el)}
-                                    className="w-1/5 h-full  bg-red-600"
-                                ></div>
-                            ))}
-                        </div>
                     </div>
+                    <div className='xl:w-1/2 md:w-[70%] font-[dbsharp] font-[500] xl:text-[0.8vw] items-center justify-center gap-5 h-full flex '>
+                        <div className='flex items-center justify-center'>
+                            <Globe className='inline-block xl:w-[1vw] xl:h-[1vw]' /> Hyderabad , India
+                        </div>
+                        <div style={{ fontStretch: '75%' }}>
+                            {today}
+                        </div>
+
+                        <div style={{ fontStretch: '75%' }}>
+                            {time}
+                        </div>
+
+                    </div>
+
                 </div>
+
+
+
             </section>
 
 
-            <div className="bottom  font-[font4] md:-mt-[2vw] mt-[13vw]">
-                <div className="flex items-center justify-around">
-                    {bottom.map((items, index) => (
-                        <div key={index} className="between">
-                            <h1 className="text-[4vw] text-black md:text-[2vh] font-[font2] flex ">
-                                {items.name}{" "}
-                                {items.name === "Scroll Down" ? (
-                                    <span className="animate-bounce [animation-duration:2s]">   {items.icon} </span>
-                                ) : (
-                                    items.icon
-                                )}
-                            </h1>
-                        </div>
-                    ))}
-                </div>
-            </div>
+            {/* page2 */}
+            <section ref={section2} className='sticky w-full h-full transform-gpu will-change-transform bg-white will-change-opacity  flex flex-col '>
 
-            <section className="sec2">
-                <div className='overflow-hidden md:mt-0 xl:mt-[10vh]'>
-                    <div className='text-center xl:text-[2.5vw] xl:leading-[3vw] leading-[6vw] md:text-[3.3vw] text-[7vw] font-[font2] text-gray-400'>
-                        <h1 className="textD">Designing for <span className='text-black'>clarity</span>, <span className='text-black'>impact</span>, and delight—one project at a time.</h1>
+                <div className='overflow-hidden xl:mt-[3vw] xl:w-[70%] lg:w-[85%] lg:mt-[5vw] xl:h-[45%] lg:h-[30%] xl:mx-[3vw]'>
+                    <div className='xl:text-[4vw] lg:text-[6vw] lg:leading-[7.7vw] xl:leading-[4.5vw] text-black/50 font-[dbsharp] font-[500] lg:px-[2vw] p-2'>
+                        <TextY>
+                            <h1 className="textD">Designing for <span className='text-black'>clarity</span>, <span className='text-black'>impact</span>, and delight—one project at a time.</h1>
+
+                        </TextY>
                     </div>
                 </div>
-            </section>
-
-            <section className="w-full h-full md:mt-[15vw] mt-[15vw] lg:mt-[8vw] xl:mt-[5vw] font-poppins page2 md:px-[2vw] tracking-tighter relative">
-                <div className='overflow-hidden  '>
-                    <div className='text-[10vw] px-5 md:px-0 md:text-[3vw] text-gray-400 font-[aeonik.]'>
-                        <h1>Capabilties</h1>
+                <div className='overflow-hidden xl:mt-[3vw] lg:mt-[5vw] xl:ml-[40%] lg:ml-[28%]   w-full h-full'>
+                    <div className='xl:text-[2vw] font-[font2] xl:leading-[2vw] lg:text-[4vw] text-black/60'>
+                        <TextY>
+                            <h1>Purpose</h1>
+                        </TextY>
                     </div>
-                    <div className="w-full md:p-0  p-5 md:py-5 font-[font2]">
+
+                    <div className='overflow-hidden xl:w-[45%] lg:w-[70%] lg:mt-[5vw] lg:text-[3vw] lg:leading-[3.5vw] xl:mt-[3vw] xl:text-[2vw] xl:leading-[2.8vw] font-[Helvetica] font-[200]'>
+                        <TextY>
+                            <h2>I believe every pixel holds meaning — every design, every interaction speaks with intention, connecting deeply and expressing with intensity.</h2>
+                        </TextY>
+                    </div>
+
+                    <div className='overflow-hidden xl:w-[45%] lg:w-[70%] lg:mt-[5vw] lg:text-[3vw] lg:leading-[3.5vw] xl:mt-[3vw] xl:text-[2vw] xl:leading-[2.8vw] font-[Helvetica] font-[200]'>
+                        <TextY>
+                            <h2>Design and development are just tools; I craft experiences where each pixel enhances utility, emotion, and connection.</h2>
+                        </TextY>
+                    </div>
+
+                </div>
+
+                <div className='w-full h-full md:mx-[5vw] md:mt-[5vw] overflow-hidden'>
+                    <div className='xl:text-[2vw] font-[font2] xl:leading-[2vw] lg:text-[4vw] text-black/60'>
+                        <TextY>
+                            <h1>Capabilities</h1>
+                        </TextY>
+                    </div>
+                    <div className="w-[60%] md:p-0  p-5 md:py-5 font-[font2]">
                         {expert.map((role, i) => (
                             <div
                                 key={i}
@@ -483,8 +353,23 @@ const Home = () => {
                     </div>
                 </div>
             </section>
-        </div >
-    );
-};
+            <section className='w-full min-h-full'>
+                <div className='w-full h-full xl:text-[3vw] font-[dbsharp] font-[500] md:mt-[5vw] md:mx-[3vw] xl:leading-[4vw] '>
+                    <div className='md:max-w-xl text-black/50 '>
+                        <TextY>
+                            <h1>End of this section but <span className='text-black'>Our Journey</span></h1>
+                        </TextY>
+                    </div>
+                    <div className='xl:text-[1vw] xl:leading-[2vw]'>
+                        <TextY>
+                            <h1>Every Pixel and Hand <PenTool className='inline-block xl:w-[3vw] xl:h-[3vw] -rotate-90' strokeWidth={0.8} /> made</h1>
+                        </TextY>
+                    </div>
+                </div>
+                <Footer />
+            </section>
+        </div>
+    )
+}
 
-export default Home;
+export default Home

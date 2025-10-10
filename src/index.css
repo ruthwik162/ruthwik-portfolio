@@ -39,6 +39,18 @@
   font-family: Helvetica;
   src: url(../fonts/Helvetica_Now_Display_W05_Bold.ttf);
 }
+
+@font-face {
+  font-family: 'dbsharp';
+  src: url('/fonts/DBSharpGroteskVariable-VF.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+
 body {
   background-color: #111;
   overflow-x: hidden;
@@ -173,7 +185,7 @@ body {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #000000 ;
+  scrollbar-color: #000000;
 }
 
 .blend-text {
@@ -183,12 +195,12 @@ body {
 }
 
 .ripple {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 50;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 50;
 }

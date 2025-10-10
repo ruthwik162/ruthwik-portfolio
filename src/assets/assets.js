@@ -37,6 +37,7 @@ import { FaLinkedin } from "react-icons/fa";
 import { FaSquareInstagram, FaGithub } from "react-icons/fa6";
 import { CiPhone } from "react-icons/ci";
 import { MdEmail } from "react-icons/md";
+import profile1 from './profile.jpg'
 
 export const images = {
     pooja1,
@@ -52,7 +53,8 @@ export const images = {
     orangestar,
     purpleflower,
     spin,
-    ruthwik
+    ruthwik,
+    profile1
 
 
 }
@@ -117,6 +119,7 @@ export const assets = {
 export const pdf = [
 
 ]
+
 
 
 

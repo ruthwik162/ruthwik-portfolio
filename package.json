@@ -19,6 +19,7 @@
     "@tailwindcss/vite": "^4.1.4",
     "axios": "^1.12.2",
     "gsap": "^3.13.0",
+    "lineicons-react": "^2.0.0",
     "locomotive-scroll": "^4.1.4",
     "lucide-react": "^0.544.0",
     "maath": "^0.10.8",

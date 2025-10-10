@@ -31,7 +31,7 @@ const Image = () => {
             <div ref={imgWrapperRef} className='image w-full h-full  z-4  relative overflow-hidden' >
                 <div className=''>
                     <img
-                        src={images.ruthwik}
+                        src={images.profile1}
                         loading='lazy'
                         alt=""
                         className='h-full w-full hover:scale-105 transition-all duration-500 object-cover'
