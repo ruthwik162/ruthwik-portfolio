@@ -173,7 +173,7 @@ const Navbar = () => {
         <h1 className="letter absolute xl:-bottom-[10vh] text-white/50 -bottom-[6vh] right-[19vw] xl:right-[5vh] font-[font2] text-[17vh] md:right-[4vw] md:-bottom-[12vw] md:text-[40vw] xl:text-[30vh]">R</h1>
 
         <div className="flex flex-col md:ml-[50%] items-center justify-start md:-mt-[20vh] md:flex-col">
-          <div className="relative -ml-[13vh] md:ml-0  -mt-[13vh] pt-2 md:mt-0 md:pt-0  flex flex-col font-[font2] text-4xl gap-y-1 md:text-6xl lg:text-[7vw] xl:text-[4vw]">
+          <div className="relative -ml-[13vh] md:ml-0  -mt-[13vh] pt-2 md:mt-0 md:pt-0  flex flex-col font-[font2] text-4xl  md:text-6xl lg:text-[7vw] xl:text-[4vw]">
             {["Profile", "capability", "Projects", "Contact"].map((text, index) => (
               <div className="overflow-hidden" key={index}>
                 <div
@@ -181,29 +181,27 @@ const Navbar = () => {
                   ref={(el) => (linksRef.current[index] = el)}
                   className="flex "
                 >
-                  <TextY>
-                    <h2
-                      onClick={() => {
-                        navigate(
-                          text === "Home"
-                            ? "/"
-                            : `/${text.toLowerCase().replace(/\s+/g, "-")}`
-                        );
-                        setOpen(false);
-                        closeTl.current.play(0);
-                        scrollTo(0, 0);
-                        iconTl.current.reverse();
-                      }}
-                      className="flex items-start cursor-pointer flex-col justify-center">
-                      <span className="flex items-center justify-center">{text} <ArrowRight strokeWidth={0.8} className="-rotate-45 inline-block xl:w-15 xl:h-15 lg:h-18 lg:w-18 md:w-18 md:h-18 w-10 h-10" /></span>
-                      <div className="w-full h-[0.15vw] overflow-hidden rounded">
-                        <div
-                          ref={(el) => (hoverFillRef.current[index] = el)}
-                          className="w-full h-full bg-white"
-                        />
-                      </div>
-                    </h2>
-                  </TextY>
+                  <h2
+                    onClick={() => {
+                      navigate(
+                        text === "Home"
+                          ? "/"
+                          : `/${text.toLowerCase().replace(/\s+/g, "-")}`
+                      );
+                      setOpen(false);
+                      closeTl.current.play(0);
+                      scrollTo(0, 0);
+                      iconTl.current.reverse();
+                    }}
+                    className="flex items-start cursor-pointer flex-col justify-center">
+                    <span className="flex items-center justify-center">{text} <ArrowRight strokeWidth={0.8} className="-rotate-45 inline-block xl:w-15 xl:h-15 lg:h-18 lg:w-18 md:w-18 md:h-18 w-10 h-10" /></span>
+                    <div className="w-full h-[0.15vw] overflow-hidden rounded">
+                      <div
+                        ref={(el) => (hoverFillRef.current[index] = el)}
+                        className="w-full h-full bg-white"
+                      />
+                    </div>
+                  </h2>
                 </div>
               </div>
             ))}

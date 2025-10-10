@@ -28,6 +28,7 @@ const Home = () => {
                 hour: "2-digit",
                 minute: "2-digit",
                 second: "2-digit",
+                microseconds: "4-digit",
                 hour12: true,
             });
             setTime(now);
@@ -203,31 +204,31 @@ const Home = () => {
                         {/* Name */}
                         <div className=" h-[50%] mt-[10vw] mx-[3vw] flex flex-col  justify-center items-start ">
                             <div className="  overflow-hidden">
-                                <div className="text-B text-[12vw] will-change-transform will-change-opacity   leading-[11vw] xl:text-[6vw] xl:leading-[7vw] lg:text-[9vw] lg:leading-[10.5vw] md:text-[9vw] md:leading-[8vw]  font-[Helvetica] font-[400]  text-black ">
+                                <div className="text-B text-[12vw] will-change-transform will-change-opacity   leading-[11vw] xl:text-[3vw] xl:leading-[4vw] lg:text-[9vw] lg:leading-[10.5vw] md:text-[9vw] md:leading-[8vw]  font-[Helvetica] font-[400]  text-black ">
                                     Naga
                                 </div>
                             </div>
                             <div className="overflow-hidden md:-mt-[1.5vw]">
-                                <div className="text-B text-[15vw] will-change-transform will-change-opacity xl:text-[8vw] md:text-[10vw] md:leading-[10vw] lg:text-[10vw] lg:leading-[9vw]   font-Helvetica font-poppins-500 text-black leading-[12vw] xl:leading-[7vw]">
+                                <div className="text-B text-[15vw] will-change-transform will-change-opacity xl:text-[5vw] md:text-[10vw] md:leading-[10vw] lg:text-[10vw] lg:leading-[9vw]   font-Helvetica font-poppins-500 text-black leading-[12vw] xl:leading-[5vw]">
                                     Ruthwik
                                 </div>
                             </div>
-                            <div className="overflow-hidden  flex flex-col items-start">
+                            <div className="overflow-hidden md:-mt-[0.5vw] flex flex-col items-start">
                                 <div className="flex">
-                                    <div className="text-B text-[10vw] will-change-transform xl:text-[4.5vw] leading-[10vw] xl:leading-[5vw] lg:text-[7vw] lg:leading-[9vw] md:text-[7vw] md:leading-[7vw]    font-[aeonik1] text-black ">
+                                    <div className="text-B text-[10vw] will-change-transform xl:text-[2.5vw] leading-[10vw] xl:leading-[3vw] lg:text-[7vw] lg:leading-[9vw] md:text-[7vw] md:leading-[7vw]    font-[aeonik1] text-black ">
                                         Merugu.
                                     </div>
                                 </div>
-                                <span ref={lineRef} className="h-0.5 w-full ml-1 mt-[1vw] bg-black flex items-start justify-start"></span>
+                                <span ref={lineRef} className="h-0.5 w-full ml-1 mt-[0.2vw] bg-black flex items-start justify-start"></span>
                             </div>
-                            <div className="overflow-hidden gap-0 will-change-transform md:text-black text-gray-500 ml-[5vh] lg:ml-[20vw] md:ml-[7vw] xl:ml-[25vh]">
+                            <div className="overflow-hidden gap-0 will-change-transform md:text-black text-gray-500 ml-[5vh] lg:ml-[5vw] md:ml-[7vw] xl:ml-[5vw]">
                                 <div className="overflow-hidden">
-                                    <div className="xl:text-[1.1vw] lg:text-[2.1vw] will-change-transform will-change-opacity lg:leading-[3vw] mt-[2vh] text-[3.5vw] md:text-[3vw] md:leading-[4vw] leading-[3vw] xl:leading-[1vw]">
+                                    <div className="xl:text-[0.9vw] lg:text-[2.1vw] will-change-transform will-change-opacity lg:leading-[3vw] mt-[2vh] text-[3.5vw] md:text-[3vw] md:leading-[4vw] leading-[3vw] xl:leading-[1vw]">
                                         <p className="text-I font-[font2]">An Interactive Developer</p>
                                     </div>
                                 </div>
                                 <div className="overflow-hidden">
-                                    <div className="  xl:text-[1.1vw] md:text-[3vw] will-change-transform will-change-opacity md:leading-[3vw] lg:text-[2.1vw] lg:leading-[2.5vw]  md:mt-0 xl:mt-[0vw] text-[3.5vw] leading-[3vw] xl:leading-[1vw]">
+                                    <div className="  xl:text-[0.9vw] md:text-[3vw] will-change-transform will-change-opacity md:leading-[3vw] lg:text-[2.1vw] lg:leading-[2.5vw]  md:mt-0 xl:mt-[0vw] text-[3.5vw] leading-[3vw] xl:leading-[1vw]">
                                         <p className="text-I2 font-[font2]">Based in Hyderabad, India</p>
                                     </div>
                                 </div>
@@ -254,7 +255,7 @@ const Home = () => {
 
                         {/* Descriptio */}
                         <div className='w-full h-[35%]  flex items-start flex-col justify-end  overflow-hidden'>
-                            <div className="overlflow-hidden md:mx-[3vw] font-[font2]  will-change-transform xl:w-[50%] lg:w-[80%] tracking-wider xl:text-[1.7vw] xl:leading-[1.5vw] lg:text-[2.5vw] lg:leading-[2.7vw] px-2 mt-[5vw] xl:mt-[2vw]  ">
+                            <div className="overlflow-hidden md:mx-[3vw] font-[font2]  will-change-transform xl:w-[40%] lg:w-[80%] tracking-wide xl:text-[1.7vw] xl:leading-[1.5vw] lg:text-[2.5vw] lg:leading-[2.7vw] px-2 mt-[5vw] xl:mt-[2vw]  ">
                                 <TextY>
                                     <p>I create digital experiences that spark curiosity and leave a mark. Every interface I design is a space where creativity and functionality meet to tell unique stories.
                                     </p>
@@ -271,7 +272,7 @@ const Home = () => {
                 </div>
                 <div className='overflow-hidden w-full flex items-center justify-between h-[8vh] '>
                     <div className='w-full h-full  flex items-center justify-center font-[aeonik2]'>
-                        [ Scroll To Explore <ArrowDown className='inline-block' /> ]
+                        [ Scroll To Explore <ArrowDown className='inline-block animate-bounce ' /> ]
 
                     </div>
                     <div className='xl:w-1/2 md:w-[70%] font-[dbsharp] font-[500] xl:text-[0.8vw] items-center justify-center gap-5 h-full flex '>
@@ -313,13 +314,13 @@ const Home = () => {
                         </TextY>
                     </div>
 
-                    <div className='overflow-hidden xl:max-w-4xl lg:w-[70%] lg:mt-[5vw] lg:text-[3vw] lg:leading-[3.5vw] xl:mt-[3vw] xl:text-[2vw] xl:leading-[2.8vw] font-[Helvetica] font-[200]'>
+                    <div className='overflow-hidden xl:max-w-4xl lg:w-[70%] lg:mt-[5vw] lg:text-[3vw] lg:leading-[3.5vw] xl:mt-[3vw] xl:text-[2vw] xl:leading-[2.8vw] font-[font1]'>
                         <TextY>
                             <h2>I believe every pixel holds meaning — every design, every interaction speaks with intention, connecting deeply and expressing with intensity.</h2>
                         </TextY>
                     </div>
 
-                    <div className='overflow-hidden xl:max-w-4xl lg:w-[70%] lg:mt-[5vw] lg:text-[3vw] lg:leading-[3.5vw] xl:mt-[3vw] xl:text-[2vw] xl:leading-[2.8vw] font-[Helvetica] font-[200]'>
+                    <div className='overflow-hidden xl:max-w-4xl lg:w-[70%] lg:mt-[5vw] lg:text-[3vw] lg:leading-[3.5vw] xl:mt-[3vw] xl:text-[2vw] xl:leading-[2.8vw] font-[font1] '>
                         <TextY>
                             <h2>Design and development are just tools; I craft experiences where each pixel enhances utility, emotion, and connection.</h2>
                         </TextY>
@@ -363,7 +364,7 @@ const Home = () => {
                     </div>
                     <div className='xl:text-[1vw] xl:leading-[2vw]'>
                         <TextY>
-                            <h1>Every Pixel and Hand <PenTool className='inline-block xl:w-[3vw] xl:h-[3vw] -rotate-90' strokeWidth={0.8} /> made</h1>
+                            <h1>Every Pixel is Hand <PenTool className='inline-block xl:w-[3vw] xl:h-[3vw] -rotate-90' strokeWidth={0.8} /> made</h1>
                         </TextY>
                     </div>
                 </div>
