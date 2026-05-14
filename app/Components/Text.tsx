@@ -193,7 +193,6 @@ const Text: React.FC<TextYProps> = ({
   );
 
   // Single child: clone with forwarded ref
-  // Single child: clone with forwarded ref
   if (React.Children.count(children) === 1) {
     const child = children as React.ReactElement;
     return React.cloneElement(child, {
@@ -201,12 +200,7 @@ const Text: React.FC<TextYProps> = ({
     } as any);
   }
 
-  // Multiple children: wrap in a div
-  return (
-    <div ref={containerRef as React.RefObject<HTMLDivElement>} data-copy-wrapper="true">
-      {children}
-    </div>
-  );
+
 };
 
 export default Text;
