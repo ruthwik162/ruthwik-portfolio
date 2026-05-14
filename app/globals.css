@@ -24,3 +24,30 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@font-face {
+  font-family: 'PPNeueMontreal';
+  src: url('/fonts/PPNeueMontreal.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Standard syntax */
+::selection {
+  background-color: #252525;
+  color: #ffffff;
+  /* Ensures text is readable on the dark background */
+}
+
+/* For Firefox */
+::-moz-selection {
+  background-color: #252525;
+  color: #ffffff;
+}
