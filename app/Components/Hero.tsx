@@ -41,8 +41,8 @@ const Hero = () => {
                     ScrollTrigger.create({
                         trigger: introRef.current,
                         endTrigger: introRef.current,
-                        start: "top 100px",
-                        end: "bottom +=40%",
+                        start: "top 70%",
+                        end: "bottom bottom",
                         pin: whoRef.current,
                         pinSpacing: false,
                         invalidateOnRefresh: true,
@@ -58,8 +58,8 @@ const Hero = () => {
                     ScrollTrigger.create({
                         trigger: lastSectionRef.current,
                         endTrigger: lastSectionRef.current,
-                        start: "top 100px",
-                        end: "bottom +=40%",
+                        start: "top 70%",
+                        end: "bottom bottom",
                         pin: philosophyRef.current,
                         pinSpacing: false,
                         invalidateOnRefresh: true,
