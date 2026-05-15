@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "./Components/SmoothScroll";
 import Navbar from "./Components/Navbar";
+import PreloaderDiagonal from "./Components/Preloaderdiagonal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
   },
   description:
     "Full-stack web developer and founder of Nothing2Real Web Studio. Specializing in MERN stack, React, Next.js, Node.js, and Java Spring Boot. Building production-ready eCommerce platforms and enterprise web solutions for real businesses in Hyderabad, India. Fresh Computer Science graduate seeking software development roles.",
-  
+
   // ─── Keywords ──────────────────────────────────────────────────────────
   keywords: [
     // Primary Skills
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     "JavaScript developer",
     "TypeScript developer",
     "Java Spring Boot developer",
-    
+
     // Technologies
     "MongoDB developer",
     "Express.js",
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     "full-stack web development",
     "frontend development",
     "backend development",
-    
+
     // Specializations
     "eCommerce developer",
     "eCommerce platform development",
@@ -54,46 +55,46 @@ export const metadata: Metadata = {
     "responsive web design",
     "3D web integration",
     "Three.js developer",
-    
+
     // Location-based
     "web developer Hyderabad",
     "full-stack developer Hyderabad India",
     "software engineer Hyderabad",
     "React developer Hyderabad",
     "Telangana web developer",
-    
+
     // Business & Studio
     "Nothing2Real Web Studio",
     "freelance web developer",
     "web development studio",
     "startup founder developer",
-    
+
     // Education & Experience
     "Computer Science graduate",
     "Malla Reddy University CSE",
     "fresh graduate developer",
     "entry-level software engineer",
     "junior full-stack developer",
-    
+
     // Projects
     "Netha Silks eCommerce",
     "Sharvani Jewellery website",
     "Pochampally saree online store",
     "hospital website development",
-    
+
     // Industry
     "web development services",
     "custom web applications",
     "business website development",
     "digital solutions developer",
-    
+
     // Hiring Keywords
     "hire full-stack developer",
     "React developer for hire",
     "MERN stack developer looking for job",
     "software developer job seeker",
     "web developer portfolio",
-    
+
     // Tools & Frameworks
     "Tailwind CSS",
     "GSAP animations",
@@ -103,7 +104,7 @@ export const metadata: Metadata = {
     "Firebase integration",
     "Postman API testing",
   ],
-  
+
   // ─── Author & Creator ──────────────────────────────────────────────────
   authors: [
     {
@@ -113,14 +114,14 @@ export const metadata: Metadata = {
   ],
   creator: "Nagaruthwik Merugu",
   publisher: "Nothing2Real Web Studio",
-  
+
   // ─── Verification & Ownership ──────────────────────────────────────────
   verification: {
     google: "your-google-verification-code", // Replace with actual code
     // yandex: "your-yandex-verification-code",
     // bing: "your-bing-verification-code",
   },
-  
+
   // ─── Robots & Indexing ─────────────────────────────────────────────────
   robots: {
     index: true,
@@ -133,7 +134,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  
+
   // ─── Open Graph (Facebook, LinkedIn) ───────────────────────────────────
   openGraph: {
     type: "website",
@@ -159,7 +160,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  
+
   // ─── Twitter Card ──────────────────────────────────────────────────────
   twitter: {
     card: "summary_large_image",
@@ -170,7 +171,7 @@ export const metadata: Metadata = {
       "MERN stack developer & founder of Nothing2Real Web Studio. Building production eCommerce platforms. React, Next.js, Node.js, Java Spring Boot. Hyderabad, India.",
     images: ["https://nagaruthwik.vercel.app/twitter-card.jpg"], // Replace with actual image
   },
-  
+
   // ─── Alternate Languages ───────────────────────────────────────────────
   alternates: {
     canonical: "https://nagaruthwik.vercel.app",
@@ -179,10 +180,10 @@ export const metadata: Metadata = {
       "en-US": "https://nagaruthwik.vercel.app",
     },
   },
-  
+
   // ─── Category ──────────────────────────────────────────────────────────
   category: "Technology",
-  
+
   // ─── Additional Metadata ───────────────────────────────────────────────
   other: {
     // Geo targeting
@@ -190,21 +191,21 @@ export const metadata: Metadata = {
     "geo.placename": "Hyderabad",
     "geo.position": "17.385044;78.486671",
     "ICBM": "17.385044, 78.486671",
-    
+
     // Contact
     "contact:email": "ruthwik.merugu@outlook.com",
     "contact:phone_number": "+91-9182216089",
-    
+
     // Professional
     "profile:first_name": "Nagaruthwik",
     "profile:last_name": "Merugu",
     "profile:username": "ruthwik162",
-    
+
     // Classification
     "classification": "Web Development, Software Engineering, Full-Stack Development",
     "rating": "General",
     "distribution": "Global",
-    
+
     // Mobile
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
@@ -227,25 +228,25 @@ export default function RootLayout({
         {/* ═══════════════════════════════════════════════════════════════ */}
         {/* ADDITIONAL SEO & PERFORMANCE TAGS */}
         {/* ═══════════════════════════════════════════════════════════════ */}
-        
+
         {/* Preconnect to external domains for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        
+
         {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-        
+
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
-        
+
         {/* Theme Color */}
         <meta name="theme-color" content="#1a1a1a" />
         <meta name="msapplication-TileColor" content="#1a1a1a" />
-        
+
         {/* JSON-LD Structured Data for Rich Snippets */}
         <script
           type="application/ld+json"
@@ -304,7 +305,7 @@ export default function RootLayout({
             }),
           }}
         />
-        
+
         {/* Organization Structured Data */}
         <script
           type="application/ld+json"
@@ -338,7 +339,7 @@ export default function RootLayout({
             }),
           }}
         />
-        
+
         {/* Professional Profile Structured Data */}
         <script
           type="application/ld+json"
@@ -386,7 +387,7 @@ export default function RootLayout({
             }),
           }}
         />
-        
+
         {/* WebSite Structured Data for Search Box */}
         <script
           type="application/ld+json"
@@ -406,7 +407,7 @@ export default function RootLayout({
             }),
           }}
         />
-        
+
         {/* BreadcrumbList for better navigation understanding */}
         <script
           type="application/ld+json"
@@ -444,8 +445,9 @@ export default function RootLayout({
           }}
         />
       </head>
-      
+
       <SmoothScroll>
+        
         <Navbar />
         <body className="min-h-full flex flex-col">{children}</body>
       </SmoothScroll>

@@ -16,8 +16,8 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { label: "Featured Works", href: "#works" },
-        { label: "About", href: "#about" },
+        { label: "Featured Works", href: "works" },
+        { label: "About", href: "about" },
     ];
 
     return (
