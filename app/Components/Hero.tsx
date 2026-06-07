@@ -307,22 +307,21 @@ const Hero = () => {
                             </h1>
                         </div>
 
-                        <div className="w-full h-[1px] col-span-12 bg-white/40" />
 
-                        <div className="col-span-12 md:col-span-5 md:col-start-8 h-[35vh] lg:h-[40vh]">
+                        <div className="col-span-12 md:col-span-4 md:col-start-9 h-[35vh] lg:h-[40vh]">
                             <h1 className="w-full indent-[35%] md:indent-[20%] lg:text-[2.5vw] text-[6vw] leading-[0.95] font-[PPNeueMontreal] font-semibold mb-8 tracking-tight text-black">
                                 Building products that people use
                                 instead of projects
                                 that just sit online
                             </h1>
 
-                            <p className="text-[clamp(1rem,2vw,1.25rem)] leading-tight text-black max-w-[300px] indent-[20%] mb-12">
+                            <p className="text-[clamp(1rem,2vw,1.25rem)]  leading-tight text-black max-w-[400px] indent-[20%] mb-12">
                                 Full-stack developer and founder turning classroom theory into production systems.
                                 From Hyderabad to the web, one client at a time.
                             </p>
 
                             <div className="flex items-center justify-between gap-8">
-                                
+
                                 <a
                                     href="/resume.pdf"
                                     download
@@ -354,15 +353,14 @@ const Hero = () => {
                 <div className="w-full max-w-[1400px] mx-auto">
                     <div className="grid grid-cols-12 gap-6">
 
-                        <div className="w-[1px] bg-white/30 h-full absolute right-1/2 top-0 md:block hidden" />
 
                         <div className="col-span-12 md:col-span-5 lg:col-start-1">
                             <div className="space-y-6 text-[15px] leading-[1.8] text-black">
-                                <Text variant="slideUp" delay={0.2} stagger={0.04} duration={1.8} animateOnScroll>
-                                    <p className="lg:text-[2vw] text-[6vw] indent-[20%] leading-tight font-semibold">
+                                <TextReveal>
+                                    <p className="lg:text-[2vw] text-[6vw]  leading-tight font-semibold">
                                         Hello, I'm Nagaruthwik — a full-stack developer who accidentally became a business owner.
                                     </p>
-                                </Text>
+                                </TextReveal>
                             </div>
                         </div>
 
@@ -390,11 +388,11 @@ const Hero = () => {
                             </div>
                         </div>
 
-                        <div className="col-span-12 md:col-span-5 mt-[15vw] lg:col-start-8">
+                        <div className="col-span-12 md:col-span-4 mt-[15vw] lg:col-start-9">
                             <div className="space-y-6 text-[15px] grid grid-cols-9 lg:grid-cols-12 leading-[1.8] text-black">
                                 <div className="col-span-9 lg:col-span-12">
                                     <Text variant="slideUp" delay={0.2} duration={1.8} stagger={0.04} animateOnScroll>
-                                        <p className="lg:text-[1.8vw] text-[5vw] font-semibold leading-[0.99] indent-[15%]">
+                                        <p className="lg:text-[1.4vw] text-[5vw] font-semibold leading-[0.99] indent-[15%]">
                                             My background is rooted in the MERN stack and Java Spring Boot, but what really shapes
                                             how I work is understanding that code isn't the end product — the business outcome is.
                                             A smooth checkout flow matters more than perfect abstractions. A fast-loading product
@@ -436,13 +434,7 @@ const Hero = () => {
                 <div ref={lastSectionContentRef} className="w-full max-w-[1400px] mx-auto">
                     <div className="grid grid-cols-12 gap-6 md:gap-8">
 
-                        <div className="col-span-12 mb-12 md:mb-0 md:col-span-3">
-                            <div ref={philosophyRef}>
-                                <span className="text-[6.5vw] lg:text-[1.1vw] uppercase font-semibold md:font-bold font-[PPNeueMontreal] text-black">
-                                    My Philosophy
-                                </span>
-                            </div>
-                        </div>
+                       
 
                         <div className="col-span-12 md:col-span-8 md:col-start-5 lg:col-span-6 lg:col-start-4">
                             <TextReveal>
@@ -450,7 +442,8 @@ const Hero = () => {
                                     Outcome
                                 </h2>
                             </TextReveal>
-                             <TextReveal>
+                            <div className="h-[0.2px] w-full bg-transparent mt-[0.1rem]" />
+                            <TextReveal>
                                 <h2 className="text-[8vw] md:text-[4vw] lg:text-[3vw]   font-bold leading-[0.95] tracking-tight text-black mb-8">
                                     over Architecture
                                 </h2>
@@ -459,12 +452,12 @@ const Hero = () => {
 
                         <div className="col-span-12 md:col-span-8 overflow-hidden md:col-start-5 lg:col-span-10 lg:col-start-4 mb-6">
                             <div className="p-1 md:p-12">
-                                <TextReveal>
-                                        <p className="text-[5vw] md:text-[2.5vw] lg:text-[2.5vw] indent-[15%] leading-[1.2] font-semibold text-black/90">
-                                            Every project starts with understanding what success looks like for the client — more sales,
-                                            better user experience, operational efficiency.
-                                        </p>
-                                </TextReveal>
+
+                                <p className="text-[5vw] md:text-[2.5vw] lg:text-[2.5vw] indent-[15%] leading-[1.2] font-semibold text-black/90">
+                                    Every project starts with understanding what success looks like for the client — more sales,
+                                    better user experience, operational efficiency.
+                                </p>
+
                                 <div className="mt-8 pt-8 border-t border-black/10">
                                     <p className="text-[3.5vw] md:text-[1.2vw] lg:text-[1rem] leading-tight font-medium text-black/70">
                                         The tech stack is just the tool. I've built eCommerce platforms that process real transactions,
@@ -475,7 +468,7 @@ const Hero = () => {
                             </div>
                         </div>
 
-                        <div  className="col-span-12 md:col-span-8 md:col-start-5 lg:col-span-6 lg:col-start-7">
+                        <div className="col-span-12 md:col-span-8 md:col-start-5 lg:col-span-6 lg:col-start-7">
                             <div className="border-t border-black/10 pt-12">
                                 <p className="text-[6vw] md:text-[3vw] lg:text-[2vw] font-bold leading-[1.1] text-black/90">
                                     The code works because the solution fits the problem.
