@@ -322,12 +322,7 @@ const Hero = () => {
                             </p>
 
                             <div className="flex items-center justify-between gap-8">
-                                <a
-                                    href="#intro"
-                                    className="text-[11px] uppercase tracking-[0.15em] font-[PPNeueMontreal] text-black underline underline-offset-4 hover:text-black/60 transition-colors duration-300"
-                                >
-                                    Read the story
-                                </a>
+                                
                                 <a
                                     href="/resume.pdf"
                                     download
