@@ -145,15 +145,7 @@ export default function Capabilities() {
 
             {/* Body */}
             <div ref={bodyRef} className="flex flex-col gap-5 mt-2">
-              <p className="text-[14px] leading-[1.01] font-medium text-black/55">
-                A focused set of disciplines — each one practised on live
-                projects for real clients. Not tutorial-level familiarity.
-                Production-grade fluency.
-              </p>
-              <p className="text-[14px] leading-[1.01] font-medium text-black/55">
-                From pixel-perfect UI to deployed AI pipelines, I handle the
-                full vertical — design, code, ship.
-              </p>
+
 
               {/* Small stat row */}
               <div className="flex gap-8 pt-2 border-t border-black/10">
@@ -179,22 +171,35 @@ export default function Capabilities() {
             </div>
           </div>
 
+
+
           {/* ── Right column — capability cards grid ─────────────────── */}
-          <div className="col-span-12 lg:col-span-8 py-5 px-2">
-            <div className="grid grid-cols-2 md:grid-cols-4   gap-5">
+          <div className="col-span-12 lg:col-span-8 lg:col-start-5  px-2">
+            <div className="col-span-12 lg:col-span-6 py-5 py-5 px-2">
+              <p className="text-[2vw] md:text-[1.2vw] lg:text-[1.1vw] leading-[1.01] font-medium text-black/55">
+                A focused set of disciplines — each one practised on live
+                projects for real clients. Not tutorial-level familiarity.
+                Production-grade fluency.
+              </p>
+              <p className="text-[2vw] md:text-[1.2vw] lg:text-[1.1vw] mt-5 leading-[1.01] font-medium text-black/55">
+                From pixel-perfect UI to deployed AI pipelines, I handle the
+                full vertical — design, code, ship.
+              </p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-5 py-5  gap-5">
               {caps.map((cap, i) => (
                 <div
                   key={cap.index}
                   ref={(el) => { cardsRef.current[i] = el }}
                   className="
-                    group relative
+                     relative
                     flex flex-col items-start justify-start
                     p-2 md:p-2
-                    min-h-[280px] md:min-h-[350px]
+                    min-h-[280px] md:min-h-[280px]
                
                     cursor-default bg-white 
                   "
-         
+
                 >
 
 
@@ -210,12 +215,7 @@ export default function Capabilities() {
                     {cap.title}
                   </h3>
 
-                  {/* Description */}
-                  <p className="text-[12px] md:text-[14px] leading-[1.01] text-black font-medium mt-3">
-                    {cap.description}
-                  </p>
 
-                 
                 </div>
               ))}
             </div>

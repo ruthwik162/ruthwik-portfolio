@@ -296,41 +296,31 @@ const Hero = () => {
           ══════════════════════════════════════ */}
             <section
                 ref={heroSectionRef}
-                className="relative min-h-screen z-10 flex  items-center justify-center px-6 md:px-10 overflow-hidden"
+                className="relative min-h-screen z-10 flex  text-white items-center justify-center px-6 md:px-10 overflow-hidden"
             >
                 <div className="w-full mx-auto">
-                    <div className="grid grid-cols-12 gap-6">
+                    <div className="grid grid-cols-12 justify-between gap-6">
 
-                        <div className="h-[45vh] lg:h-[30vh] md:col-span-12 w-full">
-                            <h1 className="w-full lg:text-[9.5vw] text-[15vw] leading-[0.95] font-[PPNeueMontreal] md:font-bold font-semibold tracking-tight text-black">
+                        <div className="h-[25vh] lg:h-[30vh] md:mt-0 mt-[15vw] col-span-12 md:col-span-12 w-full">
+                            <h1 className="w-full lg:text-[5.5vw] text-[12vw] leading-[0.95] font-[PPNeueMontreal] md:font-bold font-semibold tracking-tight text-black">
                                 Nagaruthwik
                             </h1>
                         </div>
 
+                        <div className='h-[45vh] md:h-[15vh] col-span-12' ></div>
 
-                        <div className="col-span-12 md:col-span-4 md:col-start-9 h-[35vh] lg:h-[40vh]">
+
+                        <div className="col-span-12 md:col-span-4  md:col-start-9 h-[25vh] lg:h-[40vh]">
                             <h1 className="w-full indent-[35%] md:indent-[20%] lg:text-[2.5vw] text-[6vw] leading-[0.95] font-[PPNeueMontreal] font-semibold mb-8 tracking-tight text-black">
                                 Building products that people use
                                 instead of projects
                                 that just sit online
                             </h1>
 
-                            <p className="text-[clamp(1rem,2vw,1.25rem)]  leading-tight text-black max-w-[400px] indent-[20%] mb-12">
+                            <p className="text-[clamp(1rem,1.5vw,1.05rem)]  leading-tight text-black max-w-[400px] indent-[20%] mb-12">
                                 Full-stack developer and founder turning classroom theory into production systems.
                                 From Hyderabad to the web, one client at a time.
                             </p>
-
-                            <div className="flex items-center justify-between gap-8">
-
-                                <a
-                                    href="/resume.pdf"
-                                    download
-                                    className="flex items-center gap-2 text-[11px] uppercase font-semibold font-[PPNeueMontreal] border border-white text-black px-6 py-3 hover:bg-[#1a1a1a] bg-white hover:text-black transition-all duration-300"
-                                >
-                                    <Download size={12} />
-                                    Resume
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -365,9 +355,9 @@ const Hero = () => {
                         </div>
 
                         <div className="col-span-12 md:col-span-6 grid gap-5 grid-cols-9 lg:grid-cols-12 lg:col-start-1">
-                            <div className="space-y-6 text-[15px] lg:col-span-4 col-span-8 col-start-1 leading-[1.8] text-black">
+                            <div className="space-y-6 text-[12px] lg:col-span-4 col-span-8 col-start-1 leading-[1.8] text-black">
                                 <Text variant="slideUp" delay={0.2} stagger={0.04} duration={1.8} animateOnScroll>
-                                    <p className="leading-tight font-medium md:indent-[20%] lg:text-[1rem]">
+                                    <p className="leading-tight font-medium md:indent-[20%] lg:text-[0.85rem]">
                                         In 2025, while finishing my Computer Science degree at Malla Reddy University, I founded{' '}
                                         <span className="font-bold">Nothing2Real Web Studio</span>. Not because I had a grand plan,
                                         but because real businesses needed real solutions, and I was tired of building projects
@@ -376,9 +366,9 @@ const Hero = () => {
                                 </Text>
                             </div>
 
-                            <div className="space-y-6 text-[15px] lg:col-span-4 col-span-7 col-start-2 lg:col-start-6 leading-[1.8] text-black">
+                            <div className="space-y-6 text-[12px] lg:col-span-4 col-span-7 col-start-2 lg:col-start-6 leading-[1.8] text-black">
                                 <Text variant="slideUp" delay={0.2} stagger={0.04} duration={1.8} animateOnScroll>
-                                    <p className="leading-tight md:indent-[20%] font-medium lg:text-[1rem]">
+                                    <p className="leading-tight md:indent-[20%] font-medium lg:text-[0.85rem]">
                                         Today, I run a studio managing 5+ live client websites — from eCommerce platforms for
                                         Pochampally saree retailers to professional portfolios for doctors and chartered
                                         accountants. I handle everything: client calls, design mockups, full-stack development,
@@ -436,13 +426,12 @@ const Hero = () => {
 
                        
 
-                        <div className="col-span-12 md:col-span-8 md:col-start-5 lg:col-span-6 lg:col-start-4">
+                        <div className="col-span-12 md:col-span-8 md:col-start-1 lg:col-span-6 space-y-0.5 lg:col-start-1">
                             <TextReveal>
                                 <h2 className="text-[8vw]  md:text-[4vw] lg:text-[3vw] font-bold leading-[0.95] tracking-tight text-black ">
                                     Outcome
                                 </h2>
                             </TextReveal>
-                            <div className="h-[0.2px] w-full bg-transparent mt-[0.1rem]" />
                             <TextReveal>
                                 <h2 className="text-[8vw] md:text-[4vw] lg:text-[3vw]   font-bold leading-[0.95] tracking-tight text-black mb-8">
                                     over Architecture
@@ -451,9 +440,9 @@ const Hero = () => {
                         </div>
 
                         <div className="col-span-12 md:col-span-8 overflow-hidden md:col-start-5 lg:col-span-10 lg:col-start-4 mb-6">
-                            <div className="p-1 md:p-12">
+                            <div className="">
 
-                                <p className="text-[5vw] md:text-[2.5vw] lg:text-[2.5vw] indent-[15%] leading-[1.2] font-semibold text-black/90">
+                                <p className="text-[5vw] md:text-[2.5vw] lg:text-[2vw] indent-[15%] leading-[1.2] font-semibold text-black/90">
                                     Every project starts with understanding what success looks like for the client — more sales,
                                     better user experience, operational efficiency.
                                 </p>
