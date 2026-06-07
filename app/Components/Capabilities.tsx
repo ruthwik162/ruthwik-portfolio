@@ -93,8 +93,8 @@ export default function Capabilities() {
   return (
     <div
       ref={sectionRef}
-      className="w-full min-h-screen font-[PPNeueMontreal]"
-      style={{ background: '#EDECEA' }}
+      className="w-full min-h-screen bg-white font-[PPNeueMontreal]"
+      
     >
       {/* ── Vertical column rule — matches cura's grid lines */}
       <div className="relative w-full">
@@ -197,7 +197,7 @@ export default function Capabilities() {
                     p-2 md:p-2
                     min-h-[280px] md:min-h-[280px]
                
-                    cursor-default bg-white 
+                    cursor-default bg-[#EAEAEE] 
                   "
 
                 >

@@ -34,6 +34,23 @@ body {
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Brilliantte';
+  src: url('/fonts/Brilliantte.otf') format('opentype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pensum-Italic';
+  src: url('/fonts/Pensum_Italic.otf') format('opentype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+
 
 ::-webkit-scrollbar {
   display: none;

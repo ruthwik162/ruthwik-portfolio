@@ -303,16 +303,16 @@ const Hero = () => {
 
                         <div className="h-[25vh] lg:h-[30vh] md:mt-0 mt-[15vw] col-span-12 md:col-span-12 w-full">
                             <h1 className="w-full lg:text-[5.5vw] text-[12vw] leading-[0.95] font-[PPNeueMontreal] md:font-bold font-semibold tracking-tight text-black">
-                                Nagaruthwik
+                                Naga <span className="lg:text-[7vw] font-extrabold font-[Brilliantte] ">r</span>uthwik
                             </h1>
                         </div>
-
+                
                         <div className='h-[45vh] md:h-[15vh] col-span-12' ></div>
 
 
                         <div className="col-span-12 md:col-span-4  md:col-start-9 h-[25vh] lg:h-[40vh]">
                             <h1 className="w-full indent-[35%] md:indent-[20%] lg:text-[2.5vw] text-[6vw] leading-[0.95] font-[PPNeueMontreal] font-semibold mb-8 tracking-tight text-black">
-                                Building products that people use
+                                Building <span className="lg:text-[3vw] font-[Brilliantte] ">products</span> that people use
                                 instead of projects
                                 that just sit online
                             </h1>
@@ -348,14 +348,14 @@ const Hero = () => {
                             <div className="space-y-6 text-[15px] leading-[1.8] text-black">
                                 <TextReveal>
                                     <p className="lg:text-[2vw] text-[6vw]  leading-tight font-semibold">
-                                        Hello, I'm Nagaruthwik — a full-stack developer who accidentally became a business owner.
+                                        Hello, I'm <span className="font-[Brilliantte] text-[7.5vw] lg:text-[2.5vw] ">Nagaruthwik</span>  — a full-stack developer who accidentally became a business owner.
                                     </p>
                                 </TextReveal>
                             </div>
                         </div>
 
-                        <div className="col-span-12 md:col-span-6 grid gap-5 grid-cols-9 lg:grid-cols-12 lg:col-start-1">
-                            <div className="space-y-6 text-[12px] lg:col-span-4 col-span-8 col-start-1 leading-[1.8] text-black">
+                        <div className="col-span-12 md:col-span-6 grid gap-5  grid-cols-9 lg:grid-cols-12 lg:col-start-1">
+                            <div className="space-y-6 text-[12px] lg:col-span-4  col-span-8 col-start-1 leading-[1.8] text-black">
                                 <Text variant="slideUp" delay={0.2} stagger={0.04} duration={1.8} animateOnScroll>
                                     <p className="leading-tight font-medium md:indent-[20%] lg:text-[0.85rem]">
                                         In 2025, while finishing my Computer Science degree at Malla Reddy University, I founded{' '}
@@ -378,7 +378,7 @@ const Hero = () => {
                             </div>
                         </div>
 
-                        <div className="col-span-12 md:col-span-4 mt-[15vw] lg:col-start-9">
+                        <div className="col-span-12 md:col-span-4 bg-[#EAEAEE] p-5 mt-[15vw] lg:col-start-9">
                             <div className="space-y-6 text-[15px] grid grid-cols-9 lg:grid-cols-12 leading-[1.8] text-black">
                                 <div className="col-span-9 lg:col-span-12">
                                     <Text variant="slideUp" delay={0.2} duration={1.8} stagger={0.04} animateOnScroll>
@@ -426,17 +426,13 @@ const Hero = () => {
 
                        
 
-                        <div className="col-span-12 md:col-span-8 md:col-start-1 lg:col-span-6 space-y-0.5 lg:col-start-1">
+                        <div className="col-span-12 md:col-span-8 max-w-[290px] md:col-start-1 lg:col-span-6 space-y-0.5 lg:col-start-1">
                             <TextReveal>
-                                <h2 className="text-[8vw]  md:text-[4vw] lg:text-[3vw] font-bold leading-[0.95] tracking-tight text-black ">
-                                    Outcome
+                                <h2 className="text-[8vw]   md:text-[4vw] lg:text-[3vw] font-bold leading-[0.95] tracking-tight text-black ">
+                                    Outcome over Architecture
                                 </h2>
                             </TextReveal>
-                            <TextReveal>
-                                <h2 className="text-[8vw] md:text-[4vw] lg:text-[3vw]   font-bold leading-[0.95] tracking-tight text-black mb-8">
-                                    over Architecture
-                                </h2>
-                            </TextReveal>
+                           
                         </div>
 
                         <div className="col-span-12 md:col-span-8 overflow-hidden md:col-start-5 lg:col-span-10 lg:col-start-4 mb-6">
