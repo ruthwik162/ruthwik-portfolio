@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "./Components/SmoothScroll";
 import Navbar from "./Components/Navbar";
+import Providers from "./Components/providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -145,11 +146,11 @@ export const metadata: Metadata = {
       "Full-stack web developer specializing in MERN stack, React, Next.js, and Java Spring Boot. Founder of Nothing2Real Web Studio managing 5+ live client websites. Building production eCommerce platforms and enterprise solutions in Hyderabad, India.",
     images: [
       {
-        url: "https://nagaruthwik.vercel.app/og-image.jpg", // Replace with actual image
+        url: "https://nagaruthwik.vercel.app/logo.png", // Replace with actual image
         width: 1200,
         height: 630,
         alt: "Nagaruthwik Merugu - Full-Stack Developer Portfolio",
-        type: "image/jpeg",
+        type: "image/png",
       },
       {
         url: "https://nagaruthwik.vercel.app/og-square.jpg", // Square for some platforms
@@ -213,6 +214,7 @@ export const metadata: Metadata = {
   },
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -237,8 +239,8 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
         {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/logo.png" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
 
@@ -445,11 +447,17 @@ export default function RootLayout({
         />
       </head>
 
-      <SmoothScroll>
-        
-        <Navbar />
-        <body className="min-h-full flex flex-col">{children}</body>
-      </SmoothScroll>
-    </html>
+
+      <body className="min-h-full flex flex-col">
+
+        <Providers>
+          <Navbar />
+          <SmoothScroll>
+            {children}
+          </SmoothScroll>
+        </Providers>
+
+      </body>
+    </html >
   );
 }
