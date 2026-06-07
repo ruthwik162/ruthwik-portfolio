@@ -450,12 +450,10 @@ export default function RootLayout({
 
       <body className="min-h-full flex flex-col">
 
-        <Providers>
-          <Navbar />
-          <SmoothScroll>
-            {children}
-          </SmoothScroll>
-        </Providers>
+        <Navbar />
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
 
       </body>
     </html >
