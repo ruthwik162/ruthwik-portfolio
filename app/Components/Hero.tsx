@@ -302,7 +302,7 @@ const Hero = () => {
                     <div className="grid grid-cols-12 gap-6">
 
                         <div className="h-[45vh] lg:h-[30vh] md:col-span-12 w-full">
-                            <h1 className="w-full lg:text-[12.5vw] text-[17vw] leading-[0.95] font-[PPNeueMontreal] md:font-bold font-semibold tracking-tight text-black">
+                            <h1 className="w-full lg:text-[9.5vw] text-[15vw] leading-[0.95] font-[PPNeueMontreal] md:font-bold font-semibold tracking-tight text-black">
                                 Nagaruthwik
                             </h1>
                         </div>
