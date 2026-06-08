@@ -170,17 +170,17 @@ export default function Capabilities() {
           {/* ── Right column — capability cards grid ─────────────────── */}
           <div className="col-span-12 lg:col-span-8 lg:col-start-5  px-2">
             <div className="col-span-12 lg:col-span-6  py-5 px-2">
-              <p className="text-[2vw] md:text-[1.2vw] lg:text-[1.5vw] leading-[0.9] font-medium text-black/55">
+              <p className="text-[4vw] md:text-[1.2vw] lg:text-[1.5vw] leading-[0.9] font-medium text-black/55">
                 A focused set of disciplines — each one practised on live
                 projects for real clients. Not tutorial-level familiarity.
                 Production-grade fluency.
               </p>
-              <p className="text-[2vw] md:text-[1.2vw] lg:text-[1.5vw] mt-5 leading-[0.9] font-medium text-black/55">
+              <p className="text-[4vw] md:text-[1.2vw] lg:text-[1.5vw] mt-5 leading-[0.9] font-medium text-black/55">
                 From pixel-perfect UI to deployed AI pipelines, I handle the
                 full vertical — design, code, ship.
               </p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-5   gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-5 py-2  gap-5">
               {caps.map((cap, i) => (
                 <div
                   key={cap.index}

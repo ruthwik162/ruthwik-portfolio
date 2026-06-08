@@ -110,7 +110,7 @@ const Navbar = () => {
 
             {/* MOBILE ONLY: Right-to-Left Minimal Drawer */}
             <div
-                className={`md:hidden fixed top-4 right-4 h-[calc(100vh-32px)] w-[280px] sm:w-[320px] bg-[#0d0d0d] border border-white/10 text-white z-50 p-6 flex flex-col justify-between rounded-lg shadow-2xl transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                className={`md:hidden fixed top-4 right-4 h-[calc(60vh-32px)] w-[280px] sm:w-[320px] bg-[#0d0d0d] border border-white/10 text-white z-50 p-6 flex flex-col justify-between rounded-lg shadow-2xl transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                     isOpen ? "translate-x-0" : "translate-x-[calc(100%+16px)]"
                 }`}
             >
@@ -132,7 +132,7 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Navigation Links */}
-                <div className="flex flex-col gap-5 my-auto pl-2">
+                <div className="flex flex-col gap-1 my-auto pl-2">
                     {[
                         ...navLinks,
                         { label: "Contact", href: "/contact" }
