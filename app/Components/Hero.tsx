@@ -348,7 +348,7 @@ const Hero = () => {
                             <div className="space-y-6 text-[15px] leading-[1.8] text-black">
                                 <TextReveal>
                                     <p className="lg:text-[2vw] text-[6vw]  leading-tight font-semibold">
-                                        Hello, I'm <span className="font-[Brilliantte] text-[7.5vw] lg:text-[2.5vw] ">Nagaruthwik</span>  — a full-stack developer who accidentally became a business owner.
+                                        Hello, I'm <span className="font-[Brilliantte] text-[7.5vw] lg:text-[2.5vw] tracking-wide">nagaruthwik</span>  — a full-stack developer who accidentally became a business owner.
                                     </p>
                                 </TextReveal>
                             </div>
@@ -378,7 +378,7 @@ const Hero = () => {
                             </div>
                         </div>
 
-                        <div className="col-span-12 md:col-span-4 bg-[#EAEAEE] p-5 mt-[15vw] lg:col-start-9">
+                        <div className="col-span-12 md:col-span-4  p-5 mt-[15vw] lg:col-start-9">
                             <div className="space-y-6 text-[15px] grid grid-cols-9 lg:grid-cols-12 leading-[1.8] text-black">
                                 <div className="col-span-9 lg:col-span-12">
                                     <Text variant="slideUp" delay={0.2} duration={1.8} stagger={0.04} animateOnScroll>
@@ -435,11 +435,11 @@ const Hero = () => {
                            
                         </div>
 
-                        <div className="col-span-12 md:col-span-8 overflow-hidden md:col-start-5 lg:col-span-10 lg:col-start-4 mb-6">
+                        <div className="col-span-12 md:col-span-5 overflow-hidden md:col-start-5 lg:col-span-5 lg:col-start-4 mb-6">
                             <div className="">
 
-                                <p className="text-[5vw] md:text-[2.5vw] lg:text-[2vw] indent-[15%] leading-[1.2] font-semibold text-black/90">
-                                    Every project starts with understanding what success looks like for the client — more sales,
+                                <p className="text-[5vw] md:text-[2.5vw] lg:text-[2vw] indent-[15%] leading-[1.05] font-semibold text-black/90">
+                                    Every <span className="font-semibold   text-underline ">project</span> starts with understanding what success looks like for the client  more sales,
                                     better user experience, operational efficiency.
                                 </p>
 

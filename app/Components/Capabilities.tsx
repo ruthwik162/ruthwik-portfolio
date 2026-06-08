@@ -4,6 +4,8 @@ import React, { useRef, useLayoutEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import TextReveal from './TextReveal'
+import { images } from '@/public/assets/assets'
+import Image from 'next/image'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,6 +14,7 @@ const caps = [
     index: '01',
     title: 'Web Development',
     tags: ['React', 'Next.js', 'Tailwind'],
+    image: null,
     description:
       'Building responsive, production-grade interfaces with React and Next.js. Every component is optimised for performance and accessibility — from 320px to ultrawide.',
   },
@@ -19,6 +22,7 @@ const caps = [
     index: '02',
     title: '3D Web Development',
     tags: ['Three.js', 'R3F', 'GSAP'],
+    image: images.threeD,
     description:
       'Crafting immersive 3D experiences using Three.js and React Three Fiber. Interactive renders and scroll-driven animations that run at 60fps in-browser.',
   },
@@ -26,6 +30,7 @@ const caps = [
     index: '03',
     title: 'UI / UX Design',
     tags: ['Figma', 'Motion', 'Design Systems'],
+    image: images.uiux,
     description:
       'Designing intuitive, award-level interfaces with a deep understanding of visual hierarchy, motion design, and user flow — from wireframes to pixel-perfect production.',
   },
@@ -33,6 +38,7 @@ const caps = [
     index: '04',
     title: 'Backend & APIs',
     tags: ['FastAPI', 'Node.js', 'MongoDB'],
+    image: null,
     description:
       'Building robust REST and real-time APIs with FastAPI and Node.js. From MongoDB data modelling to Redis caching and SSE-powered live updates.',
   },
@@ -40,6 +46,7 @@ const caps = [
     index: '05',
     title: 'AI / ML Integration',
     tags: ['RAG', 'FAISS', 'LLMs'],
+    image: null,
     description:
       'Implementing retrieval-augmented generation pipelines, semantic search with FAISS, and production LLM integrations using Mistral and Sentence Transformers.',
   },
@@ -47,6 +54,7 @@ const caps = [
     index: '06',
     title: 'Full-Stack Delivery',
     tags: ['DevOps', 'Vercel', 'Client Work'],
+    image: images.shopify,
     description:
       'End-to-end ownership — client calls, design mockups, development, deployment, and post-launch support. Five live client sites and counting.',
   },
@@ -94,7 +102,7 @@ export default function Capabilities() {
     <div
       ref={sectionRef}
       className="w-full min-h-screen bg-white font-[PPNeueMontreal]"
-      
+
     >
       {/* ── Vertical column rule — matches cura's grid lines */}
       <div className="relative w-full">
@@ -194,21 +202,31 @@ export default function Capabilities() {
                   className="
                      relative
                     flex flex-col items-start justify-start
-                    p-2 md:p-2
+                    
                     min-h-[280px] md:min-h-[280px]
-               
+                overflow-hidden
                     cursor-default bg-[#EAEAEE] 
                   "
 
                 >
 
+                  <div className="absolute inset-0 bg-white w-full h-full">
+                    {cap.image && (
+                      <Image
+                        src={cap.image}
+                        alt={cap.title}
+                        fill
+                        className="object-cover"
+                      />
+                    )}
+                  </div>
 
                   {/* Title */}
                   <h3
-                    className="
+                    className="p-5 z-5
                       text-[6vw] md:text-[2.8vw] lg:text-[1.6vw]
                       font-bold leading-[1.05] tracking-[-0.01em]
-                      text-black mt-auto
+                      text-white mix-blend-difference mt-auto
                       group-hover:translate-x-0.5 transition-transform duration-500
                     "
                   >
