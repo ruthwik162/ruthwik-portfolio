@@ -62,7 +62,6 @@ const caps = [
 
 export default function Capabilities() {
   const sectionRef = useRef<HTMLDivElement>(null)
-  const pillRef = useRef<HTMLSpanElement>(null)
   const headRef = useRef<HTMLHeadingElement>(null)
   const bodyRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
@@ -70,7 +69,7 @@ export default function Capabilities() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
 
-      gsap.from([pillRef.current, headRef.current, bodyRef.current], {
+      gsap.from([ headRef.current, bodyRef.current], {
         opacity: 0,
         y: 32,
         duration: 1.1,
@@ -121,19 +120,6 @@ export default function Capabilities() {
               flex flex-col gap-6
             "
           >
-            {/* Pill — matches cura's green label */}
-            <span
-              ref={pillRef}
-              className="
-                inline-flex self-start
-                px-3 py-1.5
-                text-[10px] font-semibold uppercase tracking-[0.18em]
-                rounded-full
-              "
-              style={{ background: '#C8E6C9', color: '#1B5E20' }}
-            >
-              Capabilities
-            </span>
 
             <TextReveal>
               <h2
@@ -183,13 +169,13 @@ export default function Capabilities() {
 
           {/* ── Right column — capability cards grid ─────────────────── */}
           <div className="col-span-12 lg:col-span-8 lg:col-start-5  px-2">
-            <div className="col-span-12 lg:col-span-6 py-5 py-5 px-2">
-              <p className="text-[2vw] md:text-[1.2vw] lg:text-[1.1vw] leading-[1.01] font-medium text-black/55">
+            <div className="col-span-12 lg:col-span-6  py-5 px-2">
+              <p className="text-[2vw] md:text-[1.2vw] lg:text-[1.5vw] leading-[0.9] font-medium text-black/55">
                 A focused set of disciplines — each one practised on live
                 projects for real clients. Not tutorial-level familiarity.
                 Production-grade fluency.
               </p>
-              <p className="text-[2vw] md:text-[1.2vw] lg:text-[1.1vw] mt-5 leading-[1.01] font-medium text-black/55">
+              <p className="text-[2vw] md:text-[1.2vw] lg:text-[1.5vw] mt-5 leading-[0.9] font-medium text-black/55">
                 From pixel-perfect UI to deployed AI pipelines, I handle the
                 full vertical — design, code, ship.
               </p>

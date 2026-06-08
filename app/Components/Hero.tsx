@@ -38,6 +38,24 @@ function SceneLights() {
     )
 }
 
+const principles = [
+    {
+        number: "01",
+        title: "Solve the business problem, not the technical puzzle",
+        description: "Every project starts with understanding what success looks like for the client—more sales, better user experience, operational efficiency. The tech stack is just the tool. I've built eCommerce platforms that process real transactions, appointment booking systems that connect actual patients to doctors, and inventory management dashboards that reduce manual work.",
+    },
+    {
+        number: "02",
+        title: "Ship fast, iterate faster",
+        description: "I learned early that perfect code that ships in 6 months loses to good code that ships in 2 weeks. My clients need working systems now, not architectural masterpieces later. I deploy early, gather feedback, and improve in production. Continuous delivery isn't just CI/CD pipelines—it's a commitment to making things better every week.",
+    },
+    {
+        number: "03",
+        title: "Own it end-to-end",
+        description: "From the first client call to the final deployment, I'm involved. This isn't about control—it's about accountability. When you're the founder, the developer, and the support team, you learn to build systems that don't break at 3 AM. You write better documentation because you'll be the one debugging it.",
+    },
+];
+
 // ─────────────────────────────────────────────
 // Hero Component
 // ─────────────────────────────────────────────
@@ -259,19 +277,22 @@ const Hero = () => {
 
                 {/* Three.js Canvas */}
                 <Canvas
-                    shadows
-                    camera={{ position: [0, 0, 5.5], fov: 18 }}  // ← y was 0.5, now 0
-                    dpr={[1, 2]}
+                    camera={{ position: [0, 0, 5.5], fov: 18 }}
+                    dpr={[1, 1.5]}
                     gl={{
                         antialias: true,
                         alpha: true,
                         toneMapping: THREE.ACESFilmicToneMapping,
                         toneMappingExposure: 1.3,
+                        powerPreference: 'high-performance',
                     }}
+                    performance={{ min: 0.5 }}
                     style={{ background: 'transparent', width: '100%', height: '100%' }}
                 >
                     <SceneLights />
                     <Environment preset="city" />
+                    <directionalLight position={[2, 8, 4]} intensity={1.2} color="#fff5e4" />
+
                     <Suspense fallback={null}>
                         <Mobile
                             rotationProgress={rotationProgress}
@@ -306,7 +327,7 @@ const Hero = () => {
                                 Naga <span className="lg:text-[7vw] font-extrabold font-[Brilliantte] ">r</span>uthwik
                             </h1>
                         </div>
-                
+
                         <div className='h-[45vh] md:h-[15vh] col-span-12' ></div>
 
 
@@ -338,7 +359,7 @@ const Hero = () => {
             <section
                 id="intro"
                 ref={introRef}
-                className="relative z-10 py-24 px-6 md:px-10 border-t border-white/20"
+                className="relative z-10 py-24 px-3 md:px-10 "
             >
                 <div className="w-full max-w-[1400px] mx-auto">
                     <div className="grid grid-cols-12 gap-6">
@@ -378,11 +399,11 @@ const Hero = () => {
                             </div>
                         </div>
 
-                        <div className="col-span-12 md:col-span-4  p-5 mt-[15vw] lg:col-start-9">
+                        <div className="col-span-12 md:col-span-4  py-5 mt-[15vw] lg:col-start-9">
                             <div className="space-y-6 text-[15px] grid grid-cols-9 lg:grid-cols-12 leading-[1.8] text-black">
                                 <div className="col-span-9 lg:col-span-12">
                                     <Text variant="slideUp" delay={0.2} duration={1.8} stagger={0.04} animateOnScroll>
-                                        <p className="lg:text-[1.4vw] text-[5vw] font-semibold leading-[0.99] indent-[15%]">
+                                        <p className="lg:text-[1.4vw] text-[4vw] font-semibold leading-[0.99] indent-[15%]">
                                             My background is rooted in the MERN stack and Java Spring Boot, but what really shapes
                                             how I work is understanding that code isn't the end product — the business outcome is.
                                             A smooth checkout flow matters more than perfect abstractions. A fast-loading product
@@ -424,7 +445,7 @@ const Hero = () => {
                 <div ref={lastSectionContentRef} className="w-full max-w-[1400px] mx-auto">
                     <div className="grid grid-cols-12 gap-6 md:gap-8">
 
-                       
+
 
                         <div className="col-span-12 md:col-span-8 max-w-[290px] md:col-start-1 lg:col-span-6 space-y-0.5 lg:col-start-1">
                             <TextReveal>
@@ -432,7 +453,7 @@ const Hero = () => {
                                     Outcome over Architecture
                                 </h2>
                             </TextReveal>
-                           
+
                         </div>
 
                         <div className="col-span-12 md:col-span-5 overflow-hidden md:col-start-5 lg:col-span-5 lg:col-start-4 mb-6">
@@ -453,15 +474,32 @@ const Hero = () => {
                             </div>
                         </div>
 
-                        <div className="col-span-12 md:col-span-8 md:col-start-5 lg:col-span-6 lg:col-start-7">
-                            <div className="border-t border-black/10 pt-12">
-                                <p className="text-[6vw] md:text-[3vw] lg:text-[2vw] font-bold leading-[1.1] text-black/90">
-                                    The code works because the solution fits the problem.
-                                </p>
-                                <div className="mt-8 flex items-center gap-4 text-black/40">
-                                    <div className="h-[1px] flex-1 bg-black/10" />
-                                    <span className="text-[10px] font-semibold">Nothing2Real — Nagaruthwik</span>
-                                </div>
+                        <div className="col-span-12 md:col-span-8 md:col-start-5 lg:col-span-10  lg:col-start-3">
+                            <div className="space-y-16 grid md:grid-cols-3 grid-cols-1 gap-5 ">
+                                {principles.map((principle, idx) => (
+                                    <div key={principle.number} className="bg-black/10 h-[40vh] md:h-[50vh] flex flex-col justify-between rounded-lg p-6 lg:p-10  gap-4">
+
+
+
+                                        {/* Title and description */}
+                                        <div className=" space-y-4">
+                                            <Text variant="slideUp" delay={0.3 + idx * 0.1} stagger={0.04} duration={1.8} animateOnScroll>
+                                                <h3 className="text-[15px] w-full lg:text-[20px] text-black leading-tight font-semibold font-[PPNeueMontreal]">
+                                                    {principle.title}
+                                                </h3>
+                                            </Text>
+
+                                        </div>
+                                        <div className=" space-y-4">
+
+                                            <Text variant="slideUp" delay={0.4 + idx * 0.1} stagger={0.04} duration={1.8} animateOnScroll>
+                                                <p className="text-[11px] leading-[1.7] text-[#666] md:indent-[10%]">
+                                                    {principle.description}
+                                                </p>
+                                            </Text>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
 

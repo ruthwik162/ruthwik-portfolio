@@ -83,7 +83,7 @@ export default function TextReveal({
     // Step 1 — overlays sweep in left → right, staggered per line
     tl.to(overlays, {
       scaleX: 1,
-      duration: duration * 0.52,
+      duration: duration * 1.12,
       ease: 'reveal.wipe',
       stagger,
     })
@@ -95,7 +95,7 @@ export default function TextReveal({
     tl.to(overlays, {
       scaleX: 0,
       transformOrigin: 'right center',
-      duration: duration * 1.02,
+      duration: duration * 1.12,
       ease: 'reveal.wipe',
       stagger,
     })
