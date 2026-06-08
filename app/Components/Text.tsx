@@ -1,13 +1,20 @@
 "use client";
+
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { CustomEase } from "gsap/CustomEase"; // 1. Import CustomEase
 import React, { useRef } from "react";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+// 2. Register CustomEase alongside other plugins
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
+
+// 3. Initialize the unique named ease
+CustomEase.create("reveal.wipe", "M0,0 C0.4,0 0.2,1 1,1");
 
 type EaseType =
+  | "reveal.wipe" // 4. Added to EaseType Union
   | "power4.out"
   | "power3.out"
   | "power2.out"
@@ -17,24 +24,14 @@ type EaseType =
   | "circ.out";
 
 type AnimationVariant =
-  | "slideUp"       // classic slide from below (original)
-  | "slideDown"     // slide from above
-  | "reveal"        // fast clip reveal with slight scale
-  | "cascade"       // staggered blur + slide
-  | "drift"         // slow diagonal drift up
-  | "spring"        // elastic spring pop
-  | "glide";        // smooth glide with rotation
+  | "slideUp"
+  | "slideDown"
+  | "reveal"
+  | "cascade"
+  | "drift"
+  | "spring"
+  | "glide";
 
-/**
- * indentLines — per-line indent overrides.
- *
- * Pass a record whose keys are 0-based line indices and whose values are
- * any valid CSS length string, e.g.:
- *
- *   indentLines={{ 0: "0rem", 1: "2rem", 2: "5rem", 3: "9rem" }}
- *
- * Lines not listed keep whatever indent the stylesheet already sets.
- */
 interface TextYProps {
   children: React.ReactElement | React.ReactElement[];
   animateOnScroll?: boolean;
@@ -55,7 +52,8 @@ interface AnimationConfig {
 const VARIANT_CONFIGS: Record<AnimationVariant, AnimationConfig> = {
   slideUp: {
     from: { y: "110%", opacity: 1 },
-    to: { y: "0%", opacity: 1, ease: "power4.out", duration: 1 },
+    // 5. You can now use "reveal.wipe" natively as a default variant ease value anywhere if preferred
+    to: { y: "0%", opacity: 1, ease: "reveal.wipe", duration: 1 }, 
   },
   slideDown: {
     from: { y: "-110%", opacity: 1 },
@@ -172,7 +170,7 @@ const Text: React.FC<TextYProps> = ({
               trigger: container,
               start: scrollStart,
               once: true,
-            },
+              },
           });
         } else {
           gsap.to(lines.current, toVars);
@@ -200,7 +198,7 @@ const Text: React.FC<TextYProps> = ({
     } as any);
   }
 
-
+  return null;
 };
 
 export default Text;

@@ -377,7 +377,7 @@ const Hero = () => {
 
                         <div className="col-span-12 md:col-span-8 grid gap-5  grid-cols-9 lg:grid-cols-12 lg:col-start-1">
                             <div className="space-y-6 text-[12px] md:text-2xl lg:col-span-4  col-span-8 col-start-1 leading-[1.8] text-black">
-                                <Text variant="slideUp" delay={0.2} stagger={0.04} duration={1.8} animateOnScroll>
+                                <Text variant="slideUp" delay={0.2} ease="reveal.wipe" stagger={0.04} duration={1.8} animateOnScroll>
                                     <p className="leading-tight font-medium md:indent-[20%] lg:text-[0.85rem]">
                                         In 2025, while finishing my Computer Science degree at Malla Reddy University, I founded{' '}
                                         <span className="font-bold">Nothing2Real Web Studio</span>. Not because I had a grand plan,
@@ -388,7 +388,7 @@ const Hero = () => {
                             </div>
 
                             <div className="space-y-6 text-[12px] lg:col-span-4 col-span-7 col-start-2 lg:col-start-6 leading-[1.8] text-black">
-                                <Text variant="slideUp" delay={0.2} stagger={0.04} duration={1.8} animateOnScroll>
+                                <Text variant="slideUp" delay={0.2} ease="reveal.wipe" stagger={0.04} duration={1.8} animateOnScroll>
                                     <p className="leading-tight md:indent-[20%] font-medium lg:text-[0.85rem]">
                                         Today, I run a studio managing 5+ live client websites — from eCommerce platforms for
                                         Pochampally saree retailers to professional portfolios for doctors and chartered
@@ -402,7 +402,7 @@ const Hero = () => {
                         <div className="col-span-12 md:col-span-4  py-5 mt-[15vw] lg:col-start-9">
                             <div className="space-y-6 text-[15px] grid grid-cols-9 lg:grid-cols-12 leading-[1.8] text-black">
                                 <div className="col-span-9 lg:col-span-12">
-                                    <Text variant="slideUp" delay={0.2} duration={1.8} stagger={0.04} animateOnScroll>
+                                    <Text variant="slideUp" delay={0.2} ease="reveal.wipe" stagger={0.04} duration={1.8} animateOnScroll>
                                         <p className="lg:text-[1.4vw] text-[4vw] font-semibold leading-[0.99] indent-[15%]">
                                             My background is rooted in the MERN stack and Java Spring Boot, but what really shapes
                                             how I work is understanding that code isn't the end product — the business outcome is.
@@ -412,7 +412,7 @@ const Hero = () => {
                                     </Text>
                                 </div>
                                 <div className="col-span-6 lg:col-span-6 md:mt-[5vw] col-start-1">
-                                    <Text variant="slideUp" delay={0.2} stagger={0.04} duration={1.8} animateOnScroll>
+                                    <Text variant="slideUp" delay={0.2} ease="reveal.wipe" stagger={0.04} duration={1.8} animateOnScroll>
                                         <p className="leading-tight md:indent-[20%] font-medium lg:text-[1rem]">
                                             I believe the era of developer-first thinking is backwards. The best code serves the
                                             user first, the business second, and the developer's ego last.
@@ -420,7 +420,7 @@ const Hero = () => {
                                     </Text>
                                 </div>
                                 <div className="col-span-6 lg:col-span-6 col-start-3 md:mt-[5vw] lg:col-start-7">
-                                    <Text variant="slideUp" delay={0.2} stagger={0.04} duration={1.8} animateOnScroll>
+                                    <Text variant="slideUp" delay={0.2} ease="reveal.wipe" stagger={0.04} duration={1.8} animateOnScroll>
                                         <p className="leading-tight md:indent-[20%] font-medium lg:text-[1rem]">
                                             That's why I'm drawn to projects that solve real problems for real people — where a
                                             successful deployment means a business can finally take orders online, not just another
@@ -483,7 +483,7 @@ const Hero = () => {
 
                                         {/* Title and description */}
                                         <div className=" space-y-4">
-                                            <Text variant="slideUp" delay={0.3 + idx * 0.1} stagger={0.04} duration={1.8} animateOnScroll>
+                                            <Text variant="slideUp" delay={0.3 + idx * 0.1} ease="reveal.wipe" stagger={0.04} duration={1.8} animateOnScroll>
                                                 <h3 className="text-[15px] w-full lg:text-[20px] text-black leading-tight font-semibold font-[PPNeueMontreal]">
                                                     {principle.title}
                                                 </h3>
@@ -492,8 +492,8 @@ const Hero = () => {
                                         </div>
                                         <div className=" space-y-4">
 
-                                            <Text variant="slideUp" delay={0.4 + idx * 0.1} stagger={0.04} duration={1.8} animateOnScroll>
-                                                <p className="text-[11px] leading-[1.7] text-[#666] md:indent-[10%]">
+                                            <Text variant="slideUp" delay={0.4 + idx * 0.1} ease="reveal.wipe" stagger={0.04} duration={1.8} animateOnScroll>
+                                                <p className="text-[12px]  md::text-[14px] leading-[1.7] text-[#666] md:indent-[10%]">
                                                     {principle.description}
                                                 </p>
                                             </Text>
