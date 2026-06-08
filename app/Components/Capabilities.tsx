@@ -69,7 +69,7 @@ export default function Capabilities() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
 
-      gsap.from([ headRef.current, bodyRef.current], {
+      gsap.from([headRef.current, bodyRef.current], {
         opacity: 0,
         y: 32,
         duration: 1.1,
@@ -180,46 +180,43 @@ export default function Capabilities() {
                 full vertical — design, code, ship.
               </p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-5 py-5  gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-5   gap-5">
               {caps.map((cap, i) => (
                 <div
                   key={cap.index}
                   ref={(el) => { cardsRef.current[i] = el }}
                   className="
-                     relative
-                    flex flex-col items-start justify-start
-                    
-                    min-h-[280px] md:min-h-[280px]
-                overflow-hidden
-                    cursor-default bg-[#EAEAEE] 
-                  "
-
+    relative
+    min-h-[280px]
+    overflow-hidden
+    bg-[#EAEAEE]
+    cursor-default
+  "
                 >
+                  <h3
+                    className="
+      absolute top-0 left-0
+      p-5 z-10
+      text-[6vw] md:text-[2.8vw] lg:text-[1.6vw]
+      font-bold leading-[1.05]
+      tracking-[-0.01em]
+      text-white mix-blend-difference
+    "
+                  >
+                    {cap.title}
+                  </h3>
 
-                  <div className="absolute inset-0 bg-white w-full h-full">
+                  <div className="absolute -bottom-5 right-0  w-[80%] h-[80%] opacity-80 ">
                     {cap.image && (
                       <Image
                         src={cap.image}
                         alt={cap.title}
                         fill
+                        priority
                         className="object-cover"
                       />
                     )}
                   </div>
-
-                  {/* Title */}
-                  <h3
-                    className="p-5 z-5
-                      text-[6vw] md:text-[2.8vw] lg:text-[1.6vw]
-                      font-bold leading-[1.05] tracking-[-0.01em]
-                      text-white mix-blend-difference mt-auto
-                      group-hover:translate-x-0.5 transition-transform duration-500
-                    "
-                  >
-                    {cap.title}
-                  </h3>
-
-
                 </div>
               ))}
             </div>

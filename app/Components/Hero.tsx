@@ -323,16 +323,16 @@ const Hero = () => {
                     <div className="grid grid-cols-12 justify-between gap-6">
 
                         <div className="h-[25vh] lg:h-[30vh] md:mt-0 mt-[15vw] col-span-12 md:col-span-12 w-full">
-                            <h1 className="w-full lg:text-[5.5vw] text-[12vw] leading-[0.95] font-[PPNeueMontreal] md:font-bold font-semibold tracking-tight text-black">
+                            <h1 className="w-full lg:text-[8.5vw] md:text-[10vw] xl:text-[5.5vw] text-[12vw] leading-[0.95] font-[PPNeueMontreal] md:font-bold font-semibold tracking-tight text-black">
                                 Naga <span className="lg:text-[7vw] font-extrabold font-[Brilliantte] ">r</span>uthwik
                             </h1>
                         </div>
 
-                        <div className='h-[45vh] md:h-[15vh] col-span-12' ></div>
+                        <div className='h-[45vh] lg:h-[15vh] xl:h-[15vh] md:h-[30vh] col-span-12' ></div>
 
 
-                        <div className="col-span-12 md:col-span-4  md:col-start-9 h-[25vh] lg:h-[40vh]">
-                            <h1 className="w-full indent-[35%] md:indent-[20%] lg:text-[2.5vw] text-[6vw] leading-[0.95] font-[PPNeueMontreal] font-semibold mb-8 tracking-tight text-black">
+                        <div className="col-span-12 md:col-span-8 md:col-start-4 lg:col-start-7 lg:col-span-6 xl:col-start-9 h-[25vh] lg:h-[40vh]">
+                            <h1 className="w-full indent-[35%] md:indent-[20%] lg:text-[4vw] xl:text-[2.5vw] text-[6vw] leading-[0.95] font-[PPNeueMontreal] font-semibold mb-8 tracking-tight text-black">
                                 Building <span className="lg:text-[3vw] font-[Brilliantte] ">products</span> that people use
                                 instead of projects
                                 that just sit online
@@ -365,18 +365,18 @@ const Hero = () => {
                     <div className="grid grid-cols-12 gap-6">
 
 
-                        <div className="col-span-12 md:col-span-5 lg:col-start-1">
+                        <div className="col-span-12 md:col-start-1 md:col-span-9 lg:col-span-5 lg:col-start-1">
                             <div className="space-y-6 text-[15px] leading-[1.8] text-black">
                                 <TextReveal>
-                                    <p className="lg:text-[2vw] text-[6vw]  leading-tight font-semibold">
-                                        Hello, I'm <span className="font-[Brilliantte] text-[7.5vw] lg:text-[2.5vw] tracking-wide">nagaruthwik</span>  — a full-stack developer who accidentally became a business owner.
+                                    <p className="lg:text-[2vw] md:text-[4.5vw] text-[6vw]  leading-tight font-semibold">
+                                        Hello, I'm <span className="font-[Brilliantte] text-[7.5vw] lg:text-[2.5vw] md:text-[4.9vw] tracking-wide">nagaruthwik</span>  — a full-stack developer who accidentally became a business owner.
                                     </p>
                                 </TextReveal>
                             </div>
                         </div>
 
-                        <div className="col-span-12 md:col-span-6 grid gap-5  grid-cols-9 lg:grid-cols-12 lg:col-start-1">
-                            <div className="space-y-6 text-[12px] lg:col-span-4  col-span-8 col-start-1 leading-[1.8] text-black">
+                        <div className="col-span-12 md:col-span-8 grid gap-5  grid-cols-9 lg:grid-cols-12 lg:col-start-1">
+                            <div className="space-y-6 text-[12px] md:text-2xl lg:col-span-4  col-span-8 col-start-1 leading-[1.8] text-black">
                                 <Text variant="slideUp" delay={0.2} stagger={0.04} duration={1.8} animateOnScroll>
                                     <p className="leading-tight font-medium md:indent-[20%] lg:text-[0.85rem]">
                                         In 2025, while finishing my Computer Science degree at Malla Reddy University, I founded{' '}
@@ -456,7 +456,7 @@ const Hero = () => {
 
                         </div>
 
-                        <div className="col-span-12 md:col-span-5 overflow-hidden md:col-start-5 lg:col-span-5 lg:col-start-4 mb-6">
+                        <div className="col-span-12 md:col-span-5 overflow-hidden md:col-start-5 lg:col-span-5 lg:col-start-3 mb-6">
                             <div className="">
 
                                 <p className="text-[5vw] md:text-[2.5vw] lg:text-[2vw] indent-[15%] leading-[1.05] font-semibold text-black/90">
@@ -477,7 +477,7 @@ const Hero = () => {
                         <div className="col-span-12 md:col-span-8 md:col-start-5 lg:col-span-10  lg:col-start-3">
                             <div className="space-y-16 grid md:grid-cols-3 grid-cols-1 gap-5 ">
                                 {principles.map((principle, idx) => (
-                                    <div key={principle.number} className="bg-black/10 h-[40vh] md:h-[50vh] flex flex-col justify-between rounded-lg p-6 lg:p-10  gap-4">
+                                    <div key={principle.number} className="bg-black/10 h-[40vh] lg:h-[30vh] md:h-[35vh] xl:h-[50vh] flex flex-col justify-between rounded-lg p-6 lg:p-10  gap-4">
 
 
 
