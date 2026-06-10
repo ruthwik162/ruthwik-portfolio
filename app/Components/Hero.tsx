@@ -333,7 +333,7 @@ const Hero = () => {
 
                         <div className="col-span-12 md:col-span-8 md:col-start-4 lg:col-start-7 lg:col-span-6 xl:col-start-9 h-[25vh] lg:h-[40vh]">
                             <h1 className="w-full indent-[35%] md:indent-[20%] lg:text-[4vw] xl:text-[2.5vw] text-[6vw] leading-[0.95] font-[PPNeueMontreal] font-semibold mb-8 tracking-tight text-black">
-                                Building <span className="lg:text-[3vw] font-[Brilliantte] ">products</span> that people use
+                                Building <span className="lg:text-[3vw] font-[AmericanGrotesk] font-light uppercase ">products</span> that people use
                                 instead of projects
                                 that just sit online
                             </h1>
@@ -369,7 +369,7 @@ const Hero = () => {
                             <div className="space-y-6 text-[15px] leading-[1.8] text-black">
                                 <TextReveal>
                                     <p className="lg:text-[2vw] md:text-[4.5vw] text-[6vw]  leading-tight font-semibold">
-                                        Hello, I'm <span className="font-[Brilliantte] text-[7.5vw] lg:text-[2.5vw] md:text-[4.9vw] tracking-wide">nagaruthwik</span>  — a full-stack developer who accidentally became a business owner.
+                                        Hello, I'm <span className="font-[AmericanGrotesk] uppercase text-[7.5vw] lg:text-[2.5vw] md:text-[4.9vw] tracking-wide">nagaruthwik</span>  — a full-stack developer who accidentally became a business owner.
                                     </p>
                                 </TextReveal>
                             </div>
@@ -449,7 +449,7 @@ const Hero = () => {
 
                         <div className="col-span-12 md:col-span-8 max-w-[290px] md:col-start-1 lg:col-span-6 space-y-0.5 lg:col-start-1">
                             <TextReveal>
-                                <h2 className="text-[8vw]   md:text-[4vw] lg:text-[3vw] font-bold leading-[0.95] tracking-tight text-black ">
+                                <h2 className="text-[8vw]   md:text-[4vw] lg:text-[4vw] font-[AmericanGrotesk] font-bold leading-[0.95] tracking-tight text-black ">
                                     Outcome over Architecture
                                 </h2>
                             </TextReveal>
@@ -477,26 +477,28 @@ const Hero = () => {
                         <div className="col-span-12 md:col-span-8 md:col-start-5 lg:col-span-10  lg:col-start-3">
                             <div className="space-y-16 grid md:grid-cols-3 grid-cols-1 gap-5 ">
                                 {principles.map((principle, idx) => (
-                                    <div key={principle.number} className="bg-black/10 h-[40vh] lg:h-[30vh] md:h-[35vh] xl:h-[50vh] flex flex-col justify-between rounded-lg p-6 lg:p-10  gap-4">
+                                    <div key={principle.number} className="bg-black/50  h-[40vh] lg:h-[30vh] md:h-[35vh] xl:h-[50vh]  p-6 lg:p-1  gap-4">
+
+                                        <div className="text-[12px] md:text-[14px] lg:text-[15px] font-[AmericanGrotesk] flex flex-col justify-between rounded  p-2 text-black bg-white backdrop-blur-2xl w-full h-full tracking-wide">
 
 
+                                            {/* Title and description */}
+                                            <div className="w-full space-y-4">
+                                                <Text variant="slideUp" delay={0.3 + idx * 0.1} ease="reveal.wipe" stagger={0.04} duration={1.8} animateOnScroll>
+                                                    <h3 className="text-[15px] w-full lg:text-[24px] text-black leading-tight font-semibold font-[AmericanGrotesk]">
+                                                        {principle.title}
+                                                    </h3>
+                                                </Text>
 
-                                        {/* Title and description */}
-                                        <div className=" space-y-4">
-                                            <Text variant="slideUp" delay={0.3 + idx * 0.1} ease="reveal.wipe" stagger={0.04} duration={1.8} animateOnScroll>
-                                                <h3 className="text-[15px] w-full lg:text-[20px] text-black leading-tight font-semibold font-[PPNeueMontreal]">
-                                                    {principle.title}
-                                                </h3>
-                                            </Text>
+                                            </div>
+                                            <div className=" space-y-4">
 
-                                        </div>
-                                        <div className=" space-y-4">
-
-                                            <Text variant="slideUp" delay={0.4 + idx * 0.1} ease="reveal.wipe" stagger={0.04} duration={1.8} animateOnScroll>
-                                                <p className="text-[12px]  md::text-[14px] leading-[1.7] text-[#666] md:indent-[10%]">
-                                                    {principle.description}
-                                                </p>
-                                            </Text>
+                                                <Text variant="slideUp" delay={0.4 + idx * 0.1} ease="reveal.wipe" stagger={0.04} duration={1.8} animateOnScroll>
+                                                    <p className="text-[12px]  md::text-[16px] leading-[1.7] text-[#666] md:indent-[10%]">
+                                                        {principle.description}
+                                                    </p>
+                                                </Text>
+                                            </div>
                                         </div>
                                     </div>
                                 ))}
