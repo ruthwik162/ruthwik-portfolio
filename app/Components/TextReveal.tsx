@@ -1,10 +1,11 @@
 'use client'
 
-import React, { useRef, useLayoutEffect } from 'react'
+import React, { useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { CustomEase } from 'gsap/CustomEase'
 import { SplitText } from 'gsap/SplitText'
+import { useGSAP } from '@gsap/react'
 
 gsap.registerPlugin(ScrollTrigger, CustomEase, SplitText)
 
@@ -16,7 +17,7 @@ interface TextRevealProps {
   duration?: number
   animateOnScroll?: boolean
   start?: string
-  overlayColor?: string
+  blockColor?: string   // FIX 1: was `overlayColor` in interface, mismatched with prop destructure
   stagger?: number
   className?: string
 }
@@ -27,101 +28,151 @@ export default function TextReveal({
   duration = 0.85,
   animateOnScroll = true,
   start = 'top 88%',
-  overlayColor = '#252525',
+  blockColor = '#252525',
   stagger = 0.08,
   className = '',
 }: TextRevealProps) {
-  const wrapperRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
-  useLayoutEffect(() => {
-    const wrapper = wrapperRef.current
-    if (!wrapper) return
+  // FIX 4: store SplitText instances (not DOM elements) so .revert() works
+  const splitInstances = useRef<InstanceType<typeof SplitText>[]>([])
+  const blocks = useRef<HTMLElement[]>([])
+  const lines = useRef<HTMLElement[]>([])
 
-    // SplitText splits children into individual lines
-    const split = new SplitText(wrapper, {
-      type: 'lines',
-      linesClass: 'reveal-line',
+  useGSAP(() => {
+    if (!containerRef.current) return
+
+    splitInstances.current = []
+    lines.current = []
+    blocks.current = []
+
+    let elements: HTMLElement[] = []
+    if (containerRef.current.hasAttribute('data-text-wrapper')) {
+      elements = Array.from(containerRef.current.children) as HTMLElement[]
+    } else {
+      elements = [containerRef.current]
+    }
+
+    elements.forEach((element) => {
+      const split = SplitText.create(element, {
+        type: 'lines',
+        linesClass: 'block-line++',
+        linesThreshold: 0.1,
+      })
+
+      // FIX 4: push the SplitText instance, not the element
+      splitInstances.current.push(split)
+
+      split.lines.forEach((line) => {
+        const wrapper = document.createElement('div')
+        wrapper.classList.add('block-line-wrapper')
+        wrapper.style.cssText = `
+          position: relative;
+          overflow: hidden;
+          display: table;  /* shrinks to text width, still breaks across SplitText lines */
+        `
+        line.parentNode?.insertBefore(wrapper, line)
+        wrapper.appendChild(line)
+
+        const block = document.createElement('div')
+        block.classList.add('block-line-revealer')
+        block.style.cssText = `
+          position: absolute;
+          inset: 0;
+          background-color: ${blockColor};
+          transform-origin: left center;
+          will-change: transform;
+        `
+        wrapper.appendChild(block)
+
+        lines.current.push(line as HTMLElement)
+        blocks.current.push(block)
+      })
     })
 
-    const lines = split.lines as HTMLElement[]
+    // FIX 3: lines start hidden (opacity 0) — block wipes over them and reveals
+    gsap.set(lines.current, { opacity: 0 })
+    gsap.set(blocks.current, { scaleX: 0, transformOrigin: 'left center' })
 
-    // Wrap each line in a clip container + inject the overlay element
-    lines.forEach((line) => {
-      // Clip parent — hides overflow so overlay doesn't bleed outside line bounds
-      line.style.position = 'relative'
-      line.style.overflow = 'hidden'
+    const createBlockAnimation = (
+      line: HTMLElement,
+      block: HTMLElement,
+      index: number
+    ) => {
+      const tl = gsap.timeline({
+        delay: delay + index * stagger,
+      })
 
-      // Wipe overlay injected per line
-      const overlay = document.createElement('div')
-      overlay.setAttribute('aria-hidden', 'true')
-      overlay.style.cssText = `
-        position: absolute;
-        inset: 0;
-        top: -2px;
-        bottom: -2px;
-        background: ${overlayColor};
-        transform: scaleX(0);
-        transform-origin: left center;
-        z-index: 2;
-        pointer-events: none;
-      `
-      line.appendChild(overlay)
+      // Block sweeps in from left (covers nothing — line is hidden)
+      tl.to(block, {
+        scaleX: 1,
+        duration,
+        ease: 'reveal.wipe',
+      })
+      // FIX 2: reveal THIS line (not the whole lines array ref)
+      tl.set(line, { opacity: 1 })
+      // Flip origin so block sweeps out to the right
+      tl.set(block, { transformOrigin: 'right center' })
+      // Block sweeps out, leaving line visible
+      tl.to(block, {
+        scaleX: 0,
+        duration,
+        ease: 'reveal.wipe',
+      })
 
-      // Hide text content within the line before animation
-      gsap.set(line.childNodes[0] as Element, { visibility: 'hidden' })
-    })
-
-    const overlays = lines.map(
-      (line) => line.lastChild as HTMLElement
-    )
-    const textNodes = lines.map(
-      (line) => line.childNodes[0] as HTMLElement
-    )
-
-    const tl = gsap.timeline({ delay, paused: animateOnScroll })
-
-    // Step 1 — overlays sweep in left → right, staggered per line
-    tl.to(overlays, {
-      scaleX: 1,
-      duration: duration * 1.12,
-      ease: 'reveal.wipe',
-      stagger,
-    })
-
-    // At peak — reveal all text nodes simultaneously
-    tl.set(textNodes, { visibility: 'visible' })
-
-    // Step 2 — overlays exit rightward, staggered per line
-    tl.to(overlays, {
-      scaleX: 0,
-      transformOrigin: 'right center',
-      duration: duration * 1.12,
-      ease: 'reveal.wipe',
-      stagger,
-    })
+      return tl
+    }
 
     if (animateOnScroll) {
-      ScrollTrigger.create({
-        trigger: wrapper,
-        start,
-        once: true,
-        onEnter: () => tl.play(),
+      blocks.current.forEach((block, index) => {
+        const tl = createBlockAnimation(lines.current[index], block, index)
+        tl.pause()
+
+        ScrollTrigger.create({
+          trigger: containerRef.current,
+          start,
+          once: true,
+          onEnter: () => {
+            tl.play()
+          },
+        })
       })
     } else {
-      tl.play()
+      blocks.current.forEach((block, index) => {
+        const tl = createBlockAnimation(lines.current[index], block, index)
+        tl.play()
+      })
     }
 
     return () => {
-      tl.kill()
-      split.revert()
-      ScrollTrigger.getAll()
-        .filter((st) => st.vars.trigger === wrapper)
-        .forEach((st) => st.kill())
+      // FIX 4: revert SplitText instances (not DOM elements)
+      splitInstances.current.forEach((split) => {
+        split.revert()
+      })
+
+      // FIX 5: remove wrapper divs cleanly — move children out first, then remove
+      const wrappers = containerRef.current?.querySelectorAll('.block-line-wrapper')
+      wrappers?.forEach((wrapper) => {
+        // Move all real children (lines) back to parent before removing wrapper
+        while (wrapper.firstChild) {
+          const child = wrapper.firstChild
+          // skip the revealer block div — only move text lines
+          if ((child as HTMLElement).classList?.contains('block-line-revealer')) {
+            wrapper.removeChild(child)
+          } else {
+            wrapper.parentNode?.insertBefore(child, wrapper)
+          }
+        }
+        wrapper.remove()
+      })
     }
-  }, [delay, duration, animateOnScroll, start, overlayColor, stagger])
+  }, {
+    scope: containerRef,
+    dependencies: [children, delay, duration, animateOnScroll, start, blockColor, stagger],
+  })
 
   return (
-    <div ref={wrapperRef} className={className}>
+    <div ref={containerRef} data-text-wrapper="true" className={className}>
       {children}
     </div>
   )

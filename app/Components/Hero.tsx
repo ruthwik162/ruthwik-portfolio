@@ -333,7 +333,7 @@ const Hero = () => {
 
                         <div className="col-span-12 md:col-span-8 md:col-start-4 lg:col-start-7 lg:col-span-6 xl:col-start-9 h-[25vh] lg:h-[40vh]">
                             <h1 className="w-full indent-[35%] md:indent-[20%] lg:text-[4vw] xl:text-[2.5vw] text-[6vw] leading-[0.95] font-[PPNeueMontreal] font-semibold mb-8 tracking-tight text-black">
-                                Building <span className="lg:text-[3vw] font-[AmericanGrotesk] font-light uppercase ">products</span> that people use
+                                Building  <span className="lg:text-[3vw] inline-block font-[AmericanGrotesk] font-light uppercase ">products</span>  that people use
                                 instead of projects
                                 that just sit online
                             </h1>
@@ -367,7 +367,7 @@ const Hero = () => {
 
                         <div className="col-span-12 md:col-start-1 md:col-span-9 lg:col-span-5 lg:col-start-1">
                             <div className="space-y-6 text-[15px] leading-[1.8] text-black">
-                                <TextReveal>
+                                <TextReveal  delay={0.2} duration={0.9} animateOnScroll start="top 90%" stagger={0.04} className="overflow-hidden">
                                     <p className="lg:text-[2vw] md:text-[4.5vw] text-[6vw]  leading-tight font-semibold">
                                         Hello, I'm <span className="font-[AmericanGrotesk] uppercase text-[7.5vw] lg:text-[2.5vw] md:text-[4.9vw] tracking-wide">nagaruthwik</span>  — a full-stack developer who accidentally became a business owner.
                                     </p>
@@ -447,9 +447,9 @@ const Hero = () => {
 
 
 
-                        <div className="col-span-12 md:col-span-8 max-w-[290px] md:col-start-1 lg:col-span-6 space-y-0.5 lg:col-start-1">
-                            <TextReveal>
-                                <h2 className="text-[8vw]   md:text-[4vw] lg:text-[4vw] font-[AmericanGrotesk] font-bold leading-[0.95] tracking-tight text-black ">
+                        <div className="col-span-12 md:col-span-8 max-w-[290px] md:col-start-1 lg:col-span-6  lg:col-start-1">
+                            <TextReveal  delay={0.2} duration={0.9} animateOnScroll start="top 90%" stagger={0.04} className="overflow-hidden">
+                                <h2 className="text-[10vw]   md:text-[4vw] space-y-0.5 lg:text-[4vw] font-[AmericanGrotesk] font-bold leading-[0.95] tracking-tight text-black ">
                                     Outcome over Architecture
                                 </h2>
                             </TextReveal>

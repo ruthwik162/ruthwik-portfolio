@@ -1,70 +1,29 @@
 'use client'
 
 /**
- * Mobile.tsx — Awwwards SOTD Production Grade
+ * Mobile.tsx — Awwwards SOTD Optimized for Speed
  * ─────────────────────────────────────────────
+ * Lightweight animations + faster GLB loading
  * Uses your actual GLB node structure: Object_4 through Object_19
  * Object_17 = screen mesh → receives screenMat with your image
  *
- * ANIMATION STYLE: Cinematic / Dramatic
- *  - Entrance: deep rise, heavy scale punch, slow power4.out
- *  - Idle float: slow breathing, large amplitude — feels weighted
- *  - Mouse parallax: overdamped spring — luxurious drag, no snap
+ * ANIMATION STYLE: Light & Smooth (Awwwards-quality but lightweight)
+ *  - Entrance: quick rise, subtle scale, smooth ease
+ *  - Idle float: minimal breathing, small amplitude
+ *  - Mouse parallax: lightly damped spring, smooth drag
  */
 
 import React, { useRef, useMemo, useEffect } from 'react'
-import { useGLTF, useTexture } from '@react-three/drei'
+import { useGLTF, useTexture, Preload } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
-import gsap from 'gsap'
-import { CustomEase } from 'gsap/CustomEase'
-
-gsap.registerPlugin(CustomEase)
 
 // ─────────────────────────────────────────────────────────────────────────────
-// CustomEase lazy singleton — SSR-safe, only runs inside useFrame
-// ─────────────────────────────────────────────────────────────────────────────
-
-type Eases = {
-  expo:  gsap.EaseFunction
-  quint: gsap.EaseFunction
-  heavy: gsap.EaseFunction
-  ultra: gsap.EaseFunction
-}
-
-let _eases: Eases | null = null
-
-function getEases(): Eases {
-  if (_eases) return _eases
-  try {
-    CustomEase.create('aw.expo',  'M0,0 C0.16,1 0.3,1 1,1')
-    CustomEase.create('aw.quint', 'M0,0 C0.22,0 0.78,1 1,1')
-    CustomEase.create('aw.heavy', 'M0,0 C0.4,0 0.6,1 1,1')
-    CustomEase.create('aw.ultra', 'M0,0 C0.5,0 0.5,1 1,1')
-    _eases = {
-      expo:  gsap.parseEase('aw.expo'),
-      quint: gsap.parseEase('aw.quint'),
-      heavy: gsap.parseEase('aw.heavy'),
-      ultra: gsap.parseEase('aw.ultra'),
-    }
-  } catch (err) {
-    console.warn('[Mobile] CustomEase fallback:', err)
-    _eases = {
-      expo:  gsap.parseEase('power4.out'),
-      quint: gsap.parseEase('power3.inOut'),
-      heavy: gsap.parseEase('power2.inOut'),
-      ultra: gsap.parseEase('power4.inOut'),
-    }
-  }
-  return _eases
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Phase config
+// Lighter constants for faster animations
 // ─────────────────────────────────────────────────────────────────────────────
 
 const P = {
-  REST: { s: 0,    e: 0.12 },
+  REST: { s: 0, e: 0.12 },
   SPIN: { s: 0.12, e: 0.72 },
   BACK: { s: 0.72, e: 1.00 },
 }
@@ -72,10 +31,7 @@ const P = {
 const norm = (t: number, s: number, e: number) =>
   Math.max(0, Math.min(1, (t - s) / (e - s)))
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Critically damped spring
-// ─────────────────────────────────────────────────────────────────────────────
-
+// Light spring: faster response, less overshoot
 function spring(
   pos: number, target: number, vel: number,
   stiffness: number, damping: number, dt: number,
@@ -86,29 +42,29 @@ function spring(
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Constants
+// Constants — LIGHTER for faster feel
 // ─────────────────────────────────────────────────────────────────────────────
 
 const BASE_Y = -0.55
 
-// CINEMATIC MOUSE: wider influence angles for more dramatic tilt
-const MOUSE_ROT_X = 0.16
-const MOUSE_ROT_Y = 0.13
+// LIGHT MOUSE: tighter influence for snappier response
+const MOUSE_ROT_X = 0.08
+const MOUSE_ROT_Y = 0.06
 
-// CINEMATIC ENTRANCE: start deeper so the rise feels monumental
-const ENTRANCE_BELOW = -3.2
+// LIGHT ENTRANCE: start closer, quicker rise
+const ENTRANCE_BELOW = -1.2
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Props
 // ─────────────────────────────────────────────────────────────────────────────
 
 interface MobileProps {
-  rotationProgress:     React.MutableRefObject<number>
-  screenImageUrl?:      string
-  screenBrightness?:    number
+  rotationProgress: React.MutableRefObject<number>
+  screenImageUrl?: string
+  screenBrightness?: number
   screenEmissiveColor?: string
-  screenRoughness?:     number
-  screenMetalness?:     number
+  screenRoughness?: number
+  screenMetalness?: number
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -118,76 +74,77 @@ interface MobileProps {
 export default function Mobile({
   rotationProgress,
   screenImageUrl,
-  screenBrightness    = 0.5,
+  screenBrightness = 0.5,
   screenEmissiveColor = '#0a0a18',
-  screenRoughness     = 0.04,
-  screenMetalness     = 0.05,
+  screenRoughness = 0.04,
+  screenMetalness = 0.05,
 }: MobileProps) {
 
   const groupRef = useRef<THREE.Group>(null!)
+
   const { nodes, materials } = useGLTF('/iphone17pro.glb') as any
 
-  // ── Mouse / gyro parallax ─────────────────────────────────────────────────
+  // ── Mouse / gyro parallax — LIGHTER ───────────────────────────────────────
 
   const mouseTarget = useRef({ x: 0, y: 0 })
   const mouseSpring = useRef({ px: 0, py: 0, vx: 0, vy: 0 })
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
-      const nx =  (e.clientX / window.innerWidth  - 0.5) * 2
+      const nx = (e.clientX / window.innerWidth - 0.5) * 2
       const ny = -(e.clientY / window.innerHeight - 0.5) * 2
-      // CINEMATIC: slower GSAP tween into the spring target — 1.4s vs 0.8s
-      gsap.to(mouseTarget.current, {
-        x: nx, y: ny,
-        duration: 1.4, ease: 'power3.out', overwrite: true,
-      })
+      // LIGHT: instant response (no GSAP tween)
+      mouseTarget.current = { x: nx, y: ny }
     }
     const onLeave = () => {
-      // CINEMATIC: very slow return to center — feels like weight settling
-      gsap.to(mouseTarget.current, {
-        x: 0, y: 0,
-        duration: 3.5, ease: 'power3.out', overwrite: true,
-      })
+      mouseTarget.current = { x: 0, y: 0 }
     }
     const onGyro = (e: DeviceOrientationEvent) => {
       if (e.beta == null || e.gamma == null) return
       const nx = THREE.MathUtils.clamp(e.gamma / 45, -1, 1)
       const ny = THREE.MathUtils.clamp((e.beta - 45) / 45, -1, 1)
-      gsap.to(mouseTarget.current, {
-        x: nx, y: -ny,
-        duration: 0.5, ease: 'power1.out', overwrite: true,
-      })
+      mouseTarget.current = { x: nx, y: -ny }
     }
-    window.addEventListener('mousemove',        onMove)
-    window.addEventListener('mouseleave',       onLeave)
+    window.addEventListener('mousemove', onMove)
+    window.addEventListener('mouseleave', onLeave)
     window.addEventListener('deviceorientation', onGyro)
     return () => {
-      window.removeEventListener('mousemove',        onMove)
-      window.removeEventListener('mouseleave',       onLeave)
+      window.removeEventListener('mousemove', onMove)
+      window.removeEventListener('mouseleave', onLeave)
       window.removeEventListener('deviceorientation', onGyro)
     }
   }, [])
 
-  // ── Cinematic entrance ────────────────────────────────────────────────────
+  // ── LIGHT ENTRANCE — quicker rise ─────────────────────────────────────────
 
-  const entranceY     = useRef(ENTRANCE_BELOW)
+  const entranceY = useRef(ENTRANCE_BELOW)
   const entranceAlpha = useRef(0)
 
   useEffect(() => {
-    // CINEMATIC ENTRANCE:
-    //  - 2.6s duration (was 1.8) — slow, monumental rise
-    //  - 0.4s delay — lets the page settle before the device appears
-    //  - power4.out — decelerates heavily at the top, no bounce
-    gsap.to(entranceY,     { current: 0, duration: 2.6, ease: 'power4.out', delay: 0.4 })
-    // Alpha slightly longer so opacity trails the position — device emerges from dark
-    gsap.to(entranceAlpha, { current: 1, duration: 1.8, ease: 'power3.out', delay: 0.4 })
-  }, [])
+    const start = performance.now()
+    const duration = 800
+    const delay = 100
 
-  // ── Shimmer state ─────────────────────────────────────────────────────────
+    const animate = () => {
+      const elapsed = performance.now() - start
+      if (elapsed < delay) return
+
+      const progress = Math.min(1, (elapsed - delay) / duration)
+      const eased = 1 - Math.pow(1 - progress, 2)
+
+      entranceY.current = ENTRANCE_BELOW * (1 - eased)
+      entranceAlpha.current = eased
+
+      if (progress < 1) {
+        requestAnimationFrame(animate)
+      }
+    }
+    requestAnimationFrame(animate)
+  }, [])
 
   const shimmer = useRef(0)
 
-  // ── Screen texture ────────────────────────────────────────────────────────
+  // ── Screen texture — OPTIMIZED ────────────────────────────────────────────
 
   const resolvedUrl = useMemo(
     () => screenImageUrl ??
@@ -199,14 +156,15 @@ export default function Mobile({
 
   useEffect(() => {
     if (!screenTexture?.image) return
-    screenTexture.flipY      = false
+    screenTexture.flipY = false
     screenTexture.colorSpace = THREE.SRGBColorSpace
-    screenTexture.wrapS      = THREE.ClampToEdgeWrapping
-    screenTexture.wrapT      = THREE.ClampToEdgeWrapping
-    screenTexture.anisotropy = 16
+    screenTexture.wrapS = THREE.ClampToEdgeWrapping
+    screenTexture.wrapT = THREE.ClampToEdgeWrapping
+    // OPTIMIZATION: Lower anisotropy (8 vs 16)
+    screenTexture.anisotropy = 8
 
-    const img          = screenTexture.image as HTMLImageElement
-    const imageAspect  = img.width / img.height
+    const img = screenTexture.image as HTMLImageElement
+    const imageAspect = img.width / img.height
     const screenAspect = 393 / 852
 
     if (imageAspect > screenAspect) {
@@ -223,7 +181,7 @@ export default function Mobile({
     screenTexture.needsUpdate = true
   }, [screenTexture])
 
-  // ── Screen material ───────────────────────────────────────────────────────
+  // ── Screen material — OPTIMIZED ───────────────────────────────────────────
 
   const emissiveColor = useMemo(
     () => new THREE.Color(screenEmissiveColor),
@@ -232,104 +190,112 @@ export default function Mobile({
 
   const screenMat = useMemo(
     () => new THREE.MeshPhysicalMaterial({
-      map:                screenTexture,
-      roughness:          screenRoughness,
-      metalness:          screenMetalness,
-      clearcoat:          1,
-      clearcoatRoughness: 0.02,
-      emissive:           emissiveColor,
-      emissiveIntensity:  screenBrightness,
-      envMapIntensity:    1.2,
-      toneMapped:         true,
+      map: screenTexture,
+      roughness: screenRoughness,
+      metalness: screenMetalness,
+      clearcoat: 0.8,
+      clearcoatRoughness: 0.05,
+      emissive: emissiveColor,
+      emissiveIntensity: screenBrightness,
+      envMapIntensity: 0.8,
+      toneMapped: true,
     }),
     [screenTexture, screenRoughness, screenMetalness, emissiveColor, screenBrightness],
   )
 
   useEffect(() => () => { screenMat.dispose() }, [screenMat])
 
-  // ── Progress tracking ─────────────────────────────────────────────────────
-
   const smoothProgress = useRef(0)
-  const prevPhase      = useRef<'REST' | 'SPIN' | 'BACK'>('REST')
+  const prevPhase = useRef<'REST' | 'SPIN' | 'BACK'>('REST')
 
   // ─────────────────────────────────────────────────────────────────────────
-  // useFrame
+  // useFrame — LIGHTER animations
   // ─────────────────────────────────────────────────────────────────────────
 
   useFrame(({ clock }, delta) => {
     if (!groupRef.current) return
 
-    const { expo, quint, heavy, ultra } = getEases()
-
     smoothProgress.current = THREE.MathUtils.damp(
       smoothProgress.current,
       rotationProgress.current,
-      6,
+      10,
       delta,
     )
 
     const t = smoothProgress.current
     const e = clock.getElapsedTime()
 
-    // ── Phase boundary shimmer ─────────────────────────────────────────────
     const phase = t < P.REST.e ? 'REST' : t < P.SPIN.e ? 'SPIN' : 'BACK'
     if (phase !== prevPhase.current) {
-      gsap.fromTo(shimmer, { current: 1 }, { current: 0, duration: 0.8, ease: 'power3.out' })
+      shimmer.current = 1
       prevPhase.current = phase
     }
-    screenMat.emissiveIntensity = screenBrightness + shimmer.current * 0.45
+    shimmer.current *= 0.88
+    screenMat.emissiveIntensity = screenBrightness + shimmer.current * 0.35
 
-    // ── CINEMATIC IDLE FLOAT ───────────────────────────────────────────────
-    // Slower frequencies (0.09 / 0.11 vs 0.17 / 0.21) + larger amplitude
-    // = slow, deliberate breathing that feels like mass shifting in space
-    const idleX = Math.sin(e * 0.09 + 1.5) * 0.014
-    const idleZ = Math.sin(e * 0.11 + 2.8) * 0.010
+    const idleX = Math.sin(e * 0.18 + 1.5) * 0.004
+    const idleZ = Math.sin(e * 0.22 + 2.8) * 0.003
 
-    // ── CINEMATIC MOUSE SPRING ────────────────────────────────────────────
-    // Stiffness 7 (was 12) + Damping 6.5 (was 4.8)
-    // → overdamped: no snap, no oscillation — heavy object drifting in fluid
     const mouseFade =
       t < P.REST.e ? 1 :
-      t < P.SPIN.e ? 1 - norm(t, P.SPIN.s, P.SPIN.e) :
-                     norm(t, P.BACK.s, P.BACK.e)
+        t < P.SPIN.e ? 0.25 :
+          norm(t, P.BACK.s, P.BACK.e)
 
-    const [px, vx] = spring(mouseSpring.current.px, mouseTarget.current.x * mouseFade, mouseSpring.current.vx, 7, 6.5, delta)
-    const [py, vy] = spring(mouseSpring.current.py, mouseTarget.current.y * mouseFade, mouseSpring.current.vy, 7, 6.5, delta)
+    const [px, vx] = spring(
+      mouseSpring.current.px,
+      mouseTarget.current.x * mouseFade,
+      mouseSpring.current.vx,
+      14,
+      9,
+      delta
+    )
+    const [py, vy] = spring(
+      mouseSpring.current.py,
+      mouseTarget.current.y * mouseFade,
+      mouseSpring.current.vy,
+      14,
+      9,
+      delta
+    )
     mouseSpring.current = { px, py, vx, vy }
 
-    // ── Scroll animation phases ────────────────────────────────────────────
-
-    let rotX = 0, rotY = 0, rotZ = 0, posZ = 0
+    let rotX = 0
+    let rotY = 0
+    let rotZ = 0
+    let posZ = 0
 
     if (t < P.REST.e) {
       const r = norm(t, P.REST.s, P.REST.e)
+      const k = 1 - Math.pow(1 - r, 3)
       rotY = Math.PI
-      rotX = gsap.utils.interpolate(0.06, 0, quint(r))
-
+      rotX = 0.08 * (1 - k)
+      rotZ = -0.02 * (1 - k)
+      posZ = 0
     } else if (t < P.SPIN.e) {
       const r = norm(t, P.SPIN.s, P.SPIN.e)
-      rotY = gsap.utils.interpolate(Math.PI, Math.PI * 2.1, heavy(r))
-      rotX = gsap.utils.interpolate(0, 0.18, quint(r))
-      rotZ = gsap.utils.interpolate(0, 0.08, quint(r))
-      posZ = gsap.utils.interpolate(0, -0.55, expo(r))
-      rotX += Math.sin(r * Math.PI) * 0.04
 
+      const hold = r < 0.08 ? 0 : norm(r, 0.08, 1)
+      const accel = 1 - Math.pow(1 - hold, 4)
+
+      rotY = Math.PI + accel * Math.PI * 2.05
+      rotX = THREE.MathUtils.lerp(0.02, 0.16, accel) + Math.sin(accel * Math.PI) * 0.03
+      rotZ = THREE.MathUtils.lerp(0.00, 0.06, accel)
+      posZ = THREE.MathUtils.lerp(0, -0.42, accel)
     } else {
       const r = norm(t, P.BACK.s, P.BACK.e)
-      rotY = gsap.utils.interpolate(Math.PI * 2.1, Math.PI * 3, expo(r))
-      rotX = gsap.utils.interpolate(0.18, 0, quint(r))
-      rotZ = gsap.utils.interpolate(0.08, 0, quint(r))
-      posZ = gsap.utils.interpolate(-0.55, 0, ultra(r))
+      const settle = 1 - Math.pow(1 - r, 3)
+
+      rotY = Math.PI * 3.05 + settle * 0.18
+      rotX = THREE.MathUtils.lerp(0.16, 0, settle)
+      rotZ = THREE.MathUtils.lerp(0.06, 0, settle)
+      posZ = THREE.MathUtils.lerp(-0.42, 0, settle)
     }
 
-    // ── CINEMATIC ENTRANCE: deep rise + heavy scale punch ─────────────────
-    // Scale 0.85→1.0 (was 0.92→1.0): more dramatic size change on landing
-    const finalY  = BASE_Y + entranceY.current
-    const scaleIn = THREE.MathUtils.lerp(0.85, 1.0, entranceAlpha.current)
+    const finalY = BASE_Y + entranceY.current
+    const scaleIn = 0.92 + entranceAlpha.current * 0.08
 
-    // ── Apply ──────────────────────────────────────────────────────────────
     groupRef.current.rotation.x = rotX + idleX + py * MOUSE_ROT_X
-    groupRef.current.rotation.y = rotY +         px * MOUSE_ROT_Y
+    groupRef.current.rotation.y = rotY + px * MOUSE_ROT_Y
     groupRef.current.rotation.z = rotZ + idleZ
     groupRef.current.position.y = finalY
     groupRef.current.position.z = posZ
@@ -337,28 +303,28 @@ export default function Mobile({
   })
 
   // ─────────────────────────────────────────────────────────────────────────
-  // Render
+  // Render — OPTIMIZED with Preload
   // ─────────────────────────────────────────────────────────────────────────
 
   return (
     <group ref={groupRef} dispose={null} position={[0, BASE_Y, 0]}>
-      <mesh castShadow receiveShadow geometry={nodes.Object_4.geometry}  material={materials['17ProMax_color']}  />
-      <mesh castShadow receiveShadow geometry={nodes.Object_5.geometry}  material={materials['17ProMax_Black2']} />
-      <mesh castShadow receiveShadow geometry={nodes.Object_6.geometry}  material={materials['17ProMax_color3']} />
-      <mesh castShadow receiveShadow geometry={nodes.Object_7.geometry}  material={materials['17ProMax_glass']}  />
-      <mesh castShadow receiveShadow geometry={nodes.Object_8.geometry}  material={materials['17ProMax_color2']} />
-      <mesh castShadow receiveShadow geometry={nodes.Object_9.geometry}  material={materials['17ProMax_Logo']}   />
+      <Preload all />
+      <mesh castShadow receiveShadow geometry={nodes.Object_4.geometry} material={materials['17ProMax_color']} />
+      <mesh castShadow receiveShadow geometry={nodes.Object_5.geometry} material={materials['17ProMax_Black2']} />
+      <mesh castShadow receiveShadow geometry={nodes.Object_6.geometry} material={materials['17ProMax_color3']} />
+      <mesh castShadow receiveShadow geometry={nodes.Object_7.geometry} material={materials['17ProMax_glass']} />
+      <mesh castShadow receiveShadow geometry={nodes.Object_8.geometry} material={materials['17ProMax_color2']} />
+      <mesh castShadow receiveShadow geometry={nodes.Object_9.geometry} material={materials['17ProMax_Logo']} />
       <mesh castShadow receiveShadow geometry={nodes.Object_10.geometry} material={materials['17ProMax_black1']} />
-      <mesh castShadow receiveShadow geometry={nodes.Object_11.geometry} material={materials['17ProMax_21']}     />
-      <mesh castShadow receiveShadow geometry={nodes.Object_12.geometry} material={materials['17ProMax_22']}     />
-      <mesh castShadow receiveShadow geometry={nodes.Object_13.geometry} material={materials['17ProMax_2222']}   />
-      <mesh castShadow receiveShadow geometry={nodes.Object_14.geometry} material={materials['17ProMax_G']}      />
-      <mesh castShadow receiveShadow geometry={nodes.Object_15.geometry} material={materials['17ProMax_1111']}   />
-      <mesh castShadow receiveShadow geometry={nodes.Object_16.geometry} material={materials['17ProMax_Lens']}   />
-      {/* Screen mesh — Cloudinary image renders here */}
-      <mesh castShadow receiveShadow geometry={nodes.Object_17.geometry} material={screenMat}                   />
-      <mesh castShadow receiveShadow geometry={nodes.Object_18.geometry} material={materials['17ProMax_Lens2']}  />
-      <mesh castShadow receiveShadow geometry={nodes.Object_19.geometry} material={materials['17ProMax_2112']}   />
+      <mesh castShadow receiveShadow geometry={nodes.Object_11.geometry} material={materials['17ProMax_21']} />
+      <mesh castShadow receiveShadow geometry={nodes.Object_12.geometry} material={materials['17ProMax_22']} />
+      <mesh castShadow receiveShadow geometry={nodes.Object_13.geometry} material={materials['17ProMax_2222']} />
+      <mesh castShadow receiveShadow geometry={nodes.Object_14.geometry} material={materials['17ProMax_G']} />
+      <mesh castShadow receiveShadow geometry={nodes.Object_15.geometry} material={materials['17ProMax_1111']} />
+      <mesh castShadow receiveShadow geometry={nodes.Object_16.geometry} material={materials['17ProMax_Lens']} />
+      <mesh castShadow receiveShadow geometry={nodes.Object_17.geometry} material={screenMat} />
+      <mesh castShadow receiveShadow geometry={nodes.Object_18.geometry} material={materials['17ProMax_Lens2']} />
+      <mesh castShadow receiveShadow geometry={nodes.Object_19.geometry} material={materials['17ProMax_2112']} />
     </group>
   )
 }

@@ -121,7 +121,7 @@ export default function Capabilities() {
             "
           >
 
-            <TextReveal>
+            <TextReveal duration={1.2} stagger={0.1}>
               <h2
                 ref={headRef}
                 className="font-[AmericanGrotesk] uppercase
