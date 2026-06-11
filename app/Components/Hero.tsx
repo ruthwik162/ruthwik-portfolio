@@ -323,8 +323,8 @@ const Hero = () => {
                     <div className="grid grid-cols-12 justify-between gap-6">
 
                         <div className="h-[25vh] lg:h-[30vh] md:mt-0 mt-[15vw] col-span-12 md:col-span-12 w-full">
-                            <h1 className="w-full lg:text-[8.5vw] md:text-[10vw] xl:text-[5.5vw] text-[12vw] leading-[0.95] font-[PPNeueMontreal] md:font-bold font-semibold tracking-tight text-black">
-                                Naga <span className="lg:text-[7vw] font-extrabold font-[Brilliantte] ">r</span>uthwik
+                            <h1 className="w-full lg:text-[8.5vw] md:text-[10vw] xl:text-[5.5vw] text-[12vw] leading-[0.95] font-[Animo] md:font-bold font-semibold tracking-tight text-black">
+                                Naga <span className="lg:text-[7vw] font-extrabold font-[Animo] ">r</span>uthwik
                             </h1>
                         </div>
 
@@ -333,7 +333,7 @@ const Hero = () => {
 
                         <div className="col-span-12 md:col-span-8 md:col-start-4 lg:col-start-7 lg:col-span-6 xl:col-start-9 h-[25vh] lg:h-[40vh]">
                             <h1 className="w-full indent-[35%] md:indent-[20%] lg:text-[4vw] xl:text-[2.5vw] text-[6vw] leading-[0.95] font-[PPNeueMontreal] font-semibold mb-8 tracking-tight text-black">
-                                Building  <span className="lg:text-[3vw] inline-block font-[AmericanGrotesk] font-light uppercase ">products</span>  that people use
+                                Building  <span className="lg:text-[3vw]  font-[Animo] font-light uppercase ">products</span>  that people use
                                 instead of projects
                                 that just sit online
                             </h1>
@@ -367,8 +367,8 @@ const Hero = () => {
 
                         <div className="col-span-12 md:col-start-1 md:col-span-9 lg:col-span-5 lg:col-start-1">
                             <div className="space-y-6 text-[15px] leading-[1.8] text-black">
-                                <TextReveal  delay={0.2} duration={0.9} animateOnScroll start="top 90%" stagger={0.04} className="overflow-hidden">
-                                    <p className="lg:text-[2vw] md:text-[4.5vw] text-[6vw]  leading-tight font-semibold">
+                                <TextReveal delay={0.2} duration={0.9} animateOnScroll start="top 90%" stagger={0.04} className="overflow-hidden">
+                                    <p className="lg:text-[2vw] md:text-[4.5vw] text-[6vw]  leading-[1.2] space-y-[2px] font-semibold">
                                         Hello, I'm <span className="font-[AmericanGrotesk] uppercase text-[7.5vw] lg:text-[2.5vw] md:text-[4.9vw] tracking-wide">nagaruthwik</span>  — a full-stack developer who accidentally became a business owner.
                                     </p>
                                 </TextReveal>
@@ -440,72 +440,69 @@ const Hero = () => {
           ══════════════════════════════════════ */}
             <section
                 ref={lastSectionRef}
-                className="relative z-20 min-h-screen bg-white py-24 px-6 md:px-10 overflow-hidden"
+                className="relative z-20 min-h-screen bg-white py-20 px-10 md:px-16 overflow-hidden"
             >
                 <div ref={lastSectionContentRef} className="w-full max-w-[1400px] mx-auto">
-                    <div className="grid grid-cols-12 gap-6 md:gap-8">
 
-
-
-                        <div className="col-span-12 md:col-span-8 max-w-[290px] md:col-start-1 lg:col-span-6  lg:col-start-1">
-                            <TextReveal  delay={0.2} duration={0.9} animateOnScroll start="top 90%" stagger={0.04} className="overflow-hidden">
-                                <h2 className="text-[10vw]   md:text-[4vw] space-y-0.5 lg:text-[4vw] font-[AmericanGrotesk] font-bold leading-[0.95] tracking-tight text-black ">
-                                    Outcome over Architecture
+                    {/* Top row */}
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-16 mb-16 md:mb-20">
+                        <div>
+                            
+                            <TextReveal delay={0.1} duration={1} animateOnScroll start="top 90%" stagger={0.04} className="overflow-hidden">
+                                <h2 className="text-[clamp(36px,5.5vw,72px)] font-[300] leading-[0.93] tracking-[-0.03em] text-black max-w-[560px] font-[AmericanGrotesk]">
+                                    Outcome over<br />Architecture
                                 </h2>
                             </TextReveal>
-
                         </div>
-
-                        <div className="col-span-12 md:col-span-5 overflow-hidden md:col-start-5 lg:col-span-5 lg:col-start-3 mb-6">
-                            <div className="">
-
-                                <p className="text-[5vw] md:text-[2.5vw] lg:text-[2vw] indent-[15%] leading-[1.05] font-semibold text-black/90">
-                                    Every <span className="font-semibold   text-underline ">project</span> starts with understanding what success looks like for the client  more sales,
-                                    better user experience, operational efficiency.
-                                </p>
-
-                                <div className="mt-8 pt-8 border-t border-black/10">
-                                    <p className="text-[3.5vw] md:text-[1.2vw] lg:text-[1rem] leading-tight font-medium text-black/70">
-                                        The tech stack is just the tool. I've built eCommerce platforms that process real transactions,
-                                        appointment booking systems that connect actual patients to doctors, and inventory management
-                                        dashboards that reduce manual work.
-                                    </p>
-                                </div>
-                            </div>
+                        <div className="max-w-[300px] pt-2 md:pt-14">
+                            <p className="text-[13px] leading-[1.75] text-black/50 font-normal">
+                                Every project begins with a single question — what does success look like for you? More sales, better retention, operational speed. The tech stack is just the tool that gets us there.
+                            </p>
                         </div>
-
-                        <div className="col-span-12 md:col-span-8 md:col-start-5 lg:col-span-10  lg:col-start-3">
-                            <div className="space-y-16 grid md:grid-cols-3 grid-cols-1 gap-5 ">
-                                {principles.map((principle, idx) => (
-                                    <div key={principle.number} className="bg-black/50  h-[40vh] lg:h-[30vh] md:h-[35vh] xl:h-[50vh]  p-6 lg:p-1  gap-4">
-
-                                        <div className="text-[12px] md:text-[14px] lg:text-[15px] font-[AmericanGrotesk] flex flex-col justify-between rounded  p-2 text-black bg-white backdrop-blur-2xl w-full h-full tracking-wide">
-
-
-                                            {/* Title and description */}
-                                            <div className="w-full space-y-4">
-                                                <Text variant="slideUp" delay={0.3 + idx * 0.1} ease="reveal.wipe" stagger={0.04} duration={1.8} animateOnScroll>
-                                                    <h3 className="text-[15px] w-full lg:text-[24px] text-black leading-tight font-semibold font-[AmericanGrotesk]">
-                                                        {principle.title}
-                                                    </h3>
-                                                </Text>
-
-                                            </div>
-                                            <div className=" space-y-4">
-
-                                                <Text variant="slideUp" delay={0.4 + idx * 0.1} ease="reveal.wipe" stagger={0.04} duration={1.8} animateOnScroll>
-                                                    <p className="text-[12px]  md::text-[16px] leading-[1.7] text-[#666] md:indent-[10%]">
-                                                        {principle.description}
-                                                    </p>
-                                                </Text>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-
                     </div>
+
+                    {/* Divider */}
+                    <div className="w-full h-px bg-black/8 mb-16" />
+
+                    {/* Principles strip */}
+                    <div className="grid grid-cols-1 md:grid-cols-3">
+                        {principles.map((principle, idx) => (
+                            <div
+                                key={principle.number}
+                                className="group px-0 md:px-7 py-8 md:py-0 border-t md:border-t-0 md:border-l border-black/8 first:border-t-0 first:border-l-0 first:pl-0"
+                            >
+                                <span className="block text-[10px] font-medium tracking-[.1em] text-black/30 mb-5">
+                                    {principle.number}
+                                </span>
+                                <Text variant="slideUp" delay={0.2 + idx * 0.1} ease="reveal.wipe" duration={1.6} animateOnScroll>
+                                    <h3 className="text-[clamp(18px,1.8vw,23px)] font-medium leading-[1.2] tracking-[-0.02em] text-black mb-4 font-[AmericanGrotesk]">
+                                        {principle.title.split(' ').slice(0, Math.ceil(principle.title.split(' ').length / 2)).join(' ')}<br />
+                                        {principle.title.split(' ').slice(Math.ceil(principle.title.split(' ').length / 2)).join(' ')}
+                                    </h3>
+                                </Text>
+                                <div className="w-6 h-px bg-black mb-5 transition-all duration-300 group-hover:w-12" />
+                                <Text variant="slideUp" delay={0.3 + idx * 0.1} ease="reveal.wipe" duration={1.6} animateOnScroll>
+                                    <p className="text-[12.5px] leading-[1.8] text-black/50">
+                                        {principle.description}
+                                    </p>
+                                </Text>
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* Bottom strip */}
+                    <div className="mt-16 md:mt-20 pt-7 border-t border-black/8 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+                        <p className="text-[clamp(15px,1.6vw,20px)] font-light leading-[1.4] tracking-[-0.01em] text-black max-w-[520px]">
+                            I've built eCommerce platforms processing <strong className="font-medium">real transactions</strong>, booking systems connecting actual patients to doctors, and dashboards that cut manual work in half.
+                        </p>
+                        <div className="text-right shrink-0">
+                            <span className="block text-[10px] tracking-[.1em] uppercase text-black/30 mb-1.5">See the work</span>
+                            <a href="#" className="text-[12px] font-medium text-black inline-flex items-center gap-1.5 border-b border-black pb-0.5 hover:gap-3 transition-all">
+                                Selected projects <span>↗</span>
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 

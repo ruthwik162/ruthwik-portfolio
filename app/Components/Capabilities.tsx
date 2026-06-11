@@ -125,7 +125,7 @@ export default function Capabilities() {
               <h2
                 ref={headRef}
                 className="font-[AmericanGrotesk] uppercase
-                    text-[10vw] md:text-[6vw] lg:text-[3.2vw]
+                    text-[15vw] md:text-[6vw] lg:text-[3.2vw]
                 font-bold leading-[1.0] tracking-[-0.02em]
                 text-black
               "
@@ -137,12 +137,6 @@ export default function Capabilities() {
               </h2>
             </TextReveal>
 
-          </div>
-
-
-
-          {/* ── Right column — capability cards grid ─────────────────── */}
-          <div className="col-span-12 lg:col-span-8 lg:col-start-5 lg:mt-[15vw]  px-2">
             <div className="col-span-12 lg:col-span-6  py-5 max-w-[600px] px-2">
               <p className="text-[4vw] md:text-[1.2vw] lg:text-[1.1vw] leading-[0.9] font-medium text-black/55">
                 A focused set of disciplines — each one practised on live
@@ -154,7 +148,14 @@ export default function Capabilities() {
                 full vertical — design, code, ship.
               </p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 py-2 gap-5 md:gap-15">
+          </div>
+
+
+
+          {/* ── Right column — capability cards grid ─────────────────── */}
+          <div className="col-span-12 lg:col-span-8 lg:col-start-5 py-20  px-2">
+
+            <div className="grid grid-cols-2 md:grid-cols-4 py-2 gap-5 md:gap-5">
               {caps.map((cap, i) => (
                 <div
                   key={cap.index}

@@ -102,70 +102,64 @@ const Navbar = () => {
 
             {/* MOBILE ONLY: Backdrop Overlay */}
             <div
-                className={`md:hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-500 ${
-                    isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-                }`}
+                className={`md:hidden fixed inset-0 bg-black/10 backdrop-blur-sm z-40 transition-opacity duration-500 ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+                    }`}
                 onClick={() => setIsOpen(false)}
             />
 
-            {/* MOBILE ONLY: Right-to-Left Minimal Drawer */}
+            {/* MOBILE ONLY: Right-to-Left Minimal Floating Drawer */}
             <div
-                className={`md:hidden fixed top-4 right-4 h-[calc(60vh-32px)] w-[280px] sm:w-[320px] bg-[#0d0d0d] border border-white/10 text-white z-50 p-6 flex flex-col justify-between rounded-lg shadow-2xl transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                    isOpen ? "translate-x-0" : "translate-x-[calc(100%+16px)]"
-                }`}
+                className={`md:hidden fixed top-2 right-2 bottom-4 w-[280px] sm:w-[320px] bg-white border border-neutral-200/60 text-black z-50 p-6 flex flex-col justify-between rounded shadow-xl transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? "translate-x-0" : "translate-x-[calc(100%+16px)]"
+                    }`}
             >
                 {/* Drawer Header */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                    <span className="text-[11px] uppercase tracking-widest text-white/40 font-mono">Navigation</span>
-                    
+                <div className="flex items-center justify-between border-b border-neutral-100 pb-4">
+                    <span className="text-[10px] uppercase tracking-widest text-neutral-400 font-mono">Index</span>
+
                     {/* Close Button */}
                     <button
                         onClick={() => setIsOpen(false)}
-                        className="group flex items-center justify-center w-8 h-8 rounded-full border border-white/10 hover:border-white/30 transition-colors"
+                        className="group flex items-center justify-center w-7 h-7 rounded-full border border-neutral-100 hover:border-neutral-300 transition-colors"
                         aria-label="Close Menu"
                     >
-                        <div className="relative w-3 h-3">
-                            <span className="absolute top-1/2 left-0 w-full h-[1px] bg-white rotate-45 transition-transform duration-300 group-hover:rotate-[135deg]" />
-                            <span className="absolute top-1/2 left-0 w-full h-[1px] bg-white -rotate-45 transition-transform duration-300 group-hover:rotate-[45deg]" />
+                        <div className="relative w-2.5 h-2.5">
+                            <span className="absolute top-1/2 left-0 w-full h-[1px] bg-neutral-600 rotate-45 transition-transform duration-300 group-hover:rotate-[135deg]" />
+                            <span className="absolute top-1/2 left-0 w-full h-[1px] bg-neutral-600 -rotate-45 transition-transform duration-300 group-hover:rotate-[45deg]" />
                         </div>
                     </button>
                 </div>
 
-                {/* Mobile Navigation Links */}
-                <div className="flex flex-col gap-1 my-auto pl-2">
-                    {[
-                        ...navLinks,
-                        { label: "Contact", href: "/contact" }
-                    ].map((link, index) => (
+                {/* Mobile Navigation Links Container (Scroll-safe design) */}
+                <div className="flex flex-col items-start gap-2  py-2 overflow-y-auto max-h-[40vh] pl-1">
+                    {navLinks.map((link, index) => (
                         <Link
                             key={link.href}
                             href={link.href}
                             onClick={() => setIsOpen(false)}
-                            className="relative text-[22px] font-[PPNeueMontreal] font-light tracking-tight text-white/70 hover:text-white transition-colors duration-300 group w-fit"
-                            style={{ 
-                                transitionDelay: isOpen ? `${index * 50}ms` : '0ms',
-                                transform: isOpen ? 'translateX(0)' : 'translateX(20px)',
+                            className="relative text-xl font-[PPNeueMontreal] tracking-tight text-black/80 hover:text-black transition-colors duration-300 w-fit "
+                            style={{
+                                transitionDelay: isOpen ? `${index * 40}ms` : '0ms',
+                                transform: isOpen ? 'translateX(0)' : 'translateX(12px)',
                                 opacity: isOpen ? 1 : 0,
                                 transitionProperty: 'transform, opacity, color'
                             }}
                         >
                             <span>{link.label}</span>
-                            <span className="absolute left-0 -bottom-0.5 w-0 h-[1px] bg-white group-hover:w-full transition-all duration-300" />
                         </Link>
                     ))}
                 </div>
 
                 {/* Drawer Footer */}
-                <div className="border-t border-white/10 pt-4 flex flex-col gap-3">
+                <div className="border-t border-neutral-100 pt-4 flex flex-col gap-3">
                     <a
                         href="/resume.pdf"
                         download
                         onClick={() => setIsOpen(false)}
-                        className="w-full text-center text-[13px] font-[PPNeueMontreal] tracking-wide border border-white/20 py-2.5 rounded hover:bg-white hover:text-black transition-all duration-300"
+                        className="w-full text-center text-xs font-mono tracking-wide border border-neutral-200 py-3 rounded-lg hover:bg-black hover:border-black hover:text-white transition-all duration-300"
                     >
-                        Download Resume
+                        Download Resume ↓
                     </a>
-                    <div className="text-[10px] text-white/30 text-center font-mono">
+                    <div className="text-[9px] text-neutral-400 text-center font-mono uppercase tracking-tight">
                         © {new Date().getFullYear()} Nagaruthwik
                     </div>
                 </div>

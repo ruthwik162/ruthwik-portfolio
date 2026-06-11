@@ -35,6 +35,15 @@ body {
 }
 
 @font-face {
+  font-family: 'Animo';
+  src: url('/fonts/Animo.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: 'AmericanGrotesk';
   src: url('/fonts/AmericanGrotesk.woff2') format('woff2');
   font-weight: 100 900;
